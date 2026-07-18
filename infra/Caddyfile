@@ -1,0 +1,27 @@
+# UPSCVidya — Caddy reverse proxy for PocketBase
+# {{API_HOST}} is substituted by setup.sh (api.<domain>).
+# Automatic HTTPS via Let's Encrypt.
+
+{{API_HOST}} {
+	encode gzip
+
+	# request body cap (PocketBase file uploads stay small in this app)
+	request_body {
+		max_size 10MB
+	}
+
+	reverse_proxy 127.0.0.1:8090 {
+		# preserve client IP for PB logs / rate decisions
+		header_up X-Real-IP {remote_host}
+	}
+
+	# NOTE (Prompt 17 hardening, placeholders for now):
+	# - rate limits (auth 10/min/IP, quiz answer 60/min/user) via caddy-ratelimit plugin
+	#   or a PB middleware; revisit at deployment hardening.
+	# - admin UI IP allowlist: uncomment and set your IP:
+	# @adminUI {
+	# 	path /_/*
+	# 	not remote_ip YOUR.HOME.IP.HERE
+	# }
+	# respond @adminUI 403
+}

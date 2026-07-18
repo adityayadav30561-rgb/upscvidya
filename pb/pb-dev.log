@@ -1,0 +1,54 @@
+[5.00ms] CREATE TABLE IF NOT EXISTS `_migrations` (file VARCHAR(255) PRIMARY KEY NOT NULL, applied INTEGER NOT NULL)
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1640988000_aux_init.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1640988000_init.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233556_v0.23_migrate.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233557_v0.23_migrate2.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233558_v0.23_migrate3.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233559_v0.23_migrate4.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1763020353_update_default_auth_alert_templates.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1778828400_normalize_indexes.go' LIMIT 1
+[7.00ms] SELECT `_collections`.* FROM `_collections` ORDER BY `rowid` ASC
+[0.00ms] SELECT `_params`.* FROM `_params` WHERE `id`='settings'
+[0.00ms] SELECT `_collections`.* FROM `_collections` ORDER BY `rowid` ASC
+[0.00ms] CREATE TABLE IF NOT EXISTS `_migrations` (file VARCHAR(255) PRIMARY KEY NOT NULL, applied INTEGER NOT NULL)
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1640988000_aux_init.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1640988000_init.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233556_v0.23_migrate.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233557_v0.23_migrate2.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233558_v0.23_migrate3.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1717233559_v0.23_migrate4.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1752900000_init_schema.js' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1763020353_update_default_auth_alert_templates.go' LIMIT 1
+[0.00ms] SELECT (1) FROM `_migrations` WHERE `file`='1778828400_normalize_indexes.go' LIMIT 1
+2026/07/19 05:08:43 Server started at http://127.0.0.1:8090
+├─ REST API:  http://127.0.0.1:8090/api/
+└─ Dashboard: http://127.0.0.1:8090/_/
+[0.00ms] SELECT count(*) FROM `_superusers` WHERE NOT (`email`='__pbinstaller@example.com')
+[0.00ms] SELECT `_superusers`.* FROM `_superusers` WHERE `email`='dev@local.test' LIMIT 1
+[0.00ms] SELECT `_authOrigins`.* FROM `_authOrigins` WHERE `collectionRef`='pbc_3142635823' AND `recordRef`='4okq76yr996uvkc' ORDER BY `created` DESC
+[0.00ms] SELECT `_collections`.* FROM `_collections` WHERE `id`='pbc_3142635823'
+[0.00ms] SELECT (1) FROM `_superusers` WHERE `id`='4okq76yr996uvkc' LIMIT 1
+[0.00ms] UPDATE `_authOrigins` SET `collectionRef`='pbc_3142635823', `created`='2026-07-18 23:37:11.927Z', `fingerprint`='0d6f082d8ba0fe2e2440a301999cad55', `id`='y7di403wkxpcwp4', `recordRef`='4okq76yr996uvkc', `updated`='2026-07-18 23:38:46.192Z' WHERE `id`='y7di403wkxpcwp4'
+INFO POST /api/collections/_superusers/auth-with-password
+[0.00ms] SELECT `_superusers`.* FROM `_superusers` WHERE `_superusers`.`id`='4okq76yr996uvkc' LIMIT 1
+[0.00ms] SELECT `users`.* FROM `users` WHERE `users`.`referral_code` = 'WDZUQT6A' LIMIT 1
+[0.00ms] SELECT `battalions`.* FROM `battalions` WHERE `battalions`.`member_count` < 50 LIMIT 1
+[0.00ms] SELECT `_collections`.* FROM `_collections` WHERE `id`='battalions' OR LOWER(`name`)='battalions' LIMIT 1
+[0.00ms] SELECT count(*) FROM `battalions`
+ERROR POST /api/collections/users/records
+└─ Failed to create record.
+   └─ ReferenceError: currentWeekStartIST is not defined at C:\Users\ay817\upscvidya\pb\pb.js:45:54(184)
+[0.00ms] SELECT `_superusers`.* FROM `_superusers` WHERE `email`='dev@local.test' LIMIT 1
+[0.00ms] SELECT `_authOrigins`.* FROM `_authOrigins` WHERE `collectionRef`='pbc_3142635823' AND `recordRef`='4okq76yr996uvkc' ORDER BY `created` DESC
+[0.00ms] SELECT `_collections`.* FROM `_collections` WHERE `id`='pbc_3142635823'
+[1.00ms] SELECT (1) FROM `_superusers` WHERE `id`='4okq76yr996uvkc' LIMIT 1
+[0.00ms] UPDATE `_authOrigins` SET `collectionRef`='pbc_3142635823', `created`='2026-07-18 23:37:11.927Z', `fingerprint`='0d6f082d8ba0fe2e2440a301999cad55', `id`='y7di403wkxpcwp4', `recordRef`='4okq76yr996uvkc', `updated`='2026-07-18 23:39:04.471Z' WHERE `id`='y7di403wkxpcwp4'
+INFO POST /api/collections/_superusers/auth-with-password
+[0.00ms] SELECT `_superusers`.* FROM `_superusers` WHERE `_superusers`.`id`='4okq76yr996uvkc' LIMIT 1
+[0.00ms] SELECT `users`.* FROM `users` WHERE `users`.`referral_code` = 'JGS4EQGB' LIMIT 1
+[0.00ms] SELECT `battalions`.* FROM `battalions` WHERE `battalions`.`member_count` < 50 LIMIT 1
+[0.00ms] SELECT `_collections`.* FROM `_collections` WHERE `id`='battalions' OR LOWER(`name`)='battalions' LIMIT 1
+[0.00ms] SELECT count(*) FROM `battalions`
+ERROR POST /api/collections/users/records
+└─ Failed to create record.
+   └─ ReferenceError: currentWeekStartIST is not defined at C:\Users\ay817\upscvidya\pb\pb.js:45:54(184)

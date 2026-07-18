@@ -21,3 +21,8 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# PocketBase local dev runtime (binary + data are never committed)
+pb/pocketbase
+pb/pocketbase.exe
+pb/pb_data/

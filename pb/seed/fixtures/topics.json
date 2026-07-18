@@ -1,0 +1,50 @@
+[
+  {
+    "id_code": "POL-05",
+    "title": "Preamble",
+    "part_no": 1,
+    "region": "foundations",
+    "kind": "chapter",
+    "book_ref": "Laxmikanth ch. 4",
+    "mcq_floor": 20,
+    "tags": ["preamble", "objectives-resolution", "42nd-amendment", "basic-structure"],
+    "guided_order": 5,
+    "est_read_minutes": 6,
+    "prerequisites": ["POL-01"],
+    "status": "live",
+    "is_free": true,
+    "notes_md": "# Preamble\n\nThe Preamble is the introductory statement of the Constitution, based on the **Objectives Resolution** moved by Jawaharlal Nehru in the Constituent Assembly on 13 December 1946 and adopted on 22 January 1947.\n\n## Text and keywords\n\nIt declares India a **Sovereign, Socialist, Secular, Democratic Republic** and secures to all citizens **Justice** (social, economic, political), **Liberty** (of thought, expression, belief, faith and worship), **Equality** (of status and opportunity) and **Fraternity** (assuring the dignity of the individual and the unity and integrity of the Nation).\n\nThe words **socialist**, **secular** and **integrity** were added by the **42nd Constitutional Amendment Act, 1976** — the only amendment to the Preamble so far.\n\nThe date in the Preamble — **26 November 1949** — is the date of adoption; the Constitution commenced on 26 January 1950.\n\n## Is the Preamble part of the Constitution?\n\n- **Berubari Union case (1960):** the Supreme Court held the Preamble is *not* a part of the Constitution.\n- **Kesavananda Bharati case (1973):** overruled Berubari — the Preamble *is* a part of the Constitution and can be amended under Article 368, subject to the **basic structure** doctrine.\n- **LIC of India case (1995):** reaffirmed that the Preamble is an integral part of the Constitution.\n\nThe Preamble is **non-justiciable**: its provisions are not enforceable in courts, and it is neither a source of power nor a limitation on it — but it aids interpretation of ambiguous constitutional provisions.\n\n## Sources of its ideals\n\n- Liberty, equality, fraternity — **French Revolution**\n- Republic — France\n- Justice (social, economic, political) — Russian Revolution ideals\n\n*Fixture note: condensed development copy; final notes run 500-700 words.*"
+  },
+  {
+    "id_code": "POL-10",
+    "title": "Fundamental Duties",
+    "part_no": 1,
+    "region": "foundations",
+    "kind": "chapter",
+    "book_ref": "Laxmikanth ch. 9",
+    "mcq_floor": 15,
+    "tags": ["fundamental-duties", "article-51a", "swaran-singh", "42nd-amendment", "86th-amendment"],
+    "guided_order": 10,
+    "est_read_minutes": 5,
+    "prerequisites": ["POL-07"],
+    "status": "live",
+    "is_free": true,
+    "notes_md": "# Fundamental Duties\n\nFundamental Duties are contained in **Part IVA**, which consists of a single article — **Article 51A**. They were added by the **42nd Constitutional Amendment Act, 1976** on the recommendation of the **Swaran Singh Committee**, and are inspired by the Constitution of the **erstwhile USSR**.\n\n## Count and evolution\n\n- The Swaran Singh Committee recommended **8** duties; the 42nd Amendment enacted **10**.\n- The **86th Amendment Act, 2002** added the **11th duty** — Article 51A(k): a parent or guardian shall provide opportunities for education to their child or ward between the ages of **6 and 14 years**.\n\n## Key features\n\n- Apply **only to citizens**, not to foreigners (unlike some Fundamental Rights that extend to all persons).\n- **Non-justiciable**: not enforceable by courts; no penalty is prescribed by Article 51A itself. Parliament may enforce specific duties through ordinary law (e.g., Prevention of Insults to National Honour Act, 1971).\n- They serve as an interpretive aid — courts may use them to test the reasonableness of laws.\n\n## Notable duties (Article 51A)\n\n- (a) abide by the Constitution, respect the National Flag and National Anthem\n- (g) protect and improve the **natural environment** including forests, lakes, rivers and wildlife, and have compassion for living creatures\n- (h) develop scientific temper, humanism and the spirit of inquiry and reform\n- (j) strive towards excellence in all spheres\n- (k) provide education opportunities to children aged 6-14 (added 2002)\n\n*Fixture note: condensed development copy; final notes run 500-700 words.*"
+  },
+  {
+    "id_code": "POL-19",
+    "title": "Vice-President",
+    "part_no": 3,
+    "region": "centre",
+    "kind": "chapter",
+    "book_ref": "Laxmikanth ch. 18",
+    "mcq_floor": 15,
+    "tags": ["vice-president", "article-63", "rajya-sabha", "elections"],
+    "guided_order": 19,
+    "est_read_minutes": 5,
+    "prerequisites": ["POL-18"],
+    "status": "live",
+    "is_free": false,
+    "notes_md": "# Vice-President\n\n**Article 63** provides for a Vice-President of India — the second highest constitutional office, modelled on the American Vice-President.\n\n## Functions\n\n- **Ex-officio Chairman of the Rajya Sabha** (Article 64); presides over its sittings but votes only to resolve a tie.\n- **Acts as President** (Article 65) when a vacancy occurs (death, resignation, removal) — for a maximum of **six months**, within which a new President must be elected. Also discharges the President's functions during temporary absence or illness.\n- While acting as President, he does not preside over the Rajya Sabha; the Deputy Chairman does.\n\n## Election (Article 66)\n\n- Electoral college: **elected AND nominated members of BOTH Houses of Parliament**. State legislatures play **no part** — the key contrast with the President's election (which includes elected MLAs and excludes nominated members).\n- System: **proportional representation by means of the single transferable vote**, voting by **secret ballot**.\n- Election disputes go to the **Supreme Court**, whose decision is final.\n\n## Qualifications, term, removal\n\n- Citizen of India, at least **35 years** of age, qualified for election as a member of the **Rajya Sabha** (contrast: President — Lok Sabha).\n- Term: **5 years**; eligible for re-election; resignation addressed to the **President**.\n- Removal: resolution of the **Rajya Sabha passed by an effective majority, agreed to by the Lok Sabha** with 14 days' prior notice. The Constitution specifies **no grounds** for removal — and no formal impeachment.\n- Oath administered by the **President** or a person appointed by him.\n\n**First Vice-President:** Dr. S. Radhakrishnan (1952-62).\n\n*Fixture note: condensed development copy; final notes run 500-700 words.*"
+  }
+]

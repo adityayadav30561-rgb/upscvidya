@@ -1,0 +1,24 @@
+[Unit]
+Description=PocketBase (UPSCVidya backend)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pocketbase
+Group=pocketbase
+WorkingDirectory=/opt/pocketbase
+ExecStart=/opt/pocketbase/pocketbase serve --http 127.0.0.1:8090 --dir /opt/pocketbase/pb_data
+Restart=on-failure
+RestartSec=5s
+LimitNOFILE=8192
+
+# sandboxing
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/pocketbase /opt/backups
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

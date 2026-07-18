@@ -1,0 +1,13 @@
+# Cloudflare R2 remote for offsite backups.
+# Copy to /etc/rclone-r2.conf (setup.sh does this) and fill in the two keys.
+# Get keys: Cloudflare dashboard → R2 → Manage R2 API Tokens → Create API token
+# (Object Read & Write, scoped to the upscvidya-backups bucket).
+# ACCOUNT_ID: Cloudflare dashboard → R2 → right sidebar "Account ID".
+
+[r2]
+type = s3
+provider = Cloudflare
+access_key_id = INSERT_R2_ACCESS_KEY_ID
+secret_access_key = INSERT_R2_SECRET_ACCESS_KEY
+endpoint = https://INSERT_ACCOUNT_ID.r2.cloudflarestorage.com
+acl = private

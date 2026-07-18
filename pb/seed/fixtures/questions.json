@@ -1,0 +1,572 @@
+[
+  {
+    "qid": "POL-05-Q001",
+    "topic_code": "POL-05",
+    "stem": "The Preamble to the Constitution of India is based on which of the following?",
+    "options": [
+      "The Nehru Report, 1928",
+      "The Objectives Resolution moved by Jawaharlal Nehru",
+      "The Cabinet Mission Plan, 1946",
+      "The Government of India Act, 1935"
+    ],
+    "answer_index": 1,
+    "explanation": "The Preamble is based on the Objectives Resolution moved by Jawaharlal Nehru in the Constituent Assembly on 13 December 1946 and adopted on 22 January 1947. The Nehru Report was an earlier constitutional draft (1928), the Cabinet Mission Plan created the Constituent Assembly itself, and the 1935 Act supplied administrative detail to the Constitution — none of them is the basis of the Preamble.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q002",
+    "topic_code": "POL-05",
+    "stem": "Which of the following words were added to the Preamble by the 42nd Constitutional Amendment Act, 1976?",
+    "options": [
+      "Sovereign, Socialist, Secular",
+      "Socialist, Secular, Integrity",
+      "Democratic, Republic, Integrity",
+      "Justice, Liberty, Fraternity"
+    ],
+    "answer_index": 1,
+    "explanation": "The 42nd Amendment (1976) added exactly three words to the Preamble: 'socialist', 'secular' and 'integrity' (in the phrase 'unity and integrity of the Nation'). 'Sovereign', 'democratic', 'republic', 'justice', 'liberty' and 'fraternity' were all part of the original 1949 text.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q003",
+    "topic_code": "POL-05",
+    "stem": "With reference to the Preamble, consider the following statements:\n1. The Preamble is a part of the Constitution of India.\n2. The provisions of the Preamble are enforceable in a court of law.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer_index": 0,
+    "explanation": "Statement 1 is correct: in Kesavananda Bharati (1973) the Supreme Court held the Preamble is a part of the Constitution, overruling Berubari (1960). Statement 2 is incorrect: the Preamble is non-justiciable — its provisions cannot be enforced in any court.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q004",
+    "topic_code": "POL-05",
+    "stem": "The date '26th November 1949' mentioned in the Preamble refers to which event?",
+    "options": [
+      "Commencement of the Constitution",
+      "Adoption of the Constitution by the Constituent Assembly",
+      "First sitting of the Constituent Assembly",
+      "Adoption of the Objectives Resolution"
+    ],
+    "answer_index": 1,
+    "explanation": "26 November 1949 is the date the Constituent Assembly adopted, enacted and gave the Constitution to the people — the date stated in the Preamble. The Constitution commenced on 26 January 1950; the Assembly first sat on 9 December 1946; the Objectives Resolution was adopted on 22 January 1947.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q005",
+    "topic_code": "POL-05",
+    "stem": "In the Preamble, the term 'Republic' signifies that:",
+    "options": [
+      "The head of the state is elected, directly or indirectly, for a fixed term",
+      "Ultimate sovereignty rests with the Parliament",
+      "India has no hereditary institutions of any kind",
+      "The state has a parliamentary form of government"
+    ],
+    "answer_index": 0,
+    "explanation": "'Republic' means the head of state (the President) is an elected functionary holding office for a fixed term, not a hereditary monarch. Sovereignty rests with the people, not Parliament. Parliamentary government flows from 'democratic' read with the Constitution's scheme, not from 'republic'.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q006",
+    "topic_code": "POL-05",
+    "stem": "The Preamble secures 'Justice' to all citizens in which of the following order?",
+    "options": [
+      "Political, social, economic",
+      "Economic, political, social",
+      "Social, economic, political",
+      "Social, political, economic"
+    ],
+    "answer_index": 2,
+    "explanation": "The Preamble reads 'JUSTICE, social, economic and political' — in that exact order. Exam setters routinely test this sequence; note that Liberty's sequence is 'thought, expression, belief, faith and worship'.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q007",
+    "topic_code": "POL-05",
+    "stem": "In which case did the Supreme Court FIRST hold that the Preamble is NOT a part of the Constitution?",
+    "options": [
+      "Kesavananda Bharati case, 1973",
+      "Berubari Union case, 1960",
+      "LIC of India case, 1995",
+      "Golaknath case, 1967"
+    ],
+    "answer_index": 1,
+    "explanation": "In the Berubari Union reference (1960) the Supreme Court held the Preamble is not a part of the Constitution. Kesavananda Bharati (1973) overruled this and held it IS a part, a position reaffirmed in the LIC case (1995). Golaknath concerned amendability of Fundamental Rights, not the Preamble.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q008",
+    "topic_code": "POL-05",
+    "stem": "Which one of the following is NOT among the five freedoms of 'Liberty' mentioned in the Preamble?",
+    "options": [
+      "Liberty of thought",
+      "Liberty of expression",
+      "Liberty of movement",
+      "Liberty of worship"
+    ],
+    "answer_index": 2,
+    "explanation": "The Preamble lists liberty of thought, expression, belief, faith and worship. Freedom of movement is a Fundamental Right under Article 19(1)(d), not a Preamble liberty — a classic confusion the exam exploits.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": ["capf"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q009",
+    "topic_code": "POL-05",
+    "stem": "With reference to the amendability of the Preamble, consider the following statements:\n1. The Preamble has been amended only once so far.\n2. The Preamble can be amended without any limitation whatsoever.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer_index": 0,
+    "explanation": "Statement 1 is correct: the 42nd Amendment (1976) is the only amendment to the Preamble. Statement 2 is incorrect: per Kesavananda Bharati, the Preamble can be amended under Article 368 but subject to the basic structure doctrine — its core cannot be destroyed.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-05-Q010",
+    "topic_code": "POL-05",
+    "stem": "The ideals of Liberty, Equality and Fraternity in the Preamble were inspired by:",
+    "options": [
+      "The American Revolution",
+      "The French Revolution",
+      "The Russian Revolution",
+      "The Irish Constitution"
+    ],
+    "answer_index": 1,
+    "explanation": "Liberty, Equality, Fraternity is the motto of the French Revolution (1789-99), the acknowledged inspiration. The Russian Revolution inspired the ideal of justice (social, economic, political); the Irish Constitution inspired the Directive Principles, not the Preamble's trio.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q001",
+    "topic_code": "POL-10",
+    "stem": "The Fundamental Duties are contained in which Part and Article of the Constitution?",
+    "options": [
+      "Part IV, Article 44",
+      "Part IVA, Article 51A",
+      "Part III, Article 21A",
+      "Part IVA, Article 50A"
+    ],
+    "answer_index": 1,
+    "explanation": "Fundamental Duties sit in Part IVA, which contains only one article — Article 51A. Part IV holds the Directive Principles (Art 36-51), Part III the Fundamental Rights; Article 50A does not exist.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q002",
+    "topic_code": "POL-10",
+    "stem": "Fundamental Duties were added to the Constitution on the recommendation of which committee?",
+    "options": [
+      "Sarkaria Committee",
+      "Swaran Singh Committee",
+      "Punchhi Committee",
+      "Balwant Rai Mehta Committee"
+    ],
+    "answer_index": 1,
+    "explanation": "The Swaran Singh Committee (1976) recommended adding Fundamental Duties; the 42nd Amendment implemented it. Sarkaria and Punchhi dealt with Centre-State relations; Balwant Rai Mehta with Panchayati Raj.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q003",
+    "topic_code": "POL-10",
+    "stem": "With reference to the Fundamental Duties, consider the following statements:\n1. The 42nd Amendment Act, 1976 added ten Fundamental Duties.\n2. The 86th Amendment Act, 2002 added the eleventh Fundamental Duty.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer_index": 2,
+    "explanation": "Both are correct. The 42nd Amendment (1976) inserted ten duties as Article 51A(a)-(j). The 86th Amendment (2002) added clause (k) — the duty of parents/guardians to provide education opportunities to children between 6 and 14 years.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q004",
+    "topic_code": "POL-10",
+    "stem": "The concept of Fundamental Duties in the Indian Constitution was inspired by the constitution of which country?",
+    "options": [
+      "United States of America",
+      "Ireland",
+      "Erstwhile USSR",
+      "Japan"
+    ],
+    "answer_index": 2,
+    "explanation": "Fundamental Duties were borrowed from the Constitution of the erstwhile USSR. The USA inspired Fundamental Rights and judicial review; Ireland the Directive Principles; Japan's constitution contributed the concept of procedure established by law.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q005",
+    "topic_code": "POL-10",
+    "stem": "With reference to the applicability of Fundamental Duties, consider the following statements:\n1. Fundamental Duties apply to citizens as well as foreigners residing in India.\n2. Fundamental Duties extend to legal persons such as companies.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer_index": 3,
+    "explanation": "Both are incorrect. Article 51A opens with 'It shall be the duty of every citizen of India' — the duties bind only citizens, not foreigners. Being addressed to citizens, they also do not extend to legal persons like companies, unlike some Fundamental Rights which are available to any 'person'.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": ["capf"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q006",
+    "topic_code": "POL-10",
+    "stem": "Which of the following statements about the enforceability of Fundamental Duties is correct?",
+    "options": [
+      "They are directly enforceable by the Supreme Court under Article 32",
+      "They are non-justiciable, but Parliament may enforce specific duties through ordinary law",
+      "Violation of any Fundamental Duty is automatically a criminal offence",
+      "High Courts enforce them under Article 226 as a matter of course"
+    ],
+    "answer_index": 1,
+    "explanation": "Fundamental Duties are non-justiciable — no court can directly enforce them and Article 51A prescribes no penalty. Parliament can, however, give effect to specific duties by statute (e.g., the Prevention of Insults to National Honour Act, 1971). They are not self-executing offences, and Articles 32/226 protect rights, not duties.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q007",
+    "topic_code": "POL-10",
+    "stem": "The Swaran Singh Committee recommended the inclusion of how many Fundamental Duties, and how many were actually incorporated by the 42nd Amendment?",
+    "options": [
+      "Recommended 10, incorporated 10",
+      "Recommended 8, incorporated 10",
+      "Recommended 11, incorporated 10",
+      "Recommended 8, incorporated 11"
+    ],
+    "answer_index": 1,
+    "explanation": "The Swaran Singh Committee recommended eight duties; the 42nd Amendment (1976) went further and incorporated ten. The count became eleven only in 2002 via the 86th Amendment — a favourite trap pairing.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q008",
+    "topic_code": "POL-10",
+    "stem": "Which one of the following is NOT a Fundamental Duty under Article 51A?",
+    "options": [
+      "To safeguard public property and abjure violence",
+      "To develop scientific temper, humanism and the spirit of inquiry",
+      "To cast one's vote in general elections",
+      "To value and preserve the rich heritage of our composite culture"
+    ],
+    "answer_index": 2,
+    "explanation": "Voting is not among the eleven Fundamental Duties — a persistent distractor. Safeguarding public property (51A(i)), scientific temper (51A(h)) and preserving composite culture (51A(f)) are all listed duties.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q009",
+    "topic_code": "POL-10",
+    "stem": "Article 51A(g) casts a duty on citizens to protect and improve the natural environment. Which of the following are expressly mentioned in this clause?\n1. Forests\n2. Lakes\n3. Rivers\n4. Wildlife\nSelect the correct answer using the code below.",
+    "options": [
+      "1 and 4 only",
+      "1, 2 and 3 only",
+      "2, 3 and 4 only",
+      "1, 2, 3 and 4"
+    ],
+    "answer_index": 3,
+    "explanation": "Article 51A(g) expressly mentions forests, lakes, rivers and wild life, and adds 'to have compassion for living creatures'. All four listed items appear verbatim in the clause.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": ["capf"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-10-Q010",
+    "topic_code": "POL-10",
+    "stem": "Assertion (A): A Fundamental Duty can be enforced against a citizen only when Parliament makes a specific law to that effect.\nReason (R): Article 51A itself prescribes no penalty or sanction for the violation of any Fundamental Duty.",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true, but R is false",
+      "A is false, but R is true"
+    ],
+    "answer_index": 0,
+    "explanation": "Both statements are true. Article 51A is non-justiciable and sanction-free (R), which is exactly why enforcement requires Parliament to legislate specific penalties, as it did with the Prevention of Insults to National Honour Act, 1971 (A). R directly explains A.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q001",
+    "topic_code": "POL-19",
+    "stem": "Which Article of the Constitution provides that 'There shall be a Vice-President of India'?",
+    "options": [
+      "Article 61",
+      "Article 63",
+      "Article 65",
+      "Article 67"
+    ],
+    "answer_index": 1,
+    "explanation": "Article 63 creates the office of the Vice-President. Article 61 deals with impeachment of the President, Article 65 with the Vice-President acting as President, and Article 67 with the Vice-President's term of office.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q002",
+    "topic_code": "POL-19",
+    "stem": "The Vice-President of India is the ex-officio:",
+    "options": [
+      "Speaker of the Lok Sabha",
+      "Chairman of the Rajya Sabha",
+      "Chairman of the NITI Aayog",
+      "Chancellor of the central universities"
+    ],
+    "answer_index": 1,
+    "explanation": "Under Article 64, the Vice-President is ex-officio Chairman of the Rajya Sabha (Council of States) — his only regular function. The Lok Sabha elects its own Speaker; the Prime Minister chairs NITI Aayog.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q003",
+    "topic_code": "POL-19",
+    "stem": "With reference to the election of the Vice-President, consider the following statements:\n1. The electoral college consists of members of both Houses of Parliament.\n2. Nominated members of Parliament do NOT participate in the election.\n3. Members of State Legislative Assemblies participate in the election.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only"
+    ],
+    "answer_index": 0,
+    "explanation": "Only statement 1 is correct. The Vice-President's electoral college comprises ALL members — elected and nominated — of both Houses of Parliament (statement 2 wrong; nominated members DO vote, unlike in the President's election). State legislatures play no role at all (statement 3 wrong) — the two key contrasts with the Presidential election.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q004",
+    "topic_code": "POL-19",
+    "stem": "The Vice-President is elected in accordance with the system of:",
+    "options": [
+      "First-past-the-post with open ballot",
+      "Proportional representation by means of the single transferable vote, with secret ballot",
+      "Simple majority of a joint sitting of Parliament",
+      "List system of proportional representation"
+    ],
+    "answer_index": 1,
+    "explanation": "Article 66 mandates proportional representation by means of the single transferable vote, voting by secret ballot — the same system as the President's election. There is no joint sitting, no open ballot, and the list system is not used for any Indian constitutional election.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q005",
+    "topic_code": "POL-19",
+    "stem": "With reference to the term of the Vice-President, consider the following statements:\n1. The Vice-President holds office for a term of five years.\n2. His resignation is addressed to the Prime Minister.\n3. He is eligible for re-election to the office.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer_index": 1,
+    "explanation": "Statements 1 and 3 are correct: the term is five years and re-election is permitted (Dr. Radhakrishnan served two terms). Statement 2 is wrong — the Vice-President addresses his resignation to the President, not the Prime Minister.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": ["capf"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q006",
+    "topic_code": "POL-19",
+    "stem": "With reference to the removal of the Vice-President, consider the following statements:\n1. The removal resolution can be initiated only in the Rajya Sabha.\n2. A 14-day advance notice is required before moving such a resolution.\n3. The Constitution lists specific grounds for his removal.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer_index": 0,
+    "explanation": "Statements 1 and 2 are correct: removal needs a resolution of the Rajya Sabha (passed by an effective majority) agreed to by the Lok Sabha, with at least 14 days' notice. Statement 3 is wrong — the Constitution specifies NO grounds for removing the Vice-President, and there is no formal impeachment either.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q007",
+    "topic_code": "POL-19",
+    "stem": "Which one of the following is NOT a constitutional qualification for election as Vice-President?",
+    "options": [
+      "He should be a citizen of India",
+      "He should have completed 35 years of age",
+      "He should be qualified for election as a member of the Rajya Sabha",
+      "He should be a domicile of the state he represents"
+    ],
+    "answer_index": 3,
+    "explanation": "There is no domicile requirement — the Vice-President represents no state. The three actual qualifications: Indian citizenship, minimum age 35, and qualification for election as a Rajya Sabha member (contrast the President, who must qualify for the Lok Sabha).",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": ["capf"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q008",
+    "topic_code": "POL-19",
+    "stem": "The Vice-President can act as President for a maximum period of:",
+    "options": [
+      "Three months",
+      "Six months",
+      "One year",
+      "Until the next general election of the Lok Sabha"
+    ],
+    "answer_index": 1,
+    "explanation": "When the President's office falls vacant, the Vice-President acts as President for a maximum of six months, within which a fresh Presidential election must be held. While acting as President he ceases to preside over the Rajya Sabha.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q009",
+    "topic_code": "POL-19",
+    "stem": "Who was the first Vice-President of India?",
+    "options": [
+      "Dr. Rajendra Prasad",
+      "Dr. S. Radhakrishnan",
+      "Dr. Zakir Husain",
+      "V. V. Giri"
+    ],
+    "answer_index": 1,
+    "explanation": "Dr. Sarvepalli Radhakrishnan was the first Vice-President (1952-62) and later the second President. Rajendra Prasad was the first President; Zakir Husain and V. V. Giri were later Vice-Presidents who also became President.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  },
+  {
+    "qid": "POL-19-Q010",
+    "topic_code": "POL-19",
+    "stem": "Match the following Articles with their provisions:\nA. Article 64    1. Election of the Vice-President\nB. Article 65    2. Vice-President as ex-officio Chairman of the Rajya Sabha\nC. Article 66    3. Vice-President acting as President\nD. Article 67    4. Term of office of the Vice-President\nSelect the correct answer using the code below.",
+    "options": [
+      "A-2, B-3, C-1, D-4",
+      "A-1, B-2, C-3, D-4",
+      "A-2, B-1, C-3, D-4",
+      "A-3, B-2, C-4, D-1"
+    ],
+    "answer_index": 0,
+    "explanation": "Article 64 makes the Vice-President ex-officio Chairman of the Rajya Sabha (A-2); Article 65 covers acting as President during a vacancy (B-3); Article 66 governs his election (C-1); Article 67 fixes the five-year term (D-4).",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": ["capf", "cse"],
+    "source_type": "ai",
+    "source_meta": { "model": "fixture-draft", "validated_by": null, "validated_on": null },
+    "status": "draft"
+  }
+]
