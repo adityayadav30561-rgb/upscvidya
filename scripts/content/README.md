@@ -35,6 +35,26 @@ Credentials: `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` env vars.
 - Topic `status` is not synced at all: new topics arrive as `draft`; flipping
   to `live` is an admin action in PB.
 
+## Ingestion (scripts/ingest/)
+
+```bash
+pnpm ingest -- --topic POL-08 --source "external:Arihant" --file input.txt
+pnpm ingest -- --topic POL-05 --source self --file mine.txt [--author you]
+pnpm ingest -- --topic POL-05 --source pyq:CAPF-2022 --file paper.txt
+pnpm ingest -- --topic POL-05 --source ai --file drafts.txt
+pnpm ingest -- --topic POL-05 --source "external:X" --mode image-list --file ./photos  # tesseract OCR
+```
+
+- Parses loosely structured text: numbered questions, options `a)`-`d)`/`A-D`/`1)`-`4)`,
+  `Ans: b` lines, statement-based blocks, wrapped lines, messy spacing.
+- Groq (`llama-3.3-70b-versatile`, `GROQ_API_KEY` in `.env`): normalises to schema,
+  classifies tier/format, drafts explanations covering every option, **rewrites
+  stem+options for commercial external sources** (concept preserved, expression
+  fresh); `pyq` sources stay verbatim. `--no-ai` falls back to heuristics.
+- Dedup: trigram similarity vs the topic's existing stems; >0.75 lands in
+  `dupes.json` (with qid + score) instead of `mcqs.json`.
+- Everything enters as `status: draft`; next free qid auto-assigned.
+
 ## CI
 
 `.github/workflows/content-sync.yml`: push to `main` touching `content/**` →

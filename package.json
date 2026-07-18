@@ -11,7 +11,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"validate": "node scripts/content/validate.js",
-		"sync": "node scripts/content/sync.js"
+		"sync": "node scripts/content/sync.js",
+		"ingest": "node scripts/ingest/ingest.js"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
