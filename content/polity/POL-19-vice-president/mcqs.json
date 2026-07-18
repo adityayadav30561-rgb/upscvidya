@@ -1,0 +1,269 @@
+[
+  {
+    "id": "POL-19-Q001",
+    "topic": "POL-19",
+    "stem": "Which Article of the Constitution provides that 'There shall be a Vice-President of India'?",
+    "options": [
+      "Article 61",
+      "Article 63",
+      "Article 65",
+      "Article 67"
+    ],
+    "answer": 1,
+    "explanation": "Article 63 creates the office of the Vice-President. Article 61 deals with impeachment of the President, Article 65 with the Vice-President acting as President, and Article 67 with the Vice-President's term of office.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q002",
+    "topic": "POL-19",
+    "stem": "The Vice-President of India is the ex-officio:",
+    "options": [
+      "Speaker of the Lok Sabha",
+      "Chairman of the Rajya Sabha",
+      "Chairman of the NITI Aayog",
+      "Chancellor of the central universities"
+    ],
+    "answer": 1,
+    "explanation": "Under Article 64, the Vice-President is ex-officio Chairman of the Rajya Sabha (Council of States) — his only regular function. The Lok Sabha elects its own Speaker; the Prime Minister chairs NITI Aayog.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q003",
+    "topic": "POL-19",
+    "stem": "With reference to the election of the Vice-President, consider the following statements:\n1. The electoral college consists of members of both Houses of Parliament.\n2. Nominated members of Parliament do NOT participate in the election.\n3. Members of State Legislative Assemblies participate in the election.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only"
+    ],
+    "answer": 0,
+    "explanation": "Only statement 1 is correct. The Vice-President's electoral college comprises ALL members — elected and nominated — of both Houses of Parliament (statement 2 wrong; nominated members DO vote, unlike in the President's election). State legislatures play no role at all (statement 3 wrong) — the two key contrasts with the Presidential election.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q004",
+    "topic": "POL-19",
+    "stem": "The Vice-President is elected in accordance with the system of:",
+    "options": [
+      "First-past-the-post with open ballot",
+      "Proportional representation by means of the single transferable vote, with secret ballot",
+      "Simple majority of a joint sitting of Parliament",
+      "List system of proportional representation"
+    ],
+    "answer": 1,
+    "explanation": "Article 66 mandates proportional representation by means of the single transferable vote, voting by secret ballot — the same system as the President's election. There is no joint sitting, no open ballot, and the list system is not used for any Indian constitutional election.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q005",
+    "topic": "POL-19",
+    "stem": "With reference to the term of the Vice-President, consider the following statements:\n1. The Vice-President holds office for a term of five years.\n2. His resignation is addressed to the Prime Minister.\n3. He is eligible for re-election to the office.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 1,
+    "explanation": "Statements 1 and 3 are correct: the term is five years and re-election is permitted (Dr. Radhakrishnan served two terms). Statement 2 is wrong — the Vice-President addresses his resignation to the President, not the Prime Minister.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q006",
+    "topic": "POL-19",
+    "stem": "With reference to the removal of the Vice-President, consider the following statements:\n1. The removal resolution can be initiated only in the Rajya Sabha.\n2. A 14-day advance notice is required before moving such a resolution.\n3. The Constitution lists specific grounds for his removal.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 0,
+    "explanation": "Statements 1 and 2 are correct: removal needs a resolution of the Rajya Sabha (passed by an effective majority) agreed to by the Lok Sabha, with at least 14 days' notice. Statement 3 is wrong — the Constitution specifies NO grounds for removing the Vice-President, and there is no formal impeachment either.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q007",
+    "topic": "POL-19",
+    "stem": "Which one of the following is NOT a constitutional qualification for election as Vice-President?",
+    "options": [
+      "He should be a citizen of India",
+      "He should have completed 35 years of age",
+      "He should be qualified for election as a member of the Rajya Sabha",
+      "He should be a domicile of the state he represents"
+    ],
+    "answer": 3,
+    "explanation": "There is no domicile requirement — the Vice-President represents no state. The three actual qualifications: Indian citizenship, minimum age 35, and qualification for election as a Rajya Sabha member (contrast the President, who must qualify for the Lok Sabha).",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q008",
+    "topic": "POL-19",
+    "stem": "The Vice-President can act as President for a maximum period of:",
+    "options": [
+      "Three months",
+      "Six months",
+      "One year",
+      "Until the next general election of the Lok Sabha"
+    ],
+    "answer": 1,
+    "explanation": "When the President's office falls vacant, the Vice-President acts as President for a maximum of six months, within which a fresh Presidential election must be held. While acting as President he ceases to preside over the Rajya Sabha.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q009",
+    "topic": "POL-19",
+    "stem": "Who was the first Vice-President of India?",
+    "options": [
+      "Dr. Rajendra Prasad",
+      "Dr. S. Radhakrishnan",
+      "Dr. Zakir Husain",
+      "V. V. Giri"
+    ],
+    "answer": 1,
+    "explanation": "Dr. Sarvepalli Radhakrishnan was the first Vice-President (1952-62) and later the second President. Rajendra Prasad was the first President; Zakir Husain and V. V. Giri were later Vice-Presidents who also became President.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-19-Q010",
+    "topic": "POL-19",
+    "stem": "Match the following Articles with their provisions:\nA. Article 64    1. Election of the Vice-President\nB. Article 65    2. Vice-President as ex-officio Chairman of the Rajya Sabha\nC. Article 66    3. Vice-President acting as President\nD. Article 67    4. Term of office of the Vice-President\nSelect the correct answer using the code below.",
+    "options": [
+      "A-2, B-3, C-1, D-4",
+      "A-1, B-2, C-3, D-4",
+      "A-2, B-1, C-3, D-4",
+      "A-3, B-2, C-4, D-1"
+    ],
+    "answer": 0,
+    "explanation": "Article 64 makes the Vice-President ex-officio Chairman of the Rajya Sabha (A-2); Article 65 covers acting as President during a vacancy (B-3); Article 66 governs his election (C-1); Article 67 fixes the five-year term (D-4).",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  }
+]

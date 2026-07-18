@@ -1,0 +1,33 @@
+name: content-sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "scripts/content/**"
+
+jobs:
+  validate-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Validate content
+        run: pnpm validate
+
+      - name: Sync to production PocketBase
+        env:
+          PB_URL_PROD: ${{ secrets.PB_URL }}
+          PB_ADMIN_EMAIL: ${{ secrets.PB_ADMIN_EMAIL }}
+          PB_ADMIN_PASSWORD: ${{ secrets.PB_ADMIN_PASSWORD }}
+        run: pnpm sync -- --env prod

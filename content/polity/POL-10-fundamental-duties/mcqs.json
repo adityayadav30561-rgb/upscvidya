@@ -1,0 +1,270 @@
+[
+  {
+    "id": "POL-10-Q001",
+    "topic": "POL-10",
+    "stem": "The Fundamental Duties are contained in which Part and Article of the Constitution?",
+    "options": [
+      "Part IV, Article 44",
+      "Part IVA, Article 51A",
+      "Part III, Article 21A",
+      "Part IVA, Article 50A"
+    ],
+    "answer": 1,
+    "explanation": "Fundamental Duties sit in Part IVA, which contains only one article — Article 51A. Part IV holds the Directive Principles (Art 36-51), Part III the Fundamental Rights; Article 50A does not exist.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q002",
+    "topic": "POL-10",
+    "stem": "Fundamental Duties were added to the Constitution on the recommendation of which committee?",
+    "options": [
+      "Sarkaria Committee",
+      "Swaran Singh Committee",
+      "Punchhi Committee",
+      "Balwant Rai Mehta Committee"
+    ],
+    "answer": 1,
+    "explanation": "The Swaran Singh Committee (1976) recommended adding Fundamental Duties; the 42nd Amendment implemented it. Sarkaria and Punchhi dealt with Centre-State relations; Balwant Rai Mehta with Panchayati Raj.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q003",
+    "topic": "POL-10",
+    "stem": "With reference to the Fundamental Duties, consider the following statements:\n1. The 42nd Amendment Act, 1976 added ten Fundamental Duties.\n2. The 86th Amendment Act, 2002 added the eleventh Fundamental Duty.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. The 42nd Amendment (1976) inserted ten duties as Article 51A(a)-(j). The 86th Amendment (2002) added clause (k) — the duty of parents/guardians to provide education opportunities to children between 6 and 14 years.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q004",
+    "topic": "POL-10",
+    "stem": "The concept of Fundamental Duties in the Indian Constitution was inspired by the constitution of which country?",
+    "options": [
+      "United States of America",
+      "Ireland",
+      "Erstwhile USSR",
+      "Japan"
+    ],
+    "answer": 2,
+    "explanation": "Fundamental Duties were borrowed from the Constitution of the erstwhile USSR. The USA inspired Fundamental Rights and judicial review; Ireland the Directive Principles; Japan's constitution contributed the concept of procedure established by law.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q005",
+    "topic": "POL-10",
+    "stem": "With reference to the applicability of Fundamental Duties, consider the following statements:\n1. Fundamental Duties apply to citizens as well as foreigners residing in India.\n2. Fundamental Duties extend to legal persons such as companies.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 3,
+    "explanation": "Both are incorrect. Article 51A opens with 'It shall be the duty of every citizen of India' — the duties bind only citizens, not foreigners. Being addressed to citizens, they also do not extend to legal persons like companies, unlike some Fundamental Rights which are available to any 'person'.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q006",
+    "topic": "POL-10",
+    "stem": "Which of the following statements about the enforceability of Fundamental Duties is correct?",
+    "options": [
+      "They are directly enforceable by the Supreme Court under Article 32",
+      "They are non-justiciable, but Parliament may enforce specific duties through ordinary law",
+      "Violation of any Fundamental Duty is automatically a criminal offence",
+      "High Courts enforce them under Article 226 as a matter of course"
+    ],
+    "answer": 1,
+    "explanation": "Fundamental Duties are non-justiciable — no court can directly enforce them and Article 51A prescribes no penalty. Parliament can, however, give effect to specific duties by statute (e.g., the Prevention of Insults to National Honour Act, 1971). They are not self-executing offences, and Articles 32/226 protect rights, not duties.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q007",
+    "topic": "POL-10",
+    "stem": "The Swaran Singh Committee recommended the inclusion of how many Fundamental Duties, and how many were actually incorporated by the 42nd Amendment?",
+    "options": [
+      "Recommended 10, incorporated 10",
+      "Recommended 8, incorporated 10",
+      "Recommended 11, incorporated 10",
+      "Recommended 8, incorporated 11"
+    ],
+    "answer": 1,
+    "explanation": "The Swaran Singh Committee recommended eight duties; the 42nd Amendment (1976) went further and incorporated ten. The count became eleven only in 2002 via the 86th Amendment — a favourite trap pairing.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q008",
+    "topic": "POL-10",
+    "stem": "Which one of the following is NOT a Fundamental Duty under Article 51A?",
+    "options": [
+      "To safeguard public property and abjure violence",
+      "To develop scientific temper, humanism and the spirit of inquiry",
+      "To cast one's vote in general elections",
+      "To value and preserve the rich heritage of our composite culture"
+    ],
+    "answer": 2,
+    "explanation": "Voting is not among the eleven Fundamental Duties — a persistent distractor. Safeguarding public property (51A(i)), scientific temper (51A(h)) and preserving composite culture (51A(f)) are all listed duties.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q009",
+    "topic": "POL-10",
+    "stem": "Article 51A(g) casts a duty on citizens to protect and improve the natural environment. Which of the following are expressly mentioned in this clause?\n1. Forests\n2. Lakes\n3. Rivers\n4. Wildlife\nSelect the correct answer using the code below.",
+    "options": [
+      "1 and 4 only",
+      "1, 2 and 3 only",
+      "2, 3 and 4 only",
+      "1, 2, 3 and 4"
+    ],
+    "answer": 3,
+    "explanation": "Article 51A(g) expressly mentions forests, lakes, rivers and wild life, and adds 'to have compassion for living creatures'. All four listed items appear verbatim in the clause.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-10-Q010",
+    "topic": "POL-10",
+    "stem": "Assertion (A): A Fundamental Duty can be enforced against a citizen only when Parliament makes a specific law to that effect.\nReason (R): Article 51A itself prescribes no penalty or sanction for the violation of any Fundamental Duty.",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true, but R is false",
+      "A is false, but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both statements are true. Article 51A is non-justiciable and sanction-free (R), which is exactly why enforcement requires Parliament to legislate specific penalties, as it did with the Prevention of Insults to National Honour Act, 1971 (A). R directly explains A.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  }
+]

@@ -1,0 +1,270 @@
+[
+  {
+    "id": "POL-05-Q001",
+    "topic": "POL-05",
+    "stem": "The Preamble to the Constitution of India is based on which of the following?",
+    "options": [
+      "The Nehru Report, 1928",
+      "The Objectives Resolution moved by Jawaharlal Nehru",
+      "The Cabinet Mission Plan, 1946",
+      "The Government of India Act, 1935"
+    ],
+    "answer": 1,
+    "explanation": "The Preamble is based on the Objectives Resolution moved by Jawaharlal Nehru in the Constituent Assembly on 13 December 1946 and adopted on 22 January 1947. The Nehru Report was an earlier constitutional draft (1928), the Cabinet Mission Plan created the Constituent Assembly itself, and the 1935 Act supplied administrative detail to the Constitution — none of them is the basis of the Preamble.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q002",
+    "topic": "POL-05",
+    "stem": "Which of the following words were added to the Preamble by the 42nd Constitutional Amendment Act, 1976?",
+    "options": [
+      "Sovereign, Socialist, Secular",
+      "Socialist, Secular, Integrity",
+      "Democratic, Republic, Integrity",
+      "Justice, Liberty, Fraternity"
+    ],
+    "answer": 1,
+    "explanation": "The 42nd Amendment (1976) added exactly three words to the Preamble: 'socialist', 'secular' and 'integrity' (in the phrase 'unity and integrity of the Nation'). 'Sovereign', 'democratic', 'republic', 'justice', 'liberty' and 'fraternity' were all part of the original 1949 text.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q003",
+    "topic": "POL-05",
+    "stem": "With reference to the Preamble, consider the following statements:\n1. The Preamble is a part of the Constitution of India.\n2. The provisions of the Preamble are enforceable in a court of law.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 0,
+    "explanation": "Statement 1 is correct: in Kesavananda Bharati (1973) the Supreme Court held the Preamble is a part of the Constitution, overruling Berubari (1960). Statement 2 is incorrect: the Preamble is non-justiciable — its provisions cannot be enforced in any court.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q004",
+    "topic": "POL-05",
+    "stem": "The date '26th November 1949' mentioned in the Preamble refers to which event?",
+    "options": [
+      "Commencement of the Constitution",
+      "Adoption of the Constitution by the Constituent Assembly",
+      "First sitting of the Constituent Assembly",
+      "Adoption of the Objectives Resolution"
+    ],
+    "answer": 1,
+    "explanation": "26 November 1949 is the date the Constituent Assembly adopted, enacted and gave the Constitution to the people — the date stated in the Preamble. The Constitution commenced on 26 January 1950; the Assembly first sat on 9 December 1946; the Objectives Resolution was adopted on 22 January 1947.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q005",
+    "topic": "POL-05",
+    "stem": "In the Preamble, the term 'Republic' signifies that:",
+    "options": [
+      "The head of the state is elected, directly or indirectly, for a fixed term",
+      "Ultimate sovereignty rests with the Parliament",
+      "India has no hereditary institutions of any kind",
+      "The state has a parliamentary form of government"
+    ],
+    "answer": 0,
+    "explanation": "'Republic' means the head of state (the President) is an elected functionary holding office for a fixed term, not a hereditary monarch. Sovereignty rests with the people, not Parliament. Parliamentary government flows from 'democratic' read with the Constitution's scheme, not from 'republic'.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q006",
+    "topic": "POL-05",
+    "stem": "The Preamble secures 'Justice' to all citizens in which of the following order?",
+    "options": [
+      "Political, social, economic",
+      "Economic, political, social",
+      "Social, economic, political",
+      "Social, political, economic"
+    ],
+    "answer": 2,
+    "explanation": "The Preamble reads 'JUSTICE, social, economic and political' — in that exact order. Exam setters routinely test this sequence; note that Liberty's sequence is 'thought, expression, belief, faith and worship'.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q007",
+    "topic": "POL-05",
+    "stem": "In which case did the Supreme Court FIRST hold that the Preamble is NOT a part of the Constitution?",
+    "options": [
+      "Kesavananda Bharati case, 1973",
+      "Berubari Union case, 1960",
+      "LIC of India case, 1995",
+      "Golaknath case, 1967"
+    ],
+    "answer": 1,
+    "explanation": "In the Berubari Union reference (1960) the Supreme Court held the Preamble is not a part of the Constitution. Kesavananda Bharati (1973) overruled this and held it IS a part, a position reaffirmed in the LIC case (1995). Golaknath concerned amendability of Fundamental Rights, not the Preamble.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q008",
+    "topic": "POL-05",
+    "stem": "Which one of the following is NOT among the five freedoms of 'Liberty' mentioned in the Preamble?",
+    "options": [
+      "Liberty of thought",
+      "Liberty of expression",
+      "Liberty of movement",
+      "Liberty of worship"
+    ],
+    "answer": 2,
+    "explanation": "The Preamble lists liberty of thought, expression, belief, faith and worship. Freedom of movement is a Fundamental Right under Article 19(1)(d), not a Preamble liberty — a classic confusion the exam exploits.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q009",
+    "topic": "POL-05",
+    "stem": "With reference to the amendability of the Preamble, consider the following statements:\n1. The Preamble has been amended only once so far.\n2. The Preamble can be amended without any limitation whatsoever.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 0,
+    "explanation": "Statement 1 is correct: the 42nd Amendment (1976) is the only amendment to the Preamble. Statement 2 is incorrect: per Kesavananda Bharati, the Preamble can be amended under Article 368 but subject to the basic structure doctrine — its core cannot be destroyed.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  },
+  {
+    "id": "POL-05-Q010",
+    "topic": "POL-05",
+    "stem": "The ideals of Liberty, Equality and Fraternity in the Preamble were inspired by:",
+    "options": [
+      "The American Revolution",
+      "The French Revolution",
+      "The Russian Revolution",
+      "The Irish Constitution"
+    ],
+    "answer": 1,
+    "explanation": "Liberty, Equality, Fraternity is the motto of the French Revolution (1789-99), the acknowledged inspiration. The Russian Revolution inspired the ideal of justice (social, economic, political); the Irish Constitution inspired the Directive Principles, not the Preamble's trio.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "fixture-draft",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-19"
+  }
+]
