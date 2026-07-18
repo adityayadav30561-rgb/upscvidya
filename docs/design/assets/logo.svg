@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="UPSCVidya logo">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&amp;family=Rozha+One&amp;display=swap');
+    .en { font-family:'Saira Stencil One',sans-serif; }
+    .hi { font-family:'Rozha One',serif; }
+  </style>
+
+  <!-- hard print offset (shadow-2 style) -->
+  <rect x="52" y="52" width="424" height="424" rx="10" fill="#4d4433" opacity="0.35"/>
+
+  <!-- badge plate: aged paper, ruler border -->
+  <rect x="40" y="40" width="424" height="424" rx="10" fill="#f3ecdc" stroke="#4d4433" stroke-width="7"/>
+  <!-- inner document rule -->
+  <rect x="58" y="58" width="388" height="388" rx="6" fill="none" stroke="#c4b896" stroke-width="2.5"/>
+
+  <!-- UPSC — english, stencil, khaki-deep -->
+  <text class="en" x="252" y="228" font-size="118" letter-spacing="6"
+        text-anchor="middle" fill="#5b5433">UPSC</text>
+
+  <!-- divider: rule + gold star -->
+  <line x1="112" y1="268" x2="222" y2="268" stroke="#4d4433" stroke-width="3"/>
+  <line x1="282" y1="268" x2="392" y2="268" stroke="#4d4433" stroke-width="3"/>
+  <path d="M252 250 L257 263 L270 268 L257 273 L252 286 L247 273 L234 268 L247 263 Z" fill="#8f6b1e"/>
+
+  <!-- विद्या — hindi, brick red -->
+  <text class="hi" x="252" y="408" font-size="126"
+        text-anchor="middle" fill="#8a3d2e">विद्या</text>
+</svg>

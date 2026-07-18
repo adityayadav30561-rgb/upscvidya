@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 11</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Daily Briefing</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">Current affairs as a morning parade: 5–7 curated items a day, each with sources, an expandable summary and an optional 3Q mini-quiz. The calendar strip makes missed days recoverable, not guilt-inducing.</p>
+  </header>
+
+  <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Briefing feed" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 12px;display:flex;flex-direction:column;gap:14px;border-bottom:var(--bw) solid var(--line)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-size:17px;text-transform:uppercase">Daily Briefing</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">Saturday, 19 July 2026 · 4 of 6 read</div>
+          </div>
+          <span style="font-size:11px;font-weight:900;background:var(--blue-tint);color:var(--blue-deep);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-full);padding:5px 11px">4/6</span>
+        </div>
+        <div style="display:flex;gap:7px">
+          <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:7px 0;cursor:pointer"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">SUN</div><div style="font-family:var(--font-display);font-size:13px">13</div><div style="width:6px;height:6px;border-radius:50%;background:var(--green-deep);margin:3px auto 0"></div></div>
+          <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:7px 0;cursor:pointer"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">MON</div><div style="font-family:var(--font-display);font-size:13px">14</div><div style="width:6px;height:6px;border-radius:50%;background:var(--green-deep);margin:3px auto 0"></div></div>
+          <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:7px 0;cursor:pointer"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">TUE</div><div style="font-family:var(--font-display);font-size:13px">15</div><div style="width:6px;height:6px;border-radius:50%;background:var(--red-deep);margin:3px auto 0"></div></div>
+          <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:7px 0;cursor:pointer"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">WED</div><div style="font-family:var(--font-display);font-size:13px">16</div><div style="width:6px;height:6px;border-radius:50%;background:var(--green-deep);margin:3px auto 0"></div></div>
+          <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:7px 0;cursor:pointer"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">THU</div><div style="font-family:var(--font-display);font-size:13px">17</div><div style="width:6px;height:6px;border-radius:50%;background:var(--green-deep);margin:3px auto 0"></div></div>
+          <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:7px 0;cursor:pointer"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">FRI</div><div style="font-family:var(--font-display);font-size:13px">18</div><div style="width:6px;height:6px;border-radius:50%;background:var(--green-deep);margin:3px auto 0"></div></div>
+          <div style="flex:1;text-align:center;background:var(--blue);border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:7px 0;box-shadow:var(--shadow-2)"><div style="font-size:9px;font-weight:900;color:#fff">SAT</div><div style="font-family:var(--font-display);font-size:13px;color:#fff">19</div><div style="width:6px;height:6px;border-radius:50%;background:#fff;opacity:.6;margin:3px auto 0"></div></div>
+        </div>
+      </div>
+
+      <div style="padding:16px 16px 20px;display:flex;flex-direction:column;gap:12px">
+        <div style="border:var(--bw) solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);padding:13px 15px;display:flex;flex-direction:column;gap:8px;opacity:.75">
+          <div style="display:flex;gap:8px;align-items:center">
+            <span style="font-size:9.5px;font-weight:900;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:2px 8px">POLITY</span>
+            <span style="font-size:9.5px;font-weight:700;background:var(--bg-0);border:1px solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-full);padding:2px 8px">PIB</span>
+            <span style="flex:1"></span>
+            <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="var(--green-tint)" stroke="var(--green-deep)" stroke-width="1.3"></circle><path d="M4.5 7 L6.3 8.8 L9.5 5.2" fill="none" stroke="var(--green-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="font-weight:900;font-size:14px;line-height:1.4">16th Finance Commission submits report on vertical devolution</div>
+        </div>
+
+        <div style="border:var(--bw-bold) solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);padding:15px 16px;display:flex;flex-direction:column;gap:11px;box-shadow:var(--shadow-2)">
+          <div style="display:flex;gap:8px;align-items:center">
+            <span style="font-size:9.5px;font-weight:900;background:var(--red-tint);color:var(--red-deep);border:var(--bw) solid var(--red-deep);border-radius:var(--r-full);padding:2px 8px">SECURITY</span>
+            <span style="font-size:9.5px;font-weight:700;background:var(--bg-0);border:1px solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-full);padding:2px 8px">The Hindu</span>
+            <span style="font-size:9.5px;font-weight:700;background:var(--bg-0);border:1px solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-full);padding:2px 8px">MHA</span>
+          </div>
+          <div style="font-weight:900;font-size:15px;line-height:1.4">CRPF raises two new battalions for Left-Wing Extremism grid</div>
+          <div style="font-family:var(--font-read);font-size:13.5px;line-height:1.65;color:var(--ink-2)">
+            <div style="display:flex;gap:8px;margin-bottom:6px"><span style="flex:none;width:5px;height:5px;border-radius:50%;background:var(--ink-3);margin-top:8px"></span><span>MHA sanctioned 2 new CRPF battalions (~2,000 personnel) focused on the Abujhmad region.</span></div>
+            <div style="display:flex;gap:8px;margin-bottom:6px"><span style="flex:none;width:5px;height:5px;border-radius:50%;background:var(--ink-3);margin-top:8px"></span><span>LWE-affected districts down from 90 (2010) to 38 — scheme-linked funding continues under SRE.</span></div>
+            <div style="display:flex;gap:8px"><span style="flex:none;width:5px;height:5px;border-radius:50%;background:var(--ink-3);margin-top:8px"></span><span>Exam angle: CAPF structure questions + internal security section of Paper 1.</span></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button style="flex:1;font-family:var(--font-ui);font-weight:900;font-size:13px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:11px;min-height:44px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Take 3Q mini-quiz</button>
+            <button style="font-family:var(--font-ui);font-weight:700;font-size:13px;background:var(--bg-0);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:11px 16px;min-height:44px;cursor:pointer" style-hover="background:var(--bg-1)">Mark read</button>
+          </div>
+        </div>
+
+        <div style="border:var(--bw) solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);padding:13px 15px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:8px;align-items:center">
+            <span style="font-size:9.5px;font-weight:900;background:var(--green-tint);color:var(--green-deep);border:var(--bw) solid var(--green-deep);border-radius:var(--r-full);padding:2px 8px">ECONOMY</span>
+            <span style="font-size:9.5px;font-weight:700;background:var(--bg-0);border:1px solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-full);padding:2px 8px">Indian Express</span>
+            <span style="flex:1"></span>
+            <svg width="12" height="12" viewBox="0 0 14 14" style="transform:rotate(90deg)"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="font-weight:900;font-size:14px;line-height:1.4">RBI holds repo rate; revises FY27 growth projection</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-screen-label="Mini-quiz" style="width:380px;flex:none;background:#7a7157;border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);position:relative;min-height:620px">
+      <div style="position:absolute;inset:0;background:rgba(51,48,31,.35)"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;background:var(--bg-0);border-top:var(--bw-bold) solid var(--line);border-radius:26px 26px 0 0;padding:14px 20px 22px;display:flex;flex-direction:column;gap:14px">
+        <div style="width:44px;height:5px;border-radius:var(--r-full);background:var(--line-soft);margin:0 auto"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-family:var(--font-display);font-size:14px;text-transform:uppercase">Briefing check</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">CRPF battalions · Q2 of 3</div>
+          </div>
+          <div style="display:flex;gap:5px">
+            <span style="width:22px;height:7px;border-radius:var(--r-full);background:var(--green);border:1px solid var(--line)"></span>
+            <span style="width:22px;height:7px;border-radius:var(--r-full);background:var(--blue);border:var(--bw) solid var(--line)"></span>
+            <span style="width:22px;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          </div>
+        </div>
+        <div style="font-family:var(--font-read);font-size:14.5px;line-height:1.6">The number of LWE-affected districts has declined from 90 in 2010 to approximately:</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 15px;min-height:44px;cursor:pointer"><span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span><span style="font-size:13.5px;font-weight:700">58</span></div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--green-tint);border:var(--bw-bold) solid var(--green-deep);border-radius:var(--r-md);padding:12px 15px;min-height:44px"><span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);background:var(--green-deep);display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="font-size:13.5px;font-weight:900">38 <span style="font-size:10.5px;color:var(--green-deep)">· correct</span></span></div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line-soft);border-radius:var(--r-md);padding:12px 15px;min-height:44px;opacity:.55"><span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);border:var(--bw) solid var(--line-soft)"></span><span style="font-size:13.5px;font-weight:700">72</span></div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line-soft);border-radius:var(--r-md);padding:12px 15px;min-height:44px;opacity:.55"><span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);border:var(--bw) solid var(--line-soft)"></span><span style="font-size:13.5px;font-weight:700">12</span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px 14px">
+          <span style="font-size:10px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:2px 8px;transform:rotate(-2deg);flex:none">+5 XP</span>
+          <span style="font-size:12px;font-weight:700;color:var(--ink-2)">CA questions rotate into your revision stack if missed.</span>
+        </div>
+        <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:14px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Next question →</button>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Calendar strip: green dot = day completed, red = missed, hollow = partial. Swipes back through weeks; tap loads that day's feed with a 200ms crossfade.</li>
+        <li>Cards expand in place (350ms); reading to the end auto-marks read (check fades in) — the button is a shortcut, not a chore.</li>
+        <li>Mini-quiz opens as a sheet; 3 questions, instant feedback, +5 XP each. Completing all items + quizzes = "Briefing complete" on the Home mission card.</li>
+        <li>Missed CA quiz questions enter the revision stack tagged CURRENT AFFAIRS with a shorter interval curve (news decays faster).</li>
+        <li>Category chips filter the feed; sources are informational, not links (offline-first).</li>
+        <li>Past days beyond 30 collapse into a monthly archive list (premium keeps 365 days, free keeps 30 — surfaced in Paywall).</li>
+        <li>Desktop: feed 560px centered; calendar strip becomes a month grid in the right rail.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<div style="max-width:1360px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 04</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Topic Reader</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:680px">The 2–4 hr/day core job. Chrome gets out of the way: Source Serif at reader sizes, one accent per block type, sticky quiz CTA. Desktop: 68ch centered column, reading controls float right.</p>
+  </header>
+
+  <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Reader" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);position:relative">
+      <div style="padding:16px 20px 10px;display:flex;flex-direction:column;gap:10px;border-bottom:var(--bw) solid var(--line);background:var(--bg-0)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:900;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Parliament: The Two Houses</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">The Centre · 18 min read</div>
+          </div>
+          <span style="flex:none;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:900;color:var(--green-deep)"><svg width="12" height="12" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="var(--green-tint)" stroke="var(--green-deep)" stroke-width="1.3"></circle><path d="M4.5 7 L6.3 8.8 L9.5 5.2" fill="none" stroke="var(--green-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>OFFLINE</span>
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:var(--font-read);font-weight:600;font-size:14px">Aa</span>
+        </div>
+        <div style="height:6px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);overflow:hidden"><div style="width:42%;height:100%;background:var(--blue)"></div></div>
+      </div>
+
+      <div style="padding:22px 22px 110px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:8px">
+          <span style="font-size:10px;font-weight:900;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:3px 10px">Art. 79–88</span>
+          <span style="font-size:10px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:3px 10px">Chapter 22</span>
+        </div>
+        <h2 style="margin:0;font-family:var(--font-display);font-size:21px;line-height:1.3;text-transform:uppercase">The Two Houses</h2>
+        <p style="margin:0;font-family:var(--font-read);font-size:16px;line-height:1.7">Article 79 constitutes a Parliament for the Union consisting of the <strong>President</strong> and two Houses — the <strong>Council of States (Rajya Sabha)</strong> and the <strong>House of the People (Lok Sabha)</strong>. Though the President is not a member of either House, he is an integral part of Parliament: a bill becomes law only with his assent.</p>
+        <div style="background:var(--blue-tint);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-lg);padding:14px 16px;display:flex;flex-direction:column;gap:4px">
+          <span style="font-size:10px;font-weight:900;color:var(--blue-deep);letter-spacing:.08em">EXAM ANGLE</span>
+          <span style="font-family:var(--font-read);font-size:14.5px;line-height:1.6">"Parliament = President + both Houses" is a repeat PYQ trap — statements that omit the President are <em>incorrect</em>. Asked in 2019, 2022.</span>
+        </div>
+        <p style="margin:0;font-family:var(--font-read);font-size:16px;line-height:1.7">The Rajya Sabha is a <strong>continuing chamber</strong> — it is not subject to dissolution, with one-third of its members retiring every second year (Article 83). The Lok Sabha, unless dissolved sooner, continues for five years from its first sitting.</p>
+        <div style="border:var(--bw) solid var(--line);border-radius:var(--r-lg);overflow:hidden">
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--bg-1);border-bottom:var(--bw) solid var(--line)">
+            <div style="padding:9px 12px;font-size:11px;font-weight:900"></div>
+            <div style="padding:9px 12px;font-size:11px;font-weight:900;border-left:var(--bw) solid var(--line)">Lok Sabha</div>
+            <div style="padding:9px 12px;font-size:11px;font-weight:900;border-left:var(--bw) solid var(--line)">Rajya Sabha</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;border-bottom:var(--bw) solid var(--line-soft)">
+            <div style="padding:9px 12px;font-size:12px;font-weight:700;color:var(--ink-2)">Max strength</div>
+            <div style="padding:9px 12px;font-size:12.5px;font-family:var(--font-read);border-left:var(--bw) solid var(--line-soft)">550</div>
+            <div style="padding:9px 12px;font-size:12.5px;font-family:var(--font-read);border-left:var(--bw) solid var(--line-soft)">250</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;border-bottom:var(--bw) solid var(--line-soft)">
+            <div style="padding:9px 12px;font-size:12px;font-weight:700;color:var(--ink-2)">Term</div>
+            <div style="padding:9px 12px;font-size:12.5px;font-family:var(--font-read);border-left:var(--bw) solid var(--line-soft)">5 years</div>
+            <div style="padding:9px 12px;font-size:12.5px;font-family:var(--font-read);border-left:var(--bw) solid var(--line-soft)">Permanent</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr">
+            <div style="padding:9px 12px;font-size:12px;font-weight:700;color:var(--ink-2)">Presiding officer</div>
+            <div style="padding:9px 12px;font-size:12.5px;font-family:var(--font-read);border-left:var(--bw) solid var(--line-soft)">Speaker</div>
+            <div style="padding:9px 12px;font-size:12.5px;font-family:var(--font-read);border-left:var(--bw) solid var(--line-soft)">Vice-President</div>
+          </div>
+        </div>
+        <p style="margin:0;font-family:var(--font-read);font-size:16px;line-height:1.7">Under Article 80, the President nominates <strong>12 members</strong> to the Rajya Sabha from fields of literature, science, art and social service…</p>
+        <div style="display:flex;align-items:center;gap:8px;color:var(--ink-3);font-size:11px;font-weight:700;justify-content:center;padding:6px 0">— section 3 of 7 continues —</div>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 20px 18px;background:linear-gradient(180deg,rgba(251,248,241,0),var(--bg-0) 40%)">
+        <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:15px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:14px;min-height:48px;cursor:pointer;box-shadow:var(--shadow-2)" style-hover="transform:translate(-1px,-1px)">Attempt quiz (12 questions) →</button>
+      </div>
+    </div>
+
+    <div data-screen-label="Reading controls" style="width:380px;flex:none;background:#7a7157;border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);position:relative;min-height:560px">
+      <div style="position:absolute;inset:0;background:rgba(51,48,31,.35)"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;background:var(--bg-0);border-top:var(--bw-bold) solid var(--line);border-radius:26px 26px 0 0;padding:14px 22px 24px;display:flex;flex-direction:column;gap:18px">
+        <div style="width:44px;height:5px;border-radius:var(--r-full);background:var(--line-soft);margin:0 auto"></div>
+        <div style="font-family:var(--font-display);font-size:15px;text-transform:uppercase">Reading comfort</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:900;color:var(--ink-3)"><span>TEXT SIZE</span><span style="color:var(--ink-1)">16px</span></div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="font-family:var(--font-read);font-size:13px">A</span>
+            <div style="flex:1;position:relative;height:24px;display:flex;align-items:center">
+              <div style="width:100%;height:8px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2)"></div>
+              <div style="position:absolute;left:0;width:45%;height:8px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--blue)"></div>
+              <div style="position:absolute;left:45%;width:22px;height:22px;margin-left:-11px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);box-shadow:var(--shadow-2)"></div>
+            </div>
+            <span style="font-family:var(--font-read);font-size:21px">A</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:11.5px;font-weight:900;color:var(--ink-3)">THEME</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+            <div style="border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:10px;text-align:center;background:#f3ecdc;box-shadow:var(--shadow-2)"><span style="font-family:var(--font-read);font-size:14px">Aa</span><div style="font-size:9.5px;font-weight:900;margin-top:3px">PAPER</div></div>
+            <div style="border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px;text-align:center;background:#f3e6c9"><span style="font-family:var(--font-read);font-size:14px">Aa</span><div style="font-size:9.5px;font-weight:900;margin-top:3px">SEPIA</div></div>
+            <div style="border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px;text-align:center;background:#3d3626;color:#e9e6dd"><span style="font-family:var(--font-read);font-size:14px">Aa</span><div style="font-size:9.5px;font-weight:900;margin-top:3px">NIGHT</div></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 14px">
+          <div>
+            <div style="font-weight:900;font-size:13px">Serif body</div>
+            <div style="font-size:10.5px;color:var(--ink-3)">Source Serif · off = Lato</div>
+          </div>
+          <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--green);position:relative"><span style="position:absolute;right:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+        </div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--ink-3)">Settings persist per device</div>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Read-progress bar tracks scroll position; at 100% the CTA pulses once (subtle 1.03 scale) — never before.</li>
+        <li>Top bar auto-hides on scroll-down, returns on scroll-up (200ms); progress bar stays.</li>
+        <li>Aa sheet: size slider re-flows text live; theme swatches preview instantly; Night maps to [data-theme="dark"] tokens.</li>
+        <li>EXAM ANGLE callouts are collapsible after first read; count shown in topic sheet.</li>
+        <li>Tables scroll horizontally beyond 3 columns with an edge-fade affordance.</li>
+        <li>OFFLINE chip flips to a download arrow + % while caching; content is cached on first open of the region.</li>
+        <li>Leaving mid-read stores position; reopening resumes with a "Continue from section 3" toast.</li>
+        <li>Desktop: 68ch centered, controls in a floating right rail, tables full-width within column.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 19</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Settings &amp; Account</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">Grouped like the reference: notifications (streak alerts are the ones that matter), appearance with the Night theme for late sessions, study preferences, and account/privacy with plan management.</p>
+  </header>
+
+  <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Settings" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="font-family:var(--font-display);font-size:17px;text-transform:uppercase">Settings</div>
+        </div>
+
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer" style-hover="box-shadow:var(--shadow-2)">
+          <span style="flex:none;width:44px;height:44px;border-radius:var(--r-full);background:var(--khaki-tint);border:var(--bw) solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:15px;color:var(--khaki-deep)">AN</span>
+          <div style="flex:1">
+            <div style="font-weight:900;font-size:14px">Arjun Nair</div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink-3)">+91 98765 43210 · edit profile</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:11px;font-weight:900;color:var(--ink-3)">NOTIFICATIONS</div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft)">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Daily mission reminder</div><div style="font-size:10.5px;color:var(--ink-3)">19:30 · tap to change</div></div>
+              <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--green);position:relative;flex:none;cursor:pointer"><span style="position:absolute;right:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft)">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Streak alerts</div><div style="font-size:10.5px;color:var(--ink-3)">warn at 21:00 if today's mission is open</div></div>
+              <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--green);position:relative;flex:none;cursor:pointer"><span style="position:absolute;right:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft)">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Battalion updates</div><div style="font-size:10.5px;color:var(--ink-3)">rank changes, week results</div></div>
+              <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-1);position:relative;flex:none;cursor:pointer"><span style="position:absolute;left:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Sound effects</div><div style="font-size:10.5px;color:var(--ink-3)">conquest + rank-up only</div></div>
+              <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--green);position:relative;flex:none;cursor:pointer"><span style="position:absolute;right:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:11px;font-weight:900;color:var(--ink-3)">APPEARANCE</div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 15px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+              <div style="border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:9px;text-align:center;background:var(--bg-0);cursor:pointer"><div style="height:22px;border-radius:5px;background:linear-gradient(90deg,#f3ecdc 50%,#3d3626 50%);border:1px solid var(--line)"></div><div style="font-size:9.5px;font-weight:900;margin-top:5px">AUTO</div></div>
+              <div style="border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:9px;text-align:center;background:var(--bg-0);cursor:pointer;box-shadow:var(--shadow-2)"><div style="height:22px;border-radius:5px;background:#f3ecdc;border:1px solid var(--line)"></div><div style="font-size:9.5px;font-weight:900;margin-top:5px">LIGHT ✓</div></div>
+              <div style="border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:9px;text-align:center;background:var(--bg-0);cursor:pointer"><div style="height:22px;border-radius:5px;background:#3d3626"></div><div style="font-size:9.5px;font-weight:900;margin-top:5px">NIGHT</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid var(--line-soft);padding-top:12px">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Large text</div><div style="font-size:10.5px;color:var(--ink-3)">raises reader minimum to 18px</div></div>
+              <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-1);position:relative;flex:none;cursor:pointer"><span style="position:absolute;left:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:11px;font-weight:900;color:var(--ink-3)">STUDY</div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft);cursor:pointer">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Daily pace</div><div style="font-size:10.5px;color:var(--ink-3)">2 hr · Assault — re-plans the path</div></div>
+              <svg width="12" height="12" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;cursor:pointer">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">PET standards</div><div style="font-size:10.5px;color:var(--ink-3)">Male · switches all qualifying lines</div></div>
+              <svg width="12" height="12" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-screen-label="Account &amp; privacy" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="font-family:var(--font-display);font-size:17px;text-transform:uppercase">Account &amp; Privacy</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:11px;font-weight:900;color:var(--ink-3)">PLAN &amp; BILLING</div>
+          <div style="background:var(--orange-tint);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 16px;display:flex;align-items:center;gap:12px">
+            <div style="flex:1">
+              <div style="font-weight:900;font-size:13.5px">Premium · till exam</div>
+              <div style="font-size:10.5px;font-weight:700;color:var(--ink-2)">Active until CAPF AC 2027 · paid ₹999 · 12 Jul</div>
+            </div>
+            <span style="font-size:10px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 9px;cursor:pointer">RECEIPT</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:11px;font-weight:900;color:var(--ink-3)">PROFILE</div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft)">
+              <div style="flex:1"><div style="font-size:10.5px;font-weight:900;color:var(--ink-3)">NAME</div><div style="font-weight:700;font-size:13.5px">Arjun Nair</div></div>
+              <span style="font-size:11px;font-weight:900;color:var(--blue-deep);cursor:pointer">Edit</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft)">
+              <div style="flex:1"><div style="font-size:10.5px;font-weight:900;color:var(--ink-3)">MOBILE</div><div style="font-weight:700;font-size:13.5px">+91 98765 43210 · verified ✓</div></div>
+              <span style="font-size:11px;font-weight:900;color:var(--blue-deep);cursor:pointer">Change</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px">
+              <div style="flex:1"><div style="font-size:10.5px;font-weight:900;color:var(--ink-3)">PASSWORD</div><div style="font-weight:700;font-size:13.5px;letter-spacing:.2em">••••••••</div></div>
+              <span style="font-size:11px;font-weight:900;color:var(--blue-deep);cursor:pointer">Change</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:11px;font-weight:900;color:var(--ink-3)">PRIVACY</div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft)">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Show me on leaderboards</div><div style="font-size:10.5px;color:var(--ink-3)">off = compete as "Anonymous SI"</div></div>
+              <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--green);position:relative;flex:none;cursor:pointer"><span style="position:absolute;right:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid var(--line-soft)">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Personalised difficulty</div><div style="font-size:10.5px;color:var(--ink-3)">use my accuracy to pick quiz questions</div></div>
+              <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--green);position:relative;flex:none;cursor:pointer"><span style="position:absolute;right:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 15px;cursor:pointer">
+              <div style="flex:1"><div style="font-weight:900;font-size:13px">Download my data</div><div style="font-size:10.5px;color:var(--ink-3)">attempts, logs, notes — JSON export</div></div>
+              <svg width="12" height="12" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <button style="width:100%;font-family:var(--font-ui);font-weight:700;font-size:13.5px;background:var(--bg-2);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px;min-height:44px;cursor:pointer" style-hover="background:var(--bg-1)">Log out</button>
+          <button style="width:100%;font-family:var(--font-ui);font-weight:700;font-size:13.5px;background:transparent;color:var(--red-deep);border:var(--bw) solid var(--red-deep);border-radius:var(--r-full);padding:12px;min-height:44px;cursor:pointer" style-hover="background:var(--red-tint)">Delete account</button>
+        </div>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Toggles snap with a 120ms slide; theme swatches apply instantly app-wide (Night = [data-theme="dark"] tokens).</li>
+        <li>Changing daily pace opens a confirm sheet showing the new milestone dates before committing (re-uses Screen 18's timeline rows).</li>
+        <li>Streak alert time is tappable inline (time picker sheet); the 21:00 default sits after typical dinner, before sleep.</li>
+        <li>Mobile change requires OTP re-verify; delete account is double-confirm with a 7-day grace undo email/SMS.</li>
+        <li>Leaderboard anonymity swaps name for rank-based alias immediately — position and XP unaffected.</li>
+        <li>RECEIPT chip opens the Screen 20 confirmation view of the past payment.</li>
+        <li>Desktop: two columns as shown; sections become a left anchor nav.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

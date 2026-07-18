@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+@keyframes herePulse{0%,100%{r:16}50%{r:19}}
+</style>
+</helmet>
+<div style="max-width:1360px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--khaki);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 03</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Territory Map — <span style="color:var(--khaki-deep)">Polity</span></h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:680px">Sector map: each region is a terrain block, topics are nodes on a winding supply road. Everything is readable (free roam); the glowing road is the recommended route. Desktop: two region columns, sheet becomes a right side-panel.</p>
+  </header>
+
+  <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Territory Map" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 16px 20px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:10px;padding:0 4px">
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-size:18px;text-transform:uppercase">Indian Polity</div>
+            <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">8 regions · 95 territories · 31 held</div>
+          </div>
+          <div style="position:relative;width:54px;height:54px;flex:none">
+            <svg width="54" height="54" viewBox="0 0 54 54" style="transform:rotate(-90deg)"><circle cx="27" cy="27" r="22" fill="none" stroke="var(--bg-1)" stroke-width="6"></circle><circle cx="27" cy="27" r="22" fill="none" stroke="var(--orange-deep)" stroke-width="6" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="91.2"></circle></svg>
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:13px">34%</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;overflow:hidden;padding:0 4px">
+          <span style="flex:none;font-size:11px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:5px 11px">Foundations 100%</span>
+          <span style="flex:none;font-size:11px;font-weight:900;background:var(--green-tint);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:5px 11px">The System 78%</span>
+          <span style="flex:none;font-size:11px;font-weight:900;background:var(--orange-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-full);padding:5px 11px">The Centre 31%</span>
+          <span style="flex:none;font-size:11px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-full);padding:5px 11px">The States 0%</span>
+        </div>
+
+        <div style="background:var(--green-tint);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <svg width="20" height="20" viewBox="0 0 20 20" style="flex:none"><path d="M5 18 V3 M5 3 H15 L12.5 6.5 L15 10 H5" fill="var(--green)" stroke="#4d4433" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px"><span style="font-family:var(--font-display);font-size:13px;text-transform:uppercase">Foundations</span><span style="font-size:9px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:2px 7px;transform:rotate(-2deg)">SECURED</span></div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink-2)">12/12 territories · 3 gold</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+
+        <div style="border:var(--bw) solid var(--line);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-2)">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px 4px">
+            <span style="font-family:var(--font-display);font-size:13px;text-transform:uppercase">The System</span>
+            <span style="font-size:11px;font-weight:900;color:var(--green-deep)">7/9 · 78%</span>
+          </div>
+          <svg width="100%" viewBox="0 0 348 190" style="display:block">
+            <path d="M14 34 Q40 8 96 14 T220 10 Q300 8 334 40 Q344 90 330 140 Q300 182 210 178 Q120 186 48 172 Q6 156 10 100 Q10 60 14 34 Z" fill="var(--green-tint)" stroke="#4d4433" stroke-width="1.5"></path>
+            <path d="M52 60 L128 44 L208 66 L268 110 L196 148 L96 138" fill="none" stroke="var(--khaki)" stroke-width="2.5" stroke-dasharray="1 7" stroke-linecap="round"></path>
+            <g transform="translate(52 60)"><circle r="15" fill="url(#tm-gold)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-star-dark" transform="scale(.72)"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Preamble</text></g>
+            <g transform="translate(128 44)"><circle r="15" fill="var(--green)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-check"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Citizenship</text></g>
+            <g transform="translate(208 66)"><circle r="15" fill="var(--green)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-check"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Fund. Rights</text></g>
+            <g transform="translate(268 110)" opacity=".55"><circle r="15" fill="var(--bg-1)" stroke="#6e5f3a" stroke-width="2" stroke-dasharray="4 3"></circle><use href="#tm-check-khaki"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#8b8676">DPSP · 24d</text></g>
+            <g transform="translate(196 148)"><circle r="15" fill="var(--green)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-check"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Fund. Duties</text></g>
+            <g transform="translate(96 138)"><circle r="15" fill="var(--orange-tint)" stroke="#c2410c" stroke-width="2.5"></circle><circle r="5" fill="#e8703a"></circle><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Amendment</text></g>
+          </svg>
+        </div>
+
+        <div style="border:var(--bw-bold) solid var(--line);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-2);box-shadow:var(--shadow-2)">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px 4px">
+            <span style="font-family:var(--font-display);font-size:13px;text-transform:uppercase;color:var(--orange-deep)">The Centre — current front</span>
+            <span style="font-size:11px;font-weight:900;color:var(--ink-2)">4/13 · 31%</span>
+          </div>
+          <svg width="100%" viewBox="0 0 348 232" style="display:block">
+            <path d="M12 40 Q30 10 110 16 T250 12 Q330 12 338 60 Q344 120 332 170 Q310 224 200 220 Q90 226 34 204 Q4 180 8 110 Q8 70 12 40 Z" fill="var(--orange-tint)" stroke="#4d4433" stroke-width="1.5"></path>
+            <path d="M50 62 L132 42" fill="none" stroke="var(--khaki)" stroke-width="2.5" stroke-dasharray="1 7" stroke-linecap="round"></path>
+            <path d="M132 42 L212 72" fill="none" stroke="#e8703a" stroke-width="3.5" stroke-linecap="round"></path>
+            <path d="M212 72 L272 132 L192 172 L92 182" fill="none" stroke="#e8703a" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round" opacity=".6"></path>
+            <g transform="translate(50 62)"><circle r="15" fill="var(--green)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-check"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">President</text></g>
+            <g transform="translate(132 42)"><circle r="15" fill="var(--green)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-check"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">PM &amp; Council</text></g>
+            <g transform="translate(212 72)">
+              <circle r="17" fill="none" stroke="#e8703a" stroke-width="2" opacity=".5" style="animation:herePulse 1.8s ease-in-out infinite"></circle>
+              <circle r="15" fill="var(--orange)" stroke="#4d4433" stroke-width="2"></circle><circle r="5" fill="#4d4433"></circle>
+              <g transform="translate(0 -38)"><rect x="-42" y="-12" width="84" height="20" rx="6" fill="#4d4433"></rect><path d="M-4 8 L0 13 L4 8 Z" fill="#4d4433"></path><text y="2.5" text-anchor="middle" font-family="Lato" font-weight="900" font-size="9.5" fill="#f3ecdc">NEXT MISSION</text></g>
+              <text y="32" text-anchor="middle" font-family="Lato" font-weight="900" font-size="9" fill="#4d4433">Parliament</text>
+            </g>
+            <g transform="translate(272 132)"><circle r="15" fill="var(--bg-0)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-book"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Committees</text></g>
+            <g transform="translate(192 172)"><circle r="15" fill="var(--bg-0)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-book"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Budget</text></g>
+            <g transform="translate(92 182)"><circle r="15" fill="var(--bg-0)" stroke="#4d4433" stroke-width="1.5"></circle><use href="#tm-book"></use><text y="30" text-anchor="middle" font-family="Lato" font-weight="700" font-size="9" fill="#4a463c">Emergency</text></g>
+          </svg>
+        </div>
+
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line-soft);border-radius:var(--r-lg);padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <svg width="20" height="20" viewBox="0 0 20 20" style="flex:none;opacity:.5"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="#4d4433" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase;color:var(--ink-3)">The States</div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink-3)">11 territories · free roam — read anytime</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#8b8676" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--ink-3)">+ 4 more regions ↓</div>
+      </div>
+    </div>
+
+    <div data-screen-label="Topic sheet" style="width:380px;flex:none;background:#7a7157;border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);position:relative;min-height:640px">
+      <div style="position:absolute;inset:0;background:rgba(51,48,31,.35)"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;background:var(--bg-0);border-top:var(--bw-bold) solid var(--line);border-radius:26px 26px 0 0;padding:14px 20px 22px;display:flex;flex-direction:column;gap:14px">
+        <div style="width:44px;height:5px;border-radius:var(--r-full);background:var(--line-soft);margin:0 auto"></div>
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <div style="flex:1">
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <span style="font-size:10px;font-weight:900;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 8px;transform:rotate(-2deg)">NEXT MISSION</span>
+              <span style="font-size:10px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 8px">UNCONQUERED</span>
+            </div>
+            <div style="font-family:var(--font-display);font-size:20px;line-height:1.25;text-transform:uppercase">Parliament: The Two Houses</div>
+            <div style="font-size:12px;font-weight:700;color:var(--ink-3);margin-top:4px">The Centre · Territory 5 of 13</div>
+          </div>
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="12" height="12" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#4d4433" stroke-width="2" stroke-linecap="round"></path></svg></span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:15px">18<span style="font-size:10px"> min</span></div>
+            <div style="font-size:9.5px;font-weight:900;color:var(--ink-3)">READ</div>
+          </div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:15px">12<span style="font-size:10px">Q</span></div>
+            <div style="font-size:9.5px;font-weight:900;color:var(--ink-3)">QUIZ · PASS ≥70%</div>
+          </div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:15px">9</div>
+            <div style="font-size:9.5px;font-weight:900;color:var(--ink-3)">PYQs LINKED</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--blue-tint);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-md);padding:9px 13px">
+          <svg width="14" height="14" viewBox="0 0 16 16" style="flex:none"><path d="M8 1 L10 5.5 L15 6 L11.5 9.5 L12.5 14.5 L8 12 L3.5 14.5 L4.5 9.5 L1 6 L6 5.5 Z" fill="var(--blue)" stroke="#4d4433" stroke-width="1"></path></svg>
+          <span style="font-size:12px;font-weight:700;color:var(--ink-1)">Conquering this secures the Lok Sabha–Rajya Sabha junction — 3 later topics build on it.</span>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button style="flex:1;font-family:var(--font-ui);font-weight:700;font-size:14px;background:var(--bg-2);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="background:var(--bg-1)">Read notes</button>
+          <button style="flex:1.4;font-family:var(--font-ui);font-weight:900;font-size:14px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Attempt quiz (12Q)</button>
+        </div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--ink-3)">Saved offline ✓ · works without network</div>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Map scrolls vertically through regions in syllabus order; region chips row is horizontally scrollable and taps jump-scroll.</li>
+        <li>Guided road: solid orange segment = next leg; dashed orange = planned route; khaki dots = travelled. Segment draws in (700ms) after each conquest.</li>
+        <li>Node tap → topic sheet slides up 350ms with scrim; sheet CTA reflects state (unconquered → "Attempt quiz", conquered → "Retake for gold", decaying → "Reinforce now").</li>
+        <li>Conquest: node pops green (--ease-pop), road segment draws to the next node, region % ticks up.</li>
+        <li>Decaying nodes (DPSP) dim + dashed, show days stale; no alarm animation — urgency lives in the Revision Stack.</li>
+        <li>Secured regions collapse to a banner row (Foundations) to keep the map short; tap expands.</li>
+        <li>Desktop: regions flow in a 2-col masonry; topic sheet docks as a right panel instead of a bottom sheet.</li>
+      </ul>
+    </section>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="tm-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2cd6a"></stop><stop offset="1" stop-color="#9c741f"></stop></linearGradient>
+      <g id="tm-star-dark"><path d="M0 -10 L2.35 -3.24 L9.51 -3.09 L3.8 1.24 L5.88 8.09 L0 4 L-5.88 8.09 L-3.8 1.24 L-9.51 -3.09 L-2.35 -3.24 Z" fill="#4d4433"></path></g>
+      <g id="tm-check"><path d="M-5 0.5 L-1.5 4 L5 -3.5" fill="none" stroke="#4d4433" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g id="tm-check-khaki"><path d="M-5 0.5 L-1.5 4 L5 -3.5" fill="none" stroke="#6e5f3a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></g>
+      <g id="tm-book"><path d="M-6 -4.5 C-4 -5.5 -2 -5.5 0 -4.3 C2 -5.5 4 -5.5 6 -4.5 V4.5 C4 3.5 2 3.5 0 4.7 C-2 3.5 -4 3.5 -6 4.5 Z M0 -4.3 V4.7" fill="none" stroke="#4d4433" stroke-width="1.3"></path></g>
+    </defs>
+  </svg>
+</div>
+</x-dc>
+</body>
+</html>

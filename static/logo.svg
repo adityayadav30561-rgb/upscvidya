@@ -1,0 +1,16 @@
+<svg width="320" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="UPSC Vidya">
+  <!-- Brand colors are placeholders; swap for tokens.css --brand-* when design lands -->
+  <defs>
+    <linearGradient id="uv-badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E3A8A"/>
+      <stop offset="1" stop-color="#3B5BDB"/>
+    </linearGradient>
+  </defs>
+  <!-- Badge mark: open book / map fold -->
+  <rect x="4" y="14" width="68" height="68" rx="16" fill="url(#uv-badge)"/>
+  <path d="M20 40c8-5 16-5 18 0 2-5 10-5 18 0v22c-8-5-16-5-18 0-2-5-10-5-18 0V40z" fill="#F59E0B"/>
+  <circle cx="38" cy="34" r="4" fill="#FDE68A"/>
+  <!-- Wordmark -->
+  <text x="88" y="46" font-family="'Segoe UI', system-ui, sans-serif" font-size="34" font-weight="800" letter-spacing="1" fill="#1E3A8A">UPSC</text>
+  <text x="88" y="82" font-family="'Noto Sans Devanagari', 'Nirmala UI', system-ui, sans-serif" font-size="34" font-weight="700" fill="#F59E0B">विद्या</text>
+</svg>

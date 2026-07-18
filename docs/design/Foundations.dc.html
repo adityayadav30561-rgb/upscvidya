@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+@keyframes flicker{0%,100%{transform:scale(1) rotate(-1deg)}50%{transform:scale(1.06) rotate(1.5deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 10px rgba(242,205,106,.4)}50%{box-shadow:0 0 22px rgba(242,205,106,.7)}}
+</style>
+</helmet>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="m-steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3dce4"></stop><stop offset="1" stop-color="#6f7c8a"></stop></linearGradient>
+    <linearGradient id="g-board" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a3925e"></stop><stop offset="1" stop-color="#82744a"></stop></linearGradient>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2cd6a"></stop><stop offset="1" stop-color="#9c741f"></stop></linearGradient>
+    <linearGradient id="g-flame" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb184"></stop><stop offset="1" stop-color="#e8703a"></stop></linearGradient>
+    <g id="i-board-khaki"><path d="M11 89 V24 L28 7 L45 24 V89 Z" fill="url(#g-board)" stroke="#5f5537" stroke-width="1.5"></path></g>
+    <g id="i-chev-red"><path d="M-11 3 L0 -6 L11 3 L11 9 L0 0 L-11 9 Z" fill="#b23b30"></path></g>
+    <g id="i-star-silver"><path d="M0 -10 L2.35 -3.24 L9.51 -3.09 L3.8 1.24 L5.88 8.09 L0 4 L-5.88 8.09 L-3.8 1.24 L-9.51 -3.09 L-2.35 -3.24 Z" fill="url(#m-steel)"></path></g>
+    <g id="i-star-dark"><path d="M0 -10 L2.35 -3.24 L9.51 -3.09 L3.8 1.24 L5.88 8.09 L0 4 L-5.88 8.09 L-3.8 1.24 L-9.51 -3.09 L-2.35 -3.24 Z" fill="#4d4433"></path></g>
+    <g id="i-ring-silver"><circle r="5" fill="none" stroke="url(#m-steel)" stroke-width="1.8"></circle></g>
+    <g id="i-stripe"><rect x="-13" y="-3" width="26" height="6" fill="#a63a30"></rect><rect x="-13" y="-1" width="26" height="2" fill="#2e4a7a"></rect></g>
+    <g id="i-swords"><path d="M-8 8 L8 -8 M8 8 L-8 -8" stroke="url(#m-steel)" stroke-width="2.4" stroke-linecap="round"></path><path d="M-7.2 3.4 L-3.4 7.2 M7.2 3.4 L3.4 7.2" stroke="url(#m-steel)" stroke-width="1.6" stroke-linecap="round"></path></g>
+  </defs>
+</svg>
+<div style="max-width:1160px;margin:0 auto;padding:56px 44px 80px;display:flex;flex-direction:column;gap:64px">
+
+  <header style="display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center">
+    <span style="font-family:var(--font-ui);font-weight:700;font-size:13px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:7px 16px;box-shadow:var(--shadow-2)">Design Foundations · v2</span>
+    <h1 style="margin:0;font-family:var(--font-display);font-size:52px;line-height:1.15;letter-spacing:.01em;text-transform:uppercase">Mission <span style="color:var(--orange-deep)">Polity</span></h1>
+    <div style="font-family:var(--font-display);font-size:20px;text-transform:uppercase;color:var(--ink-1)">Conquer the <span style="color:var(--green-deep)">syllabus</span>, earn your <span style="color:var(--blue-deep)">rank</span></div>
+    <p style="margin:0;max-width:600px;font-size:15px;line-height:1.55;color:var(--ink-2)">CAPF AC exam preparation with full military theming — real rank ladder, territory map, daily briefings — in a warm, friendly, gamified skin. Tokens live in <span style="font-weight:700">tokens.css</span>. Wordmark is a placeholder until the app is named.</p>
+  </header>
+
+  <section style="display:flex;flex-direction:column;gap:22px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg)">01</span>
+      <h2 style="margin:0;font-family:var(--font-display);font-size:26px;text-transform:uppercase">Colour</h2>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#f3ecdc;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--bg-0</div><div style="font-size:11.5px;color:var(--ink-3)">#FBF8F1 · paper</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#f1ead9;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--bg-1</div><div style="font-size:11.5px;color:var(--ink-3)">#F1EAD9 · panel</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#fffdf7;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--bg-2</div><div style="font-size:11.5px;color:var(--ink-3)">#FFFDF7 · card</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#4d4433"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--ink-1 / --line</div><div style="font-size:11.5px;color:var(--ink-3)">#4d4433 · ink &amp; outlines</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#ff9864;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--orange</div><div style="font-size:11.5px;color:var(--ink-3)">#FF9864 · CTA / XP / streak</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#a2cd85;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--green</div><div style="font-size:11.5px;color:var(--ink-3)">#A2CD85 · correct / conquered</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#528cf0;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--blue</div><div style="font-size:11.5px;color:var(--ink-3)">#528CF0 · info / freeze</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#ef6461;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--red</div><div style="font-size:11.5px;color:var(--ink-3)">#EF6461 · incorrect</div></div>
+      <div style="width:136px"><div style="height:64px;border-radius:var(--r-md);background:#a08c5b;border:var(--bw) solid var(--line)"></div><div style="font-size:12.5px;font-weight:700;margin-top:6px">--khaki</div><div style="font-size:11.5px;color:var(--ink-3)">#A08C5B · CAPF identity</div></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px">
+      <div style="flex:1;min-width:320px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:20px">
+        <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase;margin-bottom:12px">Insignia materials <span style="color:var(--ink-3);font-family:var(--font-ui);font-weight:400;font-size:11px">— unchanged, the serious core</span></div>
+        <div style="display:flex;gap:10px">
+          <div style="flex:1;height:40px;border-radius:var(--r-sm);border:var(--bw) solid var(--line);background:linear-gradient(180deg,#a3925e,#82744a)"></div>
+          <div style="flex:1;height:40px;border-radius:var(--r-sm);border:var(--bw) solid var(--line);background:linear-gradient(180deg,#b23b30,#7d271e)"></div>
+          <div style="flex:1;height:40px;border-radius:var(--r-sm);border:var(--bw) solid var(--line);background:linear-gradient(180deg,#d3dce4,#6f7c8a)"></div>
+        </div>
+        <div style="display:flex;gap:10px;font-size:11.5px;color:var(--ink-3);margin-top:6px">
+          <div style="flex:1">Board khaki</div><div style="flex:1">Sleeve red</div><div style="flex:1">Silver</div>
+        </div>
+      </div>
+      <div data-theme="dark" style="flex:1;min-width:320px;background:var(--bg-1);border:1.5px solid #4d4433;border-radius:var(--r-xl);padding:20px;color:var(--ink-1)">
+        <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase;margin-bottom:12px;color:var(--ink-1)">Night study — OLED variant</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <div style="width:56px;height:40px;border-radius:var(--r-sm);background:var(--bg-0);border:1px solid var(--line-soft)"></div>
+          <div style="width:56px;height:40px;border-radius:var(--r-sm);background:var(--bg-2);border:1px solid var(--line-soft)"></div>
+          <div style="width:56px;height:40px;border-radius:var(--r-sm);background:var(--bg-3);border:1px solid var(--line-soft)"></div>
+          <span style="font-size:12px;color:var(--ink-2)">same tokens via <span style="font-family:monospace;font-size:11px">[data-theme="dark"]</span> — for 2 AM revision</span>
+        </div>
+        <button style="margin-top:14px;font-family:var(--font-ui);font-weight:900;font-size:14px;background:var(--orange);color:#4d4433;border:1.5px solid var(--line-soft);border-radius:var(--r-full);padding:11px 22px">Begin Mission</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:22px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(2deg)">02</span>
+      <h2 style="margin:0;font-family:var(--font-display);font-size:26px;text-transform:uppercase">Type</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div style="background:var(--blue);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:24px;color:#fff">
+        <div style="font-size:11px;letter-spacing:.12em;opacity:.8;margin-bottom:8px">/HEADING/</div>
+        <div style="font-family:var(--font-display);font-size:24px;text-transform:uppercase">Saira Stencil One</div>
+        <div style="font-family:var(--font-display);font-size:40px;opacity:.85">AaBbCc 12345</div>
+        <div style="font-size:12.5px;margin-top:12px;opacity:.9">Stencilled command voice — ranks, titles, stamps. Always uppercase; Oswald backs it up for dense numerals.</div>
+      </div>
+      <div style="background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:24px">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--ink-2);margin-bottom:8px">/BODY &amp; UI/</div>
+        <div style="font-family:var(--font-ui);font-weight:900;font-size:24px">LATO</div>
+        <div style="font-family:var(--font-ui);font-size:32px;color:var(--ink-2)">AaBbCcDd 1234567890</div>
+        <div style="font-size:12.5px;margin-top:12px;color:var(--ink-2)">Options, metadata, controls — 400 / 700 / 900.</div>
+      </div>
+    </div>
+    <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:24px;display:flex;gap:28px;flex-wrap:wrap;align-items:center">
+      <div style="flex:1;min-width:300px">
+        <div style="font-size:11px;letter-spacing:.12em;color:var(--ink-3);margin-bottom:8px">/LONG-FORM NOTES/ — Source Serif 4</div>
+        <p style="margin:0;font-family:var(--font-read);font-size:16px;line-height:var(--lh-read);max-width:52ch">Article 21 declares that no person shall be deprived of his life or personal liberty except according to procedure established by law. In <em>Maneka Gandhi v. Union of India</em> (1978), the Supreme Court widened its scope: the procedure must be fair, just and reasonable.</p>
+      </div>
+      <div style="font-size:12px;color:var(--ink-3);max-width:220px">Reading is the 2–4 hr/day core job — the serif stays for the Topic Reader only. Scale: 11 · 12 · 13 · 14 · 15 · 17 · 20 · 24 · 28 · 34 · 44.</div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:22px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg)">03</span>
+      <h2 style="margin:0;font-family:var(--font-display);font-size:26px;text-transform:uppercase">Shape &amp; Motion</h2>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">Radii — friendly, rounded</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="width:52px;height:52px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-sm)"></div>
+          <div style="width:52px;height:52px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md)"></div>
+          <div style="width:52px;height:52px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg)"></div>
+          <div style="width:52px;height:52px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full)"></div>
+        </div>
+        <div style="font-size:11.5px;color:var(--ink-3)">sm 8 · md 12 · lg 18 · xl 26 · full</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">Elevation — outline first, hard offset for lift</div>
+        <div style="display:flex;gap:14px">
+          <div style="width:88px;height:52px;border-radius:var(--r-md);background:var(--bg-2);border:var(--bw) solid var(--line)"></div>
+          <div style="width:88px;height:52px;border-radius:var(--r-md);background:var(--bg-2);border:var(--bw) solid var(--line);box-shadow:var(--shadow-2)"></div>
+          <div style="width:88px;height:52px;border-radius:var(--r-md);background:var(--bg-2);border:var(--bw) solid var(--line);box-shadow:var(--shadow-glow-gold)"></div>
+        </div>
+        <div style="font-size:11.5px;color:var(--ink-3)">flat · lifted (3px hard) · gold glow (mastery only)</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">Motion durations</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font-size:12px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px">fast 120ms · taps</span>
+          <span style="font-size:12px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px">base 200ms · state</span>
+          <span style="font-size:12px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px">slow 350ms · sheets</span>
+          <span style="font-size:12px;font-weight:700;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px">conquest 700ms · pop</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:22px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--khaki);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(2deg)">04</span>
+      <h2 style="margin:0;font-family:var(--font-display);font-size:26px;text-transform:uppercase">Rank Insignia — <span style="color:var(--khaki-deep)">14 grades</span></h2>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:680px">The real CAPF ladder, untouched by the playful skin: red sleeve chevrons for constabulary, silver stars + gorget stripe for subordinate officers, Ashoka Stambh (supplied asset) for Deputy Commandant and above.</p>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:14px">
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-ring-silver" transform="translate(28 46)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Cadet</div><div style="font-size:10.5px;color:var(--ink-3)">0 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-chev-red" transform="translate(28 50) scale(.85)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Constable</div><div style="font-size:10.5px;color:var(--ink-3)">500 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-chev-red" transform="translate(28 42) scale(.85)"></use><use href="#i-chev-red" transform="translate(28 57) scale(.85)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Sr. Constable</div><div style="font-size:10.5px;color:var(--ink-3)">1,200 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-chev-red" transform="translate(28 34) scale(.85)"></use><use href="#i-chev-red" transform="translate(28 48) scale(.85)"></use><use href="#i-chev-red" transform="translate(28 62) scale(.85)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Head Constable</div><div style="font-size:10.5px;color:var(--ink-3)">2,200 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-star-silver" transform="translate(28 40) scale(.62)"></use><use href="#i-stripe" transform="translate(28 76)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Asst. Sub Inspector</div><div style="font-size:10.5px;color:var(--ink-3)">3,500 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-star-silver" transform="translate(28 30) scale(.62)"></use><use href="#i-star-silver" transform="translate(28 50) scale(.62)"></use><use href="#i-stripe" transform="translate(28 76)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Sub Inspector</div><div style="font-size:10.5px;color:var(--ink-3)">5,200 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-star-silver" transform="translate(28 22) scale(.62)"></use><use href="#i-star-silver" transform="translate(28 42) scale(.62)"></use><use href="#i-star-silver" transform="translate(28 62) scale(.62)"></use><use href="#i-stripe" transform="translate(28 76)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Inspector</div><div style="font-size:10.5px;color:var(--ink-3)">7,500 XP</div>
+      </div>
+      <div style="background:var(--orange-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;box-shadow:var(--shadow-2)">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-star-silver" transform="translate(28 26) scale(.68)"></use><use href="#i-star-silver" transform="translate(28 46) scale(.68)"></use><use href="#i-star-silver" transform="translate(28 66) scale(.68)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase;color:var(--orange-deep)">Assistant Commandant</div><div style="font-size:10.5px;color:var(--ink-2);font-weight:700">10,500 XP · target rank</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><image href="assets/emblem.png" x="19.7" y="32" width="16.6" height="24"></image></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Deputy Commandant</div><div style="font-size:10.5px;color:var(--ink-3)">14,500 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><image href="assets/emblem.png" x="20.7" y="17.5" width="14.5" height="21"></image><use href="#i-star-silver" transform="translate(28 54) scale(.68)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Second in Command</div><div style="font-size:10.5px;color:var(--ink-3)">19,500 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><image href="assets/emblem.png" x="21.1" y="14" width="13.8" height="20"></image><use href="#i-star-silver" transform="translate(28 48) scale(.64)"></use><use href="#i-star-silver" transform="translate(28 67) scale(.64)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Commandant</div><div style="font-size:10.5px;color:var(--ink-3)">26,000 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><image href="assets/emblem.png" x="21.4" y="12.5" width="13.1" height="19"></image><use href="#i-star-silver" transform="translate(28 44) scale(.56)"></use><use href="#i-star-silver" transform="translate(20 60) scale(.56)"></use><use href="#i-star-silver" transform="translate(36 60) scale(.56)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Dy. Inspector General</div><div style="font-size:10.5px;color:var(--ink-3)">34,000 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><use href="#i-star-silver" transform="translate(28 28) scale(.68)"></use><use href="#i-swords" transform="translate(28 54)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase">Inspector General</div><div style="font-size:10.5px;color:var(--ink-3)">44,000 XP</div>
+      </div>
+      <div style="background:var(--bg-2);border:var(--bw-bold) solid var(--gold-lo);border-radius:var(--r-lg);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;animation:pulse 3s ease-in-out infinite">
+        <svg width="56" height="92" viewBox="0 0 56 92"><use href="#i-board-khaki"></use><image href="assets/emblem.png" x="21.1" y="16" width="13.8" height="20"></image><use href="#i-swords" transform="translate(28 56)"></use></svg>
+        <div style="font-family:var(--font-display);font-size:11px;text-transform:uppercase;color:var(--gold-lo)">Director General</div><div style="font-size:10.5px;color:var(--ink-3)">56,000 XP</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:26px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--red);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg)">05</span>
+      <h2 style="margin:0;font-family:var(--font-display);font-size:26px;text-transform:uppercase">Core Components</h2>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">BUTTONS — Lato 900, black outlines, 44px min target</div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <button style="font-family:var(--font-ui);font-weight:900;font-size:14.5px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px 24px;min-height:44px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)" style-active="box-shadow:none;transform:translate(0,0)">Attempt Quiz</button>
+        <button style="font-family:var(--font-ui);font-weight:700;font-size:14.5px;background:var(--bg-2);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px 24px;min-height:44px;cursor:pointer" style-hover="background:var(--bg-1)">Review Later →</button>
+        <button style="font-family:var(--font-ui);font-weight:700;font-size:14.5px;background:var(--green);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px 24px;min-height:44px;cursor:pointer" style-hover="box-shadow:var(--shadow-2)">Territory Secured</button>
+        <button style="font-family:var(--font-ui);font-weight:700;font-size:14.5px;background:transparent;color:var(--ink-2);border:none;padding:12px 14px;min-height:44px;cursor:pointer" style-hover="color:var(--ink-1)">Skip</button>
+        <button style="font-family:var(--font-ui);font-weight:700;font-size:14.5px;background:var(--red-tint);color:var(--red-deep);border:var(--bw) solid var(--red-deep);border-radius:var(--r-full);padding:12px 24px;min-height:44px">Abandon Test</button>
+        <button style="font-family:var(--font-ui);font-weight:700;font-size:14.5px;background:var(--bg-1);color:var(--ink-3);border:var(--bw) solid var(--line-soft);border-radius:var(--r-full);padding:12px 24px;min-height:44px;cursor:not-allowed">Locked</button>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">CHIPS &amp; STICKERS</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+        <span style="font-family:var(--font-ui);font-weight:900;font-size:12px;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:6px 14px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">FREE</span>
+        <span style="font-family:var(--font-ui);font-weight:900;font-size:12px;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:6px 14px;transform:rotate(1.5deg);box-shadow:var(--shadow-2)">PREMIUM</span>
+        <span style="font-size:12.5px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px">PIB · 18 Jul</span>
+        <span style="font-size:12.5px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px">The Hindu</span>
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;background:var(--blue-tint);color:var(--blue-deep);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-full);padding:6px 13px"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 0 V12 M0 6 H12 M2 2 L10 10 M10 2 L2 10" stroke="currentColor" stroke-width="1.4"></path></svg>2 freeze tokens</span>
+        <span style="font-size:12.5px;font-weight:700;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:6px 13px">The Centre · 62%</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">PROGRESS RING</div>
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:16px">
+          <div style="position:relative;width:84px;height:84px">
+            <svg width="84" height="84" viewBox="0 0 84 84" style="transform:rotate(-90deg)">
+              <circle cx="42" cy="42" r="34" fill="none" stroke="var(--bg-1)" stroke-width="8"></circle>
+              <circle cx="42" cy="42" r="34" fill="none" stroke="var(--orange-deep)" stroke-width="8" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="68.4"></circle>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+              <span style="font-family:var(--font-display);font-size:18px;line-height:1">68%</span>
+              <span style="font-size:9.5px;font-weight:700;color:var(--ink-3)">POLITY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">STREAK FLAME</div>
+        <div style="display:inline-flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:14px 20px">
+          <svg width="26" height="32" viewBox="0 0 26 32" style="animation:flicker 1.6s ease-in-out infinite;transform-origin:50% 90%"><path d="M13 0 C14 7 20 9 21 15 C22 21 18.5 26 13 26 C7.5 26 4 21 5 15 C5.6 11.4 8 9.6 9 7 C9.6 9 11 10 12 9.4 C13.4 8.4 12.6 4 13 0 Z" fill="url(#g-flame)" stroke="#4d4433" stroke-width="1.2"></path><path d="M13 14 C15.5 17 16.5 19.5 15.5 22 C14.8 23.8 13 24.6 11.5 24 C9.6 23.2 9.4 20.6 10.5 18.5 C11.3 17 12.4 16 13 14 Z" fill="#f3ecdc"></path></svg>
+          <div><div style="font-family:var(--font-display);font-size:22px;line-height:1;color:var(--orange-deep)">17</div><div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">DAY STREAK</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">MAP NODE STATES — 44px</div>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:16px 20px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:66px">
+            <div style="width:44px;height:44px;border-radius:var(--r-full);background:var(--bg-0);border:var(--bw) solid var(--line);display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 3 C4 2 6 2 8 3.2 C10 2 12 2 14 3 V13 C12 12 10 12 8 13.2 C6 12 4 12 2 13 Z M8 3.2 V13.2" fill="none" stroke="#4d4433" stroke-width="1.3"></path></svg></div>
+            <span style="font-size:10px;font-weight:700;color:var(--ink-3);text-align:center">free roam</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:66px">
+            <div style="width:44px;height:44px;border-radius:var(--r-full);background:var(--orange-tint);border:var(--bw-bold) solid var(--orange-deep);display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:var(--r-full);background:var(--orange-deep)"></span></div>
+            <span style="font-size:10px;font-weight:700;color:var(--ink-3);text-align:center">unconquered</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:66px">
+            <div style="width:44px;height:44px;border-radius:var(--r-full);background:var(--green);border:var(--bw) solid var(--line);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M4 9.5 L7.5 13 L14 5.5" fill="none" stroke="#4d4433" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <span style="font-size:10px;font-weight:700;color:var(--ink-3);text-align:center">conquered</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:66px">
+            <div style="width:44px;height:44px;border-radius:var(--r-full);background:var(--bg-1);border:2px dashed var(--khaki);opacity:.6;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M4 9.5 L7.5 13 L14 5.5" fill="none" stroke="var(--khaki-deep)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <span style="font-size:10px;font-weight:700;color:var(--ink-3);text-align:center">decaying · 21d+</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;width:66px">
+            <div style="width:44px;height:44px;border-radius:var(--r-full);background:linear-gradient(180deg,#f2cd6a,#9c741f);border:var(--bw) solid var(--line);box-shadow:var(--shadow-glow-gold);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="-11 -11 22 22"><use href="#i-star-dark"></use></svg></div>
+            <span style="font-size:10px;font-weight:700;color:var(--ink-3);text-align:center">gold · mastery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+      <div style="display:flex;flex-direction:column;gap:8px;width:380px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">OPTION ROWS — quiz states</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:13px 16px;min-height:44px">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span>
+            <span style="font-size:14.5px">Only one</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--orange-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:13px 16px;min-height:44px;box-shadow:var(--shadow-2)">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line);background:var(--bg-2);display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:var(--r-full);background:var(--orange-deep)"></span></span>
+            <span style="font-size:14.5px;font-weight:700">Only two <span style="font-size:11px;color:var(--ink-3);font-weight:400">· selected</span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--green-tint);border:var(--bw-bold) solid var(--green-deep);border-radius:var(--r-md);padding:13px 16px;min-height:44px">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);background:var(--green-deep);display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <span style="font-size:14.5px;font-weight:700">All three <span style="font-size:11px;color:var(--green-deep);font-weight:700">· correct</span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--red-tint);border:var(--bw-bold) solid var(--red-deep);border-radius:var(--r-md);padding:13px 16px;min-height:44px">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);background:var(--red-deep);display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#fff" stroke-width="2" stroke-linecap="round"></path></svg></span>
+            <span style="font-size:14.5px;font-weight:700">None <span style="font-size:11px;color:var(--red-deep);font-weight:700">· your answer</span></span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;width:380px">
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">MISSION CARD + BOTTOM NAV</div>
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:18px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-2)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:var(--font-display);font-size:12px;text-transform:uppercase;color:var(--orange-deep)">Today's Mission</span>
+            <span style="font-size:11.5px;font-weight:700;color:var(--ink-3)">~45 min</span>
+          </div>
+          <div style="font-family:var(--font-display);font-size:17px;line-height:1.3">Parliament: The Two Houses</div>
+          <div style="font-size:13px;color:var(--ink-2)">Next on your guided path · The Centre · 14 SR cards due · Daily briefing unread</div>
+          <button style="font-family:var(--font-ui);font-weight:900;font-size:14px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px;min-height:44px;cursor:pointer">Begin Mission</button>
+        </div>
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:8px;display:flex;justify-content:space-around;box-shadow:var(--shadow-2)">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:7px 14px;min-width:44px"><svg width="18" height="18" viewBox="0 0 20 20"><path d="M3 9 L10 3 L17 9 V17 H12 V12 H8 V17 H3 Z" fill="none" stroke="#4d4433" stroke-width="1.8" stroke-linejoin="round"></path></svg><span style="font-size:9px;font-weight:900">BASE</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;color:var(--ink-2)"><svg width="18" height="18" viewBox="0 0 20 20"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z M8 3 V15 M12 5 V17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg><span style="font-size:9px;font-weight:700">MAP</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;color:var(--ink-2)"><svg width="18" height="18" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M10 6 V10 L13 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:9px;font-weight:700">TESTS</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;color:var(--ink-2)"><svg width="18" height="18" viewBox="0 0 20 20"><path d="M4 4 H16 V16 H4 Z M4 8 H16 M8 8 V16" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg><span style="font-size:9px;font-weight:700">BRIEFING</span></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;color:var(--ink-2)"><svg width="18" height="18" viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M4 17 C4.5 13.5 7 12 10 12 C13 12 15.5 13.5 16 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:9px;font-weight:700">PROFILE</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px;border-top:var(--bw) solid var(--line);padding-top:30px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(2deg)">06</span>
+      <h2 style="margin:0;font-family:var(--font-display);font-size:26px;text-transform:uppercase">Motion &amp; Interaction</h2>
+    </div>
+    <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2);max-width:700px">
+      <li><strong style="color:var(--ink-1)">Conquest</strong> — node fills green with a 700ms pop (--ease-pop) + confetti burst; region % ticks up. Reserved for real achievement only.</li>
+      <li><strong style="color:var(--ink-1)">Buttons</strong> — hover lifts with the 3px hard shadow; press snaps flat. Feels like pressing a physical sticker.</li>
+      <li><strong style="color:var(--ink-1)">Answer feedback</strong> — border + tint transition 200ms; correct gets a check draw-in, wrong a single 4px shake.</li>
+      <li><strong style="color:var(--ink-1)">Streak increment</strong> — flame scales 1→1.15→1 with count roll-up; freeze token shows a blue frost sweep.</li>
+      <li><strong style="color:var(--ink-1)">Sheets</strong> — topic sheet slides up 350ms; rank-up is the only full-screen takeover.</li>
+      <li><strong style="color:var(--ink-1)">Decay</strong> — no animation; territories dim quietly. Urgency lives in the revision stack count.</li>
+    </ul>
+  </section>
+</div>
+</x-dc>
+</body>
+</html>

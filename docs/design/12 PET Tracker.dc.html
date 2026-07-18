@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 12</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">PET Tracker</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">The physical test fails more aspirants than the paper. Four events, each logged against the official qualifying standard. "PET READY" is earned when all four hold for 3 consecutive logs.</p>
+  </header>
+
+  <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="PET home" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-size:17px;text-transform:uppercase">PET Tracker</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">Standards: male · switch in settings</div>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-2);border:var(--bw-bold) solid var(--line);border-radius:var(--r-xl);padding:16px 18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-2)">
+          <div style="flex:none;width:58px;height:58px;border-radius:var(--r-full);background:var(--bg-1);border:var(--bw-bold) dashed var(--khaki);display:flex;align-items:center;justify-content:center">
+            <svg width="28" height="28" viewBox="0 0 28 28"><path d="M14 3 L16.5 9.5 L23.5 10 L18.2 14.5 L20 21.5 L14 17.6 L8 21.5 L9.8 14.5 L4.5 10 L11.5 9.5 Z" fill="var(--khaki-tint)" stroke="var(--khaki-deep)" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-size:15px;text-transform:uppercase">PET Ready — 3 of 4</div>
+            <div style="font-size:11.5px;font-weight:700;color:var(--ink-2);margin-top:2px">800m is the last gate. Badge goes gold when all four hold for 3 straight logs.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:13px 15px;display:flex;align-items:center;gap:12px">
+            <span style="flex:none;width:38px;height:38px;border-radius:var(--r-full);background:var(--green-tint);border:var(--bw) solid var(--green-deep);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:10px;color:var(--green-deep)">100m</span>
+            <div style="flex:1">
+              <div style="font-weight:900;font-size:13.5px">Sprint · best 15.6s</div>
+              <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">standard ≤16.0s · margin +0.4s</div>
+            </div>
+            <span style="font-size:10px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 8px;transform:rotate(-2deg)">QUALIFYING</span>
+          </div>
+
+          <div style="background:var(--bg-2);border:var(--bw-bold) solid var(--line);border-radius:var(--r-lg);padding:15px 16px;display:flex;flex-direction:column;gap:11px;box-shadow:var(--shadow-2)">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="flex:none;width:38px;height:38px;border-radius:var(--r-full);background:var(--red-tint);border:var(--bw) solid var(--red-deep);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:10px;color:var(--red-deep)">800m</span>
+              <div style="flex:1">
+                <div style="font-weight:900;font-size:13.5px">Run · latest 3:52</div>
+                <div style="font-size:10.5px;font-weight:700;color:var(--red-deep)">standard ≤3:45 · 7s to shave</div>
+              </div>
+              <span style="font-size:10px;font-weight:900;background:var(--orange-tint);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 8px;transform:rotate(2deg)">CLOSING IN</span>
+            </div>
+            <svg width="100%" viewBox="0 0 300 84" style="display:block">
+              <line x1="8" y1="30" x2="292" y2="30" stroke="var(--red-deep)" stroke-width="1.5" stroke-dasharray="5 4"></line>
+              <text x="290" y="24" text-anchor="end" font-family="Lato" font-weight="900" font-size="9" fill="#c73e3b">QUALIFYING 3:45</text>
+              <polyline points="16,72 62,64 108,68 154,54 200,48 246,42 288,36" fill="none" stroke="var(--orange-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+              <circle cx="16" cy="72" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle>
+              <circle cx="62" cy="64" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle>
+              <circle cx="108" cy="68" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle>
+              <circle cx="154" cy="54" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle>
+              <circle cx="200" cy="48" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle>
+              <circle cx="246" cy="42" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle>
+              <circle cx="288" cy="36" r="4.5" fill="var(--orange)" stroke="#4d4433" stroke-width="1.5"></circle>
+              <text x="16" y="83" font-family="Lato" font-weight="700" font-size="8" fill="#8b8676">MAY</text>
+              <text x="288" y="83" text-anchor="end" font-family="Lato" font-weight="700" font-size="8" fill="#8b8676">19 JUL · 3:52</text>
+            </svg>
+          </div>
+
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:13px 15px;display:flex;align-items:center;gap:12px">
+            <span style="flex:none;width:38px;height:38px;border-radius:var(--r-full);background:var(--green-tint);border:var(--bw) solid var(--green-deep);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:10px;color:var(--green-deep)">LJ</span>
+            <div style="flex:1">
+              <div style="font-weight:900;font-size:13.5px">Long jump · best 3.8m</div>
+              <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">standard ≥3.5m · 3 chances allowed</div>
+            </div>
+            <span style="font-size:10px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 8px;transform:rotate(-2deg)">QUALIFYING</span>
+          </div>
+
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:13px 15px;display:flex;align-items:center;gap:12px">
+            <span style="flex:none;width:38px;height:38px;border-radius:var(--r-full);background:var(--green-tint);border:var(--bw) solid var(--green-deep);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:10px;color:var(--green-deep)">SP</span>
+            <div style="flex:1">
+              <div style="font-weight:900;font-size:13.5px">Shot put 7.26kg · best 5.1m</div>
+              <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">standard ≥4.5m · margin +0.6m</div>
+            </div>
+            <span style="font-size:10px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 8px;transform:rotate(2deg)">QUALIFYING</span>
+          </div>
+        </div>
+
+        <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:15px;background:var(--green);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:14px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">+ Log today's session</button>
+      </div>
+    </div>
+
+    <div data-screen-label="Log entry" style="width:380px;flex:none;background:#7a7157;border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);position:relative;min-height:600px">
+      <div style="position:absolute;inset:0;background:rgba(51,48,31,.35)"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;background:var(--bg-0);border-top:var(--bw-bold) solid var(--line);border-radius:26px 26px 0 0;padding:14px 22px 24px;display:flex;flex-direction:column;gap:16px">
+        <div style="width:44px;height:5px;border-radius:var(--r-full);background:var(--line-soft);margin:0 auto"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-family:var(--font-display);font-size:15px;text-transform:uppercase">Log session</div>
+          <span style="font-size:11px;font-weight:700;color:var(--ink-3)">Sat, 19 Jul</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:11px;font-weight:900;color:var(--ink-3)">EVENT</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <span style="text-align:center;font-size:12px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px 0;cursor:pointer">100m sprint</span>
+            <span style="text-align:center;font-size:12px;font-weight:900;background:var(--orange-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:10px 0;cursor:pointer;box-shadow:var(--shadow-2)">800m run</span>
+            <span style="text-align:center;font-size:12px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px 0;cursor:pointer">Long jump</span>
+            <span style="text-align:center;font-size:12px;font-weight:700;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:10px 0;cursor:pointer">Shot put</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:11px;font-weight:900;color:var(--ink-3)">TIME</span>
+          <div style="display:flex;align-items:center;gap:10px;justify-content:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:16px">
+            <span style="font-family:var(--font-display);font-size:34px">3</span>
+            <span style="font-family:var(--font-display);font-size:26px;color:var(--ink-3)">:</span>
+            <span style="font-family:var(--font-display);font-size:34px">49</span>
+            <span style="font-size:12px;font-weight:700;color:var(--ink-3);align-self:flex-end;padding-bottom:6px">min : sec</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;justify-content:center">
+            <span style="font-size:11px;font-weight:900;color:var(--green-deep)">▲ 3s faster than last log · 4s from standard</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:11px;font-weight:900;color:var(--ink-3)">NOTES (OPTIONAL)</span>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 14px;font-size:13px;color:var(--ink-3)">Morning track, negative split…</div>
+        </div>
+        <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:15px;background:var(--green);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:14px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Save log</button>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Trend charts plot logs against the dashed qualifying line — crossing it flips the event chip to QUALIFYING with a green pop.</li>
+        <li>PET READY badge: dashed khaki while pending → solid gold with glow when all 4 hold on 3 consecutive logs; it then appears on Profile and Leaderboard.</li>
+        <li>Log sheet: time input is a large stepper/dial (thumb-friendly outdoors); delta line computes live against last log and the standard.</li>
+        <li>Standards switch (male/female) lives in settings and relabels every chart line; values follow the official CAPF PET table.</li>
+        <li>A regression (3 slower logs in a row) shows a gentle "fatigue? schedule a rest day" note — never red alarm.</li>
+        <li>Reminder cadence configurable: default 3×/week nudge, silent on rest days.</li>
+        <li>Desktop: four event cards in a 2×2 grid, each with its full trend chart; log entry as a right panel.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

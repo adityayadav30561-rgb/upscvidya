@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 07</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Revision Stack</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">Spaced repetition of every MCQ you've gotten wrong. Blue is the stack's colour. Cards are physical — they swipe, stack and snap. Decay warnings surface here, where you can act on them.</p>
+  </header>
+
+  <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Stack home" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="font-family:var(--font-display);font-size:17px;text-transform:uppercase">Revision Stack</div>
+        </div>
+
+        <div style="background:var(--blue-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-xl);padding:22px 20px;display:flex;align-items:center;gap:18px;box-shadow:var(--shadow-2);position:relative">
+          <div style="position:relative;flex:none;width:74px;height:86px">
+            <div style="position:absolute;top:10px;left:10px;width:58px;height:72px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);transform:rotate(6deg)"></div>
+            <div style="position:absolute;top:5px;left:5px;width:58px;height:72px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);transform:rotate(2deg)"></div>
+            <div style="position:absolute;top:0;left:0;width:58px;height:72px;background:var(--blue);border:var(--bw) solid var(--line);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center"><span style="font-family:var(--font-display);font-size:24px;color:#fff">14</span></div>
+          </div>
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-size:18px;line-height:1.25;text-transform:uppercase">14 cards due today</div>
+            <div style="font-size:12px;font-weight:700;color:var(--ink-2);margin-top:4px">~12 min · 3 new from yesterday's quiz</div>
+          </div>
+        </div>
+
+        <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:15px;background:var(--blue);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:14px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Start review →</button>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase;color:var(--red-deep)">Decay warnings</div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:13px 15px;cursor:pointer" style-hover="box-shadow:var(--shadow-2)">
+            <div style="flex:none;width:38px;height:38px;border-radius:var(--r-full);background:var(--bg-1);border:2px dashed var(--khaki);opacity:.7;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 18 18"><path d="M4 9.5 L7.5 13 L14 5.5" fill="none" stroke="var(--khaki-deep)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <div style="flex:1">
+              <div style="font-weight:900;font-size:13px">DPSP</div>
+              <div style="font-size:11px;font-weight:700;color:var(--red-deep)">24 days untouched · territory dimming</div>
+            </div>
+            <span style="font-size:10.5px;font-weight:900;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:4px 10px;flex:none">RETAKE 8Q</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:13px 15px;cursor:pointer" style-hover="box-shadow:var(--shadow-2)">
+            <div style="flex:none;width:38px;height:38px;border-radius:var(--r-full);background:var(--bg-1);border:2px dashed var(--khaki);opacity:.7;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 18 18"><path d="M4 9.5 L7.5 13 L14 5.5" fill="none" stroke="var(--khaki-deep)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+            <div style="flex:1">
+              <div style="font-weight:900;font-size:13px">Preamble</div>
+              <div style="font-size:11px;font-weight:700;color:var(--ink-3)">21 days · gold at risk</div>
+            </div>
+            <span style="font-size:10.5px;font-weight:900;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:4px 10px;flex:none">RETAKE 6Q</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase">This week</div>
+          <div style="display:flex;gap:7px">
+            <div style="flex:1;text-align:center;background:var(--blue);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0"><div style="font-size:9px;font-weight:900;color:#fff">SAT</div><div style="font-family:var(--font-display);font-size:14px;color:#fff">14</div></div>
+            <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">SUN</div><div style="font-family:var(--font-display);font-size:14px">9</div></div>
+            <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">MON</div><div style="font-family:var(--font-display);font-size:14px">6</div></div>
+            <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">TUE</div><div style="font-family:var(--font-display);font-size:14px">11</div></div>
+            <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">WED</div><div style="font-family:var(--font-display);font-size:14px">4</div></div>
+            <div style="flex:1;text-align:center;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0"><div style="font-size:9px;font-weight:900;color:var(--ink-3)">THU</div><div style="font-family:var(--font-display);font-size:14px">8</div></div>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--ink-3);text-align:center">Clearing today keeps Monday light. Skipping doubles tomorrow.</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-screen-label="Card review" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);display:flex;flex-direction:column">
+      <div style="padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:var(--bw) solid var(--line)">
+        <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="12" height="12" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#4d4433" stroke-width="2" stroke-linecap="round"></path></svg></span>
+        <div style="flex:1;height:8px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);overflow:hidden"><div style="width:36%;height:100%;background:var(--blue)"></div></div>
+        <span style="font-size:12px;font-weight:900;color:var(--ink-3)">5/14</span>
+      </div>
+      <div style="flex:1;padding:24px 20px 8px;position:relative;display:flex;align-items:flex-start;justify-content:center">
+        <div style="position:absolute;top:34px;width:296px;height:330px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);transform:rotate(3.5deg)"></div>
+        <div style="position:absolute;top:29px;width:302px;height:334px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);transform:rotate(-2deg)"></div>
+        <div style="position:relative;width:312px;background:var(--bg-2);border:var(--bw-bold) solid var(--line);border-radius:var(--r-lg);padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-2)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:10px;font-weight:900;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:3px 9px">The Centre · Parliament</span>
+            <span style="font-size:10px;font-weight:900;color:var(--red-deep)">missed 2×</span>
+          </div>
+          <div style="font-family:var(--font-read);font-size:14.5px;line-height:1.6">Joint sittings of Parliament — which bills can be referred to one under Article 108?</div>
+          <div style="border-top:var(--bw) dashed var(--line-soft);padding-top:12px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:10px;font-weight:900;color:var(--green-deep);letter-spacing:.08em">ANSWER</span>
+            <div style="font-family:var(--font-read);font-size:14px;line-height:1.6"><strong>Ordinary bills only.</strong> Money bills and constitutional amendment bills are excluded — the Lok Sabha has final say on money bills; amendment bills require each House separately.</div>
+          </div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">Last seen 3 days ago · next if correct: 8 days</div>
+        </div>
+      </div>
+      <div style="padding:14px 20px 20px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px">
+          <button style="flex:1;font-family:var(--font-ui);font-weight:900;font-size:13.5px;background:var(--red-tint);color:var(--red-deep);border:var(--bw) solid var(--red-deep);border-radius:var(--r-full);padding:12px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Again<br><span style="font-size:9.5px;font-weight:700">tomorrow</span></button>
+          <button style="flex:1;font-family:var(--font-ui);font-weight:900;font-size:13.5px;background:var(--bg-2);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Good<br><span style="font-size:9.5px;font-weight:700;color:var(--ink-3)">8 days</span></button>
+          <button style="flex:1;font-family:var(--font-ui);font-weight:900;font-size:13.5px;background:var(--green);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Mastered<br><span style="font-size:9.5px;font-weight:700">retired</span></button>
+        </div>
+        <div style="text-align:center;font-size:10.5px;font-weight:700;color:var(--ink-3)">or swipe: ← again · → good</div>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Card shows the question first; tap reveals the answer half (dashed fold unfolds, 200ms). Grade buttons appear only after reveal.</li>
+        <li>Swipe left = Again (card tilts red, snaps to back of stack), right = Good (tilts green, flies off). Mastered is deliberately button-only — no accidental retirement.</li>
+        <li>Stack visual depletes as cards clear; final card flies off into a "Stack clear — +40 XP" state with the count-up.</li>
+        <li>"missed 2×" escalates: 3× misses adds a "re-read topic" link on the card.</li>
+        <li>Decay retakes are short quizzes (6–8Q) from the territory's pool; passing restores full colour on the map.</li>
+        <li>Week strip is honest math — skipping visibly doubles tomorrow's number in a 200ms tick.</li>
+        <li>Session caps at 25 cards; beyond that it splits ("14 now · 11 this evening") to protect quality.</li>
+        <li>Desktop: card centered at 420px, grade keys 1/2/3, space reveals.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

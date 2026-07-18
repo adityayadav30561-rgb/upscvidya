@@ -1,0 +1,47 @@
+/* CAPF AC Prep — Design Tokens v3 "Field Manual" (paper grain, olive & brick, stencil display).
+   Light is default; OLED night-study variant via [data-theme="dark"]. */
+:root{
+  /* surfaces — aged paper */
+  --bg-0:#f3ecdc; --bg-1:#e9e0c8; --bg-2:#faf5e8; --bg-3:#efe6cf; --bg-raise:#fdf9ee;
+  --line:#4d4433; --line-soft:#c4b896;
+  /* ink */
+  --ink-1:#33301f; --ink-2:#55503a; --ink-3:#807a5c; --ink-inverse:#f3ecdc;
+  /* accents — field palette */
+  --orange:#cf6a4a; --orange-deep:#8a3d2e; --orange-tint:#edd6c4;
+  --green:#9db271; --green-deep:#57703c; --green-tint:#e3e6cc;
+  --blue:#5872a8; --blue-deep:#2e4a7a; --blue-tint:#dbe2ef;
+  --red:#b04a3c; --red-deep:#8a3025; --red-tint:#eed3cd;
+  /* CAPF identity */
+  --khaki:#8d7d4f; --khaki-deep:#5b5433; --khaki-tint:#e5dcc0;
+  --gold-lo:#8f6b1e; --gold-hi:#d8b04a;
+  /* borders — drawn with a ruler */
+  --bw:2px; --bw-bold:2.5px;
+  /* type */
+  --font-display:'Saira Stencil One','Oswald',system-ui,sans-serif;
+  --font-ui:'Lato',system-ui,-apple-system,sans-serif;
+  --font-read:'Source Serif 4',Georgia,serif;
+  --fs-11:11px; --fs-12:12px; --fs-13:13px; --fs-14:14px; --fs-15:15px;
+  --fs-17:17px; --fs-20:20px; --fs-24:24px; --fs-28:28px; --fs-34:34px; --fs-44:44px;
+  --lh-tight:1.2; --lh-ui:1.45; --lh-read:1.65;
+  /* spacing (4px base) */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
+  /* radii — document corners, not bubbles */
+  --r-sm:3px; --r-md:5px; --r-lg:7px; --r-xl:10px; --r-full:999px;
+  /* elevation — hard print offsets */
+  --shadow-1:1px 1px 0 rgba(77,68,51,.22);
+  --shadow-2:3px 3px 0 rgba(77,68,51,.35);
+  --shadow-soft:4px 4px 0 rgba(77,68,51,.16);
+  --shadow-glow-gold:0 0 12px rgba(216,176,74,.55);
+  /* motion */
+  --t-fast:120ms; --t-base:200ms; --t-slow:350ms; --t-conquest:700ms;
+  --ease:cubic-bezier(.2,.7,.3,1); --ease-pop:cubic-bezier(.34,1.56,.64,1);
+}
+[data-theme="dark"]{
+  --bg-0:#0d0e09; --bg-1:#15160f; --bg-2:#1b1c13; --bg-3:#232418; --bg-raise:#2a2b1d;
+  --line:#d8d0b6; --line-soft:#4a4733;
+  --ink-1:#e6e0c8; --ink-2:#aaa588; --ink-3:#6e6a50; --ink-inverse:#0d0e09;
+  --orange-tint:#33201666; --green-tint:#20261455; --blue-tint:#16203255; --red-tint:#33181455; --khaki-tint:#2a261777;
+  --shadow-1:1px 1px 0 rgba(0,0,0,.6);
+  --shadow-2:3px 3px 0 rgba(0,0,0,.8);
+  --shadow-soft:4px 4px 0 rgba(0,0,0,.5);
+}

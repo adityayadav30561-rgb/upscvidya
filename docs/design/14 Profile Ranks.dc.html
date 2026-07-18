@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="pf-gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a3925e"></stop><stop offset="1" stop-color="#82744a"></stop></linearGradient>
+    <linearGradient id="pf-gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3dce4"></stop><stop offset="1" stop-color="#6f7c8a"></stop></linearGradient>
+    <g id="pf-board"><path d="M11 89 V24 L28 7 L45 24 V89 Z" fill="url(#pf-gb)" stroke="#5f5537" stroke-width="1.5"></path></g>
+    <g id="pf-star"><path d="M0 -10 L2.35 -3.24 L9.51 -3.09 L3.8 1.24 L5.88 8.09 L0 4 L-5.88 8.09 L-3.8 1.24 L-9.51 -3.09 L-2.35 -3.24 Z" fill="url(#pf-gs)"></path></g>
+    <g id="pf-chev"><path d="M-11 3 L0 -6 L11 3 L11 9 L0 0 L-11 9 Z" fill="#b23b30"></path></g>
+    <g id="pf-stripe"><rect x="-13" y="-3" width="26" height="6" fill="#a63a30"></rect><rect x="-13" y="-1" width="26" height="2" fill="#2e4a7a"></rect></g>
+  </defs>
+</svg>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--khaki);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 14</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Profile &amp; Ranks</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">Service record: current rank with the full 14-grade ladder, earned commendations, and honest campaign stats. Settings entry lives here.</p>
+  </header>
+
+  <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Profile" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1;font-family:var(--font-display);font-size:17px;text-transform:uppercase">Service Record</div>
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer" title="Settings"><svg width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="none" stroke="#4d4433" stroke-width="1.6"></circle><path d="M10 2 V4.5 M10 15.5 V18 M2 10 H4.5 M15.5 10 H18 M4.3 4.3 L6.1 6.1 M13.9 13.9 L15.7 15.7 M15.7 4.3 L13.9 6.1 M6.1 13.9 L4.3 15.7" stroke="#4d4433" stroke-width="1.6" stroke-linecap="round"></path></svg></span>
+        </div>
+
+        <div style="background:var(--bg-2);border:var(--bw-bold) solid var(--line);border-radius:var(--r-xl);padding:18px;display:flex;align-items:center;gap:16px;box-shadow:var(--shadow-2)">
+          <svg width="46" height="76" viewBox="0 0 56 92" style="flex:none"><use href="#pf-board"></use><use href="#pf-star" transform="translate(28 30) scale(.62)"></use><use href="#pf-star" transform="translate(28 50) scale(.62)"></use><use href="#pf-stripe" transform="translate(28 76)"></use></svg>
+          <div style="flex:1">
+            <div style="font-size:11px;font-weight:900;color:var(--khaki-deep);letter-spacing:.08em">SUB INSPECTOR</div>
+            <div style="font-family:var(--font-display);font-size:19px;text-transform:uppercase;line-height:1.2">Arjun Nair</div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink-3);margin-top:2px">Enlisted Mar 2026 · CAPF AC 2027</div>
+            <div style="margin-top:8px;display:flex;flex-direction:column;gap:4px">
+              <div style="height:9px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-0);overflow:hidden"><div style="width:64%;height:100%;background:var(--khaki)"></div></div>
+              <div style="font-size:10px;font-weight:900;color:var(--ink-3)">5,940 / 7,500 XP → INSPECTOR</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 6px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:19px">71<span style="font-size:11px">%</span></div>
+            <div style="font-size:9px;font-weight:900;color:var(--ink-3)">ACCURACY</div>
+          </div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 6px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:19px">1,432</div>
+            <div style="font-size:9px;font-weight:900;color:var(--ink-3)">QUESTIONS</div>
+          </div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 6px;text-align:center">
+            <div style="font-family:var(--font-display);font-size:19px">31<span style="font-size:11px;color:var(--ink-3)">/95</span></div>
+            <div style="font-size:9px;font-weight:900;color:var(--ink-3)">TERRITORIES</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase">Commendations</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;background:var(--orange-tint);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:6px 11px;transform:rotate(-1.5deg)"><svg width="12" height="15" viewBox="0 0 26 32"><path d="M13 0 C14 7 20 9 21 15 C22 21 18.5 26 13 26 C7.5 26 4 21 5 15 C5.6 11.4 8 9.6 9 7 C9.6 9 11 10 12 9.4 C13.4 8.4 12.6 4 13 0 Z" fill="#e8703a" stroke="#4d4433" stroke-width="1.6"></path></svg>30-day streak</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;background:var(--green-tint);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:6px 11px;transform:rotate(1.5deg)"><svg width="13" height="13" viewBox="0 0 20 20"><path d="M5 18 V3 M5 3 H15 L12.5 6.5 L15 10 H5" fill="var(--green)" stroke="#4d4433" stroke-width="1.5" stroke-linejoin="round"></path></svg>Region secured</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;background:var(--khaki-tint);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:6px 11px;transform:rotate(-1deg)"><svg width="13" height="13" viewBox="0 0 16 16"><path d="M8 1 L10 5.5 L15 6 L11.5 9.5 L12.5 14.5 L8 12 L3.5 14.5 L4.5 9.5 L1 6 L6 5.5 Z" fill="var(--gold-hi)" stroke="#4d4433" stroke-width="1"></path></svg>First gold</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;background:var(--bg-1);border:var(--bw) solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-md);padding:6px 11px">PET Ready · locked</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline">
+            <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase">Rank ladder</div>
+            <span style="font-size:10.5px;font-weight:700;color:var(--ink-3)">6 of 14</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0">
+            <div style="display:flex;align-items:center;gap:12px;padding:8px 4px;opacity:.55">
+              <span style="flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--green-deep);display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+              <span style="flex:1;font-weight:700;font-size:12.5px">Head Constable</span>
+              <span style="font-size:10.5px;font-weight:700;color:var(--ink-3)">2,200 XP</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:8px 4px;opacity:.55">
+              <span style="flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--green-deep);display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+              <span style="flex:1;font-weight:700;font-size:12.5px">Asst. Sub Inspector</span>
+              <span style="font-size:10.5px;font-weight:700;color:var(--ink-3)">3,500 XP</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;background:var(--khaki-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-lg);padding:10px 12px;box-shadow:var(--shadow-2)">
+              <svg width="20" height="33" viewBox="0 0 56 92" style="flex:none"><use href="#pf-board"></use><use href="#pf-star" transform="translate(28 30) scale(.62)"></use><use href="#pf-star" transform="translate(28 50) scale(.62)"></use><use href="#pf-stripe" transform="translate(28 76)"></use></svg>
+              <div style="flex:1">
+                <div style="font-weight:900;font-size:13px">Sub Inspector — you</div>
+                <div style="font-size:10px;font-weight:700;color:var(--khaki-deep)">1,560 XP to promotion</div>
+              </div>
+              <span style="font-size:10.5px;font-weight:900;color:var(--ink-2)">5,200</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:8px 4px">
+              <span style="flex:none;width:22px;height:22px;border-radius:var(--r-full);border:var(--bw) solid var(--line);background:var(--bg-2)"></span>
+              <span style="flex:1;font-weight:700;font-size:12.5px">Inspector</span>
+              <span style="font-size:10.5px;font-weight:700;color:var(--ink-3)">7,500 XP</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:8px 4px">
+              <span style="flex:none;width:22px;height:22px;border-radius:var(--r-full);border:var(--bw) solid var(--line);background:var(--bg-2)"></span>
+              <div style="flex:1;display:flex;align-items:center;gap:7px"><span style="font-weight:900;font-size:12.5px;color:var(--orange-deep)">Assistant Commandant</span><span style="font-size:8.5px;font-weight:900;background:var(--orange);border:1px solid var(--line);border-radius:var(--r-sm);padding:1px 6px;transform:rotate(2deg)">TARGET</span></div>
+              <span style="font-size:10.5px;font-weight:700;color:var(--ink-3)">10,500 XP</span>
+            </div>
+            <div style="text-align:center;font-size:11px;font-weight:700;color:var(--ink-3);padding-top:6px">DC → DG ladder continues ↓</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:13px 15px;cursor:pointer" style-hover="box-shadow:var(--shadow-2)">
+          <svg width="18" height="18" viewBox="0 0 20 20" style="flex:none"><circle cx="10" cy="10" r="3" fill="none" stroke="#4d4433" stroke-width="1.6"></circle><path d="M10 2 V4.5 M10 15.5 V18 M2 10 H4.5 M15.5 10 H18 M4.3 4.3 L6.1 6.1 M13.9 13.9 L15.7 15.7 M15.7 4.3 L13.9 6.1 M6.1 13.9 L4.3 15.7" stroke="#4d4433" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          <div style="flex:1">
+            <div style="font-weight:900;font-size:13px">Settings</div>
+            <div style="font-size:10.5px;color:var(--ink-3)">Theme · notifications · PET standards · account</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Rank-up is the app's only full-screen takeover: old board slides down, new insignia stamps in with the gold pulse, title reads "Promoted — Inspector".</li>
+        <li>Ladder auto-scrolls so your rank sits centered; passed ranks compact to check rows, future ranks show thresholds; AC always wears its TARGET sticker.</li>
+        <li>Commendation stickers pop in with --ease-pop when earned; locked ones stay grey with their unlock hint on tap.</li>
+        <li>Stat cells deep-link: accuracy → Test Centre history, territories → map.</li>
+        <li>XP bar animates on entry (700ms); promotion within reach (&lt;500 XP) makes the bar shimmer once.</li>
+        <li>Settings row opens Screen 19 (Settings &amp; Account).</li>
+        <li>Desktop: identity card + stats left, full 14-rung ladder right at full height.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

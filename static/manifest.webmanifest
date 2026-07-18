@@ -1,0 +1,21 @@
+{
+  "name": "UPSCVidya",
+  "short_name": "UPSCVidya",
+  "description": "UPSC Polity prep — territory map, topic reader, quizzes, spaced repetition.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1E3A8A",
+  "lang": "en-IN",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

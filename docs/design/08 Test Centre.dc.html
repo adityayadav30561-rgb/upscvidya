@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 08</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Test Centre</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">Two weapons: composable sectional tests (drill exactly what's weak) and full-length mocks that simulate the real 125Q/2hr paper. History keeps percentile honest. Desktop: composer left, mock list right, history full-width below.</p>
+  </header>
+
+  <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Sectional composer" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="font-family:var(--font-display);font-size:17px;text-transform:uppercase">Test Centre</div>
+        </div>
+        <div style="display:flex;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:4px;gap:4px">
+          <span style="flex:1;text-align:center;font-size:12px;font-weight:900;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:8px 0">SECTIONAL</span>
+          <span style="flex:1;text-align:center;font-size:12px;font-weight:700;color:var(--ink-3);padding:8px 0;border-radius:var(--r-full);cursor:pointer">FULL MOCKS</span>
+          <span style="flex:1;text-align:center;font-size:12px;font-weight:700;color:var(--ink-3);padding:8px 0;border-radius:var(--r-full);cursor:pointer">HISTORY</span>
+        </div>
+
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:18px;display:flex;flex-direction:column;gap:16px">
+          <div style="font-family:var(--font-display);font-size:14px;text-transform:uppercase">Compose your drill</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;font-weight:900;color:var(--ink-3)">REGIONS</span>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <span style="font-size:11.5px;font-weight:900;background:var(--khaki);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px;cursor:pointer">The Centre ✓</span>
+              <span style="font-size:11.5px;font-weight:900;background:var(--khaki);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px;cursor:pointer">The System ✓</span>
+              <span style="font-size:11.5px;font-weight:700;background:var(--bg-0);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px;cursor:pointer">Foundations</span>
+              <span style="font-size:11.5px;font-weight:700;background:var(--bg-0);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 13px;cursor:pointer">The States</span>
+              <span style="font-size:11.5px;font-weight:700;background:var(--bg-0);border:var(--bw) solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-full);padding:6px 13px">+4 more</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:11px;font-weight:900;color:var(--ink-3)">DIFFICULTY</span>
+            <div style="display:flex;gap:8px">
+              <span style="flex:1;text-align:center;font-size:11.5px;font-weight:700;background:var(--bg-0);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0;cursor:pointer">Tier 1</span>
+              <span style="flex:1;text-align:center;font-size:11.5px;font-weight:900;background:var(--orange-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:8px 0;cursor:pointer;box-shadow:var(--shadow-2)">Mixed</span>
+              <span style="flex:1;text-align:center;font-size:11.5px;font-weight:700;background:var(--bg-0);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:8px 0;cursor:pointer">Tier 3</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:900;color:var(--ink-3)"><span>QUESTIONS</span><span style="color:var(--ink-1)">40 · ~35 min</span></div>
+            <div style="position:relative;height:24px;display:flex;align-items:center">
+              <div style="width:100%;height:8px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-0)"></div>
+              <div style="position:absolute;left:0;width:47%;height:8px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--orange)"></div>
+              <div style="position:absolute;left:47%;width:22px;height:22px;margin-left:-11px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);box-shadow:var(--shadow-2)"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:700;color:var(--ink-3)"><span>10</span><span>85</span></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg-0);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:11px 14px">
+            <div>
+              <div style="font-weight:900;font-size:13px">Timed · negative marking</div>
+              <div style="font-size:10.5px;color:var(--ink-3)">−0.33 per wrong, like the real paper</div>
+            </div>
+            <div style="width:46px;height:26px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--green);position:relative;flex:none"><span style="position:absolute;right:2px;top:2px;width:19px;height:19px;border-radius:var(--r-full);background:var(--bg-2);border:var(--bw) solid var(--line)"></span></div>
+          </div>
+          <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:15px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Start drill →</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--blue-tint);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-md);padding:10px 14px">
+          <svg width="14" height="14" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="7" fill="none" stroke="var(--blue-deep)" stroke-width="1.4"></circle><path d="M8 4.5 V8.5 M8 11 V11.5" stroke="var(--blue-deep)" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          <span style="font-size:12px;font-weight:700;color:var(--ink-1)">Suggested: your Tier 3 accuracy in The Centre is 41% — drill it.</span>
+        </div>
+      </div>
+    </div>
+
+    <div data-screen-label="Mocks &amp; history" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:4px;gap:4px">
+          <span style="flex:1;text-align:center;font-size:12px;font-weight:700;color:var(--ink-3);padding:8px 0;border-radius:var(--r-full);cursor:pointer">SECTIONAL</span>
+          <span style="flex:1;text-align:center;font-size:12px;font-weight:900;background:var(--orange);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:8px 0">FULL MOCKS</span>
+          <span style="flex:1;text-align:center;font-size:12px;font-weight:700;color:var(--ink-3);padding:8px 0;border-radius:var(--r-full);cursor:pointer">HISTORY</span>
+        </div>
+
+        <div style="background:var(--bg-2);border:var(--bw-bold) solid var(--line);border-radius:var(--r-xl);padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-2)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div style="font-family:var(--font-display);font-size:16px;text-transform:uppercase">Mock 04 — Full Paper</div>
+              <div style="font-size:11.5px;font-weight:700;color:var(--ink-3);margin-top:3px">Fresh · syllabus-weighted like CAPF 2025</div>
+            </div>
+            <span style="font-size:10px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 8px;transform:rotate(2deg)">NEW</span>
+          </div>
+          <div style="display:flex;gap:8px">
+            <span style="font-size:10.5px;font-weight:900;background:var(--bg-0);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:4px 10px">125 Q</span>
+            <span style="font-size:10.5px;font-weight:900;background:var(--bg-0);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:4px 10px">2 hr</span>
+            <span style="font-size:10.5px;font-weight:900;background:var(--red-tint);color:var(--red-deep);border:var(--bw) solid var(--red-deep);border-radius:var(--r-full);padding:4px 10px">−0.33</span>
+          </div>
+          <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:14px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Enter exam mode →</button>
+        </div>
+
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-xl);padding:16px 18px;display:flex;align-items:center;gap:12px;opacity:.92">
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-size:14px;text-transform:uppercase;color:var(--ink-3)">Mock 05 — Full Paper</div>
+            <div style="font-size:11px;font-weight:700;color:var(--ink-3)">125 Q · 2 hr · −0.33</div>
+          </div>
+          <span style="display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:900;background:var(--orange-tint);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:4px 10px;transform:rotate(-2deg)"><svg width="10" height="11" viewBox="0 0 12 14"><rect x="1.5" y="6" width="9" height="6.5" rx="1.5" fill="none" stroke="#4d4433" stroke-width="1.4"></rect><path d="M3.5 6 V4 A2.5 2.5 0 0 1 8.5 4 V6" fill="none" stroke="#4d4433" stroke-width="1.4"></path></svg>PREMIUM</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase">Attempt history</div>
+          <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <svg width="120" height="36" viewBox="0 0 120 36" style="flex:none"><polyline points="4,30 33,24 62,26 91,14 116,8" fill="none" stroke="var(--orange-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4"></polyline><circle cx="4" cy="30" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle><circle cx="33" cy="24" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle><circle cx="62" cy="26" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle><circle cx="91" cy="14" r="3.5" fill="var(--bg-2)" stroke="#4d4433" stroke-width="1.5"></circle><circle cx="116" cy="8" r="4.5" fill="var(--orange)" stroke="#4d4433" stroke-width="1.5"></circle></svg>
+              <div style="flex:1">
+                <div style="font-weight:900;font-size:13px">Percentile trend</div>
+                <div style="font-size:11px;font-weight:700;color:var(--green-deep)">58 → 74 over 5 attempts</div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:var(--bw) solid var(--line-soft);padding-top:11px">
+              <div>
+                <div style="font-weight:900;font-size:12.5px">Mock 03 · 12 Jul</div>
+                <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">72 / 125 correct · 61 net score</div>
+              </div>
+              <span style="font-family:var(--font-display);font-size:15px;color:var(--orange-deep)">74<span style="font-size:9px;color:var(--ink-3)">%ile</span></span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;border-top:var(--bw) solid var(--line-soft);padding-top:11px">
+              <div>
+                <div style="font-weight:900;font-size:12.5px">Sectional · The Centre · 10 Jul</div>
+                <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">28 / 40 · Tier 3: 41%</div>
+              </div>
+              <span style="font-family:var(--font-display);font-size:15px">70<span style="font-size:9px;color:var(--ink-3)">%</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Composer summary line (40 · ~35 min) recomputes live as chips/slider change; region chips show available question counts on long-press.</li>
+        <li>"Suggested drill" is generated from weakest region×tier cell; tapping it pre-fills the composer with a 200ms cascade of selections.</li>
+        <li>Enter exam mode → full-screen confirm sheet: airplane-mode advice, timer rules, "no pause" warning. Deliberate friction.</li>
+        <li>Premium mocks show the lock sticker; tap opens Paywall (Screen 15) with the mock's name carried into the header.</li>
+        <li>History rows expand to per-section split; percentile dot fills orange when it's a personal best.</li>
+        <li>Tabs slide with a 200ms underline morph; state persists per session.</li>
+        <li>Desktop: composer 380px left rail, mocks grid 2-up right, history table below with sortable columns.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

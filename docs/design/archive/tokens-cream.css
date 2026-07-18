@@ -1,0 +1,47 @@
+/* CAPF AC Prep — Design Tokens v2 (LinguaLab-inspired: warm cream, black outlines, playful accents).
+   Light is default; OLED night-study variant via [data-theme="dark"]. */
+:root{
+  /* surfaces */
+  --bg-0:#fbf8f1; --bg-1:#f1ead9; --bg-2:#fffdf7; --bg-3:#f7f2e6; --bg-raise:#ffffff;
+  --line:#111111; --line-soft:#d8d0bd;
+  /* ink */
+  --ink-1:#111111; --ink-2:#4a463c; --ink-3:#8b8676; --ink-inverse:#fbf8f1;
+  /* accents */
+  --orange:#ff9864; --orange-deep:#e8703a; --orange-tint:#ffe4d4;
+  --green:#a2cd85; --green-deep:#4e8a33; --green-tint:#e4f0d8;
+  --blue:#528cf0; --blue-deep:#2f63c4; --blue-tint:#dce8fc;
+  --red:#ef6461; --red-deep:#c73e3b; --red-tint:#fcdedd;
+  /* CAPF identity */
+  --khaki:#a08c5b; --khaki-deep:#6e5f3a; --khaki-tint:#ece4d0;
+  --gold-lo:#9c741f; --gold-hi:#f2cd6a;
+  /* borders */
+  --bw:1.5px; --bw-bold:2px;
+  /* type */
+  --font-display:'Dela Gothic One',system-ui,sans-serif;
+  --font-ui:'Lato',system-ui,-apple-system,sans-serif;
+  --font-read:'Source Serif 4',Georgia,serif;
+  --fs-11:11px; --fs-12:12px; --fs-13:13px; --fs-14:14px; --fs-15:15px;
+  --fs-17:17px; --fs-20:20px; --fs-24:24px; --fs-28:28px; --fs-34:34px; --fs-44:44px;
+  --lh-tight:1.2; --lh-ui:1.45; --lh-read:1.65;
+  /* spacing (4px base) */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
+  /* radii — friendly, rounded */
+  --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:26px; --r-full:999px;
+  /* elevation — flat + hard offset for lifted pieces */
+  --shadow-1:0 1px 0 rgba(17,17,17,.08);
+  --shadow-2:3px 3px 0 rgba(17,17,17,.9);
+  --shadow-soft:0 6px 18px rgba(60,50,30,.10);
+  --shadow-glow-gold:0 0 14px rgba(242,205,106,.55);
+  /* motion */
+  --t-fast:120ms; --t-base:200ms; --t-slow:350ms; --t-conquest:700ms;
+  --ease:cubic-bezier(.2,.7,.3,1); --ease-pop:cubic-bezier(.34,1.56,.64,1);
+}
+[data-theme="dark"]{
+  --bg-0:#0b0f14; --bg-1:#11161d; --bg-2:#171e27; --bg-3:#1f2833; --bg-raise:#243040;
+  --line:#e9e6dd; --line-soft:#33404e;
+  --ink-1:#e9e6dd; --ink-2:#a9aeb6; --ink-3:#6d7681; --ink-inverse:#0b0f14;
+  --orange-tint:#3a2417; --green-tint:#1d2e18; --blue-tint:#16243c; --red-tint:#3a1a19; --khaki-tint:#2a2617;
+  --shadow-1:0 1px 0 rgba(0,0,0,.5);
+  --shadow-2:3px 3px 0 rgba(0,0,0,.9);
+  --shadow-soft:0 6px 18px rgba(0,0,0,.5);
+}

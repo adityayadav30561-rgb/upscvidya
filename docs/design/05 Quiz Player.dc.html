@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+</style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--red);color:#fff;border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 05</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Quiz Player</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">One question per screen, built for the CAPF statement pattern. Untimed topic quizzes give instant feedback; timed tests defer it. Statements render in the serif for careful reading; options stay in Lato for fast scanning.</p>
+  </header>
+
+  <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Untimed · selecting" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);display:flex;flex-direction:column">
+      <div style="padding:16px 20px 12px;display:flex;flex-direction:column;gap:12px;border-bottom:var(--bw) solid var(--line)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="12" height="12" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#4d4433" stroke-width="2" stroke-linecap="round"></path></svg></span>
+          <div style="flex:1">
+            <div style="font-weight:900;font-size:13px">Parliament: The Two Houses</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">Topic quiz · untimed · pass ≥70%</div>
+          </div>
+          <span style="font-family:var(--font-display);font-size:14px">4<span style="font-size:10px;color:var(--ink-3)">/12</span></span>
+        </div>
+        <div style="display:flex;gap:5px">
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--green);border:1px solid var(--line)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--green);border:1px solid var(--line)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--red);border:1px solid var(--line)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--orange);border:var(--bw) solid var(--line)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+          <span style="flex:1;height:7px;border-radius:var(--r-full);background:var(--bg-2);border:1px solid var(--line-soft)"></span>
+        </div>
+      </div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:14px;flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;font-weight:900;color:var(--ink-3)">CONSIDER THE FOLLOWING STATEMENTS:</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:900;color:var(--ink-3);border:var(--bw) solid var(--line-soft);border-radius:var(--r-full);padding:4px 10px;cursor:pointer"><svg width="11" height="12" viewBox="0 0 12 14"><path d="M2 1 V13 M2 1 H10 L8 4 L10 7 H2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>FLAG</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 14px">
+            <span style="flex:none;font-family:var(--font-display);font-size:12px;color:var(--ink-3)">1</span>
+            <span style="font-family:var(--font-read);font-size:14.5px;line-height:1.55">The Rajya Sabha is subject to dissolution once every six years.</span>
+          </div>
+          <div style="display:flex;gap:10px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 14px">
+            <span style="flex:none;font-family:var(--font-display);font-size:12px;color:var(--ink-3)">2</span>
+            <span style="font-family:var(--font-read);font-size:14.5px;line-height:1.55">The President is an integral part of Parliament.</span>
+          </div>
+          <div style="display:flex;gap:10px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 14px">
+            <span style="flex:none;font-family:var(--font-display);font-size:12px;color:var(--ink-3)">3</span>
+            <span style="font-family:var(--font-read);font-size:14.5px;line-height:1.55">One-third of Rajya Sabha members retire every second year.</span>
+          </div>
+        </div>
+        <div style="font-weight:900;font-size:14.5px">How many of the above statements are correct?</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 15px;min-height:44px;cursor:pointer" style-hover="background:var(--bg-3)">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span>
+            <span style="font-size:14px;font-weight:700">Only one</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--orange-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:12px 15px;min-height:44px;cursor:pointer;box-shadow:var(--shadow-2)">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line);background:var(--bg-2);display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:var(--r-full);background:var(--orange-deep)"></span></span>
+            <span style="font-size:14px;font-weight:900">Only two</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 15px;min-height:44px;cursor:pointer" style-hover="background:var(--bg-3)">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span>
+            <span style="font-size:14px;font-weight:700">All three</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:12px 15px;min-height:44px;cursor:pointer" style-hover="background:var(--bg-3)">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span>
+            <span style="font-size:14px;font-weight:700">None</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:16px 20px 20px">
+        <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:15px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Check answer</button>
+      </div>
+    </div>
+
+    <div data-screen-label="Untimed · checked" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);display:flex;flex-direction:column">
+      <div style="padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:var(--bw) solid var(--line)">
+        <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#4d4433" stroke-width="2" stroke-linecap="round"></path></svg></span>
+        <div style="flex:1">
+          <div style="font-weight:900;font-size:13px">Parliament: The Two Houses</div>
+          <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">Q4 · answered</div>
+        </div>
+        <span style="font-size:10px;font-weight:900;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-sm);padding:3px 9px;transform:rotate(-2deg)">+15 XP</span>
+      </div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:12px;flex:1">
+        <div style="font-weight:900;font-size:14.5px">How many of the above statements are correct?</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line-soft);border-radius:var(--r-md);padding:12px 15px;opacity:.55">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line-soft)"></span>
+            <span style="font-size:14px;font-weight:700">Only one</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--green-tint);border:var(--bw-bold) solid var(--green-deep);border-radius:var(--r-md);padding:12px 15px">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);background:var(--green-deep);display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <span style="font-size:14px;font-weight:900">Only two <span style="font-size:11px;color:var(--green-deep)">· correct — your answer</span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line-soft);border-radius:var(--r-md);padding:12px 15px;opacity:.55">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line-soft)"></span>
+            <span style="font-size:14px;font-weight:700">All three</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line-soft);border-radius:var(--r-md);padding:12px 15px;opacity:.55">
+            <span style="flex:none;width:20px;height:20px;border-radius:var(--r-full);border:var(--bw) solid var(--line-soft)"></span>
+            <span style="font-size:14px;font-weight:700">None</span>
+          </div>
+        </div>
+        <div style="background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-lg);padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:10px;font-weight:900;color:var(--green-deep);letter-spacing:.08em">EXPLANATION</span>
+          <div style="font-family:var(--font-read);font-size:14px;line-height:1.6"><strong>Statement 1 is wrong</strong> — the Rajya Sabha is a continuing chamber, never dissolved (Art. 83). Statements 2 and 3 are correct: the President is integral to Parliament (Art. 79), and one-third of members retire biennially.</div>
+          <div style="display:flex;gap:8px">
+            <span style="font-size:10px;font-weight:900;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:3px 9px">Art. 79 · 83</span>
+            <span style="font-size:10px;font-weight:900;background:var(--bg-1);border:var(--bw) solid var(--line-soft);color:var(--ink-3);border-radius:var(--r-full);padding:3px 9px">PYQ 2019</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:16px 20px 20px">
+        <button style="width:100%;font-family:var(--font-ui);font-weight:900;font-size:15px;background:var(--green);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Next question →</button>
+      </div>
+    </div>
+
+    <div data-screen-label="Timed test variant" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft);display:flex;flex-direction:column">
+      <div style="padding:16px 20px 12px;display:flex;flex-direction:column;gap:12px;border-bottom:var(--bw) solid var(--line);background:var(--bg-1)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="14" height="14" viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="2.2" rx="1" fill="#4d4433"></rect><rect x="2" y="7" width="12" height="2.2" rx="1" fill="#4d4433"></rect><rect x="2" y="11" width="12" height="2.2" rx="1" fill="#4d4433"></rect></svg></span>
+          <div style="flex:1">
+            <div style="font-weight:900;font-size:13px">Sectional test — The Centre</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">Q17/40 · −0.33 negative marking</div>
+          </div>
+          <span style="display:inline-flex;align-items:center;gap:6px;font-family:var(--font-display);font-size:14px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:6px 12px"><svg width="13" height="13" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" fill="none" stroke="#4d4433" stroke-width="1.6"></circle><path d="M10 5.5 V10 L13 12" fill="none" stroke="#4d4433" stroke-width="1.6" stroke-linecap="round"></path></svg>23:41</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:10px;font-weight:900;background:var(--blue-tint);color:var(--blue-deep);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-full);padding:3px 10px;display:inline-flex;align-items:center;gap:5px"><svg width="10" height="11" viewBox="0 0 12 14"><path d="M2 1 V13 M2 1 H10 L8 4 L10 7 H2" fill="var(--blue)" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"></path></svg>FLAGGED FOR REVIEW</span>
+          <span style="font-size:10px;font-weight:700;color:var(--ink-3)">no instant feedback in tests</span>
+        </div>
+      </div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:12px;flex:1">
+        <span style="font-size:11px;font-weight:900;color:var(--ink-3)">CONSIDER THE FOLLOWING STATEMENTS:</span>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;gap:10px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:11px 14px">
+            <span style="flex:none;font-family:var(--font-display);font-size:12px;color:var(--ink-3)">1</span>
+            <span style="font-family:var(--font-read);font-size:14px;line-height:1.55">Money bills can be introduced only in the Lok Sabha.</span>
+          </div>
+          <div style="display:flex;gap:10px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:11px 14px">
+            <span style="flex:none;font-family:var(--font-display);font-size:12px;color:var(--ink-3)">2</span>
+            <span style="font-family:var(--font-read);font-size:14px;line-height:1.55">The Rajya Sabha can amend a money bill within 14 days.</span>
+          </div>
+        </div>
+        <div style="font-weight:900;font-size:14px">Which of the statements given above is/are correct?</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:11px 14px;min-height:44px;cursor:pointer">
+            <span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span>
+            <span style="font-size:13.5px;font-weight:700">1 only</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:11px 14px;min-height:44px;cursor:pointer">
+            <span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span>
+            <span style="font-size:13.5px;font-weight:700">2 only</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--orange-tint);border:var(--bw-bold) solid var(--line);border-radius:var(--r-md);padding:11px 14px;min-height:44px;cursor:pointer;box-shadow:var(--shadow-2)">
+            <span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);border:var(--bw) solid var(--line);background:var(--bg-2);display:flex;align-items:center;justify-content:center"><span style="width:9px;height:9px;border-radius:var(--r-full);background:var(--orange-deep)"></span></span>
+            <span style="font-size:13.5px;font-weight:900">Both 1 and 2</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:11px 14px;min-height:44px;cursor:pointer">
+            <span style="flex:none;width:19px;height:19px;border-radius:var(--r-full);border:var(--bw) solid var(--line)"></span>
+            <span style="font-size:13.5px;font-weight:700">Neither 1 nor 2</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:16px 20px 20px;display:flex;gap:10px">
+        <button style="flex:1;font-family:var(--font-ui);font-weight:700;font-size:13.5px;background:var(--bg-2);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px;min-height:48px;cursor:pointer" style-hover="background:var(--bg-1)">Clear</button>
+        <button style="flex:2;font-family:var(--font-ui);font-weight:900;font-size:13.5px;background:var(--orange);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:12px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Save &amp; next →</button>
+      </div>
+    </div>
+
+    <section style="width:100%;display:flex;flex-direction:column;gap:10px;border-top:var(--bw) solid var(--line);padding-top:24px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2);max-width:760px;columns:2;column-gap:40px">
+        <li>Questions slide left on advance (350ms); swipe-back reviews previous answers in untimed mode only.</li>
+        <li>Check answer: correct = green flood on the row + check draw-in + "+15 XP" sticker pops top-right; wrong = one 4px shake, correct row then highlights green, and a "added to your revision stack" toast confirms.</li>
+        <li>Progress segments: green done-correct, red done-wrong, orange current, cream upcoming; a small flag notch marks flagged items.</li>
+        <li>Flag toggles with a 120ms fill; flagged state persists into the results review.</li>
+        <li>Timer turns red + pulses at 2:00 remaining; at 0:00 auto-submit with a 3s "time's up" interstitial.</li>
+        <li>Statements are selectable text — long-press highlights save to the topic's notes.</li>
+        <li>Hamburger in test mode opens the question palette (designed in Screen 09, Mock Test Player).</li>
+        <li>Desktop: 560px centered column; keyboard 1–4 selects, Enter submits, F flags.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

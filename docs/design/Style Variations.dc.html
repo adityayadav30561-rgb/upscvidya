@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&amp;family=Lato:wght@400;700;900&amp;family=Oswald:wght@500;600&amp;family=Saira+Stencil+One&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+body{margin:0;background:#f0eee9;font-family:'Lato',system-ui,sans-serif}
+a{color:#2a78d6;text-decoration:none}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:380px}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+@keyframes flicker{0%,100%{transform:scale(1) rotate(-1deg)}50%{transform:scale(1.06) rotate(1.5deg)}}
+</style>
+</helmet>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Home screen — same structure, three style directions (vs the current cream/outline)</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Night Ops — OLED dark, glow accents, layered depth. The 2 AM study atmosphere.</div>
+<div class="dv-card" style="width:380px;background:#0b0f14;border-radius:28px;border:1px solid #2a3542">
+  <div style="padding:20px;display:flex;flex-direction:column;gap:16px;color:#e9e6dd">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="flex:none;width:50px;height:64px;background:linear-gradient(180deg,#1c2530,#141b23);border:1px solid #3a4756;border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)">
+        <svg width="32" height="52" viewBox="0 0 56 92"><path d="M11 89 V24 L28 7 L45 24 V89 Z" fill="#8d7d4f" stroke="#5f5537" stroke-width="1.5"></path><path d="M28 20 L30.35 26.76 L37.51 26.91 L31.8 31.24 L33.88 38.09 L28 34 L22.12 38.09 L24.2 31.24 L18.49 26.91 L25.65 26.76 Z" fill="#dfe6ec"></path><path d="M28 40 L30.35 46.76 L37.51 46.91 L31.8 51.24 L33.88 58.09 L28 54 L22.12 58.09 L24.2 51.24 L18.49 46.91 L25.65 46.76 Z" fill="#dfe6ec"></path><rect x="15" y="73" width="26" height="6" fill="#a63a30"></rect><rect x="15" y="75" width="26" height="2" fill="#2e4a7a"></rect></svg>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:700;color:#7d8894">Good evening,</div>
+        <div style="font-family:'Dela Gothic One';font-size:15.5px;text-transform:uppercase;text-shadow:0 0 24px rgba(232,163,61,.25)">SI Arjun</div>
+        <div style="margin-top:6px;display:flex;align-items:center;gap:8px">
+          <div style="flex:1;height:7px;border-radius:99px;background:#1c2530;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.6)"><div style="width:64%;height:100%;background:linear-gradient(90deg,#8d7d4f,#c9ab60);box-shadow:0 0 8px rgba(201,171,96,.5)"></div></div>
+          <span style="font-size:10px;font-weight:900;color:#7d8894;white-space:nowrap">5,940 / 7,500</span>
+        </div>
+      </div>
+      <div style="flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;background:#141b23;border:1px solid #3a4756;border-radius:14px;padding:8px 12px;box-shadow:0 0 18px rgba(232,112,58,.18)">
+        <svg width="15" height="19" viewBox="0 0 26 32" style="animation:flicker 1.6s ease-in-out infinite;transform-origin:50% 90%;filter:drop-shadow(0 0 6px rgba(232,112,58,.7))"><path d="M13 0 C14 7 20 9 21 15 C22 21 18.5 26 13 26 C7.5 26 4 21 5 15 C5.6 11.4 8 9.6 9 7 C9.6 9 11 10 12 9.4 C13.4 8.4 12.6 4 13 0 Z" fill="#e8703a"></path></svg>
+        <span style="font-family:'Dela Gothic One';font-size:14px;color:#ffb184">17</span>
+      </div>
+    </div>
+    <div style="background:linear-gradient(160deg,#1a222c,#12181f);border:1px solid #3a4756;border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:11px;box-shadow:0 12px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.05)">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-family:'Dela Gothic One';font-size:11px;text-transform:uppercase;color:#ffb184;text-shadow:0 0 12px rgba(232,112,58,.5)">Today's Mission</span>
+        <span style="font-size:10.5px;font-weight:900;color:#7d8894">~45 MIN</span>
+      </div>
+      <div style="font-family:'Dela Gothic One';font-size:16px;line-height:1.3">Parliament: The Two Houses</div>
+      <div style="font-size:12px;color:#a9aeb6">Guided path · 14 SR cards due · briefing done ✓</div>
+      <button style="font-family:'Lato';font-weight:900;font-size:14px;background:linear-gradient(180deg,#f0a04a,#d97a2a);color:#12181f;border:none;border-radius:99px;padding:13px;min-height:46px;cursor:pointer;box-shadow:0 0 22px rgba(232,112,58,.4),inset 0 1px 0 rgba(255,255,255,.35)">Begin Mission →</button>
+    </div>
+    <div style="display:flex;gap:12px">
+      <div style="flex:none;background:#141b23;border:1px solid #3a4756;border-radius:20px;padding:13px;display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;width:80px;height:80px">
+          <svg width="80" height="80" viewBox="0 0 80 80" style="transform:rotate(-90deg)"><circle cx="40" cy="40" r="33" fill="none" stroke="#1c2530" stroke-width="8"></circle><circle cx="40" cy="40" r="33" fill="none" stroke="#e8973a" stroke-width="8" stroke-linecap="round" stroke-dasharray="207.3" stroke-dashoffset="136.8" style="filter:drop-shadow(0 0 5px rgba(232,151,58,.8))"></circle></svg>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:'Dela Gothic One';font-size:16px">34%</span><span style="font-size:8px;font-weight:900;color:#7d8894">POLITY</span></div>
+        </div>
+      </div>
+      <div style="flex:1;background:#141b23;border:1px solid #3a4756;border-radius:20px;padding:13px 15px;display:flex;flex-direction:column;justify-content:center;gap:7px;font-size:11px;font-weight:700">
+        <div style="display:flex;justify-content:space-between"><span style="color:#a9aeb6">Territories</span><span style="color:#8fd6a8">31 / 95</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#a9aeb6">Gold</span><span style="color:#f2cd6a;text-shadow:0 0 8px rgba(242,205,106,.6)">6</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#a9aeb6">Decaying</span><span style="color:#e07070">2</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px;background:#141b23;border:1px solid #3a4756;border-radius:14px;padding:12px 13px"><svg width="18" height="18" viewBox="0 0 20 20"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="#c9ab60" stroke-width="1.5" stroke-linejoin="round"></path></svg><div><div style="font-weight:900;font-size:12px">Map</div><div style="font-size:9.5px;color:#7d8894">8 regions</div></div></div>
+      <div style="display:flex;align-items:center;gap:9px;background:#141b23;border:1px solid #3a4756;border-radius:14px;padding:12px 13px"><svg width="18" height="18" viewBox="0 0 20 20"><rect x="3" y="5" width="11" height="13" rx="2" fill="none" stroke="#6fa3e0" stroke-width="1.5"></rect><rect x="6" y="2" width="11" height="13" rx="2" fill="#141b23" stroke="#6fa3e0" stroke-width="1.5"></rect></svg><div><div style="font-weight:900;font-size:12px">Revision</div><div style="font-size:9.5px;color:#e07070;font-weight:900">14 due</div></div></div>
+    </div>
+    <div style="background:rgba(20,27,35,.9);border:1px solid #3a4756;border-radius:99px;padding:7px;display:flex;justify-content:space-around;box-shadow:0 10px 24px rgba(0,0,0,.5)">
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;background:linear-gradient(180deg,#f0a04a,#d97a2a);border-radius:99px;padding:6px 14px;color:#12181f"><svg width="15" height="15" viewBox="0 0 20 20"><path d="M3 9 L10 3 L17 9 V17 H12 V12 H8 V17 H3 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg><span style="font-size:8px;font-weight:900">BASE</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 11px;color:#7d8894"><svg width="15" height="15" viewBox="0 0 20 20"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg><span style="font-size:8px;font-weight:700">MAP</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 11px;color:#7d8894"><svg width="15" height="15" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M10 6 V10 L13 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:8px;font-weight:700">TESTS</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 11px;color:#7d8894"><svg width="15" height="15" viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M4 17 C4.5 13.5 7 12 10 12 C13 12 15.5 13.5 16 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:8px;font-weight:700">PROFILE</span></span>
+    </div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Field Manual — paper grain, olive header band, stencil stamps, dashed rules. Govt-issue document energy.</div>
+<div class="dv-card" style="width:380px;background:#f3ecdc;background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);border-radius:18px;border:2px solid #4d4433">
+  <div style="background:#5b5433;color:#f3ecdc;padding:14px 20px;display:flex;align-items:center;gap:12px;border-bottom:2px solid #4d4433">
+    <svg width="30" height="49" viewBox="0 0 56 92"><path d="M11 89 V24 L28 7 L45 24 V89 Z" fill="#a3925e" stroke="#3d3626" stroke-width="2"></path><path d="M28 20 L30.35 26.76 L37.51 26.91 L31.8 31.24 L33.88 38.09 L28 34 L22.12 38.09 L24.2 31.24 L18.49 26.91 L25.65 26.76 Z" fill="#e8e4d5"></path><path d="M28 40 L30.35 46.76 L37.51 46.91 L31.8 51.24 L33.88 58.09 L28 54 L22.12 58.09 L24.2 51.24 L18.49 46.91 L25.65 46.76 Z" fill="#e8e4d5"></path><rect x="15" y="73" width="26" height="6" fill="#a63a30"></rect><rect x="15" y="75" width="26" height="2" fill="#2e4a7a"></rect></svg>
+    <div style="flex:1">
+      <div style="font-size:9.5px;font-weight:900;letter-spacing:.22em;opacity:.75">SERVICE RECORD · DAY 128</div>
+      <div style="font-family:'Saira Stencil One';font-size:19px;letter-spacing:.04em;line-height:1.15">SI ARJUN NAIR</div>
+      <div style="font-size:9.5px;font-weight:700;opacity:.75">5,940 / 7,500 XP → INSPECTOR</div>
+    </div>
+    <div style="flex:none;text-align:center;border:2px solid #c85c4a;border-radius:6px;padding:5px 9px;transform:rotate(-6deg);color:#c85c4a;background:rgba(243,236,220,.12)">
+      <div style="font-family:'Saira Stencil One';font-size:16px;line-height:1">17</div>
+      <div style="font-size:7.5px;font-weight:900;letter-spacing:.12em">DAY STREAK</div>
+    </div>
+  </div>
+  <div style="padding:18px 20px;display:flex;flex-direction:column;gap:15px;color:#33301f">
+    <div style="border:2px solid #4d4433;border-radius:4px;padding:15px 16px;background:#faf5e8;box-shadow:3px 3px 0 rgba(77,68,51,.25);position:relative">
+      <span style="position:absolute;top:-11px;left:14px;font-family:'Saira Stencil One';font-size:11px;letter-spacing:.14em;background:#faf5e8;padding:0 8px;color:#8a3d2e">ORDERS — 19 JUL</span>
+      <div style="display:flex;flex-direction:column;gap:9px;margin-top:2px">
+        <div style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'Oswald';font-weight:600;font-size:12px;color:#8a3d2e">01</span><div style="flex:1"><span style="font-weight:900;font-size:13.5px">Parliament: The Two Houses</span><span style="font-size:11px;color:#6e6748"> — read + 12Q quiz</span></div><span style="font-size:10px;font-weight:700;color:#6e6748">25m</span></div>
+        <div style="border-top:1.5px dashed #b8ad8d"></div>
+        <div style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'Oswald';font-weight:600;font-size:12px;color:#8a3d2e">02</span><div style="flex:1"><span style="font-weight:900;font-size:13.5px">Revision stack</span><span style="font-size:11px;color:#6e6748"> — 14 cards due</span></div><span style="font-size:10px;font-weight:700;color:#6e6748">12m</span></div>
+        <div style="border-top:1.5px dashed #b8ad8d"></div>
+        <div style="display:flex;gap:10px;align-items:baseline;opacity:.55"><span style="font-family:'Oswald';font-weight:600;font-size:12px">03</span><div style="flex:1"><span style="font-weight:900;font-size:13.5px;text-decoration:line-through">Daily briefing</span></div><span style="font-family:'Saira Stencil One';font-size:10px;color:#3f6e3c;border:1.5px solid #3f6e3c;border-radius:3px;padding:1px 6px;transform:rotate(-4deg);display:inline-block">DONE</span></div>
+      </div>
+      <button style="margin-top:13px;width:100%;font-family:'Saira Stencil One';font-size:15px;letter-spacing:.1em;background:#8a3d2e;color:#f3ecdc;border:2px solid #4d4433;border-radius:4px;padding:12px;min-height:46px;cursor:pointer;box-shadow:3px 3px 0 rgba(77,68,51,.35)">EXECUTE ORDERS →</button>
+    </div>
+    <div style="display:flex;gap:14px;align-items:center">
+      <div style="position:relative;width:84px;height:84px;flex:none">
+        <svg width="84" height="84" viewBox="0 0 84 84" style="transform:rotate(-90deg)"><circle cx="42" cy="42" r="34" fill="none" stroke="#ddd3b8" stroke-width="9"></circle><circle cx="42" cy="42" r="34" fill="none" stroke="#5b5433" stroke-width="9" stroke-dasharray="213.6" stroke-dashoffset="141"></circle></svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:'Oswald';font-weight:600;font-size:19px">34%</span><span style="font-size:8px;font-weight:900;color:#6e6748;letter-spacing:.1em">POLITY</span></div>
+      </div>
+      <div style="flex:1;font-size:11.5px;font-weight:700;display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;justify-content:space-between;border-bottom:1.5px dashed #b8ad8d;padding-bottom:5px"><span style="color:#6e6748;letter-spacing:.06em">TERRITORIES HELD</span><span style="font-family:'Oswald';font-weight:600">31 / 95</span></div>
+        <div style="display:flex;justify-content:space-between;border-bottom:1.5px dashed #b8ad8d;padding-bottom:5px"><span style="color:#6e6748;letter-spacing:.06em">GOLD MASTERY</span><span style="font-family:'Oswald';font-weight:600">6</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#6e6748;letter-spacing:.06em">DECAYING</span><span style="font-family:'Oswald';font-weight:600;color:#8a3d2e">2 ⚠</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+      <div style="border:2px solid #4d4433;border-radius:4px;background:#faf5e8;padding:11px 13px;display:flex;align-items:center;gap:9px;box-shadow:2px 2px 0 rgba(77,68,51,.2)"><svg width="17" height="17" viewBox="0 0 20 20"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="#5b5433" stroke-width="1.6" stroke-linejoin="round"></path></svg><div><div style="font-family:'Saira Stencil One';font-size:11px;letter-spacing:.08em">MAP</div><div style="font-size:9px;font-weight:700;color:#6e6748">8 REGIONS</div></div></div>
+      <div style="border:2px solid #4d4433;border-radius:4px;background:#faf5e8;padding:11px 13px;display:flex;align-items:center;gap:9px;box-shadow:2px 2px 0 rgba(77,68,51,.2)"><svg width="17" height="17" viewBox="0 0 20 20"><rect x="3" y="5" width="11" height="13" rx="1" fill="none" stroke="#2e4a7a" stroke-width="1.6"></rect><rect x="6" y="2" width="11" height="13" rx="1" fill="#faf5e8" stroke="#2e4a7a" stroke-width="1.6"></rect></svg><div><div style="font-family:'Saira Stencil One';font-size:11px;letter-spacing:.08em">REVISION</div><div style="font-size:9px;font-weight:900;color:#8a3d2e">14 DUE</div></div></div>
+    </div>
+    <div style="border-top:2px solid #4d4433;margin:0 -20px -18px;padding:9px 12px 11px;display:flex;justify-content:space-around;background:#e9e0c8">
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#8a3d2e"><svg width="16" height="16" viewBox="0 0 20 20"><path d="M3 9 L10 3 L17 9 V17 H12 V12 H8 V17 H3 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg><span style="font-size:8px;font-weight:900;letter-spacing:.08em;border-bottom:2px solid #8a3d2e">BASE</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#6e6748"><svg width="16" height="16" viewBox="0 0 20 20"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg><span style="font-size:8px;font-weight:700;letter-spacing:.08em">MAP</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#6e6748"><svg width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M10 6 V10 L13 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:8px;font-weight:700;letter-spacing:.08em">TESTS</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#6e6748"><svg width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M4 17 C4.5 13.5 7 12 10 12 C13 12 15.5 13.5 16 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:8px;font-weight:700;letter-spacing:.08em">PROFILE</span></span>
+    </div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Command Console — game-grade depth: gradient panels, chunky 3D press buttons, colored sections. Duolingo energy, CAPF discipline.</div>
+<div class="dv-card" style="width:380px;background:linear-gradient(180deg,#fdf9ef,#f6efdd);border-radius:32px;border:none;box-shadow:0 20px 50px rgba(90,70,30,.18)">
+  <div style="padding:20px;display:flex;flex-direction:column;gap:16px;color:#2b2416">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="flex:none;width:54px;height:68px;background:linear-gradient(180deg,#fff,#f0e8d2);border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 #d9cba6,0 8px 16px rgba(90,70,30,.15)">
+        <svg width="34" height="56" viewBox="0 0 56 92"><path d="M11 89 V24 L28 7 L45 24 V89 Z" fill="url(#cc-b)" stroke="#6b5d3a" stroke-width="1.5"></path><defs><linearGradient id="cc-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3a26c"></stop><stop offset="1" stop-color="#8a7a4e"></stop></linearGradient></defs><path d="M28 20 L30.35 26.76 L37.51 26.91 L31.8 31.24 L33.88 38.09 L28 34 L22.12 38.09 L24.2 31.24 L18.49 26.91 L25.65 26.76 Z" fill="#eef2f6"></path><path d="M28 40 L30.35 46.76 L37.51 46.91 L31.8 51.24 L33.88 58.09 L28 54 L22.12 58.09 L24.2 51.24 L18.49 46.91 L25.65 46.76 Z" fill="#eef2f6"></path><rect x="15" y="73" width="26" height="6" fill="#c0483c"></rect><rect x="15" y="75" width="26" height="2" fill="#3d5c94"></rect></svg>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:700;color:#9c8d68">Good evening,</div>
+        <div style="font-family:'Dela Gothic One';font-size:16px;text-transform:uppercase;color:#2b2416">SI Arjun</div>
+        <div style="margin-top:6px;height:12px;border-radius:99px;background:#eadfc2;box-shadow:inset 0 2px 4px rgba(90,70,30,.2);overflow:hidden"><div style="width:64%;height:100%;background:linear-gradient(180deg,#c9ab60,#a98f4c);border-radius:99px;box-shadow:inset 0 2px 0 rgba(255,255,255,.4)"></div></div>
+      </div>
+      <div style="flex:none;display:flex;flex-direction:column;align-items:center;background:linear-gradient(180deg,#ffedd9,#ffdfc2);border-radius:18px;padding:9px 13px;box-shadow:0 4px 0 #e8b98a,0 8px 14px rgba(232,112,58,.2)">
+        <svg width="16" height="20" viewBox="0 0 26 32" style="animation:flicker 1.6s ease-in-out infinite;transform-origin:50% 90%"><path d="M13 0 C14 7 20 9 21 15 C22 21 18.5 26 13 26 C7.5 26 4 21 5 15 C5.6 11.4 8 9.6 9 7 C9.6 9 11 10 12 9.4 C13.4 8.4 12.6 4 13 0 Z" fill="#e8703a"></path><path d="M13 14 C15.5 17 16.5 19.5 15.5 22 C14.8 23.8 13 24.6 11.5 24 C9.6 23.2 9.4 20.6 10.5 18.5 C11.3 17 12.4 16 13 14 Z" fill="#ffedd9"></path></svg>
+        <span style="font-family:'Dela Gothic One';font-size:14px;color:#c65a1e">17</span>
+      </div>
+    </div>
+    <div style="background:linear-gradient(160deg,#ff9e5e,#f07a34);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 0 #c4581c,0 14px 28px rgba(232,112,58,.35);color:#3d1f08">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-family:'Dela Gothic One';font-size:11px;text-transform:uppercase;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.15)">Today's Mission</span>
+        <span style="font-size:10.5px;font-weight:900;background:rgba(255,255,255,.35);border-radius:99px;padding:3px 10px">~45 MIN</span>
+      </div>
+      <div style="font-family:'Dela Gothic One';font-size:17px;line-height:1.3;color:#fff;text-shadow:0 1.5px 0 rgba(0,0,0,.18)">Parliament: The Two Houses</div>
+      <div style="font-size:12px;font-weight:700;color:#5c2e0d">Guided path · 14 SR cards due · briefing done ✓</div>
+      <button style="font-family:'Lato';font-weight:900;font-size:14.5px;background:linear-gradient(180deg,#fff,#f4ead2);color:#c4581c;border:none;border-radius:99px;padding:13px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 #d9c9a4,0 10px 16px rgba(90,60,20,.2)">BEGIN MISSION →</button>
+    </div>
+    <div style="display:flex;gap:12px">
+      <div style="flex:none;background:#fff;border-radius:22px;padding:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 0 #e5dabb,0 8px 16px rgba(90,70,30,.12)">
+        <div style="position:relative;width:82px;height:82px">
+          <svg width="82" height="82" viewBox="0 0 82 82" style="transform:rotate(-90deg)"><circle cx="41" cy="41" r="33" fill="none" stroke="#f0e8d2" stroke-width="10"></circle><circle cx="41" cy="41" r="33" fill="none" stroke="url(#cc-g)" stroke-width="10" stroke-linecap="round" stroke-dasharray="207.3" stroke-dashoffset="136.8"></circle><defs><linearGradient id="cc-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb060"></stop><stop offset="1" stop-color="#e86a2a"></stop></linearGradient></defs></svg>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font-family:'Dela Gothic One';font-size:17px">34%</span><span style="font-size:8px;font-weight:900;color:#9c8d68">POLITY</span></div>
+        </div>
+      </div>
+      <div style="flex:1;background:#fff;border-radius:22px;padding:13px 15px;display:flex;flex-direction:column;justify-content:center;gap:8px;box-shadow:0 4px 0 #e5dabb,0 8px 16px rgba(90,70,30,.12);font-size:11.5px;font-weight:700">
+        <div style="display:flex;justify-content:space-between"><span style="color:#9c8d68">Territories</span><span style="color:#4e8a33;font-weight:900">31 / 95</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#9c8d68">Gold</span><span style="color:#b8892a;font-weight:900">6 ★</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:#9c8d68">Decaying</span><span style="color:#c0483c;font-weight:900">2</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:linear-gradient(180deg,#e9f2df,#d7e8c6);border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:9px;box-shadow:0 4px 0 #b3cc98;cursor:pointer"><svg width="19" height="19" viewBox="0 0 20 20"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="#4e7a33" stroke-width="1.7" stroke-linejoin="round"></path></svg><div><div style="font-weight:900;font-size:12.5px;color:#33501f">Map</div><div style="font-size:9.5px;font-weight:700;color:#6e8a55">8 regions</div></div></div>
+      <div style="background:linear-gradient(180deg,#e2ecfb,#cddef6);border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:9px;box-shadow:0 4px 0 #a3bede;cursor:pointer"><svg width="19" height="19" viewBox="0 0 20 20"><rect x="3" y="5" width="11" height="13" rx="2" fill="none" stroke="#2f63c4" stroke-width="1.7"></rect><rect x="6" y="2" width="11" height="13" rx="2" fill="#e2ecfb" stroke="#2f63c4" stroke-width="1.7"></rect></svg><div><div style="font-weight:900;font-size:12.5px;color:#1d3d78">Revision</div><div style="font-size:9.5px;font-weight:900;color:#c0483c">14 due</div></div></div>
+    </div>
+    <div style="background:#fff;border-radius:99px;padding:8px;display:flex;justify-content:space-around;box-shadow:0 5px 0 #e5dabb,0 12px 20px rgba(90,70,30,.15)">
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;background:linear-gradient(180deg,#ff9e5e,#f07a34);border-radius:99px;padding:7px 15px;color:#fff;box-shadow:0 3px 0 #c4581c"><svg width="16" height="16" viewBox="0 0 20 20"><path d="M3 9 L10 3 L17 9 V17 H12 V12 H8 V17 H3 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg><span style="font-size:8px;font-weight:900">BASE</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;color:#9c8d68"><svg width="16" height="16" viewBox="0 0 20 20"><path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path></svg><span style="font-size:8px;font-weight:700">MAP</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;color:#9c8d68"><svg width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M10 6 V10 L13 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:8px;font-weight:700">TESTS</span></span>
+      <span style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 12px;color:#9c8d68"><svg width="16" height="16" viewBox="0 0 20 20"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M4 17 C4.5 13.5 7 12 10 12 C13 12 15.5 13.5 16 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg><span style="font-size:8px;font-weight:700">PROFILE</span></span>
+    </div>
+  </div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "apply <a class="dv-oid" href="#1c">1c</a> to all screens" · "mix <a class="dv-oid" href="#1b">1b</a>'s stamps into the current style" · "make <a class="dv-oid" href="#1a">1a</a> the dark mode" · "new directions"</p>
+</section>
+</x-dc>
+</body>
+</html>

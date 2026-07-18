@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Oswald:wght@500;600&amp;family=Lato:wght@400;700;900&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html{background:#f3ecdc}
+body{margin:0;background:var(--bg-0);background-image:repeating-linear-gradient(0deg,rgba(110,95,58,.035) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(110,95,58,.03) 0 1px,transparent 1px 4px);color:var(--ink-1);font-family:var(--font-ui)}
+a{color:var(--blue-deep);text-decoration:none} a:hover{color:var(--orange-deep)}
+@keyframes confetti{0%{transform:translateY(-4px) rotate(0deg)}100%{transform:translateY(4px) rotate(18deg)}}
+</style>
+</helmet>
+<div style="max-width:1400px;margin:0 auto;padding:48px 44px 72px;display:flex;flex-direction:column;gap:36px">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:var(--font-ui);font-weight:700;font-size:12px;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:5px 12px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">Screen 06</span>
+      <h1 style="margin:0;font-family:var(--font-display);font-size:30px;text-transform:uppercase">Quiz Results &amp; Review</h1>
+    </div>
+    <p style="margin:0;font-size:14px;color:var(--ink-2);max-width:720px">The conquest moment — then honest accounting. Score first, tier breakdown second, and every wrong answer lands in the revision stack with a visible receipt. Desktop: results and review sit side by side.</p>
+  </header>
+
+  <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+
+    <div data-screen-label="Results · conquered" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:26px 20px 20px;display:flex;flex-direction:column;gap:16px;align-items:center;background:var(--green-tint);border-bottom:var(--bw-bold) solid var(--line);position:relative">
+        <span style="position:absolute;top:18px;left:22px;width:10px;height:10px;background:var(--orange);border:1.5px solid #4d4433;transform:rotate(15deg);animation:confetti 1.4s ease-in-out infinite alternate"></span>
+        <span style="position:absolute;top:34px;right:30px;width:8px;height:8px;border-radius:50%;background:var(--blue);border:1.5px solid #4d4433;animation:confetti 1.8s ease-in-out infinite alternate-reverse"></span>
+        <span style="position:absolute;top:74px;left:44px;width:7px;height:7px;border-radius:50%;background:var(--gold-hi);border:1.5px solid #4d4433;animation:confetti 1.6s ease-in-out infinite alternate"></span>
+        <span style="font-family:var(--font-ui);font-weight:900;font-size:13px;background:var(--green);border:var(--bw) solid var(--line);border-radius:var(--r-md);padding:6px 16px;transform:rotate(-2deg);box-shadow:var(--shadow-2)">TERRITORY SECURED</span>
+        <div style="position:relative;width:130px;height:130px">
+          <svg width="130" height="130" viewBox="0 0 130 130" style="transform:rotate(-90deg)">
+            <circle cx="65" cy="65" r="55" fill="none" stroke="var(--bg-2)" stroke-width="11"></circle>
+            <circle cx="65" cy="65" r="55" fill="none" stroke="var(--green-deep)" stroke-width="11" stroke-linecap="round" stroke-dasharray="345.6" stroke-dashoffset="86.4"></circle>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+            <span style="font-family:var(--font-display);font-size:30px;line-height:1">9<span style="font-size:16px;color:var(--ink-3)">/12</span></span>
+            <span style="font-size:10.5px;font-weight:900;color:var(--green-deep)">75% · PASS ≥70%</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <span style="font-size:11px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:5px 12px">+140 XP</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:5px 12px"><svg width="10" height="13" viewBox="0 0 26 32"><path d="M13 0 C14 7 20 9 21 15 C22 21 18.5 26 13 26 C7.5 26 4 21 5 15 C5.6 11.4 8 9.6 9 7 C9.6 9 11 10 12 9.4 C13.4 8.4 12.6 4 13 0 Z" fill="#e8703a" stroke="#4d4433" stroke-width="1.6"></path></svg>streak safe</span>
+          <span style="font-size:11px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:5px 12px">11m 42s</span>
+        </div>
+      </div>
+      <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:var(--font-display);font-size:13px;text-transform:uppercase">Tier breakdown</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="flex:none;width:78px;font-size:11px;font-weight:900;color:var(--ink-2)">Tier 1 · core</span>
+              <div style="flex:1;height:14px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);overflow:hidden"><div style="width:100%;height:100%;background:var(--green)"></div></div>
+              <span style="flex:none;font-size:11px;font-weight:900">5/5</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="flex:none;width:78px;font-size:11px;font-weight:900;color:var(--ink-2)">Tier 2 · std</span>
+              <div style="flex:1;height:14px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);overflow:hidden"><div style="width:75%;height:100%;background:var(--green)"></div></div>
+              <span style="flex:none;font-size:11px;font-weight:900">3/4</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="flex:none;width:78px;font-size:11px;font-weight:900;color:var(--ink-2)">Tier 3 · hard</span>
+              <div style="flex:1;height:14px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);overflow:hidden"><div style="width:33%;height:100%;background:var(--orange)"></div></div>
+              <span style="flex:none;font-size:11px;font-weight:900">1/3</span>
+            </div>
+          </div>
+          <div style="font-size:11.5px;color:var(--ink-3);font-weight:700">Tier 3 gaps block gold mastery — retake once revised.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;background:var(--blue-tint);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-lg);padding:13px 15px">
+          <svg width="22" height="22" viewBox="0 0 20 20" style="flex:none"><rect x="3" y="5" width="11" height="13" rx="2" fill="none" stroke="var(--blue-deep)" stroke-width="1.5"></rect><rect x="6" y="2" width="11" height="13" rx="2" fill="var(--bg-2)" stroke="var(--blue-deep)" stroke-width="1.5"></rect><path d="M9 7 L11 9.5 L14.5 5.5" fill="none" stroke="var(--blue-deep)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div style="flex:1">
+            <div style="font-weight:900;font-size:13px">3 wrong answers → revision stack</div>
+            <div style="font-size:11px;color:var(--ink-2)">First review scheduled tomorrow. Stack total: 17.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button style="flex:1;font-family:var(--font-ui);font-weight:700;font-size:14px;background:var(--bg-2);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="background:var(--bg-1)">Review answers</button>
+          <button style="flex:1;font-family:var(--font-ui);font-weight:900;font-size:14px;background:var(--green);color:#4d4433;border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:13px;min-height:48px;cursor:pointer" style-hover="box-shadow:var(--shadow-2);transform:translate(-1px,-1px)">Back to map →</button>
+        </div>
+      </div>
+    </div>
+
+    <div data-screen-label="Per-question review" style="width:380px;flex:none;background:var(--bg-0);border:var(--bw-bold) solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-soft)">
+      <div style="padding:16px 20px 12px;display:flex;flex-direction:column;gap:12px;border-bottom:var(--bw) solid var(--line)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="flex:none;width:34px;height:34px;border:var(--bw) solid var(--line);border-radius:var(--r-full);background:var(--bg-2);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1">
+            <div style="font-weight:900;font-size:13px">Answer review</div>
+            <div style="font-size:10.5px;font-weight:700;color:var(--ink-3)">Parliament: The Two Houses · 9/12</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <span style="font-size:11px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:5px 12px">All 12</span>
+          <span style="font-size:11px;font-weight:900;background:var(--red-tint);color:var(--red-deep);border:var(--bw-bold) solid var(--red-deep);border-radius:var(--r-full);padding:5px 12px">Wrong 3</span>
+          <span style="font-size:11px;font-weight:900;background:var(--bg-2);border:var(--bw) solid var(--line);border-radius:var(--r-full);padding:5px 12px">Flagged 2</span>
+        </div>
+      </div>
+      <div style="padding:16px 16px 20px;display:flex;flex-direction:column;gap:12px">
+        <div style="border:var(--bw-bold) solid var(--red-deep);border-radius:var(--r-lg);overflow:hidden;background:var(--bg-2)">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:13px 15px;background:var(--red-tint)">
+            <span style="flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--red-deep);display:flex;align-items:center;justify-content:center;margin-top:1px"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#fff" stroke-width="2" stroke-linecap="round"></path></svg></span>
+            <div style="flex:1">
+              <div style="font-size:10px;font-weight:900;color:var(--red-deep)">Q7 · WRONG · TIER 3</div>
+              <div style="font-family:var(--font-read);font-size:13.5px;line-height:1.5;margin-top:3px">Joint sittings of Parliament — which of the following bills can be referred?</div>
+            </div>
+            <svg width="12" height="12" viewBox="0 0 14 14" style="flex:none;margin-top:4px;transform:rotate(90deg)"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="padding:13px 15px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px"><span style="flex:none;width:16px;height:16px;border-radius:var(--r-full);background:var(--red-deep);display:inline-flex;align-items:center;justify-content:center"><svg width="8" height="8" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="#fff" stroke-width="2" stroke-linecap="round"></path></svg></span><span style="font-weight:700">Your answer: Money bills included</span></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px"><span style="flex:none;width:16px;height:16px;border-radius:var(--r-full);background:var(--green-deep);display:inline-flex;align-items:center;justify-content:center"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="font-weight:700">Correct: Ordinary bills only</span></div>
+            </div>
+            <div style="font-family:var(--font-read);font-size:13.5px;line-height:1.6;color:var(--ink-2)">Article 108 excludes <strong style="color:var(--ink-1)">money bills</strong> and <strong style="color:var(--ink-1)">constitutional amendment bills</strong> from joint sittings. Money bills give the Lok Sabha final say; amendment bills need each House separately.</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span style="font-size:10px;font-weight:900;background:var(--khaki-tint);color:var(--khaki-deep);border:var(--bw) solid var(--khaki-deep);border-radius:var(--r-full);padding:3px 9px">Art. 108</span>
+              <span style="font-size:10px;font-weight:900;background:var(--blue-tint);color:var(--blue-deep);border:var(--bw) solid var(--blue-deep);border-radius:var(--r-full);padding:3px 9px">IN REVISION STACK ✓</span>
+            </div>
+          </div>
+        </div>
+        <div style="border:var(--bw) solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);display:flex;align-items:flex-start;gap:10px;padding:13px 15px">
+          <span style="flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--green-deep);display:flex;align-items:center;justify-content:center;margin-top:1px"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:900;color:var(--green-deep)">Q8 · CORRECT · TIER 1</div>
+            <div style="font-family:var(--font-read);font-size:13.5px;line-height:1.5;margin-top:3px">Quorum of either House is one-tenth of total membership.</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 14 14" style="flex:none;margin-top:4px"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <div style="border:var(--bw) solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);display:flex;align-items:flex-start;gap:10px;padding:13px 15px">
+          <span style="flex:none;width:22px;height:22px;border-radius:var(--r-full);background:var(--green-deep);display:flex;align-items:center;justify-content:center;margin-top:1px"><svg width="11" height="11" viewBox="0 0 12 12"><path d="M2.5 6.5 L5 9 L9.5 3.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10px;font-weight:900;color:var(--green-deep)">Q9 · CORRECT · TIER 2</span><svg width="10" height="11" viewBox="0 0 12 14"><path d="M2 1 V13 M2 1 H10 L8 4 L10 7 H2" fill="var(--blue)" stroke="var(--blue-deep)" stroke-width="1.3" stroke-linejoin="round"></path></svg></div>
+            <div style="font-family:var(--font-read);font-size:13.5px;line-height:1.5;margin-top:3px">The Speaker's casting vote applies only in case of a tie.</div>
+          </div>
+          <svg width="12" height="12" viewBox="0 0 14 14" style="flex:none;margin-top:4px"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#4d4433" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+        <div style="text-align:center;font-size:11px;font-weight:700;color:var(--ink-3)">+ 9 more ↓</div>
+      </div>
+    </div>
+
+    <section style="flex:1;min-width:300px;max-width:460px;display:flex;flex-direction:column;gap:10px">
+      <h3 style="margin:0;font-family:var(--font-display);font-size:16px;text-transform:uppercase">Interaction notes</h3>
+      <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:var(--ink-2)">
+        <li>Conquest choreography (pass): ring fills 0→75% (700ms) → "TERRITORY SECURED" sticker stamps in with --ease-pop → 6–8 confetti pieces drift 1.2s → XP chips count up. Total under 2.5s, skippable by tap.</li>
+        <li>Fail state: header stays cream, sticker reads "NOT YET — 58%", ring is orange; CTA becomes "Revise weak statements" and lists the 2 sections to re-read. No shame reds.</li>
+        <li>Tier bars fill sequentially (120ms stagger); tapping a bar filters the review list to that tier.</li>
+        <li>Revision-stack receipt slides in last — it's the promise the system remembers for you.</li>
+        <li>Review cards: wrong ones start expanded, correct ones collapsed; filter chips animate list re-sort (200ms FLIP).</li>
+        <li>Every explanation links its article chip → opens Topic Reader at that section.</li>
+        <li>Gold retake: passing at 100% on a conquered territory triggers the gold node upgrade on return to map.</li>
+        <li>Desktop: results left (sticky), review list right, filters as tabs.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

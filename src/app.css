@@ -1,0 +1,35 @@
+/*
+ * PLACEHOLDER global styles + token stubs.
+ * Replace with the real tokens.css from the design handoff (drop into
+ * src/app.css or import it here). Do NOT treat these values as final design.
+ */
+:root {
+	--brand-primary: #1e3a8a;
+	--brand-accent: #f59e0b;
+	--bg: #ffffff;
+	--fg: #0f172a;
+	--muted: #64748b;
+	--radius: 12px;
+	--nav-h: 64px;
+	--font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+	--font-deva: 'Noto Sans Devanagari', 'Nirmala UI', system-ui, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
+}
+
+body {
+	background: var(--bg);
+	color: var(--fg);
+	font-family: var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
