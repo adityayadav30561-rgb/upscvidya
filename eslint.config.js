@@ -43,6 +43,8 @@ export default ts.config(
 		rules: {
 			// static-adapter SPA — plain hrefs are fine
 			'svelte/no-navigation-without-resolve': 'off',
+			// we use Date as an immutable value, never mutated after creation
+			'svelte/prefer-svelte-reactivity': 'off',
 			// fully-TS project: svelte-check owns undefined-symbol errors,
 			// no-undef false-positives on DOM lib types (KeyboardEvent etc.)
 			'no-undef': 'off',
