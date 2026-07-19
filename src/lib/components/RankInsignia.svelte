@@ -9,15 +9,8 @@
 		width?: number;
 	} = $props();
 
-	/*
-	 * SVG recipes lifted verbatim from Foundations §04 (14-grade ladder),
-	 * mapped onto the schema's 10 rank codes:
-	 *   cadet→Cadet, constable→Constable, head_constable→Head Constable,
-	 *   asi/si/inspector→star+gorget grades, ac→Assistant Commandant (target),
-	 *   dc→Deputy Commandant, commandant→Commandant, dg→Director General.
-	 * (Sr. Constable, 2iC, DIG, IG grades are visual-only in the design and
-	 * have no schema code — see SCHEMA.md rank ladder.)
-	 */
+	/* SVG recipes lifted verbatim from Foundations §04 — the full 14-grade
+	 * CAPF ladder. Codes + XP thresholds live in $lib/ranks. */
 	const uid = `ri-${Math.random().toString(36).slice(2, 8)}`;
 	const height = $derived(Math.round((width / 56) * 92));
 
@@ -32,6 +25,10 @@
 	const recipes: Record<RankCode, Piece[]> = {
 		cadet: [{ kind: 'ring', t: 'translate(28 46)' }],
 		constable: [{ kind: 'chev', t: 'translate(28 50) scale(.85)' }],
+		sr_constable: [
+			{ kind: 'chev', t: 'translate(28 42) scale(.85)' },
+			{ kind: 'chev', t: 'translate(28 57) scale(.85)' }
+		],
 		head_constable: [
 			{ kind: 'chev', t: 'translate(28 34) scale(.85)' },
 			{ kind: 'chev', t: 'translate(28 48) scale(.85)' },
@@ -58,10 +55,24 @@
 			{ kind: 'star', t: 'translate(28 66) scale(.68)' }
 		],
 		dc: [{ kind: 'emblem', x: 19.7, y: 32, w: 16.6, h: 24 }],
+		second_in_command: [
+			{ kind: 'emblem', x: 20.7, y: 17.5, w: 14.5, h: 21 },
+			{ kind: 'star', t: 'translate(28 54) scale(.68)' }
+		],
 		commandant: [
 			{ kind: 'emblem', x: 21.1, y: 14, w: 13.8, h: 20 },
 			{ kind: 'star', t: 'translate(28 48) scale(.64)' },
 			{ kind: 'star', t: 'translate(28 67) scale(.64)' }
+		],
+		dig: [
+			{ kind: 'emblem', x: 21.4, y: 12.5, w: 13.1, h: 19 },
+			{ kind: 'star', t: 'translate(28 44) scale(.56)' },
+			{ kind: 'star', t: 'translate(20 60) scale(.56)' },
+			{ kind: 'star', t: 'translate(36 60) scale(.56)' }
+		],
+		ig: [
+			{ kind: 'star', t: 'translate(28 28) scale(.68)' },
+			{ kind: 'swords', t: 'translate(28 54)' }
 		],
 		dg: [
 			{ kind: 'emblem', x: 21.1, y: 16, w: 13.8, h: 20 },

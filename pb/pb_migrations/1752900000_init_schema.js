@@ -118,8 +118,12 @@ migrate(
       { type: "number", name: "daily_minutes", onlyInt: true },
       { type: "number", name: "xp", onlyInt: true, min: 0 },
       {
+        // the real CAPF 14-grade ladder (design Foundations §04 is source of truth)
         type: "select", name: "rank_code", maxSelect: 1,
-        values: ["cadet", "constable", "head_constable", "asi", "si", "inspector", "ac", "dc", "commandant", "dg"],
+        values: [
+          "cadet", "constable", "sr_constable", "head_constable", "asi", "si",
+          "inspector", "ac", "dc", "second_in_command", "commandant", "dig", "ig", "dg",
+        ],
       },
       { type: "number", name: "streak_current", onlyInt: true, min: 0 },
       { type: "number", name: "streak_best", onlyInt: true, min: 0 },

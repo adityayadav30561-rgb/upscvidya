@@ -39,7 +39,7 @@ PocketBase has no field-level rules, so:
 | exam | select: capf | |
 | target_year, daily_minutes | number | onboarding answers |
 | xp | number | server-owned |
-| rank_code | select: cadet…dg | server-owned; default `cadet` (create hook) |
+| rank_code | select: 14 grades (see ladder below) | server-owned; default `cadet` (create hook) |
 | streak_current / streak_best / streak_freezes | number | server-owned; freezes default 2 |
 | last_active_date | date | |
 | battalion_id | relation→battalions | assigned by create hook |
@@ -51,6 +51,28 @@ PocketBase has no field-level rules, so:
 Rules: list/view/update own record only. The update rule blocks self-writes to
 every server-owned field (`xp`, `rank_code`, premium fields, streaks, `role`,
 `referral_code`, `referred_by`, `battalion_id`) via `@request.body.X:isset` guards.
+
+#### Rank ladder — 14 grades (design Foundations §04 is source of truth)
+
+The design supersedes the build book's 10-rank list. XP thresholds and the XP
+hook (Prompt 09) follow this table. Client copy: `src/lib/ranks.ts`.
+
+| code | rank | XP |
+|---|---|---|
+| cadet | Cadet | 0 |
+| constable | Constable | 500 |
+| sr_constable | Sr. Constable | 1,200 |
+| head_constable | Head Constable | 2,200 |
+| asi | Asst. Sub Inspector | 3,500 |
+| si | Sub Inspector | 5,200 |
+| inspector | Inspector | 7,500 |
+| ac | Assistant Commandant | 10,500 · target rank |
+| dc | Deputy Commandant | 14,500 |
+| second_in_command | Second in Command | 19,500 |
+| commandant | Commandant | 26,000 |
+| dig | Dy. Inspector General | 34,000 |
+| ig | Inspector General | 44,000 |
+| dg | Director General | 56,000 |
 
 ### topics
 `id_code` (unique), `title`, `part_no`, `region` (8 values: foundations, system,

@@ -15,23 +15,10 @@
 	} from '$lib/components';
 	import { showToast } from '$lib/toast.svelte';
 	import { getTheme, toggleTheme } from '$lib/theme.svelte';
-	import type { RankCode } from '$lib/types';
+	import { RANKS } from '$lib/ranks';
 
 	let sheetOpen = $state(false);
 	let modalOpen = $state(false);
-
-	const ranks: { code: RankCode; label: string }[] = [
-		{ code: 'cadet', label: 'Cadet' },
-		{ code: 'constable', label: 'Constable' },
-		{ code: 'head_constable', label: 'Head Constable' },
-		{ code: 'asi', label: 'Asst. Sub Inspector' },
-		{ code: 'si', label: 'Sub Inspector' },
-		{ code: 'inspector', label: 'Inspector' },
-		{ code: 'ac', label: 'Assistant Commandant' },
-		{ code: 'dc', label: 'Deputy Commandant' },
-		{ code: 'commandant', label: 'Commandant' },
-		{ code: 'dg', label: 'Director General' }
-	];
 </script>
 
 <svelte:head><title>Kitchen Sink — UPSCVidya</title></svelte:head>
@@ -91,12 +78,13 @@
 	</section>
 
 	<section>
-		<h2>Rank insignia — 10 grades</h2>
+		<h2>Rank insignia — 14 grades</h2>
 		<div class="ranks">
-			{#each ranks as r (r.code)}
-				<div class="rank">
+			{#each RANKS as r (r.code)}
+				<div class="rank" class:target={r.code === 'ac'}>
 					<RankInsignia rank={r.code} />
-					<span class="ranklabel">{r.label}</span>
+					<span class="ranklabel" class:targetlabel={r.code === 'ac'}>{r.label}</span>
+					<span class="rankxp">{r.xp.toLocaleString('en-IN')} XP{r.code === 'ac' ? ' · target rank' : ''}</span>
 				</div>
 			{/each}
 		</div>
@@ -243,6 +231,19 @@
 		font-family: var(--font-display);
 		font-size: 11px;
 		text-transform: uppercase;
+	}
+	.rankxp {
+		font-size: 10.5px;
+		color: var(--ink-3);
+	}
+	/* AC — target rank emphasis per Foundations */
+	.rank.target {
+		background: var(--orange-tint);
+		border-width: var(--bw-bold);
+		box-shadow: var(--shadow-2);
+	}
+	.targetlabel {
+		color: var(--orange-deep);
 	}
 	.hint {
 		font-size: 13px;

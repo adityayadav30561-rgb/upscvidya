@@ -10,17 +10,8 @@ export type Region =
 	| 'dynamics'
 	| 'courtroom';
 
-export type RankCode =
-	| 'cadet'
-	| 'constable'
-	| 'head_constable'
-	| 'asi'
-	| 'si'
-	| 'inspector'
-	| 'ac'
-	| 'dc'
-	| 'commandant'
-	| 'dg';
+export type { RankCode } from './ranks';
+import type { RankCode } from './ranks';
 
 export type QuestionFormat =
 	| 'single-factual'
