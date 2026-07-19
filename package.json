@@ -10,18 +10,38 @@
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"lint": "eslint .",
+		"format": "prettier --write .",
 		"validate": "node scripts/content/validate.js",
 		"sync": "node scripts/content/sync.js",
 		"ingest": "node scripts/ingest/ingest.js"
 	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@playwright/test": "^1.61.1",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/svelte": "^5.4.2",
+		"eslint": "^10.7.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.20.0",
+		"jsdom": "^29.1.1",
+		"prettier": "^3.9.5",
+		"prettier-plugin-svelte": "^4.1.1",
+		"sharp": "^0.35.3",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.64.0",
 		"vite": "^8.0.16",
+		"vitest": "^4.1.10",
 		"yaml": "^2.9.0"
+	},
+	"dependencies": {
+		"pocketbase": "^0.27.0"
 	}
 }

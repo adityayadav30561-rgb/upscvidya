@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
 	plugins: [
@@ -18,5 +18,13 @@ export default defineConfig({
 				strict: false
 			})
 		})
-	]
+	],
+	// vitest must resolve svelte's browser build, not the SSR one
+	resolve: process.env.VITEST ? { conditions: ['browser'] } : undefined,
+	test: {
+		environment: 'jsdom',
+		globals: true, // enables @testing-library auto-cleanup between tests
+		include: ['src/**/*.test.ts'],
+		setupFiles: ['src/vitest-setup.ts']
+	}
 });

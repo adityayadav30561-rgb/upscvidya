@@ -13,10 +13,10 @@
  * finished question parse fine; exotic mixes go to the warnings channel.
  */
 
-const Q_START = /^\s*(?:Q\.?\s*)?(\d{1,3})[).:\-]\s+/;
-const OPT_LINE = /^\s*\(?([a-dA-D1-4])[).:\-]\s+(.*)$/;
+const Q_START = /^\s*(?:Q\.?\s*)?(\d{1,3})[).:-]\s+/;
+const OPT_LINE = /^\s*\(?([a-dA-D1-4])[).:-]\s+(.*)$/;
 const ANS_LINE = /^\s*(?:ans(?:wer)?)\b\s*[:.\-)\s]*\(?([a-dA-D1-4])\)?\s*\.?\s*$/i;
-const EXPL_LINE = /^\s*(?:expl(?:anation)?|sol(?:ution)?)\b\s*[:.\-]?\s*(.*)$/i;
+const EXPL_LINE = /^\s*(?:expl(?:anation)?|sol(?:ution)?)\b\s*[:.-]?\s*(.*)$/i;
 const STATEMENT_CUE = /consider the following|match the following|arrange the following|match list/i;
 const SELECTOR_LINE = /which of the|select the correct|correct answer using the code|codes\s*:/i;
 

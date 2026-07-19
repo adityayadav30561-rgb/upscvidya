@@ -1,22 +1,15 @@
-/*
- * PLACEHOLDER global styles + token stubs.
- * Replace with the real tokens.css from the design handoff (drop into
- * src/app.css or import it here). Do NOT treat these values as final design.
- */
-:root {
-	--brand-primary: #1e3a8a;
-	--brand-accent: #f59e0b;
-	--bg: #ffffff;
-	--fg: #0f172a;
-	--muted: #64748b;
-	--radius: 12px;
-	--nav-h: 64px;
-	--font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
-	--font-deva: 'Noto Sans Devanagari', 'Nirmala UI', system-ui, sans-serif;
-}
+/* UPSCVidya global styles — faithful to the design handoff.
+   Tokens: src/lib/styles/tokens.css (v3 "Field Manual", light default,
+   OLED dark via [data-theme="dark"]). Base body treatment (paper grain,
+   ink, UI font) comes straight from the mockups' shared <style> block. */
+@import './lib/styles/tokens.css';
 
 * {
 	box-sizing: border-box;
+}
+
+html {
+	background: var(--bg-0);
 }
 
 html,
@@ -27,9 +20,56 @@ body {
 }
 
 body {
-	background: var(--bg);
-	color: var(--fg);
-	font-family: var(--font-sans);
+	background: var(--bg-0);
+	/* paper grain from the mockups */
+	background-image:
+		repeating-linear-gradient(0deg, rgba(110, 95, 58, 0.035) 0 1px, transparent 1px 3px),
+		repeating-linear-gradient(90deg, rgba(110, 95, 58, 0.03) 0 1px, transparent 1px 4px);
+	color: var(--ink-1);
+	font-family: var(--font-ui);
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
+}
+
+a {
+	color: var(--blue-deep);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--orange-deep);
+}
+
+button {
+	font-family: var(--font-ui);
+}
+
+/* shared keyframes from the mockups */
+@keyframes flicker {
+	0%,
+	100% {
+		transform: scale(1) rotate(-1deg);
+	}
+	50% {
+		transform: scale(1.06) rotate(1.5deg);
+	}
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 10px rgba(242, 205, 106, 0.4);
+	}
+	50% {
+		box-shadow: 0 0 22px rgba(242, 205, 106, 0.7);
+	}
+}
+
+@keyframes skeleton-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.55;
+	}
 }

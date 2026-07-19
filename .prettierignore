@@ -1,0 +1,7 @@
+build/
+.svelte-kit/
+node_modules/
+pb/pb_data/
+pnpm-lock.yaml
+docs/
+content/
