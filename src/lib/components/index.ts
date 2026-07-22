@@ -5,6 +5,7 @@ export { default as ProgressRing } from './ProgressRing.svelte';
 export { default as StreakFlame } from './StreakFlame.svelte';
 export { default as RankInsignia } from './RankInsignia.svelte';
 export { default as MapNode } from './MapNode.svelte';
+export { default as RegionMap } from './RegionMap.svelte';
 export { default as OptionRow } from './OptionRow.svelte';
 export { default as BottomNav } from './BottomNav.svelte';
 export { default as Sheet } from './Sheet.svelte';
