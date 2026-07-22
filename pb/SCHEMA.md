@@ -34,6 +34,31 @@ PocketBase has no field-level rules, so:
    gated topic can only ever carry the teaser, never the full `notes_md`.
    Migration: [pb_migrations/1753000000_topics_teaser.js](pb_migrations/1753000000_topics_teaser.js).
 
+## Quiz engine (Prompt 07)
+
+**`quiz_sessions`** (base collection) holds a composed quiz server-side: each
+item stores the question, the display-ordered options, and the original-index
+`map` used to verify answers. `answer_index` never leaves the server —
+`/api/quiz/*` returns only the display index the client renders. Clients may
+READ their own sessions (resume); only the hooks write.
+Migration: [pb_migrations/1753100000_quiz_sessions.js](pb_migrations/1753100000_quiz_sessions.js).
+
+Endpoints (superuser context, [pb_hooks/quiz.pb.js](pb_hooks/quiz.pb.js)):
+`POST /api/quiz/start` composes 12 (topic) / 15 (drill) questions weighted
+30/40/30 across tiers, preferring least-attempted-by-this-user; reuses an
+active session so a refresh resumes. `/answer` verifies + records an attempt +
+bumps question stats. `/state` resumes (reveals correct index only for answered
+questions). `/finish` scores, upserts `topic_progress` (≥70% conquered, ≥90%
+second-pass-with-all-tiers gold, never downgrades), enqueues each wrong answer
+into `sr_cards` (dup-guarded), and awards XP (`10·correct + 50 pass + 30 gold`;
+rank ladder mirrors `src/lib/ranks.ts`). XP/rank logic is provisional — Prompt
+09 formalises it.
+
+**Dev note:** the engine reads `status='live'` questions only. Seed questions
+ship as `draft` (provenance workflow); promote them to `live` for local testing
+(the admin queue in Prompt 13 does this in production). `pb_data` is gitignored,
+so this promotion is per-environment.
+
 ## Collections
 
 ### users (auth, extended)
