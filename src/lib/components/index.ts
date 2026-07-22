@@ -13,3 +13,4 @@ export { default as Modal } from './Modal.svelte';
 export { default as Toast } from './Toast.svelte';
 export { default as Skeleton } from './Skeleton.svelte';
 export { default as InstallPrompt } from './InstallPrompt.svelte';
+export { default as OfflineNotes } from './OfflineNotes.svelte';

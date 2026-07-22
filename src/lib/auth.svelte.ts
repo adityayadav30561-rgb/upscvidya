@@ -3,6 +3,7 @@
 import { pb } from './pb';
 import type { User } from './types';
 import { rankForXp } from './ranks';
+import { removeAllCached } from './offline';
 
 const state = $state<{ user: User | null; booted: boolean }>({
 	user: (pb.authStore.record as unknown as User) ?? null,
@@ -82,6 +83,9 @@ export async function requestPasswordReset(email: string) {
 
 export function logout() {
 	pb.authStore.clear();
+	// Purge offline notes: cached payloads were entitled to the session that
+	// just ended (a premium/admin read of a gated topic must not survive logout).
+	void removeAllCached();
 }
 
 /** /r/[code] → referrer user id (server-resolved; clients can't list users). */

@@ -1,0 +1,84 @@
+/** Topic reader loader (build book Prompt 06).
+ *  Resolution order: entitled full record (with notes_md) → offline cache →
+ *  server-trimmed teaser (free user on a gated topic) → miss. Premium gating is
+ *  enforced by PocketBase rules; a free user physically cannot receive the full
+ *  notes_md, so the teaser branch only ever carries the trimmed text. */
+import { pb } from '$lib/pb';
+import { getCachedNote, type CachedNote } from '$lib/offline';
+import type { Topic, TopicProgress, User } from '$lib/types';
+
+interface TeaserRow {
+	id: string;
+	id_code: string;
+	title: string;
+	region: string;
+	kind: 'chapter' | 'appendix';
+	book_ref: string;
+	mcq_floor: number;
+	est_read_minutes: number;
+	is_free: boolean;
+	notes_teaser: string;
+	teaser_truncated: boolean;
+}
+
+export type ReaderMode = 'full' | 'cached' | 'teaser' | 'offline-miss' | 'missing';
+
+export interface ReaderData {
+	code: string;
+	mode: ReaderMode;
+	topic?: Topic;
+	cached?: CachedNote;
+	teaser?: TeaserRow;
+	progress: TopicProgress | null;
+}
+
+const online = () => typeof navigator === 'undefined' || navigator.onLine;
+
+async function loadProgress(topicId: string): Promise<TopicProgress | null> {
+	if (!pb.authStore.isValid) return null;
+	try {
+		return await pb.collection('topic_progress').getFirstListItem<TopicProgress>(`topic="${topicId}"`);
+	} catch {
+		return null;
+	}
+}
+
+export async function load({ params }): Promise<ReaderData> {
+	const code = params.code;
+	const user = pb.authStore.record as unknown as User | null;
+
+	// 1. entitled full record (notes_md present only when the rule allows it)
+	let full: Topic | null = null;
+	let networkFailed = false;
+	try {
+		full = await pb.collection('topics').getFirstListItem<Topic>(`id_code="${code}"`);
+	} catch {
+		if (!online()) networkFailed = true;
+	}
+	if (full) {
+		return { code, mode: 'full', topic: full, progress: await loadProgress(full.id) };
+	}
+
+	// 2. offline cache (previously-read topic opens fully in airplane mode)
+	const cached = await getCachedNote(code);
+	if (cached) {
+		return { code, mode: 'cached', cached, progress: null };
+	}
+	if (networkFailed) {
+		return { code, mode: 'offline-miss', progress: null };
+	}
+
+	// 3. teaser (free user on a gated topic) — server-trimmed text only
+	if (!user?.is_premium) {
+		try {
+			const teaser = await pb
+				.collection('topics_teaser')
+				.getFirstListItem<TeaserRow>(`id_code="${code}"`);
+			return { code, mode: 'teaser', teaser, progress: null };
+		} catch {
+			/* fall through */
+		}
+	}
+
+	return { code, mode: 'missing', progress: null };
+}

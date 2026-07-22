@@ -27,8 +27,12 @@ PocketBase has no field-level rules, so:
 2. **`topics_public`** (view collection) — every field EXCEPT `notes_md`, only
    `status = 'live'` rows, fully public. The territory map and topic lists read
    this; it powers anonymous/free browsing.
-3. The Prompt 06 teaser (~120 words for free users) will be a custom endpoint
-   that trims server-side — it does not change this collection layout.
+3. **`topics_teaser`** (view collection, Prompt 06) — `substr(notes_md,1,700)`
+   as `notes_teaser` plus a `teaser_truncated` flag, all `status='live'` rows,
+   fully public. The reader falls back to this when a free user opens a gated
+   topic, so the ~120-word preview is trimmed in SQL: the network response for a
+   gated topic can only ever carry the teaser, never the full `notes_md`.
+   Migration: [pb_migrations/1753000000_topics_teaser.js](pb_migrations/1753000000_topics_teaser.js).
 
 ## Collections
 
