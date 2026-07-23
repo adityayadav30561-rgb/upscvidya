@@ -49,8 +49,13 @@ the client surfaces the paywall (Screen 15) with the context that hit the wall.
 ## Verification
 
 - Server unit truth: `src/lib/__tests__/pay.test.ts` (pricing, beta, plan math).
-- e2e (per row): `e2e/entitlements.spec.ts` drives a free user into each 🔒 row
-  (expects the paywall / 403) and a premium user through it (expects success).
-  Payment + referral flows: `e2e/payment.spec.ts`, `e2e/referral.spec.ts`
-  (run with `PAY_SIMULATE=1` on the PocketBase server — no live Razorpay keys
-  needed; see `pb/SCHEMA.md` § Payments).
+- e2e (run with `PAY_SIMULATE=1` on the PocketBase server — no live Razorpay
+  keys needed; see `pb/SCHEMA.md` § Payments):
+  - `e2e/payment.spec.ts` — both plans flip free→premium; paywall wall.
+  - `e2e/payment-webhook.spec.ts` — **replayed webhook does not double-extend**
+    (server-level; asserts `premium_until` unchanged on replay + single ledger
+    row), plus a distinct-order control that *does* extend.
+  - `e2e/referral-grant.spec.ts` — **first quiz completion credits BOTH parties
+    exactly once** (+7 banked days each; a second quiz grants nothing; a
+    referrer-less user earns nothing). Uses free topic POL-05 (live questions).
+  - `e2e/referral.spec.ts` — referral link/share surfaces.
