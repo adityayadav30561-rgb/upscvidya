@@ -78,6 +78,29 @@ math): `again` = lapse (reps 0, 1d, ease −0.2 floored at 1.3, lapses+1);
 button-only retirement). The UI exposes Again/Good/Mastered per Screen 07;
 `easy` remains an engine grade per the build-book acceptance tests.
 
+## Progression (Prompt 09)
+
+The single awardXP path lives in [pb_hooks/lib/xp.js](pb_hooks/lib/xp.js) — a
+CommonJS module `require`d by the quiz/SR handlers (clients never write XP).
+Every award appends an `xp_events` row (weekly sparkline, Prompt 10 boards)
+and re-derives `rank_code` from the 14-grade ladder (mirrors `src/lib/ranks.ts`;
+`src/lib/xp.ts` + its test table guard the math on both sides).
+
+Rules: correct topic-quiz answer `10 × tier-mult` (T1-2 ×1.0, T3 ×1.4, T4 ×1.8,
+T5 ×2.2); anti-farm — a repeat correct on the same question within 7 days earns
+0 (flagged at answer time; SR exempt); SR review 8 flat / 12 if ever lapsed,
+`again` 0; conquest +100, gold +150 (replaces), region complete +500 (checked
+against master-doc chapter counts, so partial live content can't fire it);
+drill flat 40; mock 200+ (P11); daily CA 30 (P13).
+
+Streaks: IST days; a day counts on topic-quiz finish or the day's 10th SR
+review. Gaps auto-burn freezes (2/month, refilled by the `freeze_refill` cron);
+a gap beyond the remaining freezes resets to 1. Milestones 7/30/100 award
+badges. `badges` + `xp_events` collections ship in
+[pb_migrations/1753200000_xp_badges.js](pb_migrations/1753200000_xp_badges.js);
+badge codes: `first_conquest`, `region_<code>` ×8, `streak_7/30/100`,
+`pet_ready` (P16), `mock_finisher` (P11), `beta_founder` (P18).
+
 ## Collections
 
 ### users (auth, extended)

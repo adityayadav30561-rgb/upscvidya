@@ -196,6 +196,8 @@ routerAdd("POST", "/api/sr/grade", (e) => {
   const due = new Date(Date.now() + interval * 86400000);
   const dueStr = due.toISOString().slice(0, 10) + " 00:00:00.000Z";
 
+  const lapsesBefore = card.getInt("lapses"); // XP rule reads pre-grade lapses
+
   card.set("reps", reps);
   card.set("ease", ease);
   card.set("interval_days", interval);
@@ -217,6 +219,35 @@ routerAdd("POST", "/api/sr/grade", (e) => {
     );
   } catch (_) { remaining = 0; }
 
+  // ---- XP (Prompt 09): correct review = 8 flat, 12 if the card ever lapsed;
+  // "again" (wrong) earns nothing. SR reviews are exempt from anti-farm. ----
+  const xp = require(`${__hooks}/lib/xp.js`);
+  let xpAwarded = 0;
+  let rankUp = null;
+  if (grade !== "again") {
+    try {
+      const res = xp.awardXP(e.app, auth.id, xp.srReviewXp(lapsesBefore), "sr_review");
+      xpAwarded = xp.srReviewXp(lapsesBefore);
+      rankUp = res.rankUp;
+    } catch (err) {
+      e.app.logger().error("sr xp", "err", String(err));
+    }
+  }
+
+  // ---- streak: 10+ reviews today qualifies the day (approximated by cards
+  // touched today — updated stamps on grade) ----
+  let streak = null;
+  try {
+    const todayStart = new Date().toISOString().slice(0, 10) + " 00:00:00.000Z";
+    const touched = e.app.countRecords(
+      "sr_cards",
+      $dbx.exp("user = {:u} AND updated >= {:t}", { u: auth.id, t: todayStart })
+    );
+    if (touched >= 10) streak = xp.applyStreak(e.app, auth.id);
+  } catch (err) {
+    e.app.logger().error("sr streak", "err", String(err));
+  }
+
   return e.json(200, {
     card_id: card.id,
     grade,
@@ -226,6 +257,11 @@ routerAdd("POST", "/api/sr/grade", (e) => {
     due_date: suspended ? null : dueStr,
     suspended,
     remaining_due: remaining,
+    xp_awarded: xpAwarded,
+    rank_up: rankUp,
+    streak: streak
+      ? { current: streak.current, counted: streak.counted, freezes_used: streak.freezesUsed, freezes_left: streak.freezes }
+      : null,
   });
 });
 

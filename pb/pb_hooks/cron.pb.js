@@ -47,3 +47,16 @@ cronAdd("leaderboard_rollover", "0 0 * * 1", () => {
   }
   $app.logger().info("leaderboard_rollover", "week_start", weekStart);
 });
+
+// 1st of each month 00:05 IST — refill streak freezes to 2 (Prompt 09:
+// "2 streak freezes/month auto-apply on a missed day").
+cronAdd("freeze_refill", "5 0 1 * *", () => {
+  const users = $app.findRecordsByFilter("users", "streak_freezes < 2", "", 5000, 0);
+  let n = 0;
+  for (const u of users) {
+    u.set("streak_freezes", 2);
+    $app.save(u);
+    n++;
+  }
+  if (n > 0) $app.logger().info("freeze_refill", "refilled", n);
+});

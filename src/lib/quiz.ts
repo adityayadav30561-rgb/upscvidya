@@ -72,6 +72,9 @@ export interface QuizSummary {
 	sr_added: number;
 	tiers: TierScore[];
 	review: ReviewItem[];
+	/** Prompt 09: server-decided promotion — fires exactly once per crossing */
+	rank_up: { from: string; to: string } | null;
+	streak: { current: number; counted: boolean; freezes_used: number; freezes_left: number } | null;
 }
 
 async function post<T>(path: string, body: Record<string, unknown>): Promise<T> {

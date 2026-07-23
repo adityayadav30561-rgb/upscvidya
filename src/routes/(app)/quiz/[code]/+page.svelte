@@ -24,6 +24,8 @@
 	import Button from '$lib/components/Button.svelte';
 	import Chip from '$lib/components/Chip.svelte';
 	import ProgressRing from '$lib/components/ProgressRing.svelte';
+	import RankUp from '$lib/components/RankUp.svelte';
+	import type { RankCode } from '$lib/ranks';
 
 	const code = $derived(page.params.code ?? '');
 	const unit = $derived(UNITS.find((u) => u.code === code));
@@ -152,6 +154,8 @@
 		}
 	}
 
+	let rankUpTo = $state<RankCode | null>(null);
+
 	async function finish() {
 		if (!session || submitting) return;
 		submitting = true;
@@ -159,6 +163,16 @@
 		try {
 			summary = await finishQuiz(session.session_id);
 			if (summary.state === 'conquered' || summary.state === 'gold') stashConquest(summary.code);
+			// Prompt 09: server-decided celebration + streak feedback
+			if (summary.rank_up) rankUpTo = summary.rank_up.to as RankCode;
+			if (summary.streak?.counted) {
+				showToast(
+					summary.streak.freezes_used > 0
+						? `Streak saved — ${summary.streak.freezes_used} freeze burned. Day ${summary.streak.current}.`
+						: `Streak day ${summary.streak.current} 🔥`,
+					'success'
+				);
+			}
 			phase = 'results';
 		} catch (err) {
 			showToast(err instanceof QuizError ? err.message : 'Could not finish', 'error');
@@ -203,6 +217,10 @@
 </script>
 
 <svelte:head><title>{unit ? `${unit.title} — Quiz` : 'Quiz'} — UPSCVidya</title></svelte:head>
+
+{#if rankUpTo}
+	<RankUp to={rankUpTo} onclose={() => (rankUpTo = null)} />
+{/if}
 
 <div class="quiz">
 	{#if phase === 'loading'}

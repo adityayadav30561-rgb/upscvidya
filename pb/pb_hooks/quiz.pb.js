@@ -262,6 +262,25 @@ routerAdd("POST", "/api/quiz/answer", (e) => {
   const isCorrect = choice === correctDisplay;
   const chosenOriginal = item.map[choice];
 
+  // anti-farm (Prompt 09): a repeat CORRECT answer on a question the user
+  // already answered correctly within 7 days earns 0 XP at finish time.
+  // Checked before this attempt is recorded; SR reviews are exempt (they
+  // never route through this endpoint).
+  let farmed = false;
+  if (isCorrect) {
+    const cutoff = new Date(Date.now() - 7 * 86400000).toISOString().replace("T", " ");
+    try {
+      e.app.findFirstRecordByFilter(
+        "attempts",
+        "user = {:u} && question = {:q} && is_correct = true && attempted_at >= {:c}",
+        { u: auth.id, q: q.id, c: cutoff }
+      );
+      farmed = true; // found a recent correct attempt
+    } catch (_) {
+      farmed = false;
+    }
+  }
+
   // record the attempt
   const attCol = e.app.findCollectionByNameOrId("attempts");
   const att = new Record(attCol);
@@ -285,6 +304,7 @@ routerAdd("POST", "/api/quiz/answer", (e) => {
   // persist the answer into the session item
   item.chosen = choice;
   item.correct = isCorrect;
+  item.farm = farmed;
   item.ms = ms;
   session.set("items", JSON.stringify(items));
   session.set("correct_count", items.filter((it) => it.correct === true).length);
@@ -333,17 +353,7 @@ routerAdd("POST", "/api/quiz/finish", (e) => {
   }
   if (session.get("user") !== auth.id) return e.json(403, { message: "Not your session." });
 
-  // rank ladder (mirrors src/lib/ranks.ts — see pb/SCHEMA.md single-source note)
-  const RANKS = [
-    ["cadet", 0], ["constable", 500], ["sr_constable", 1200], ["head_constable", 2200],
-    ["asi", 3500], ["si", 5200], ["inspector", 7500], ["ac", 10500], ["dc", 14500],
-    ["second_in_command", 19500], ["commandant", 26000], ["dig", 34000], ["ig", 44000], ["dg", 56000],
-  ];
-  const rankForXp = (xp) => {
-    let code = RANKS[0][0];
-    for (const r of RANKS) if (xp >= r[1]) code = r[0];
-    return code;
-  };
+  const xp = require(`${__hooks}/lib/xp.js`); // the single awardXP path (Prompt 09)
 
   const items = JSON.parse(session.get("items") || "[]");
   const total = items.length;
@@ -353,15 +363,17 @@ routerAdd("POST", "/api/quiz/finish", (e) => {
   const isDrill = kind === "drill";
   const pass = !isDrill && scorePct >= 70;
 
-  // already finished → return the stored summary (idempotent)
+  // already finished → return the stored summary (idempotent; no re-award)
   if (session.get("status") === "finished") {
-    return e.json(200, buildSummary(e, session, items, correct, total, scorePct, null, null, 0, 0));
+    return e.json(200, buildSummary(e, session, items, correct, total, scorePct, null, null, 0, auth.getInt("xp"), 0, null, null));
   }
 
   const topicId = session.get("topic");
   let newState = null;
   let gold = false;
   let srAdded = 0;
+  let newlyConquered = false;
+  let regionComplete = null; // region code when the 500 bonus fires
 
   if (!isDrill && topicId) {
     // tiers represented across the quiz (gold needs all tiers present)
@@ -394,6 +406,40 @@ routerAdd("POST", "/api/quiz/finish", (e) => {
     prog.set("quiz_passes", priorPasses + (pass ? 1 : 0));
     prog.set("last_activity", nowIso);
     e.app.save(prog);
+
+    newlyConquered = !held && (newState === "conquered" || newState === "gold");
+
+    // region completion: every CHAPTER of the region conquered/gold, measured
+    // against the master-doc chapter counts (partial live content can't fire it)
+    if (newlyConquered) {
+      try {
+        const topicRec = e.app.findRecordById("topics", topicId);
+        const region = topicRec.get("region");
+        const expected = xp.REGION_CHAPTERS[region] || 999;
+        const regionTopics = e.app.findRecordsByFilter(
+          "topics",
+          "region = {:r} && kind = 'chapter' && status = 'live'",
+          "", 200, 0, { r: region }
+        );
+        let heldCount = 0;
+        for (const t of regionTopics) {
+          try {
+            const p = e.app.findFirstRecordByFilter(
+              "topic_progress",
+              "user = {:u} && topic = {:t} && (state = 'conquered' || state = 'gold')",
+              { u: auth.id, t: t.id }
+            );
+            if (p) heldCount++;
+          } catch (_) { /* not held */ }
+        }
+        if (heldCount >= expected) {
+          regionComplete = region;
+          xp.awardBadge(e.app, auth.id, "region_" + region);
+        }
+      } catch (err) {
+        e.app.logger().error("region check", "err", String(err));
+      }
+    }
   }
 
   // enqueue every wrong answer into the revision stack (dup-guarded)
@@ -419,26 +465,50 @@ routerAdd("POST", "/api/quiz/finish", (e) => {
     }
   }
 
-  // award XP (Prompt 09 will formalise; kept here so the loop closes)
-  const xpAwarded = correct * 10 + (pass ? 50 : 0) + (gold ? 30 : 0);
+  // ---- XP (Prompt 09 rules, single awardXP path) ----
+  let xpAwarded = 0;
+  let rankUp = null;
   let xpTotal = auth.getInt("xp");
   try {
-    const u = e.app.findRecordById("users", auth.id);
-    xpTotal = u.getInt("xp") + xpAwarded;
-    u.set("xp", xpTotal);
-    u.set("rank_code", rankForXp(xpTotal));
-    e.app.save(u);
-  } catch (err) { e.app.logger().error("xp award", "err", String(err)); }
+    if (isDrill) {
+      xpAwarded = 40; // drill session complete: flat
+    } else {
+      // per-correct-answer 10 × tier multiplier; anti-farmed answers give 0
+      for (const it of items) {
+        if (it.correct === true) xpAwarded += xp.answerXp(it.tier, !!it.farm);
+      }
+      if (gold) xpAwarded += 150;
+      else if (newlyConquered) xpAwarded += 100;
+      else if (pass) xpAwarded += 0; // re-pass of an already-held topic: answers only
+      if (regionComplete) xpAwarded += 500;
+    }
+    const res = xp.awardXP(e.app, auth.id, xpAwarded, isDrill ? "drill" : "topic_quiz");
+    xpTotal = res.xpTotal;
+    rankUp = res.rankUp;
+    if (newlyConquered) xp.awardBadge(e.app, auth.id, "first_conquest");
+  } catch (err) {
+    e.app.logger().error("xp award", "err", String(err));
+  }
+
+  // ---- streak: a finished topic quiz is a qualifying activity ----
+  let streak = null;
+  if (!isDrill) {
+    try {
+      streak = xp.applyStreak(e.app, auth.id);
+    } catch (err) {
+      e.app.logger().error("streak", "err", String(err));
+    }
+  }
 
   session.set("status", "finished");
   session.set("correct_count", correct);
   session.set("score_pct", scorePct);
   e.app.save(session);
 
-  return e.json(200, buildSummary(e, session, items, correct, total, scorePct, newState, gold, xpAwarded, xpTotal, srAdded));
+  return e.json(200, buildSummary(e, session, items, correct, total, scorePct, newState, gold, xpAwarded, xpTotal, srAdded, rankUp, streak));
 
   // inlined: assemble the results payload incl. per-question review
-  function buildSummary(ev, sess, its, corr, tot, pct, state, isGold, xpA, xpT, sr) {
+  function buildSummary(ev, sess, its, corr, tot, pct, state, isGold, xpA, xpT, sr, rankU, streakInfo) {
     const byTier = { 1: [0, 0], 2: [0, 0], 3: [0, 0], 4: [0, 0] };
     const review = its.map((it, i) => {
       let explanation = "", answerIndex = -1;
@@ -466,6 +536,10 @@ routerAdd("POST", "/api/quiz/finish", (e) => {
       pass: pct >= 70 && sess.get("kind") !== "drill",
       gold: !!isGold, state, xp_awarded: xpA, xp_total: xpT,
       wrong_count: tot - corr, sr_added: sr, tiers, review,
+      rank_up: rankU || null,
+      streak: streakInfo
+        ? { current: streakInfo.current, counted: streakInfo.counted, freezes_used: streakInfo.freezesUsed, freezes_left: streakInfo.freezes }
+        : null,
     };
   }
 });
