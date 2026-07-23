@@ -1,0 +1,101 @@
+[
+  {
+    "id": "CAPF-2024-Q001",
+    "topic": "POL-05",
+    "stem": "The words 'Socialist' and 'Secular' were added to the Preamble of the Constitution of India by which Constitutional Amendment Act?",
+    "options": [
+      "The 24th Amendment Act, 1971",
+      "The 42nd Amendment Act, 1976",
+      "The 44th Amendment Act, 1978",
+      "The 52nd Amendment Act, 1985"
+    ],
+    "answer": 1,
+    "explanation": "The 42nd Constitutional Amendment Act, 1976 added the words 'Socialist', 'Secular' and 'Integrity' to the Preamble — the only amendment ever made to it. The 24th Amendment concerned Parliament's amending power under Article 368, the 44th reversed several 42nd Amendment changes and made the Right to Property a legal right, and the 52nd introduced the Tenth Schedule (anti-defection).",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2024, "qno": 12 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2024-Q002",
+    "topic": "POL-05",
+    "stem": "Consider the following statements regarding the Preamble to the Constitution of India:\n1. The Supreme Court held in the Berubari Union case that the Preamble is a part of the Constitution.\n2. The Preamble is non-justiciable and cannot be enforced in a court of law.\n3. The Preamble can be amended under Article 368 subject to the basic structure doctrine.\nWhich of the statements given above are correct?",
+    "options": ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"],
+    "answer": 1,
+    "explanation": "Statement 1 is incorrect — in the Berubari Union case (1960) the Supreme Court held the Preamble was NOT a part of the Constitution; that position was overruled in Kesavananda Bharati (1973). Statement 2 is correct: the Preamble is non-justiciable and is not enforceable in courts. Statement 3 is correct: following Kesavananda Bharati, the Preamble is part of the Constitution and can be amended under Article 368 subject to the basic structure doctrine.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": ["capf", "cse"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2024, "qno": 13 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2024-Q003",
+    "topic": "POL-10",
+    "stem": "Which one of the following statements about the Fundamental Duties is correct?",
+    "options": [
+      "They were part of the Constitution as originally adopted in 1950",
+      "They apply to both citizens and foreigners residing in India",
+      "They were added on the recommendation of the Swaran Singh Committee",
+      "They are enforceable in a court of law like the Fundamental Rights"
+    ],
+    "answer": 2,
+    "explanation": "Fundamental Duties were added by the 42nd Amendment Act, 1976 on the recommendation of the Swaran Singh Committee — they were not in the original Constitution, so the first option is wrong. They apply only to citizens, not to foreigners, and they are non-justiciable, so they cannot be enforced by courts.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2024, "qno": 27 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2024-Q004",
+    "topic": "POL-10",
+    "stem": "How many Fundamental Duties are enumerated in Article 51A of the Constitution of India at present?",
+    "options": ["Eight", "Ten", "Eleven", "Twelve"],
+    "answer": 2,
+    "explanation": "There are eleven Fundamental Duties. The 42nd Amendment Act, 1976 enacted ten, and the 86th Amendment Act, 2002 added the eleventh — Article 51A(k), the duty of a parent or guardian to provide education opportunities to a child between the ages of six and fourteen years. The Swaran Singh Committee had recommended eight.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2024, "qno": 28 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2024-Q005",
+    "topic": "POL-19",
+    "stem": "The Vice-President of India is elected by an electoral college consisting of:",
+    "options": [
+      "Elected members of both Houses of Parliament only",
+      "Members of both Houses of Parliament, elected as well as nominated",
+      "Members of both Houses of Parliament and elected members of State Legislative Assemblies",
+      "Elected members of the Rajya Sabha only"
+    ],
+    "answer": 1,
+    "explanation": "Under Article 66, the Vice-President is elected by an electoral college consisting of the members of BOTH Houses of Parliament — elected as well as nominated. This is the key contrast with the President's election, whose electoral college includes elected members of State Legislative Assemblies but excludes nominated members. State legislatures play no part in the Vice-President's election.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2024, "qno": 45 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2024-Q006",
+    "topic": "POL-19",
+    "stem": "Consider the following statements regarding the removal of the Vice-President of India:\n1. The resolution for removal can be introduced only in the Rajya Sabha.\n2. The resolution requires a special majority of two-thirds of the total membership of the House.\n3. The Constitution does not specify any grounds for the removal of the Vice-President.\nWhich of the statements given above are correct?",
+    "options": ["1 and 2 only", "1 and 3 only", "2 and 3 only", "1, 2 and 3"],
+    "answer": 1,
+    "explanation": "Statement 1 is correct — a removal resolution can be moved only in the Rajya Sabha, with 14 days' prior notice, and must then be agreed to by the Lok Sabha. Statement 2 is incorrect: the Rajya Sabha passes it by an EFFECTIVE majority (a majority of all the then members of the House), not a two-thirds special majority. Statement 3 is correct: unlike the President's impeachment for 'violation of the Constitution', no grounds are specified for removing the Vice-President.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": ["capf", "cse"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2024, "qno": 46 },
+    "status": "live",
+    "added": "2026-07-23"
+  }
+]

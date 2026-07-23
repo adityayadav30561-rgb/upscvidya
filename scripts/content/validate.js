@@ -8,7 +8,7 @@
  */
 import {
   loadContentTree, lineOfQid,
-  REGIONS, KINDS, FORMATS, SOURCE_TYPES, Q_STATUSES, ID_CODE_RE,
+  REGIONS, KINDS, FORMATS, SOURCE_TYPES, Q_STATUSES, ID_CODE_RE, PAPER_RE,
 } from "./lib.js";
 
 const errors = [];
@@ -28,6 +28,50 @@ for (const unit of units) {
 
   const topicRel = `${unit.rel}/topic.md`;
   const mcqsRel = `${unit.rel}/mcqs.json`;
+
+  const isPyq = unit.subject === "pyq";
+
+  if (isPyq) {
+    // /content/pyq/CAPF-2022/mcqs.json — a past paper, not a topic unit
+    if (!PAPER_RE.test(unit.folder)) {
+      err(unit.rel, 1, `PYQ folder must be EXAM-YYYY (e.g. CAPF-2022): "${unit.folder}"`);
+      continue;
+    }
+    const [, exam, year] = unit.folder.match(PAPER_RE);
+    if (!unit.mcqsFile) {
+      err(mcqsRel, 1, "mcqs.json missing");
+      continue;
+    }
+    unit.mcqsFile.questions.forEach((q, i) => {
+      const line = lineOfQid(unit.mcqsFile.raw, q.id ?? `#${i}`);
+      const label = q.id ?? `question #${i + 1}`;
+      if (!q.id) { err(mcqsRel, line, 'question missing "id"'); return; }
+      if (!q.id.startsWith(`${exam}-${year}-Q`)) {
+        err(mcqsRel, line, `${label}: qid must start with ${exam}-${year}-Q`);
+      }
+      if (seenQids.has(q.id)) err(mcqsRel, line, `${label}: duplicate qid (also in ${seenQids.get(q.id)})`);
+      seenQids.set(q.id, mcqsRel);
+      // a PYQ still belongs to a syllabus topic — that drives the topic chip
+      if (!q.topic || !ID_CODE_RE.test(q.topic)) {
+        err(mcqsRel, line, `${label}: "topic" must be a syllabus id_code (POL-NN / APX-N), got ${JSON.stringify(q.topic)}`);
+      }
+      if (!q.stem || typeof q.stem !== "string") err(mcqsRel, line, `${label}: missing/empty "stem"`);
+      if (!Array.isArray(q.options) || q.options.length !== 4) err(mcqsRel, line, `${label}: "options" must be an array of exactly 4`);
+      if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) err(mcqsRel, line, `${label}: "answer" must be an integer 0-3`);
+      if (!q.explanation || !String(q.explanation).trim()) err(mcqsRel, line, `${label}: "explanation" is required`);
+      if (!Number.isInteger(q.tier) || q.tier < 1 || q.tier > 5) err(mcqsRel, line, `${label}: "tier" must be 1-5`);
+      if (!FORMATS.includes(q.format)) err(mcqsRel, line, `${label}: "format" "${q.format}" invalid`);
+      if (!Q_STATUSES.includes(q.status)) err(mcqsRel, line, `${label}: "status" "${q.status}" invalid`);
+      // provenance is the whole point of a PYQ
+      const src = q.source;
+      if (!src || typeof src !== "object") { err(mcqsRel, line, `${label}: "source" block is mandatory`); return; }
+      if (src.type !== "pyq") err(mcqsRel, line, `${label}: source.type must be "pyq" in a PYQ paper, got "${src.type}"`);
+      if (src.exam !== exam) err(mcqsRel, line, `${label}: source.exam "${src.exam}" does not match folder "${exam}"`);
+      if (String(src.year) !== year) err(mcqsRel, line, `${label}: source.year "${src.year}" does not match folder "${year}"`);
+      if (src.qno === undefined || src.qno === null || src.qno === "") err(mcqsRel, line, `${label}: source.qno is required for a PYQ`);
+    });
+    continue;
+  }
 
   if (!unit.folderIdCode) {
     err(unit.rel, 1, `folder name must start with an id_code (POL-NN or APX-N): "${unit.folder}"`);
@@ -108,4 +152,7 @@ if (errors.length) {
   process.exit(1);
 }
 const totalQ = units.reduce((n, u) => n + (u.mcqsFile?.questions?.length ?? 0), 0);
-console.log(`✓ ${units.length} topic(s), ${totalQ} question(s) — all valid`);
+const papers = units.filter((u) => u.subject === "pyq").length;
+console.log(
+  `✓ ${units.length - papers} topic(s), ${papers} PYQ paper(s), ${totalQ} question(s) — all valid`
+);

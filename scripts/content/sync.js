@@ -135,7 +135,17 @@ for (const unit of units) {
 }
 
 // ----------------------------------------------------------------- questions
-const managedTopicIds = units.map((u) => topicIdByCode[u.folderIdCode]).filter(Boolean);
+// PYQ papers (Prompt 12) carry no topic.md — each question names the syllabus
+// topic it belongs to, so the managed set is the union of both shapes.
+const managedTopicIds = [
+  ...new Set([
+    ...units.map((u) => topicIdByCode[u.folderIdCode]).filter(Boolean),
+    ...units
+      .filter((u) => u.subject === "pyq")
+      .flatMap((u) => (u.mcqsFile?.questions ?? []).map((q) => topicIdByCode[q.topic]))
+      .filter(Boolean),
+  ]),
+];
 const pbQuestions = managedTopicIds.length
   ? await listAll("questions", managedTopicIds.map((id) => `topic = "${id}"`).join(" || "))
   : [];
@@ -145,11 +155,16 @@ const repoQids = new Set();
 for (const unit of units) {
   if (!unit.mcqsFile) continue;
   for (const q of unit.mcqsFile.questions) {
+    if (unit.subject === "pyq" && !topicIdByCode[q.topic]) {
+      console.warn(`question ${q.id}: skipped — topic ${q.topic} not synced yet`);
+      continue;
+    }
     repoQids.add(q.id);
     const { type, ...meta } = q.source ?? {};
     const data = {
       qid: q.id,
-      topic: topicIdByCode[unit.folderIdCode],
+      // PYQ questions point at their own syllabus topic; topic units use the folder
+      topic: topicIdByCode[unit.subject === "pyq" ? q.topic : unit.folderIdCode],
       stem: q.stem,
       options: q.options,
       answer_index: q.answer,

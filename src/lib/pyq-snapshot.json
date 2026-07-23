@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-07-23",
+  "total_questions": 11,
+  "papers": [
+    {
+      "slug": "capf-2024",
+      "exam": "CAPF",
+      "year": 2024,
+      "count": 6,
+      "topics": [
+        {
+          "code": "POL-05",
+          "title": "Preamble",
+          "region": "foundations",
+          "count": 2
+        },
+        {
+          "code": "POL-10",
+          "title": "Fundamental Duties",
+          "region": "foundations",
+          "count": 2
+        },
+        {
+          "code": "POL-19",
+          "title": "Vice-President",
+          "region": "centre",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "slug": "capf-2023",
+      "exam": "CAPF",
+      "year": 2023,
+      "count": 5,
+      "topics": [
+        {
+          "code": "POL-05",
+          "title": "Preamble",
+          "region": "foundations",
+          "count": 2
+        },
+        {
+          "code": "POL-19",
+          "title": "Vice-President",
+          "region": "centre",
+          "count": 2
+        },
+        {
+          "code": "POL-10",
+          "title": "Fundamental Duties",
+          "region": "foundations",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

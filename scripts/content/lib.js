@@ -17,6 +17,7 @@ export const FORMATS = [
 export const SOURCE_TYPES = ["ai", "self", "external", "pyq", "ca"];
 export const Q_STATUSES = ["draft", "validated", "live", "retired"];
 export const ID_CODE_RE = /^(POL-\d{2}|APX-\d)$/;
+export const PAPER_RE = /^([A-Z]+)-(\d{4})$/; // PYQ folder: CAPF-2022
 
 /** Walk content/<subject>/<TOPIC-FOLDER>/ and return parsed units. */
 export function loadContentTree() {
@@ -33,6 +34,10 @@ export function loadContentTree() {
         dir,
         rel: relative(process.cwd(), dir).replaceAll("\\", "/"),
         folderIdCode: (folder.match(/^(POL-\d{2}|APX-\d)/) ?? [null])[0],
+        // PYQ papers (Prompt 12): /content/pyq/CAPF-2022/mcqs.json — no
+        // topic.md, questions carry their own `topic` id_code instead.
+        subject,
+        paper: subject === "pyq" ? (folder.match(/^([A-Z]+)-(\d{4})$/) ?? null) : null,
         topicFile: null, // { frontmatter, body, raw }
         mcqsFile: null,  // { questions, raw }
         errors: [],

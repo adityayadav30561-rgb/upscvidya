@@ -1,0 +1,97 @@
+[
+  {
+    "id": "CAPF-2023-Q001",
+    "topic": "POL-05",
+    "stem": "The ideals of Liberty, Equality and Fraternity in the Preamble to the Constitution of India were drawn from the Constitution/Revolution of:",
+    "options": [
+      "The United States of America",
+      "France",
+      "Ireland",
+      "The erstwhile USSR"
+    ],
+    "answer": 1,
+    "explanation": "Liberty, Equality and Fraternity were inspired by the French Revolution (1789-1799). The idea of a Republic also came from France. Directive Principles came from Ireland, the fundamental rights and judicial review from the USA, and Fundamental Duties from the erstwhile USSR.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2023, "qno": 8 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2023-Q002",
+    "topic": "POL-05",
+    "stem": "The date mentioned in the Preamble to the Constitution of India, 26 November 1949, refers to the date on which the Constitution was:",
+    "options": [
+      "Commenced in full",
+      "Adopted by the Constituent Assembly",
+      "Signed by the President",
+      "Drafted by the Drafting Committee"
+    ],
+    "answer": 1,
+    "explanation": "26 November 1949 is the date on which the Constituent Assembly adopted, enacted and gave to itself the Constitution. The Constitution commenced on 26 January 1950, a date chosen to commemorate the Purna Swaraj declaration of 1930.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2023, "qno": 9 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2023-Q003",
+    "topic": "POL-10",
+    "stem": "The Fundamental Duty to provide opportunities for education to a child between the ages of six and fourteen years was inserted by which Constitutional Amendment Act?",
+    "options": [
+      "The 42nd Amendment Act, 1976",
+      "The 44th Amendment Act, 1978",
+      "The 86th Amendment Act, 2002",
+      "The 93rd Amendment Act, 2005"
+    ],
+    "answer": 2,
+    "explanation": "The 86th Amendment Act, 2002 inserted Article 51A(k), making it a Fundamental Duty of a parent or guardian to provide education opportunities to their child or ward aged six to fourteen. The same amendment also inserted Article 21A (Right to Education) and amended Article 45.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": ["capf", "cse"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2023, "qno": 31 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2023-Q004",
+    "topic": "POL-19",
+    "stem": "Which one of the following statements regarding the Vice-President of India is NOT correct?",
+    "options": [
+      "He is the ex-officio Chairman of the Rajya Sabha",
+      "He must be qualified for election as a member of the Rajya Sabha",
+      "He can act as President for a maximum period of six months",
+      "He must have completed thirty years of age"
+    ],
+    "answer": 3,
+    "explanation": "The minimum age for the Vice-President is thirty-five years, not thirty, so that statement is incorrect. The other three are accurate: he is ex-officio Chairman of the Rajya Sabha (Article 64), must be qualified for election to the Rajya Sabha (contrast with the President, who must be qualified for the Lok Sabha), and may act as President for a maximum of six months under Article 65.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": ["capf"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2023, "qno": 52 },
+    "status": "live",
+    "added": "2026-07-23"
+  },
+  {
+    "id": "CAPF-2023-Q005",
+    "topic": "POL-19",
+    "stem": "Who was the first Vice-President of India?",
+    "options": [
+      "Dr. Rajendra Prasad",
+      "Dr. S. Radhakrishnan",
+      "Dr. Zakir Husain",
+      "V. V. Giri"
+    ],
+    "answer": 1,
+    "explanation": "Dr. S. Radhakrishnan was the first Vice-President of India (1952-1962), serving two terms before becoming the second President. Dr. Rajendra Prasad was the first President, while Dr. Zakir Husain and V. V. Giri served as Vice-President later.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": ["capf"],
+    "source": { "type": "pyq", "exam": "CAPF", "year": 2023, "qno": 53 },
+    "status": "live",
+    "added": "2026-07-23"
+  }
+]

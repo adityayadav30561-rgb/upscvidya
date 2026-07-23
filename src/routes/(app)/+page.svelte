@@ -235,8 +235,8 @@
 			<button class="qa orange" onclick={() => goto('/tests')}>
 				<span class="qa-name">Test Centre</span><span class="qa-sub">Prompt 11</span>
 			</button>
-			<button class="qa green" onclick={() => goto('/tests')}>
-				<span class="qa-name">PYQ Vault</span><span class="qa-sub">Prompt 12</span>
+			<button class="qa green" onclick={() => goto('/pyq')}>
+				<span class="qa-name">PYQ Vault</span><span class="qa-sub">free · all years</span>
 			</button>
 			<button class="qa" onclick={() => goto('/briefing')}>
 				<span class="qa-name">Daily Briefing</span><span class="qa-sub">Prompt 13</span>

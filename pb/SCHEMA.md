@@ -153,6 +153,29 @@ filling `question_ids` turns the same record into a fixed admin-authored paper.
 **Dev note:** a mock composes `min(config.count, live pool)` questions, so with
 the 30-question seed a "125 Q" paper runs as 30 until more content is live.
 
+## PYQ Vault (Prompt 12)
+
+Past papers live in the same `questions` collection with `source_type = 'pyq'`
+and `source_meta = {exam, year, qno}`, authored under
+`/content/pyq/CAPF-YYYY/mcqs.json` and handled by the same validator/sync
+(a PYQ folder has no `topic.md` — each question names the syllabus `topic`
+id_code it belongs to, which drives the topic chip).
+
+**Public by design.** `questions` is admin-listable only, so
+[pb_hooks/pyq.pb.js](pb_hooks/pyq.pb.js) is the sole public surface and serves
+PYQs *only*: `/api/pyq/index` (years + topic breakdown), `/paper`
+(questions with **no** `answer_index` or `explanation`), `/check` (reveals the
+verdict + explanation for one question), `/attempt-paper` (auth required —
+routes a whole year through the standard test engine as a free paper).
+A logged-out visitor can browse and attempt inline; a session simply upgrades
+the response with attempt state, records attempts (`context = 'pyq'`) and
+feeds wrong answers into `sr_cards`.
+
+SEO: `/pyq/capf-YYYY` is **prerendered** to static HTML from
+`src/lib/pyq-snapshot.json` (regenerate with `pnpm pyq:snapshot`), so the build
+needs no live PocketBase. Those pages publish counts and a topic breakdown
+only — never the questions.
+
 ## Collections
 
 ### users (auth, extended)

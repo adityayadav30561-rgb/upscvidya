@@ -16,7 +16,8 @@
 		"format": "prettier --write .",
 		"validate": "node scripts/content/validate.js",
 		"sync": "node scripts/content/sync.js",
-		"ingest": "node scripts/ingest/ingest.js"
+		"ingest": "node scripts/ingest/ingest.js",
+		"pyq:snapshot": "node scripts/content/pyq-snapshot.js"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
