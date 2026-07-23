@@ -32,7 +32,7 @@ architecture (see the territory map, Prompt 05).
 
 ## 2. Build status — WHERE WE ARE
 
-**Prompts 00-A through 13 are DONE and committed. Git clean. Next up: Prompt 14.**
+**Prompts 00-A through 14 are DONE. Git clean. Next up: Prompt 15 (push + analytics).**
 
 | Prompt | Scope | State | Key commit |
 |--------|-------|-------|-----------|
@@ -49,9 +49,9 @@ architecture (see the territory map, Prompt 05).
 | 10 | Battalion leaderboards | ✅ | 0c904d7 |
 | 11 | Test centre, sectionals, mock player | ✅ | eb8d099 |
 | 12 | PYQ Vault (free, public) | ✅ | a0757ad |
-| 13 | CA pipeline + Daily Briefing + admin queue | ✅ | 6cf8e44 (HEAD) |
-| **14** | **Payments, paywall, referrals** | ⬅️ **NEXT** | — |
-| 15 | Push (OneSignal) + analytics (PostHog) | ⬜ | — |
+| 13 | CA pipeline + Daily Briefing + admin queue | ✅ | 6cf8e44 |
+| 14 | Payments (Razorpay), paywall, entitlements, referrals | ✅ | (this branch) |
+| **15** | **Push (OneSignal) + analytics (PostHog)** | ⬅️ **NEXT** | — |
 | 16 | PET tracker | ⬜ | — |
 | 17 | Deployment, hardening, QA sweep | ⬜ | — |
 | 18 | Beta cohort + launch instrumentation | ⬜ | — |
@@ -60,17 +60,27 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
 (needs new `posts`/`challenges` collections; insert after Prompt 10) and
 **22 Progress & Study Stats** (folds into the profile area, Prompt 09 phase).
 
-**Prompt 14 (the next task) must deliver:** Razorpay one-time checkout (₹199
-monthly = 30 days, ₹999 till-exam = `premium_until` Aug 31 2027), beta 50%
-pricing priced *server-side*, the paywall screen (design Screen 15) + checkout
-review + receipt (Screen 20), a single centralised **entitlement helper** used
-by every gated server endpoint, an `ENTITLEMENTS.md` feature×tier matrix with a
-Playwright test per row, premium-expiry nightly cron, and referral credits
-(+7 premium days to *both* parties, granted **once, on the referred user's first
-quiz completion** — not on signup — capped at 10/user). Note `referral_code`
-resolution already exists at [pb/pb_hooks/referral.pb.js](pb/pb_hooks/referral.pb.js) (`GET /api/referral/{code}`); Prompt 04 stored `referred_by`. Prompt 14 adds the credit-granting side.
+**Prompt 14 (DONE) delivered:** Razorpay one-time checkout (₹199→₹99 monthly =
+30 days, ₹999→₹499 till-exam = `premium_until` 2027-08-31; beta price for
+`beta_founder`, computed server-side); single **entitlement/pricing/grant
+module** [pb/pb_hooks/lib/entitle.js](pb/pb_hooks/lib/entitle.js) (`require`d by
+quiz/sr/test/ca gating too); [pb/pb_hooks/pay.pb.js](pb/pb_hooks/pay.pb.js)
+order/verify/webhook/restore with the `payments` row as idempotency ledger
+(no double-extend on replay); nightly `premium_expiry` cron; paywall
+([src/routes/(app)/paywall](src/routes/(app)/paywall/+page.svelte), Screen 15) +
+checkout/success (Screen 20); profile Plan&Billing + receipt + restore +
+Recruit-a-batchmate referral share; monthly expiry banner in the app layout;
+referral credits (+7 days both parties, once on referred user's first quiz
+finish, cap 10, banked as `premium_credit_days` for free users);
+[ENTITLEMENTS.md](ENTITLEMENTS.md) matrix. Dev/e2e payments run offline with
+`PAY_SIMULATE=1` (no Razorpay keys).
 
-Full prompt text: search "PROMPT 14" in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
+**Prompt 15 (the next task) must deliver:** OneSignal web push (permission
+prompt only *after* first quiz; per-user tags; server-triggered sends with
+per-type opt-outs honoured server-side) + PostHog analytics funnel (identify by
+PB user id, "minimal analytics" toggle, no PII), and a `POSTHOG.md` documenting
+4 saved insights. Full text: search "PROMPT 15" in
+[docs/claude-code-build-book.md](docs/claude-code-build-book.md).
 
 ---
 
@@ -243,10 +253,12 @@ to check manually.
 | `PUBLIC_PB_URL` | PocketBase URL the client talks to. Dev `http://127.0.0.1:8090`; prod `https://api.<domain>`. |
 | `PUBLIC_DEV_BYPASS_AUTH` | Was `true` before Prompt 04; **now `false`** (auth ships). Keep false. |
 | `GROQ_API_KEY` | Groq key for ingestion CLI + CA pipeline. |
+| `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` / `RAZORPAY_WEBHOOK_SECRET` | Payments (Prompt 14). **PocketBase server env only** — read by `pay.pb.js` via `$os.getenv`, never in the client bundle. |
+| `PAY_SIMULATE` | Set `1` (with no Razorpay keys) to run the payment flow offline for dev/e2e. Ignored/unsafe-free in prod (keys present ⇒ simulation unreachable). |
 
-Coming (Prompt 14+): Razorpay key id/secret + webhook secret, OneSignal keys,
-PostHog project key. Server-only secrets live on the VPS / CI, never in the
-public client bundle (only `PUBLIC_*` vars reach the browser).
+Coming (Prompt 15+): OneSignal keys, PostHog project key. Server-only secrets
+live on the VPS / CI, never in the public client bundle (only `PUBLIC_*` vars
+reach the browser).
 
 CI: GitHub Action runs `validate`, then `sync` to prod on push to `main` using
 repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.

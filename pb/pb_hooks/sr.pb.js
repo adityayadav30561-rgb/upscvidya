@@ -284,10 +284,10 @@ routerAdd("POST", "/api/sr/restore", (e) => {
     return e.json(404, { message: "Territory not found." });
   }
 
-  // entitlement mirrors quiz/start
-  const free = topic.getBool("is_free");
-  if (!free && !auth.getBool("is_premium") && auth.get("role") !== "admin") {
-    return e.json(403, { message: "This territory is premium." });
+  // entitlement mirrors quiz/start (centralised, expiry-aware)
+  const ent = require(`${__hooks}/lib/entitle.js`);
+  if (!ent.entitled(auth, { free: topic.getBool("is_free") })) {
+    return e.json(403, { message: "This territory is premium.", code: "premium_required" });
   }
 
   // reuse an active session for this code

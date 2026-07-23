@@ -37,13 +37,13 @@ routerAdd("POST", "/api/quiz/start", (e) => {
     topic = null;
   }
 
-  // entitlement: free topic, premium user, or admin (drills are free)
+  // entitlement: free topic, premium user, or admin (drills are free).
+  // Centralised in lib/entitle so every gated surface asks the same question
+  // (and premium respects premium_until, not just the flag).
   if (topic && !isDrill) {
-    const free = topic.getBool("is_free");
-    const premium = auth.getBool("is_premium");
-    const admin = auth.get("role") === "admin";
-    if (!free && !premium && !admin) {
-      return e.json(403, { message: "This territory's quiz is premium." });
+    const ent = require(`${__hooks}/lib/entitle.js`);
+    if (!ent.entitled(auth, { free: topic.getBool("is_free") })) {
+      return e.json(403, { message: "This territory's quiz is premium.", code: "premium_required" });
     }
   }
 
@@ -497,6 +497,22 @@ routerAdd("POST", "/api/quiz/finish", (e) => {
       streak = xp.applyStreak(e.app, auth.id);
     } catch (err) {
       e.app.logger().error("streak", "err", String(err));
+    }
+  }
+
+  // ---- referral reward (Prompt 14): a referred user completing a real topic
+  // quiz is the quality gate — grants +7 premium days to BOTH parties, exactly
+  // once (idempotent in lib/entitle). Only the true finish reaches here (the
+  // "already finished" branch returned at the top), and drills don't qualify.
+  if (!isDrill) {
+    const referredBy = auth.get("referred_by");
+    if (referredBy) {
+      try {
+        const ent = require(`${__hooks}/lib/entitle.js`);
+        ent.grantReferralCredit(e.app, referredBy, auth.id);
+      } catch (err) {
+        e.app.logger().error("referral grant", "err", String(err));
+      }
     }
   }
 

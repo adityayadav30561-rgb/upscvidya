@@ -47,6 +47,7 @@ export interface User extends BaseRecord {
 	is_premium: boolean;
 	premium_until: string;
 	premium_plan: 'monthly' | 'till_exam' | '';
+	premium_credit_days: number; // banked referral days (server-owned)
 	referral_code: string;
 	referred_by: string;
 	role: 'user' | 'admin';

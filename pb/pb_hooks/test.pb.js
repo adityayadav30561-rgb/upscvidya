@@ -51,6 +51,7 @@ routerAdd("POST", "/api/test/catalogue", (e) => {
   const auth = e.auth;
   if (!auth) return e.json(401, { message: "Authentication required." });
 
+  const ent = require(`${__hooks}/lib/entitle.js`);
   const mocks = [];
   try {
     const rows = e.app.findRecordsByFilter("tests", "kind = 'mock' && status = 'live'", "+created", 50, 0);
@@ -69,7 +70,7 @@ routerAdd("POST", "/api/test/catalogue", (e) => {
         id: t.id,
         title: t.get("title"),
         is_free: t.getBool("is_free"),
-        locked: !t.getBool("is_free") && !auth.getBool("is_premium") && auth.get("role") !== "admin",
+        locked: !ent.entitled(auth, { free: t.getBool("is_free") }),
         count: cfg.count || 0,
         duration_sec: cfg.duration_sec || 0,
         negative: cfg.negative || 0,
@@ -147,6 +148,36 @@ routerAdd("POST", "/api/test/sectional", (e) => {
   const tiers = Array.isArray(body.tiers) && body.tiers.length === 2 ? body.tiers : [1, 5];
   const count = body.count === 50 ? 50 : 20;
   if (regions.length === 0) return e.json(400, { message: "Pick at least one region." });
+
+  // entitlement (Prompt 14 §14.4): premium/admin get unlimited sectionals; the
+  // free tier gets ONE per calendar month (IST). Enforced server-side.
+  const ent = require(`${__hooks}/lib/entitle.js`);
+  if (!ent.entitled(auth, { free: false })) {
+    // first day of the current IST month, as a PB date string
+    const istNow = new Date(Date.now() + 5.5 * 3600 * 1000);
+    const monthStart =
+      istNow.toISOString().slice(0, 7) + "-01 00:00:00.000Z";
+    let usedThisMonth = 0;
+    try {
+      const mine = e.app.findRecordsByFilter(
+        "test_attempts",
+        "user = {:u} && created >= {:m}",
+        "-created", 200, 0, { u: auth.id, m: monthStart }
+      );
+      for (const a of mine) {
+        try {
+          const t = e.app.findRecordById("tests", a.get("test"));
+          if (t.get("kind") === "sectional") usedThisMonth++;
+        } catch (_) { /* test vanished */ }
+      }
+    } catch (_) { usedThisMonth = 0; }
+    if (usedThisMonth >= 1) {
+      return e.json(403, {
+        message: "Free tier includes one sectional a month. Go Premium for unlimited practice.",
+        code: "premium_required",
+      });
+    }
+  }
 
   // live pool for the chosen regions + tier band
   let pool = [];
@@ -258,9 +289,10 @@ routerAdd("POST", "/api/test/start", (e) => {
   }
   if (test.get("status") !== "live") return e.json(404, { message: "Test not available." });
 
-  // entitlement: free paper, premium user, or admin
-  if (!test.getBool("is_free") && !auth.getBool("is_premium") && auth.get("role") !== "admin") {
-    return e.json(403, { message: "This paper is premium." });
+  // entitlement: free paper, premium user, or admin (centralised, expiry-aware)
+  const ent = require(`${__hooks}/lib/entitle.js`);
+  if (!ent.entitled(auth, { free: test.getBool("is_free") })) {
+    return e.json(403, { message: "This paper is premium.", code: "premium_required" });
   }
 
   // resume an unsubmitted attempt rather than starting a second one

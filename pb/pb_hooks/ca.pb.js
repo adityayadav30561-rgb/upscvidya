@@ -35,7 +35,8 @@ routerAdd("POST", "/api/ca/briefing", (e) => {
   const today = istDate(Date.now());
   const date = String(body.date || today).slice(0, 10);
 
-  const premium = !!auth && (auth.getBool("is_premium") || auth.get("role") === "admin");
+  const ent = require(`${__hooks}/lib/entitle.js`);
+  const premium = ent.entitled(auth, { free: false });
   const yesterday = istDate(Date.now() - 86400000);
   const freeWindow = date === today || date === yesterday;
 

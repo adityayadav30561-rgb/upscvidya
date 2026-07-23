@@ -81,6 +81,29 @@ cronAdd("leaderboard_rollover", "0 0 * * 1", () => {
   $app.logger().info("leaderboard_rollover", "week_start", weekStart, "badges", podiums);
 });
 
+// Nightly 03:00 IST — premium expiry (Prompt 14): clear is_premium for anyone
+// whose premium_until has passed, so the flag stays truthful for the API rules
+// (topics gating reads @request.auth.is_premium directly). Banked referral days
+// live on premium_credit_days and are untouched — they realise on next purchase.
+cronAdd("premium_expiry", "0 3 * * *", () => {
+  const nowIso = new Date().toISOString().replace("T", " ");
+  const lapsed = $app.findRecordsByFilter(
+    "users",
+    "is_premium = true && premium_until != '' && premium_until < {:now}",
+    "",
+    5000,
+    0,
+    { now: nowIso }
+  );
+  let n = 0;
+  for (const u of lapsed) {
+    u.set("is_premium", false);
+    $app.save(u);
+    n++;
+  }
+  if (n > 0) $app.logger().info("premium_expiry", "cleared", n);
+});
+
 // 1st of each month 00:05 IST — refill streak freezes to 2 (Prompt 09:
 // "2 streak freezes/month auto-apply on a missed day").
 cronAdd("freeze_refill", "5 0 1 * *", () => {
