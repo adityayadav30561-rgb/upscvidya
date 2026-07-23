@@ -120,6 +120,39 @@ week before stamping the new `week_start`: top 3 earn `podium_1/2/3`, top 5
 earn `commendation` (unique `(user, code)` index makes it idempotent). Past
 weeks are never mutated, so history and the ▲/▼ week-over-week delta survive.
 
+## Test centre (Prompt 11)
+
+[pb_hooks/test.pb.js](pb_hooks/test.pb.js): `/api/test/catalogue` (mocks +
+attempt history), `/sectional` (compose from the chosen regions/tier band with
+the standard 30/40/30 weighting, 45s-per-question budget), `/start`
+(mock entitlement + resume), `/state` (resume payload), `/submit`
+(scoring, percentile, region/tier breakdown, full review).
+
+**Exam conditions.** Unlike topic quizzes there is no immediate feedback:
+`/state` serves only `qid, stem, options, tier, format, region` — never
+`answer_index` or `explanation`. Options keep their authored order, so
+`answers` is `qid → chosen original index` exactly as the schema intends.
+
+**Timer honesty.** `started_at` is server-written and the `test_attempts`
+updateRule blocks the client from touching it, so remaining time and the
+submit cutoff always derive from the server clock. An `onRecordUpdateRequest`
+hook additionally rejects answer writes once an attempt is submitted or past
+`started_at + duration` (10s grace for the in-flight save at the bell) — a
+tampered client clock buys no extra time.
+
+Marking lives in `tests.config` (`{correct: 2, negative: 0.667}` = CAPF's
+one-third penalty); `src/lib/test.ts` holds the documented reference
+implementation and its unit tests. Percentile is recomputed on every submit
+against all submitted attempts of that paper, so it moves as the cohort grows.
+Mocks award `200 + round(200 × score-ratio)` XP through the Prompt 09 path plus
+the `mock_finisher` badge. Papers seed from
+[pb_migrations/1753400000_mock_tests.js](pb_migrations/1753400000_mock_tests.js)
+with `question_ids: null`, meaning "compose from the live pool at start";
+filling `question_ids` turns the same record into a fixed admin-authored paper.
+
+**Dev note:** a mock composes `min(config.count, live pool)` questions, so with
+the 30-question seed a "125 Q" paper runs as 30 until more content is live.
+
 ## Collections
 
 ### users (auth, extended)
