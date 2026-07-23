@@ -16,7 +16,8 @@ import type {
 	Topic,
 	TopicProgress,
 	TopicPublic,
-	User
+	User,
+	WorkoutLog
 } from './types';
 
 interface TypedPocketBase extends PocketBase {
@@ -35,6 +36,7 @@ interface TypedPocketBase extends PocketBase {
 	collection(idOrName: 'pet_logs'): RecordService<PetLog>;
 	collection(idOrName: 'payments'): RecordService<Payment>;
 	collection(idOrName: 'referral_credits'): RecordService<ReferralCredit>;
+	collection(idOrName: 'workout_logs'): RecordService<WorkoutLog>;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	collection(idOrName: string): RecordService<any>;
 }

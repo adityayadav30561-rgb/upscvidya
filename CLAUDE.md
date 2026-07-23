@@ -32,7 +32,7 @@ architecture (see the territory map, Prompt 05).
 
 ## 2. Build status — WHERE WE ARE
 
-**Prompts 00-A through 15 are DONE. Git clean. Next up: Prompt 16 (PET tracker).**
+**Prompts 00-A through 16 are DONE. Git clean. Next up: Prompt 17 (deploy + QA).**
 
 | Prompt | Scope | State | Key commit |
 |--------|-------|-------|-----------|
@@ -51,8 +51,9 @@ architecture (see the territory map, Prompt 05).
 | 12 | PYQ Vault (free, public) | ✅ | a0757ad |
 | 13 | CA pipeline + Daily Briefing + admin queue | ✅ | 6cf8e44 |
 | 14 | Payments (Razorpay), paywall, entitlements, referrals | ✅ | e75d0ed |
-| 15 | Push (OneSignal) + analytics (PostHog) | ✅ | (this branch) |
-| **16** | **PET tracker (Screen 12)** | ⬅️ **NEXT** | — |
+| 15 | Push (OneSignal) + analytics (PostHog) | ✅ | 406108d |
+| 16 | Fitness tracker "Drill Ground" (pivot from PET) | ✅ | (this branch) |
+| **17** | **Deployment, hardening, QA sweep** | ⬅️ **NEXT** | — |
 | 16 | PET tracker | ⬜ | — |
 | 17 | Deployment, hardening, QA sweep | ⬜ | — |
 | 18 | Beta cohort + launch instrumentation | ⬜ | — |
@@ -90,12 +91,24 @@ events, identify by PB id, no PII (`sanitize`), `analytics_minimal` toggle;
 [POSTHOG.md](POSTHOG.md) documents the 4 dashboards. All external wiring is
 gated on keys (unset ⇒ no-op / dry-log).
 
-**Prompt 16 (the next task) must deliver:** the PET tracker (Screen 12) —
-per-event log sheet (100m/800m/long-jump/shot-put), CAPF qualifying standards
-(male/female constants + disclaimer), inline SVG trend charts vs the standard
-line, a "PET Ready" badge/dashboard chip, and an opt-in weekly PET reminder (via
-the Prompt-15 push infra). Full text: search "PROMPT 16" in
-[docs/claude-code-build-book.md](docs/claude-code-build-book.md).
+**Prompt 16 (DONE) — "The Drill Ground"** (`/pt`), a training-only home-workout
+tracker (pivot from PET). Catalog = client constants [pt.ts](src/lib/pt.ts) (21
+exercises, 4 circuits, level bands); [workout.svelte.ts](src/lib/workout.svelte.ts)
+offline queue (localStorage, client_id idempotency, flush on online/boot);
+`workout_logs` collection unique on (user, client_id); [pt.pb.js](pb/pb_hooks/pt.pb.js)
+awards ~40 XP + PT streak + fitness badges on the first workout of the IST day
+(UTC-instant day window — logged_at is stored UTC). Circuit player with interval
+timer batch-logs each exercise. Dashboard quick-action + profile weekly-goal +
+`pt_reminder` push. ⚠️ **TZ gotcha baked in:** any "same IST day" DB query must
+bound by the UTC instants of that IST day, never the IST date label as a UTC
+string (off-by-5.5h).
+
+**Prompt 17 (the next task) must deliver:** production deployment (Cloudflare
+Pages for the static app + custom domain), VPS/API hardening (Caddy rate limits,
+CORS lockdown, PB admin IP-allowlist, health + uptime monitoring), a full
+Playwright golden-path run against preview, a Lighthouse perf pass, a backup
+restore drill, and a security sweep of every earlier acceptance. Full text:
+search "PROMPT 17" in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
 
 ---
 

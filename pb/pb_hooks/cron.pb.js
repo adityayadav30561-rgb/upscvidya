@@ -133,6 +133,13 @@ cronAdd("battalion_weekly_push", "0 8 * * 1", () => {
   notify.sendType($app, "battalion_weekly");
 });
 
+// Saturday 09:00 IST — weekly training nudge for anyone who's gone quiet on the
+// Drill Ground (Prompt 16). Opt-in via the pt_reminder toggle.
+cronAdd("pt_reminder_push", "0 9 * * 6", () => {
+  const notify = require(`${__hooks}/lib/notify.js`);
+  notify.sendType($app, "pt_reminder");
+});
+
 // 1st of each month 00:05 IST — refill streak freezes to 2 (Prompt 09:
 // "2 streak freezes/month auto-apply on a missed day").
 cronAdd("freeze_refill", "5 0 1 * *", () => {

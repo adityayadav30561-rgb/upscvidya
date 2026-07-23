@@ -148,8 +148,30 @@
 		{ key: 'daily_briefing', label: 'Daily Briefing', sub: '07:00 · new current affairs' },
 		{ key: 'streak_risk', label: 'Streak alerts', sub: "warns at 20:30 if today's mission is open" },
 		{ key: 'sr_pileup', label: 'Revision pile-up', sub: 'when 25+ cards are due' },
-		{ key: 'battalion_weekly', label: 'Battalion results', sub: 'Monday morning standings' }
+		{ key: 'battalion_weekly', label: 'Battalion results', sub: 'Monday morning standings' },
+		{ key: 'pt_reminder', label: 'Time to train', sub: 'weekly Drill Ground nudge' }
 	] as const;
+
+	/* ---- PT weekly training goal (Prompt 16) ---- */
+	let weeklyGoal = $state(4);
+	let goalInit = false;
+	$effect(() => {
+		if (goalInit || !user) return;
+		goalInit = true;
+		weeklyGoal = (user as unknown as { pt_weekly_goal?: number }).pt_weekly_goal || 4;
+	});
+	async function setGoal(next: number) {
+		if (!user || next < 1 || next > 7) return;
+		const prev = weeklyGoal;
+		weeklyGoal = next;
+		try {
+			await pb.collection('users').update(user.id, { pt_weekly_goal: next });
+			await pb.collection('users').authRefresh().catch(() => {});
+		} catch {
+			weeklyGoal = prev;
+			showToast('Could not save goal', 'error');
+		}
+	}
 
 	// prefs default ON (a missing key = opted-in, matching the server)
 	let prefs = $state<Record<string, boolean>>({});
@@ -281,6 +303,26 @@
 					<button class="share" onclick={shareReferral}>Share link</button>
 				</div>
 			{/if}
+		</div>
+	</section>
+
+	<!-- Training goal (Prompt 16) -->
+	<section class="group">
+		<h2>Training</h2>
+		<div class="goal-row">
+			<div>
+				<div class="t-title">Weekly workout goal</div>
+				<div class="t-sub">Drives your Drill Ground readiness ring.</div>
+			</div>
+			<div class="stepper">
+				<button aria-label="fewer" onclick={() => setGoal(weeklyGoal - 1)} disabled={weeklyGoal <= 1}
+					>−</button
+				>
+				<span class="goal-n">{weeklyGoal}</span>
+				<button aria-label="more" onclick={() => setGoal(weeklyGoal + 1)} disabled={weeklyGoal >= 7}
+					>+</button
+				>
+			</div>
 		</div>
 	</section>
 
@@ -731,6 +773,41 @@
 		border-radius: var(--r-full);
 		padding: 10px 16px;
 		cursor: pointer;
+	}
+	.goal-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-lg);
+		padding: 12px 14px;
+	}
+	.stepper {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+	.stepper button {
+		width: 32px;
+		height: 32px;
+		font-size: 18px;
+		font-weight: 900;
+		background: var(--bg-0);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-full);
+		cursor: pointer;
+		color: var(--ink-1);
+	}
+	.stepper button:disabled {
+		opacity: 0.4;
+	}
+	.goal-n {
+		font-family: var(--font-display);
+		font-size: 20px;
+		min-width: 18px;
+		text-align: center;
 	}
 	.notif-list {
 		display: flex;

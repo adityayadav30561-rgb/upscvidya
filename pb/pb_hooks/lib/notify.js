@@ -14,7 +14,7 @@
  * the CA pipeline's heuristic degradation and the payment PAY_SIMULATE path.
  */
 
-const TYPES = ["daily_briefing", "streak_risk", "sr_pileup", "battalion_weekly"];
+const TYPES = ["daily_briefing", "streak_risk", "sr_pileup", "battalion_weekly", "pt_reminder"];
 const DAY_MS = 86400000;
 
 // Notification copy — one source for the crons and the /test endpoint.
@@ -23,6 +23,7 @@ const COPY = {
   streak_risk: { title: "Your streak is at risk", body: "One quiz keeps the chain alive.", url: "/" },
   sr_pileup: { title: "Revision is piling up", body: "25+ cards are due. Clear a few now.", url: "/revision" },
   battalion_weekly: { title: "Battalion results are in", body: "See where you finished this week.", url: "/battalion" },
+  pt_reminder: { title: "Time to train, recruit", body: "Hit the Drill Ground — a quick circuit keeps you PET-ready.", url: "/pt" },
 };
 
 /** Parsed notification_prefs JSON (PB hands json back as raw bytes). */
@@ -57,6 +58,13 @@ function isCandidate(app, user, type) {
   }
   if (type === "battalion_weekly") {
     return !!user.get("battalion_id");
+  }
+  if (type === "pt_reminder") {
+    // no workout logged in the last 3 days (or never) — a weekly training nudge
+    const last = user.get("pt_last_workout_date");
+    if (!last) return true;
+    const ms = Date.parse(String(last).replace(" ", "T"));
+    return isNaN(ms) || Date.now() - ms >= 3 * DAY_MS;
   }
   if (type === "sr_pileup") {
     // ≥25 cards due today AND not pushed in the last 3 days

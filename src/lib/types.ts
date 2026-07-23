@@ -198,3 +198,17 @@ export interface ReferralCredit extends BaseRecord {
 	days_granted: number;
 	granted_at: string;
 }
+
+export interface WorkoutLog extends BaseRecord {
+	user: string;
+	exercise_code: string;
+	group: 'push' | 'pull' | 'legs' | 'core' | 'cardio' | '';
+	metric: 'reps' | 'time' | 'distance' | 'amrap';
+	sets: { reps?: number; seconds?: number; distance_m?: number }[];
+	total: number;
+	best: number;
+	source: 'manual' | 'routine';
+	routine_code: string;
+	client_id: string;
+	logged_at: string;
+}

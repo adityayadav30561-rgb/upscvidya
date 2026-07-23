@@ -416,21 +416,57 @@ Acceptance criteria:
 
 ## PHASE 8 — PET, POLISH, LAUNCH
 
-### PROMPT 16: PET tracker
+### PROMPT 16: Fitness / training tracker — "The Drill Ground"
+
+> **🔀 PIVOT (locked 2026-07, redirects the original "PET tracker" slot).**
+> The user chose a broader **home-workout / fitness tracker** over the narrow
+> official-PET logger. Locked decisions from the brainstorm:
+> 1. **Scope: TRAINING ONLY** — bodyweight / minimal-equipment workouts
+>    (pushups, pull-ups, squats, lunges, dips, plank, crunches, leg raises,
+>    burpees, mountain climbers, skipping, running). **No** official CAPF
+>    PET events (100m/800m/long-jump/shot-put) and **no** PST body standards
+>    in v1 — dropped, not deferred. (The `pet_logs` collection from 00-B is left
+>    unused; do not repurpose without a new decision.)
+> 2. **Progression: HYBRID** — a parallel **PT track** (readiness ring +
+>    fitness badges + its own PT streak) PLUS a modest **~40 XP per session**
+>    into the existing ladder (like a drill). XP is first-workout-of-the-IST-day
+>    only (anti-farm); the study streak stays separate/untouched.
+> 3. **Guided circuits + in-app interval timer** ship in v1 (work/rest, round
+>    counter): "Bootcamp" routines. Finishing a circuit batch-logs its sets.
+> 4. **Offline queue + sync**: workouts log offline (localStorage queue, per-user
+>    unique `client_id` for idempotency) and sync on reconnect / boot.
 
 ```
-Build the PET tracker (screen 12).
+Build "The Drill Ground" — a home-workout fitness tracker (new /pt route; no
+prior design mockup, so match the existing token/campaign visual language).
 
-1. Log entry sheet per event: 100m sprint (seconds), 800m run (min:sec input, stored seconds), long jump (metres), shot put (metres, 7.26kg noted). Date defaults today, backdating allowed 30 days.
-2. Standards: store official CAPF PET qualifying standards as constants with male/female variants (user picks category in settings; changeable): male — 100m in 16s, 800m in 3:45, long jump 3.5m (3 chances), shot put 4.5m; female — 100m in 18s, 800m in 4:45, long jump 3.0m. Show a clear disclaimer line: "Verify current standards in the official UPSC CAPF notification."
-3. Trend charts per event (lightweight inline SVG chart, no chart library): attempts over time vs the standard line, best-attempt marker, pass zone shading.
-4. "PET Ready" state: latest attempt in every applicable event meets standard → badge award + dashboard chip.
-5. Reminder option: weekly PET log nudge (opt-in, via Prompt 15 infra).
+1. Exercise catalog + routines as client constants (src/lib/pt.ts): groups
+   (push/pull/legs/core/cardio), metric per exercise (reps | time | distance |
+   amrap), equipment (none / bar / optional), and 4-tier level bands
+   (Recruit / Soldier / Fighter / Commando) for instant motivational feedback.
+2. Logging: quick-log sheet (exercise → sets of reps/seconds/distance); date
+   defaults today, backdating allowed. Writes go through an OFFLINE QUEUE
+   (localStorage, client_id idempotency) that flushes to workout_logs on
+   reconnect. Personal bests + inline-SVG trend charts per exercise (no lib).
+3. Guided circuits: Bootcamp routines run through an interval timer (work/rest
+   countdown, round counter, block advance); finishing batch-logs each
+   exercise's sets (source=routine) — one session, so XP fires once.
+4. Progression: server hook (pt.pb.js) on the first workout_log of the IST day
+   awards ~40 XP via the single lib/xp path, advances a parallel PT streak, and
+   grants fitness badges (first_workout, pushups milestone, plank milestone,
+   run distance, 30-day regiment, circuit finisher). Readiness ring = sessions
+   this week / pt_weekly_goal (a user setting).
+5. Dashboard: a PT readiness row/ring + entry to /pt. Profile: fitness badges,
+   the weekly-goal setting, and an opt-in "Time to train" reminder (new
+   notification type via the Prompt-15 push infra).
 
 Acceptance criteria:
-- min:sec input parses and stores correctly incl. edge cases (3:45, 03:45, 225)
-- Charts render correct pass/fail zones for both category standards
-- PET Ready badge grants and revokes correctly as logs change category context
+- A logged workout awards 40 XP exactly once per IST day (second workout same
+  day: PT progress but 0 XP) and advances the PT streak.
+- Offline-logged workouts persist locally and sync exactly once on reconnect
+  (client_id dedup — re-sync creates no duplicate).
+- A finished circuit batch-logs each exercise's sets and fires XP once.
+- Level bands + personal bests compute correctly (unit-tested).
 ```
 
 ### PROMPT 17: Deployment, hardening, QA sweep

@@ -17,6 +17,7 @@
 	let { data } = $props();
 
 	const user = $derived(auth.user);
+	const ptStreak = $derived((user as unknown as { pt_streak_current?: number })?.pt_streak_current || 0);
 	const map = $derived(buildMap(data.topics, data.progress, data.isPremium));
 	const rp = $derived(rankProgress(user?.xp ?? 0));
 
@@ -269,6 +270,10 @@
 				<span class="qa-sub" class:hot={briefingLoaded && briefingCount > 0 && !briefingDone}>
 					{!briefingLoaded ? '…' : briefingCount > 0 ? (briefingDone ? 'read ✓' : `${briefingCount} new`) : 'none yet'}
 				</span>
+			</button>
+			<button class="qa orange" onclick={() => goto('/pt')}>
+				<span class="qa-name">Drill Ground</span>
+				<span class="qa-sub">{ptStreak > 0 ? `${ptStreak}-day streak` : 'home workouts'}</span>
 			</button>
 			<button class="qa" onclick={() => goto('/profile')}>
 				<span class="qa-name">Profile</span><span class="qa-sub">ranks & badges</span>

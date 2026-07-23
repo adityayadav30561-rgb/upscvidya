@@ -130,7 +130,14 @@ export const BADGES: Record<string, { label: string; hint: string }> = {
 	commendation: { label: 'Commendation', hint: 'Finish a week in your battalion top 5' },
 	pet_ready: { label: 'PET Ready', hint: 'Hit every PET standard' },
 	mock_finisher: { label: 'Mock Finisher', hint: 'Submit your first mock test' },
-	beta_founder: { label: 'Beta Founder', hint: 'Enlisted during the beta' }
+	beta_founder: { label: 'Beta Founder', hint: 'Enlisted during the beta' },
+	// Drill Ground / fitness (Prompt 16)
+	first_workout: { label: 'Boots On', hint: 'Log your first workout' },
+	circuit_finisher: { label: 'Circuit Cleared', hint: 'Finish a guided circuit' },
+	pushups_50: { label: '50 Pushups', hint: '50 pushups in a single set' },
+	plank_5min: { label: 'Iron Core', hint: 'Hold a 5-minute plank' },
+	run_5k: { label: 'First 5K', hint: 'Run 5 km in one session' },
+	regiment_30: { label: '30-Day Regiment', hint: 'Train 30 days in a row' }
 };
 
 export type { RankCode };
