@@ -377,7 +377,9 @@ routerAdd("POST", "/api/quiz/finish", (e) => {
 
     gold = scorePct >= 90 && priorPasses >= 1 && allTiers;
     const priorState = prog ? prog.get("state") : "unread";
-    const held = priorState === "conquered" || priorState === "gold";
+    // never downgrade: a failed retake keeps conquered/gold/decaying as-is
+    // (a decaying territory is only restored by a pass — Prompt 08 restore flow)
+    const held = priorState === "conquered" || priorState === "gold" || priorState === "decaying";
     newState = gold ? "gold" : pass ? "conquered" : held ? priorState : "read";
 
     const nowIso = new Date().toISOString().replace("T", " ");

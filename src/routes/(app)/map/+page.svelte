@@ -4,6 +4,8 @@
 	import { buildMap, takeConquest, type MapNodeData } from '$lib/map';
 	import { REGIONS } from '$lib/polity';
 	import type { Region } from '$lib/types';
+	import { startRestore } from '$lib/sr';
+	import { showToast } from '$lib/toast.svelte';
 	import RegionMap from '$lib/components/RegionMap.svelte';
 	import ProgressRing from '$lib/components/ProgressRing.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
@@ -104,6 +106,20 @@
 	};
 
 	const regionName = (code: Region) => REGIONS.find((r) => r.code === code)?.name ?? code;
+
+	/** decaying → 5-Q restore micro-quiz (Prompt 08); everything else → full quiz */
+	async function attemptQuiz(n: MapNodeData) {
+		if (n.visual === 'decaying') {
+			try {
+				const res = await startRestore(n.unit.code);
+				goto(`/quiz/${n.unit.code}?s=${res.session_id}`);
+			} catch (err) {
+				showToast(err instanceof Error ? err.message : 'Could not start the retake', 'error');
+			}
+			return;
+		}
+		goto(`/quiz/${n.unit.code}`);
+	}
 </script>
 
 <svelte:head><title>UPSCVidya — Territory Map</title></svelte:head>
@@ -249,7 +265,7 @@
 			<Button
 				variant={n.premiumLocked ? 'locked' : 'primary'}
 				disabled={n.comingSoon || n.drillLocked || n.premiumLocked}
-				onclick={() => goto(`/quiz/${n.unit.code}`)}
+				onclick={() => attemptQuiz(n)}
 			>
 				{n.premiumLocked ? 'Premium — locked' : quizCta(n)}
 			</Button>

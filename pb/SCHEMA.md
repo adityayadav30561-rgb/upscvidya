@@ -59,6 +59,25 @@ ship as `draft` (provenance workflow); promote them to `live` for local testing
 (the admin queue in Prompt 13 does this in production). `pb_data` is gitignored,
 so this promotion is per-environment.
 
+## Spaced repetition (Prompt 08)
+
+Endpoints in [pb_hooks/sr.pb.js](pb_hooks/sr.pb.js): `POST /api/sr/due`
+(count + batch capped at 60/day, overdue first then ease ascending, 7-day
+forecast, decaying-territory warnings — no answers in the payload),
+`/reveal` (answer + explanation for one owned card), `/grade`
+(`again|good|easy|mastered`), `/restore` (5-question micro-quiz from the
+territory's most-missed-by-this-user questions, reusing `quiz_sessions`; the
+normal `/api/quiz/finish` pass restores `conquered` and refreshes
+`last_activity`, and a fail keeps `decaying` — never downgrades).
+
+SM-2 tuning (canonical implementation + documented table:
+`src/lib/sr.ts` / `src/lib/__tests__/sr.test.ts` — the hook inlines the same
+math): `again` = lapse (reps 0, 1d, ease −0.2 floored at 1.3, lapses+1);
+`good`/`easy` = rep1→1d, rep2→6d, then round(interval·ease) capped at 60d;
+`easy` adds +0.1 ease; `mastered` suspends the card (design's deliberate,
+button-only retirement). The UI exposes Again/Good/Mastered per Screen 07;
+`easy` remains an engine grade per the build-book acceptance tests.
+
 ## Collections
 
 ### users (auth, extended)
