@@ -469,6 +469,39 @@ Acceptance criteria:
 - Content coverage report generated and accurate
 ```
 
+> **🔒 LOCKED DECISION (from the Prompt-14 brainstorm, 2026-07) — build this in Prompt 18.**
+>
+> **Beta is COMPLETELY FREE and OPEN** (anyone who signs up, no capacity gate —
+> maximise testers). Implement it as the **★ global-date method**, NOT per-user
+> premium writes and NOT a shared login:
+>
+> 1. **`app_config` collection** (the remote-config from item 3) holds a
+>    `beta_free_until` datetime. One admin-editable value controls the whole beta;
+>    extend/end beta by changing this one field — no user migration, no redeploy.
+> 2. **`pb_hooks/lib/entitle.js`** — add the beta clause to the single chokepoint:
+>    `entitled(user) = free || isPremium(user) || isAdmin(user) || now < beta_free_until`.
+>    Read `beta_free_until` from `app_config` (cache per request). This makes
+>    *everyone* premium during the window and **self-expires** the instant the
+>    date passes — no cron, no mass revoke, no stale `is_premium`.
+> 3. **Grant `beta_founder` badge on signup** while `now < beta_free_until`
+>    (users.pb.js create hook). Prompt 14 already prices `beta_founder` at the
+>    forever-50% rate (₹99/₹499), so the free ride *converts into* the founder
+>    discount when beta ends. (The invite-code `/beta/[code]` path in item 1
+>    still ships for post-beta controlled cohorts / referrals, but is NOT the
+>    beta-free mechanism — open signup is.)
+> 4. **Countdown banner** (client): a public read of `beta_free_until` drives a
+>    ticking "Beta — everything unlocked · ends in Xd Yh" banner; after it passes
+>    the same slot flips to "Beta ended → Go Premium" into the Prompt-14 paywall.
+>    Mirror `beta_free_until` client-side (boot fetch or `PUBLIC_BETA_FREE_UNTIL`).
+> 5. **Paid-during-beta is additive:** a real purchase sets `is_premium`
+>    independently, so it survives beta end untouched. Verify: a user with neither
+>    purchase nor badge loses access exactly when the date passes; a beta-signup
+>    user then sees ₹99/₹499 pricing.
+>
+> Acceptance additions: toggling `beta_free_until` to a past date drops a
+> non-paying user to the free tier live (no cron, no redeploy); a beta-signup
+> user holds `beta_founder` and is charged the 50% price afterward.
+
 ---
 
 ## APPENDIX A — Prompt for composing the first mock (run in admin context or as a script task)
