@@ -10,6 +10,7 @@
 	import { REGIONS } from '$lib/polity';
 	import type { Region } from '$lib/types';
 	import { showToast } from '$lib/toast.svelte';
+	import { capture } from '$lib/analytics';
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import Button from '$lib/components/Button.svelte';
 
@@ -74,6 +75,7 @@
 		busy = true;
 		try {
 			const res = await startMock(m.id);
+			capture('mock_started', { test_id: m.id, free: m.is_free });
 			goto(`/tests/${res.attempt_id}`);
 		} catch (err) {
 			showToast(err instanceof Error ? err.message : 'Could not open the paper', 'error');

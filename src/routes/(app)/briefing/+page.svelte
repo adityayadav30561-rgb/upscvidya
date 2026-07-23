@@ -13,6 +13,7 @@
 		type CaAnswer
 	} from '$lib/ca';
 	import { showToast } from '$lib/toast.svelte';
+	import { capture } from '$lib/analytics';
 	import OptionRow from '$lib/components/OptionRow.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import Button from '$lib/components/Button.svelte';
@@ -94,6 +95,7 @@
 		toggleRead(item.id);
 		try {
 			const res = await completeBriefing();
+			if (!res.already) capture('ca_quiz_completed', { date: item.date });
 			if (!res.already && res.xp_awarded > 0) {
 				showToast(`Briefing cleared · +${res.xp_awarded} XP`, 'success');
 			}

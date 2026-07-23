@@ -3,9 +3,17 @@
 	import { page } from '$app/stores';
 	import { pb } from '$lib/pb';
 	import { PRICING, formatINR, type Plan } from '$lib/pay';
+	import { capture } from '$lib/analytics';
 
 	// context that hit the wall ("Unlocked from: Mock 05") — keeps the ask concrete
 	const fromLabel = $derived($page.url.searchParams.get('from') || '');
+
+	let seen = false;
+	$effect(() => {
+		if (seen) return;
+		seen = true;
+		capture('paywall_viewed', { from: fromLabel || 'direct' });
+	});
 
 	let selected = $state<Plan>('till_exam');
 	let beta = $state(false);

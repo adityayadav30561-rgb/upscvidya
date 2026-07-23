@@ -13,6 +13,7 @@
 		type SrReveal
 	} from '$lib/sr';
 	import { showToast } from '$lib/toast.svelte';
+	import { capture } from '$lib/analytics';
 	import Button from '$lib/components/Button.svelte';
 
 	type Phase = 'loading' | 'error' | 'home' | 'review' | 'done';
@@ -84,7 +85,10 @@
 			}
 			queue = requeue(queue, currentId, g);
 			revealed = null;
-			if (queue.length === 0) phase = 'done';
+			if (queue.length === 0) {
+				phase = 'done';
+				capture('sr_session_completed', { graded });
+			}
 		} catch (err) {
 			showToast(err instanceof Error ? err.message : 'Grade failed', 'error');
 		} finally {

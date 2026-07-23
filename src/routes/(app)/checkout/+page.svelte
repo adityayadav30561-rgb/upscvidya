@@ -5,6 +5,7 @@
 	import { auth } from '$lib/auth.svelte';
 	import { showToast } from '$lib/toast.svelte';
 	import { PRICING, formatINR, startCheckout, type Plan } from '$lib/pay';
+	import { capture } from '$lib/analytics';
 
 	const planParam = $derived(($page.url.searchParams.get('plan') as Plan) || 'till_exam');
 	const plan = $derived<Plan>(planParam === 'monthly' ? 'monthly' : 'till_exam');
@@ -42,6 +43,7 @@
 		if (phase === 'paying') return;
 		phase = 'paying';
 		failMsg = '';
+		capture('checkout_started', { plan });
 		try {
 			const r = await startCheckout(plan, {
 				name: auth.user?.display_name || '',
@@ -50,6 +52,7 @@
 			if (r.status === 'paid') {
 				paidUntil = r.premium_until;
 				phase = 'success';
+				capture('payment_success', { plan });
 				showToast('Campaign unlocked', 'success');
 			} else if (r.status === 'dismissed') {
 				// UPI/app-switch or a plain close — order stays intact, let them retry

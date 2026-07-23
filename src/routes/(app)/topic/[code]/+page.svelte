@@ -15,6 +15,7 @@
 	} from '$lib/reader.svelte';
 	import { pb } from '$lib/pb';
 	import { showToast } from '$lib/toast.svelte';
+	import { capture } from '$lib/analytics';
 	import { UNITS } from '$lib/polity';
 	import type { ReaderData } from './+page';
 	import Sheet from '$lib/components/Sheet.svelte';
@@ -106,6 +107,7 @@
 					last_activity: new Date().toISOString()
 				});
 			}
+			capture('first_topic_read', { code: data.code });
 			// conquered/gold/decaying: never downgrade
 		} catch {
 			markedRead = false; // let a later scroll retry

@@ -32,7 +32,7 @@ architecture (see the territory map, Prompt 05).
 
 ## 2. Build status — WHERE WE ARE
 
-**Prompts 00-A through 14 are DONE. Git clean. Next up: Prompt 15 (push + analytics).**
+**Prompts 00-A through 15 are DONE. Git clean. Next up: Prompt 16 (PET tracker).**
 
 | Prompt | Scope | State | Key commit |
 |--------|-------|-------|-----------|
@@ -50,8 +50,9 @@ architecture (see the territory map, Prompt 05).
 | 11 | Test centre, sectionals, mock player | ✅ | eb8d099 |
 | 12 | PYQ Vault (free, public) | ✅ | a0757ad |
 | 13 | CA pipeline + Daily Briefing + admin queue | ✅ | 6cf8e44 |
-| 14 | Payments (Razorpay), paywall, entitlements, referrals | ✅ | (this branch) |
-| **15** | **Push (OneSignal) + analytics (PostHog)** | ⬅️ **NEXT** | — |
+| 14 | Payments (Razorpay), paywall, entitlements, referrals | ✅ | e75d0ed |
+| 15 | Push (OneSignal) + analytics (PostHog) | ✅ | (this branch) |
+| **16** | **PET tracker (Screen 12)** | ⬅️ **NEXT** | — |
 | 16 | PET tracker | ⬜ | — |
 | 17 | Deployment, hardening, QA sweep | ⬜ | — |
 | 18 | Beta cohort + launch instrumentation | ⬜ | — |
@@ -79,11 +80,21 @@ finish, cap 10, banked as `premium_credit_days` for free users);
 [ENTITLEMENTS.md](ENTITLEMENTS.md) matrix. Dev/e2e payments run offline with
 `PAY_SIMULATE=1` (no Razorpay keys).
 
-**Prompt 15 (the next task) must deliver:** OneSignal web push (permission
-prompt only *after* first quiz; per-user tags; server-triggered sends with
-per-type opt-outs honoured server-side) + PostHog analytics funnel (identify by
-PB user id, "minimal analytics" toggle, no PII), and a `POSTHOG.md` documenting
-4 saved insights. Full text: search "PROMPT 15" in
+**Prompt 15 (DONE) delivered:** OneSignal web push — worker scoped to `/push/`
+(coexists with the SvelteKit SW at `/`), prompt only *after* first quiz
+(`shouldPromptPush`), per-user tags; server sends via
+[lib/notify.js](pb/pb_hooks/lib/notify.js) + 4 crons with per-type opt-outs
+honoured server-side (`notification_prefs`); `/api/notify/preview|test`. PostHog
+via a thin HTTP client [analytics.ts](src/lib/analytics.ts) (no SDK) — 13 funnel
+events, identify by PB id, no PII (`sanitize`), `analytics_minimal` toggle;
+[POSTHOG.md](POSTHOG.md) documents the 4 dashboards. All external wiring is
+gated on keys (unset ⇒ no-op / dry-log).
+
+**Prompt 16 (the next task) must deliver:** the PET tracker (Screen 12) —
+per-event log sheet (100m/800m/long-jump/shot-put), CAPF qualifying standards
+(male/female constants + disclaimer), inline SVG trend charts vs the standard
+line, a "PET Ready" badge/dashboard chip, and an opt-in weekly PET reminder (via
+the Prompt-15 push infra). Full text: search "PROMPT 16" in
 [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
 
 ---
@@ -259,10 +270,14 @@ to check manually.
 | `GROQ_API_KEY` | Groq key for ingestion CLI + CA pipeline. |
 | `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` / `RAZORPAY_WEBHOOK_SECRET` | Payments (Prompt 14). **PocketBase server env only** — read by `pay.pb.js` via `$os.getenv`, never in the client bundle. |
 | `PAY_SIMULATE` | Set `1` (with no Razorpay keys) to run the payment flow offline for dev/e2e. Ignored/unsafe-free in prod (keys present ⇒ simulation unreachable). |
+| `PUBLIC_ONESIGNAL_APP_ID` | OneSignal web push app id (client SDK). Must exist (even empty) for `$env/static/public` to resolve; empty ⇒ push no-op. |
+| `ONESIGNAL_APP_ID` / `ONESIGNAL_REST_KEY` | Server-only (cron sends via `$os.getenv`). Absent ⇒ dry-log, no send. |
+| `PUBLIC_POSTHOG_KEY` / `PUBLIC_POSTHOG_HOST` | PostHog capture (client). Must exist (even empty) for the static import; empty ⇒ analytics no-op. |
 
-Coming (Prompt 15+): OneSignal keys, PostHog project key. Server-only secrets
-live on the VPS / CI, never in the public client bundle (only `PUBLIC_*` vars
-reach the browser).
+All server-only secrets live on the VPS / CI, never in the public client bundle
+(only `PUBLIC_*` vars reach the browser). **Note:** any `PUBLIC_*` var the code
+imports from `$env/static/public` must be present in `.env` (empty is fine) or
+the build fails.
 
 CI: GitHub Action runs `validate`, then `sync` to prod on push to `main` using
 repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.

@@ -4,6 +4,8 @@ import { pb } from './pb';
 import type { User } from './types';
 import { rankForXp } from './ranks';
 import { removeAllCached } from './offline';
+import { capture, resetAnalytics } from './analytics';
+import { logoutPush } from './push';
 
 const state = $state<{ user: User | null; booted: boolean }>({
 	user: (pb.authStore.record as unknown as User) ?? null,
@@ -71,6 +73,7 @@ export async function signup(opts: {
 	// design: no confirmation wall — straight in (verification email can be
 	// wired via SMTP later without changing this flow)
 	await pb.collection('users').authWithPassword(opts.email, opts.password);
+	capture('signup_completed', { referred: !!opts.referredBy });
 }
 
 export async function loginWithGoogle() {
@@ -83,6 +86,8 @@ export async function requestPasswordReset(email: string) {
 
 export function logout() {
 	pb.authStore.clear();
+	resetAnalytics();
+	logoutPush();
 	// Purge offline notes: cached payloads were entitled to the session that
 	// just ended (a premium/admin read of a gated topic must not survive logout).
 	void removeAllCached();
@@ -113,4 +118,5 @@ export async function saveOnboarding(opts: {
 		daily_minutes: opts.dailyMinutes
 	});
 	await pb.collection('users').authRefresh();
+	capture('onboarding_completed', { target_year: opts.targetYear, daily_minutes: opts.dailyMinutes });
 }

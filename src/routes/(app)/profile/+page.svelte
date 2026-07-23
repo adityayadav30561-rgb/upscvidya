@@ -7,6 +7,7 @@
 	import { setAnonymous } from '$lib/board';
 	import { showToast } from '$lib/toast.svelte';
 	import { restorePurchase, formatINR, monthlyDaysLeft } from '$lib/pay';
+	import { capture, setMinimal } from '$lib/analytics';
 	import type { Payment } from '$lib/types';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import OfflineNotes from '$lib/components/OfflineNotes.svelte';
@@ -139,6 +140,55 @@
 		} catch {
 			showToast(referralLink, 'info', 6000);
 		}
+		capture('referral_shared', {});
+	}
+
+	/* ---- Notifications + analytics settings (Prompt 15) ---- */
+	const NOTIF_TYPES = [
+		{ key: 'daily_briefing', label: 'Daily Briefing', sub: '07:00 · new current affairs' },
+		{ key: 'streak_risk', label: 'Streak alerts', sub: "warns at 20:30 if today's mission is open" },
+		{ key: 'sr_pileup', label: 'Revision pile-up', sub: 'when 25+ cards are due' },
+		{ key: 'battalion_weekly', label: 'Battalion results', sub: 'Monday morning standings' }
+	] as const;
+
+	// prefs default ON (a missing key = opted-in, matching the server)
+	let prefs = $state<Record<string, boolean>>({});
+	let minimal = $state(false);
+	let prefsInit = false;
+	$effect(() => {
+		if (prefsInit || !user) return;
+		prefsInit = true;
+		const stored = (user as unknown as { notification_prefs?: Record<string, boolean> })
+			.notification_prefs;
+		const seed: Record<string, boolean> = {};
+		for (const t of NOTIF_TYPES) seed[t.key] = stored?.[t.key] !== false;
+		prefs = seed;
+		minimal = !!(user as unknown as { analytics_minimal?: boolean }).analytics_minimal;
+	});
+
+	async function toggleNotif(key: string) {
+		if (!user) return;
+		const next = { ...prefs, [key]: !prefs[key] };
+		prefs = next;
+		try {
+			await pb.collection('users').update(user.id, { notification_prefs: next });
+		} catch {
+			prefs = { ...prefs, [key]: !prefs[key] }; // revert
+			showToast('Could not save preference', 'error');
+		}
+	}
+
+	async function toggleMinimal() {
+		if (!user) return;
+		const next = !minimal;
+		minimal = next;
+		setMinimal(next); // takes effect immediately, no reload
+		try {
+			await pb.collection('users').update(user.id, { analytics_minimal: next });
+		} catch {
+			minimal = !next;
+			showToast('Could not save preference', 'error');
+		}
 	}
 
 	function doLogout() {
@@ -234,6 +284,31 @@
 		</div>
 	</section>
 
+	<!-- Notifications (Screen 19 · Prompt 15) — opt-outs honoured server-side -->
+	<section class="group">
+		<h2>Notifications</h2>
+		<div class="notif-list">
+			{#each NOTIF_TYPES as t (t.key)}
+				<div class="notif-row">
+					<div class="notif-text">
+						<div class="notif-title">{t.label}</div>
+						<div class="notif-sub">{t.sub}</div>
+					</div>
+					<button
+						class="toggle"
+						class:on={prefs[t.key]}
+						role="switch"
+						aria-checked={prefs[t.key]}
+						aria-label={t.label}
+						onclick={() => toggleNotif(t.key)}
+					>
+						<span class="knob"></span>
+					</button>
+				</div>
+			{/each}
+		</div>
+	</section>
+
 	<!-- Screen 14: the 14-grade CAPF ladder -->
 	<section class="group">
 		<h2>Rank ladder</h2>
@@ -283,6 +358,22 @@
 				aria-label="appear as anonymous cadet"
 				disabled={anonBusy}
 				onclick={toggleAnon}
+			>
+				<span class="knob"></span>
+			</button>
+		</div>
+		<div class="toggle-row">
+			<div>
+				<div class="t-title">Minimal analytics</div>
+				<div class="t-sub">Send only essential product events. No personal data ever leaves with them.</div>
+			</div>
+			<button
+				class="toggle"
+				class:on={minimal}
+				role="switch"
+				aria-checked={minimal}
+				aria-label="minimal analytics"
+				onclick={toggleMinimal}
 			>
 				<span class="knob"></span>
 			</button>
@@ -640,5 +731,35 @@
 		border-radius: var(--r-full);
 		padding: 10px 16px;
 		cursor: pointer;
+	}
+	.notif-list {
+		display: flex;
+		flex-direction: column;
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-lg);
+		overflow: hidden;
+	}
+	.notif-row {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 12px 14px;
+		border-bottom: 1px solid var(--line-soft);
+	}
+	.notif-row:last-child {
+		border-bottom: none;
+	}
+	.notif-text {
+		flex: 1;
+	}
+	.notif-title {
+		font-weight: 900;
+		font-size: 13px;
+	}
+	.notif-sub {
+		font-size: 10.5px;
+		color: var(--ink-3);
+		margin-top: 2px;
 	}
 </style>

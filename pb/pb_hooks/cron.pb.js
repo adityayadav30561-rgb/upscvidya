@@ -104,6 +104,35 @@ cronAdd("premium_expiry", "0 3 * * *", () => {
   if (n > 0) $app.logger().info("premium_expiry", "cleared", n);
 });
 
+// ---- Push notification sends (Prompt 15) --------------------------------
+// Every send routes through lib/notify.sendType, which drops opted-out users
+// server-side and dry-logs when OneSignal is unkeyed. Cron TZ = server TZ =
+// Asia/Kolkata (setup.sh), so these clock times are IST.
+
+// 07:00 IST — "Daily Briefing is ready" (only when one is published today).
+cronAdd("briefing_push", "0 7 * * *", () => {
+  const notify = require(`${__hooks}/lib/notify.js`);
+  notify.sendType($app, "daily_briefing");
+});
+
+// 20:30 IST — streak-at-risk for anyone with no qualifying activity today.
+cronAdd("streak_risk_push", "30 20 * * *", () => {
+  const notify = require(`${__hooks}/lib/notify.js`);
+  notify.sendType($app, "streak_risk");
+});
+
+// 18:00 IST — SR pile-up (≥25 due), self-throttled to once / 3 days per user.
+cronAdd("sr_pileup_push", "0 18 * * *", () => {
+  const notify = require(`${__hooks}/lib/notify.js`);
+  notify.sendType($app, "sr_pileup");
+});
+
+// Monday 08:00 IST — weekly battalion result (after the 00:00 rollover).
+cronAdd("battalion_weekly_push", "0 8 * * 1", () => {
+  const notify = require(`${__hooks}/lib/notify.js`);
+  notify.sendType($app, "battalion_weekly");
+});
+
 // 1st of each month 00:05 IST — refill streak freezes to 2 (Prompt 09:
 // "2 streak freezes/month auto-apply on a missed day").
 cronAdd("freeze_refill", "5 0 1 * *", () => {

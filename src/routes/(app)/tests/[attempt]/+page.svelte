@@ -15,6 +15,7 @@
 	} from '$lib/test';
 	import { REGIONS } from '$lib/polity';
 	import { showToast } from '$lib/toast.svelte';
+	import { capture } from '$lib/analytics';
 	import OptionRow from '$lib/components/OptionRow.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Modal from '$lib/components/Modal.svelte';
@@ -149,6 +150,9 @@
 			if (paper?.pinned_qids) palette.qids = paper.pinned_qids;
 			await saveProgress(attemptId, answers, palette).catch(() => {});
 			result = await submitTest(attemptId);
+			if (result.kind === 'mock') {
+				capture('mock_submitted', { test_id: result.attempt_id, score: result.score });
+			}
 			confirmOpen = false;
 			phase = 'results';
 		} catch (err) {

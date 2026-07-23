@@ -27,3 +27,7 @@ pb/pocketbase
 pb/pocketbase.exe
 pb/pb_data/
 pb/*.log
+
+# Playwright
+test-results/
+playwright-report/

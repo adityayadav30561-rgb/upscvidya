@@ -51,6 +51,8 @@ export interface User extends BaseRecord {
 	referral_code: string;
 	referred_by: string;
 	role: 'user' | 'admin';
+	notification_prefs: Record<string, boolean>;
+	analytics_minimal: boolean;
 }
 
 export interface Topic extends BaseRecord {

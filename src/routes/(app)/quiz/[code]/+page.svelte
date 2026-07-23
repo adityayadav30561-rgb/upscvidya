@@ -20,6 +20,8 @@
 	import { stashConquest } from '$lib/map';
 	import { UNITS } from '$lib/polity';
 	import { showToast } from '$lib/toast.svelte';
+	import { capture } from '$lib/analytics';
+	import { promptAfterFirstQuiz } from '$lib/push';
 	import OptionRow from '$lib/components/OptionRow.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Chip from '$lib/components/Chip.svelte';
@@ -163,6 +165,15 @@
 		try {
 			summary = await finishQuiz(session.session_id);
 			if (summary.state === 'conquered' || summary.state === 'gold') stashConquest(summary.code);
+			// Prompt 15 analytics: topic quizzes only (drills are not the funnel)
+			if (summary.kind === 'topic_quiz') {
+				capture('first_quiz_completed', { code: summary.code, score_pct: summary.score_pct });
+				if (summary.state === 'conquered' || summary.state === 'gold') {
+					capture('topic_conquered', { code: summary.code, gold: summary.gold });
+				}
+				// the ONLY place the push permission prompt is raised (post-first-quiz)
+				promptAfterFirstQuiz();
+			}
 			// Prompt 09: server-decided celebration + streak feedback
 			if (summary.rank_up) rankUpTo = summary.rank_up.to as RankCode;
 			if (summary.streak?.counted) {
