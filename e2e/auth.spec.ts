@@ -6,6 +6,10 @@ import { expect, test } from '@playwright/test';
  * (pb/pocketbase.exe serve) and `pnpm exec playwright install chromium`.
  */
 
+// signup then returning-login share one account, so they must run in order
+// (parallel workers could otherwise log in before the account exists).
+test.describe.configure({ mode: 'serial' });
+
 const unique = Date.now();
 const EMAIL = `e2e-${unique}@local.test`;
 const PASSWORD = 'e2epassword123';
@@ -45,9 +49,10 @@ test('signup → onboarding → path → home', async ({ page }) => {
 	await page.mouse.click(200, 200); // skip
 	await page.getByRole('button', { name: 'Begin campaign →' }).click();
 
-	// dashboard shell
+	// dashboard shell (target the nav link specifically — the a11y route
+	// announcer also contains "Base Camp", which would make getByText ambiguous)
 	await expect(page).toHaveURL('/');
-	await expect(page.getByText('BASE')).toBeVisible();
+	await expect(page.getByRole('link', { name: 'BASE' })).toBeVisible();
 });
 
 test('returning login lands on home, skipping onboarding', async ({ page }) => {
