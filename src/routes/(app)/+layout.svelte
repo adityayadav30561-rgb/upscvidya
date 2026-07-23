@@ -1,7 +1,9 @@
 <script lang="ts">
 	import BottomNav from '$lib/components/BottomNav.svelte';
+	import TourGuide from '$lib/components/TourGuide.svelte';
 	import { auth } from '$lib/auth.svelte';
 	import { monthlyDaysLeft } from '$lib/pay';
+	import { startTour, shouldAutoStart } from '$lib/tour.svelte';
 	import { goto } from '$app/navigation';
 
 	let { children } = $props();
@@ -11,6 +13,12 @@
 	const daysLeft = $derived(auth.user ? monthlyDaysLeft(auth.user) : null);
 	const warn = $derived(daysLeft !== null && daysLeft <= 7 && daysLeft >= 0);
 	let dismissed = $state(false);
+
+	// Ustad's first-run walkthrough — auto-start once for a freshly-onboarded
+	// recruit who hasn't seen it (guarded by users.tour_done + a session flag).
+	$effect(() => {
+		if (shouldAutoStart(auth.user)) startTour();
+	});
 </script>
 
 {#if warn && !dismissed}
@@ -27,6 +35,7 @@
 	{@render children()}
 </div>
 <BottomNav />
+<TourGuide />
 
 <style>
 	.shell {

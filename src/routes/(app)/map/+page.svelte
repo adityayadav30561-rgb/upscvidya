@@ -176,8 +176,8 @@
 		{/each}
 	</div>
 
-	{#each map.regions as region (region.meta.code)}
-		<section id="sec-{region.meta.code}">
+	{#each map.regions as region, i (region.meta.code)}
+		<section id="sec-{region.meta.code}" data-tour={i === 0 ? 'map-canvas' : undefined}>
 			{#if expanded.has(region.meta.code)}
 				<RegionMap {region} {conquestCode} onTap={openSheet} />
 				<button class="collapse" onclick={() => toggle(region.meta.code)}>collapse ↑</button>

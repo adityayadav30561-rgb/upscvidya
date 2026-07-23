@@ -8,6 +8,7 @@
 	import { showToast } from '$lib/toast.svelte';
 	import { restorePurchase, formatINR, monthlyDaysLeft } from '$lib/pay';
 	import { capture, setMinimal } from '$lib/analytics';
+	import { startTour } from '$lib/tour.svelte';
 	import type { Payment } from '$lib/types';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import OfflineNotes from '$lib/components/OfflineNotes.svelte';
@@ -429,6 +430,7 @@
 
 	<section class="group">
 		<h2>Account</h2>
+		<button class="replay" onclick={() => { startTour(); goto('/'); }}>Replay Ustad's walkthrough</button>
 		<button class="logout" onclick={doLogout}>Sign out</button>
 	</section>
 </div>
@@ -622,7 +624,8 @@
 	.toggle.on .knob {
 		left: 21px;
 	}
-	.logout {
+	.logout,
+	.replay {
 		align-self: flex-start;
 		font-family: var(--font-ui);
 		font-weight: 700;
@@ -632,6 +635,9 @@
 		border-radius: var(--r-full);
 		padding: 10px 20px;
 		cursor: pointer;
+	}
+	.replay {
+		margin-bottom: 8px;
 	}
 	.plan-card {
 		display: flex;

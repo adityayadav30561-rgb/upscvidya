@@ -174,7 +174,7 @@
 					<div class="streak-l">training streak</div>
 				</div>
 			</div>
-			<button class="log-btn" onclick={() => openLog(EXERCISES[0])}>Log a workout →</button>
+			<button class="log-btn" data-tour="pt-log" onclick={() => openLog(EXERCISES[0])}>Log a workout →</button>
 		</div>
 	</div>
 

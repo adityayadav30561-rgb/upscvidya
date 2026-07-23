@@ -244,7 +244,7 @@
 		<!-- sticky quiz CTA (hidden in teaser mode) -->
 		{#if !view.teaser}
 			<div class="cta-wrap">
-				<button class="cta" class:pulse={ctaPulsed} onclick={attemptQuiz}>
+				<button class="cta" class:pulse={ctaPulsed} data-tour="reader-cta" onclick={attemptQuiz}>
 					Attempt quiz ({view.quizN} questions) →
 				</button>
 			</div>

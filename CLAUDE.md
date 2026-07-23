@@ -62,6 +62,15 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
 (needs new `posts`/`challenges` collections; insert after Prompt 10) and
 **22 Progress & Study Stats** (folds into the profile area, Prompt 09 phase).
 
+**Extra feature shipped outside the prompt sequence:** *Ustad's walkthrough* — a
+Clash-of-Clans-style first-run guided tour (drill-instructor character "Ustad")
+that spotlights UI elements across Home → Map → Topic → Quiz → Drill Ground.
+Engine [tour.svelte.ts](src/lib/tour.svelte.ts), overlay
+[TourGuide.svelte](src/lib/components/TourGuide.svelte) (mounted in the (app)
+layout), avatar [UstadAvatar.svelte](src/lib/components/UstadAvatar.svelte).
+Targets are `data-tour="…"` attributes on real elements; auto-starts once for a
+freshly-onboarded user (`users.tour_done`), replayable from Profile.
+
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
 - **Pricing:** build-book matrix — monthly ₹199→₹99, till-exam ₹999→₹499; ₹399/₹1999 struck as MRP. Server (`entitle.js`) is the only price authority.

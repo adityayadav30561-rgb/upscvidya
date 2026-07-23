@@ -119,7 +119,7 @@
 
 <div class="dash">
 	<!-- header: insignia, greeting, XP bar, streak -->
-	<div class="header">
+	<div class="header" data-tour="home-hero">
 		<div class="insignia-slot">
 			{#if user}
 				<RankInsignia rank={auth.rankCode} width={34} />
@@ -152,7 +152,7 @@
 	</div>
 
 	<!-- Today's Mission -->
-	<div class="mission">
+	<div class="mission" data-tour="home-mission">
 		<div class="m-head">
 			<span class="m-title">Today's Mission</span>
 			<span class="m-time">~{missionMinutes || 45} min</span>
@@ -218,7 +218,7 @@
 
 	<!-- ring + stats band -->
 	<div class="band">
-		<div class="ring-card">
+		<div class="ring-card" data-tour="home-ring">
 			<ProgressRing value={map.pct} size={92} stroke={9} label="POLITY" />
 		</div>
 		<div class="stats">

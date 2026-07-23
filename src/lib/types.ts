@@ -53,6 +53,7 @@ export interface User extends BaseRecord {
 	role: 'user' | 'admin';
 	notification_prefs: Record<string, boolean>;
 	analytics_minimal: boolean;
+	tour_done: boolean;
 }
 
 export interface Topic extends BaseRecord {

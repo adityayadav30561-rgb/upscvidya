@@ -17,6 +17,15 @@ import { expect, test, type Page } from '@playwright/test';
  */
 
 async function enlist(page: Page): Promise<void> {
+	// suppress Ustad's first-run walkthrough (its own spec covers it) so its
+	// overlay doesn't intercept clicks in these payment flows
+	await page.addInitScript(() => {
+		try {
+			localStorage.setItem('tour-seen', '1');
+		} catch {
+			/* ignore */
+		}
+	});
 	const email = `pay-${Date.now()}-${Math.floor(Math.random() * 1e4)}@local.test`;
 	await page.goto('/login?mode=signup');
 	await page.getByPlaceholder('As on your application form').fill('Pay Recruit');
