@@ -4,6 +4,7 @@
 	import { buildMap } from '$lib/map';
 	import { rankProgress, istDate } from '$lib/xp';
 	import { fetchDue, type SrDue } from '$lib/sr';
+	import { fetchBoard, formatCountdown, type Board } from '$lib/board';
 	import { TOTAL_UNITS } from '$lib/polity';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import StreakFlame from '$lib/components/StreakFlame.svelte';
@@ -29,7 +30,12 @@
 			.then((d) => (sr = d))
 			.catch(() => (sr = null))
 			.finally(() => (srLoaded = true));
+		fetchBoard()
+			.then((b) => (board = b))
+			.catch(() => (board = null));
 	});
+
+	let board = $state<Board | null>(null);
 
 	/* greeting is time-aware (interaction notes) */
 	const greeting = (() => {
@@ -240,6 +246,26 @@
 			</button>
 		</div>
 	</div>
+
+	<!-- battalion standing (Prompt 10) -->
+	<button class="batt-row" onclick={() => goto('/battalion')}>
+		<span class="batt-icon">
+			<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 V9 M10 16 V4 M16 16 V12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></svg>
+		</span>
+		<span class="batt-text">
+			<span class="batt-title">
+				Battalion board{board?.you ? ` — #${board.you.rank} of ${board.battalion?.member_count ?? ''}` : ''}
+			</span>
+			<span class="batt-sub">
+				{#if board}
+					Week resets in {formatCountdown(board.seconds_left)}{board.behind ? ` · ${board.behind.toLocaleString('en-IN')} XP behind #${(board.you?.rank ?? 2) - 1}` : ''}
+				{:else}
+					weekly XP race inside your cohort
+				{/if}
+			</span>
+		</span>
+		<svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+	</button>
 </div>
 
 <!-- streak sheet: 30-day calendar + freeze explainer -->
@@ -601,6 +627,43 @@
 	.qa-sub.hot {
 		color: var(--red-deep);
 		font-weight: 700;
+	}
+
+	/* battalion row */
+	.batt-row {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		background: var(--bg-1);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-lg);
+		padding: 12px 16px;
+		cursor: pointer;
+		font-family: var(--font-ui);
+		text-align: left;
+		color: var(--ink-1);
+	}
+	.batt-row:hover {
+		box-shadow: var(--shadow-2);
+	}
+	.batt-icon {
+		flex: none;
+		display: flex;
+	}
+	.batt-text {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+	}
+	.batt-title {
+		font-weight: 900;
+		font-size: 13px;
+	}
+	.batt-sub {
+		font-size: 11px;
+		color: var(--ink-3);
 	}
 
 	/* streak sheet */

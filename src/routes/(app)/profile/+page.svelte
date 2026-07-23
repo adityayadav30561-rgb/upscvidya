@@ -4,6 +4,8 @@
 	import { pb } from '$lib/pb';
 	import { RANKS } from '$lib/ranks';
 	import { rankProgress, BADGES } from '$lib/xp';
+	import { setAnonymous } from '$lib/board';
+	import { showToast } from '$lib/toast.svelte';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import OfflineNotes from '$lib/components/OfflineNotes.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
@@ -28,6 +30,31 @@
 	});
 
 	const badgeList = $derived(Object.entries(BADGES));
+
+	/* privacy toggle — masks the name for other viewers on battalion boards */
+	let anon = $state(false);
+	let anonBusy = $state(false);
+	let anonInit = false;
+	$effect(() => {
+		if (anonInit || !user) return;
+		anonInit = true;
+		anon = !!(user as unknown as { anonymous?: boolean }).anonymous;
+	});
+
+	async function toggleAnon() {
+		if (anonBusy) return;
+		anonBusy = true;
+		const next = !anon;
+		try {
+			await setAnonymous(next);
+			anon = next;
+			showToast(next ? 'You now appear as Anonymous Cadet' : 'Your name is visible again', 'info');
+		} catch {
+			showToast('Could not update privacy setting', 'error');
+		} finally {
+			anonBusy = false;
+		}
+	}
 
 	function doLogout() {
 		logout();
@@ -88,6 +115,27 @@
 				{/each}
 			</div>
 		{/if}
+	</section>
+
+	<section class="group">
+		<h2>Privacy</h2>
+		<div class="toggle-row">
+			<div>
+				<div class="t-title">Appear as Anonymous Cadet</div>
+				<div class="t-sub">Hides your name on battalion boards. Your insignia still shows.</div>
+			</div>
+			<button
+				class="toggle"
+				class:on={anon}
+				role="switch"
+				aria-checked={anon}
+				aria-label="appear as anonymous cadet"
+				disabled={anonBusy}
+				onclick={toggleAnon}
+			>
+				<span class="knob"></span>
+			</button>
+		</div>
 	</section>
 
 	<section class="group">
@@ -239,6 +287,56 @@
 	.badge-name {
 		font-size: 11px;
 		font-weight: 900;
+	}
+	.toggle-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-md);
+		padding: 12px 14px;
+	}
+	.t-title {
+		font-weight: 900;
+		font-size: 13px;
+	}
+	.t-sub {
+		font-size: 10.5px;
+		color: var(--ink-3);
+		margin-top: 2px;
+	}
+	.toggle {
+		width: 46px;
+		height: 26px;
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-full);
+		background: var(--bg-1);
+		position: relative;
+		cursor: pointer;
+		flex: none;
+		transition: background var(--t-fast) var(--ease);
+	}
+	.toggle.on {
+		background: var(--green);
+	}
+	.toggle:disabled {
+		opacity: 0.6;
+	}
+	.knob {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 19px;
+		height: 19px;
+		border-radius: var(--r-full);
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		transition: left var(--t-fast) var(--ease);
+	}
+	.toggle.on .knob {
+		left: 21px;
 	}
 	.logout {
 		align-self: flex-start;

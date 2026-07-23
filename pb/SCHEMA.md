@@ -101,6 +101,25 @@ badges. `badges` + `xp_events` collections ship in
 badge codes: `first_conquest`, `region_<code>` ×8, `streak_7/30/100`,
 `pet_ready` (P16), `mock_finisher` (P11), `beta_founder` (P18).
 
+## Battalion leaderboards (Prompt 10)
+
+`awardXP` also upserts this week's `leaderboard_entries` row (keyed
+`(user, week_start)` with `week_start` = Monday 00:00 IST), so standings are a
+side effect of the single XP path — nothing else writes them.
+
+**Privacy.** `users` is self-read only (`id = @request.auth.id`), so a client
+can never list other aspirants. [pb_hooks/board.pb.js](pb_hooks/board.pb.js)
+assembles `POST /api/board` server-side and emits only `display_name`
+(or `"Anonymous Cadet"` when that user set the `anonymous` flag —
+[migration](pb_migrations/1753300000_anonymous_toggle.js)), `rank_code`,
+`streak` and `xp_week`. No emails, no user ids. The owner always sees their own
+real name on their own row; the mask applies to other viewers only.
+
+The `leaderboard_rollover` cron (Monday 00:00 IST) snapshots the **closing**
+week before stamping the new `week_start`: top 3 earn `podium_1/2/3`, top 5
+earn `commendation` (unique `(user, code)` index makes it idempotent). Past
+weeks are never mutated, so history and the ▲/▼ week-over-week delta survive.
+
 ## Collections
 
 ### users (auth, extended)

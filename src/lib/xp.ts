@@ -124,6 +124,10 @@ export const BADGES: Record<string, { label: string; hint: string }> = {
 	streak_7: { label: '7-Day Streak', hint: 'Study 7 days straight' },
 	streak_30: { label: '30-Day Streak', hint: 'Study 30 days straight' },
 	streak_100: { label: '100-Day Streak', hint: 'Study 100 days straight' },
+	podium_1: { label: 'Battalion Gold', hint: 'Finish a week #1 in your battalion' },
+	podium_2: { label: 'Battalion Silver', hint: 'Finish a week #2 in your battalion' },
+	podium_3: { label: 'Battalion Bronze', hint: 'Finish a week #3 in your battalion' },
+	commendation: { label: 'Commendation', hint: 'Finish a week in your battalion top 5' },
 	pet_ready: { label: 'PET Ready', hint: 'Hit every PET standard' },
 	mock_finisher: { label: 'Mock Finisher', hint: 'Submit your first mock test' },
 	beta_founder: { label: 'Beta Founder', hint: 'Enlisted during the beta' }

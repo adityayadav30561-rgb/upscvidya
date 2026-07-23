@@ -29,23 +29,56 @@ cronAdd("topic_decay", "30 2 * * *", () => {
   if (n > 0) $app.logger().info("topic_decay", "decayed", n);
 });
 
-// Monday 00:00 IST — leaderboard week rollover.
+// Monday 00:00 IST — leaderboard week rollover (Prompt 10).
 // Entries are keyed (user, week_start), so a new week simply accumulates new
-// rows; the rollover stamps battalions with the new week_start (history stays).
-// Podium badge snapshots land with the badges system (Prompt 10).
+// rows; the rollover snapshots the CLOSING week's standings into badges, then
+// stamps battalions with the new week_start (history stays intact).
 cronAdd("leaderboard_rollover", "0 0 * * 1", () => {
   const now = new Date(Date.now() + 5.5 * 3600 * 1000); // IST
   const day = now.getUTCDay();
   const diff = day === 0 ? 6 : day - 1;
   const monday = new Date(now.getTime() - diff * 86400 * 1000);
   const weekStart = monday.toISOString().slice(0, 10) + " 00:00:00.000Z";
+  // the week that just closed
+  const closing = new Date(monday.getTime() - 7 * 86400 * 1000)
+    .toISOString().slice(0, 10) + " 00:00:00.000Z";
 
   const battalions = $app.findRecordsByFilter("battalions", "id != ''", "", 1000, 0);
+  let podiums = 0;
+
   for (const b of battalions) {
+    // snapshot: top 3 get podium badges, top 5 get a commendation (design)
+    try {
+      const standings = $app.findRecordsByFilter(
+        "leaderboard_entries",
+        "battalion = {:b} && week_start = {:w} && xp_week > 0",
+        "-xp_week",
+        5,
+        0,
+        { b: b.id, w: closing }
+      );
+      for (let i = 0; i < standings.length; i++) {
+        const uid = standings[i].get("user");
+        const codes = [];
+        if (i < 3) codes.push("podium_" + (i + 1));
+        codes.push("commendation");
+        for (const code of codes) {
+          try {
+            const col = $app.findCollectionByNameOrId("badges");
+            const rec = new Record(col);
+            rec.set("user", uid);
+            rec.set("code", code);
+            $app.save(rec); // unique (user, code) index makes this idempotent
+            podiums++;
+          } catch (_) { /* already held */ }
+        }
+      }
+    } catch (_) { /* empty battalion week */ }
+
     b.set("week_start", weekStart);
     $app.save(b);
   }
-  $app.logger().info("leaderboard_rollover", "week_start", weekStart);
+  $app.logger().info("leaderboard_rollover", "week_start", weekStart, "badges", podiums);
 });
 
 // 1st of each month 00:05 IST — refill streak freezes to 2 (Prompt 09:

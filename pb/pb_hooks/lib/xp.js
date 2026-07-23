@@ -50,6 +50,17 @@ function istDate(ms) {
   return new Date(ms + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
 }
 
+/** Monday 00:00 IST of the week containing `ms`, as a PB date string.
+ *  Leaderboard entries key on (user, week_start), so weeks accumulate as
+ *  history instead of being overwritten. */
+function weekStartIST(ms) {
+  const ist = new Date(ms + 5.5 * 3600 * 1000);
+  const day = ist.getUTCDay(); // 0=Sun after the IST shift
+  const diff = day === 0 ? 6 : day - 1; // days since Monday
+  const monday = new Date(ist.getTime() - diff * 86400000);
+  return monday.toISOString().slice(0, 10) + " 00:00:00.000Z";
+}
+
 /** Whole days between two YYYY-MM-DD dates. */
 function daysBetween(a, b) {
   return Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
@@ -109,12 +120,50 @@ function awardXP(app, userId, amount, reason) {
     } catch (err) {
       app.logger().error("xp_event save", "err", String(err));
     }
+
+    // Prompt 10: the same hook maintains this week's battalion standing.
+    try {
+      bumpLeaderboard(app, user, amount);
+    } catch (err) {
+      app.logger().error("leaderboard bump", "err", String(err));
+    }
   }
 
   return {
     xpTotal: after,
     rankUp: rankBefore !== rankAfter ? { from: rankBefore, to: rankAfter } : null,
   };
+}
+
+/** Increment this week's leaderboard entry for the user's battalion.
+ *  Entries are keyed (user, week_start) — upsert, never overwrite history. */
+function bumpLeaderboard(app, user, amount) {
+  const battalion = user.get("battalion_id");
+  if (!battalion) return;
+  const weekStart = weekStartIST(Date.now());
+
+  let entry = null;
+  try {
+    entry = app.findFirstRecordByFilter(
+      "leaderboard_entries",
+      "user = {:u} && week_start = {:w}",
+      { u: user.id, w: weekStart }
+    );
+  } catch (_) {
+    entry = null;
+  }
+
+  if (!entry) {
+    const col = app.findCollectionByNameOrId("leaderboard_entries");
+    entry = new Record(col);
+    entry.set("user", user.id);
+    entry.set("battalion", battalion);
+    entry.set("week_start", weekStart);
+    entry.set("xp_week", 0);
+  }
+  entry.set("battalion", battalion); // follow a re-assignment
+  entry.set("xp_week", entry.getInt("xp_week") + amount);
+  app.save(entry);
 }
 
 /** Grant a badge once (unique index makes this idempotent). */
@@ -163,6 +212,6 @@ function applyStreak(app, userId) {
 
 module.exports = {
   RANKS, rankForXp, tierMult, answerXp, srReviewXp,
-  REGION_CHAPTERS, istDate, daysBetween, streakStep,
-  awardXP, awardBadge, applyStreak,
+  REGION_CHAPTERS, istDate, weekStartIST, daysBetween, streakStep,
+  awardXP, awardBadge, applyStreak, bumpLeaderboard,
 };
