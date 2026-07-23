@@ -176,6 +176,31 @@ SEO: `/pyq/capf-YYYY` is **prerendered** to static HTML from
 needs no live PocketBase. Those pages publish counts and a topic breakdown
 only — never the questions.
 
+## Current affairs (Prompt 13)
+
+The pipeline job lives at [../infra/jobs/ca-pipeline/index.js](../infra/jobs/ca-pipeline/index.js)
+(cron 05:30 + 17:30 IST on the VPS): fetches every enabled `sources` feed,
+filters noise, dedups by URL + Jaccard title similarity against 14 days of
+`ca_items`, then drafts per candidate — with `GROQ_API_KEY` a real model call
+(summary, topic tags, 2-3 draft MCQs); without a key it runs in HEURISTIC mode
+(keyword tags, extractive summary, NO fabricated MCQs) at `confidence 0.5`,
+which keeps every heuristic draft below the 0.92 batch-approve bar so a human
+reads it. Runs log to `jobs_log`; a non-zero exit is the alerting signal.
+NOTE: PIB's RSS returns Hindi headline-only items, so English national feeds
+(The Hindu, Indian Express) ship as additional seeded `sources` rows —
+admin-editable, exactly as the build book intended.
+
+[pb_hooks/ca.pb.js](pb_hooks/ca.pb.js): `/api/ca/briefing` (date-gated feed —
+free tier gets today + yesterday, older dates return `locked` with NO items;
+premium/admin get the archive), `/answer` (mini-quiz check: first attempt
+recorded as `daily_ca`, misses feed `sr_cards`), `/complete` (30 XP once per
+IST day + streak), and the admin set `/queue`, `/approve`, `/reject`,
+`/publish-question`, `/batch`. Approval is ATOMIC — `runInTransaction` flips
+the item to published and its draft questions to live together, stamps
+`reviewed_by`/`reviewed_at`, and publishes today or 07:00 tomorrow when
+approved after 20:00 IST. Batch approve only touches items with
+`confidence >= 0.92`.
+
 ## Collections
 
 ### users (auth, extended)

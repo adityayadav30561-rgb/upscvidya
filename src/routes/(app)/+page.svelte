@@ -5,6 +5,7 @@
 	import { rankProgress, istDate } from '$lib/xp';
 	import { fetchDue, type SrDue } from '$lib/sr';
 	import { fetchBoard, formatCountdown, type Board } from '$lib/board';
+	import { fetchBriefing, type Briefing } from '$lib/ca';
 	import { TOTAL_UNITS } from '$lib/polity';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import StreakFlame from '$lib/components/StreakFlame.svelte';
@@ -33,9 +34,19 @@
 		fetchBoard()
 			.then((b) => (board = b))
 			.catch(() => (board = null));
+		fetchBriefing()
+			.then((b) => (briefing = b))
+			.catch(() => (briefing = null))
+			.finally(() => (briefingLoaded = true));
 	});
 
 	let board = $state<Board | null>(null);
+	let briefing = $state<Briefing | null>(null);
+	let briefingLoaded = $state(false);
+	const briefingCount = $derived(briefing?.items.length ?? 0);
+	const briefingDone = $derived(
+		!!briefing && briefingCount > 0 && briefing.items.every((i) => i.quiz.length > 0 && i.quiz_answered >= i.quiz.length)
+	);
 
 	/* greeting is time-aware (interaction notes) */
 	const greeting = (() => {
@@ -178,13 +189,28 @@
 				</span>
 				<span class="m-min">{srLoaded ? `${Math.max(1, Math.round((sr?.count ?? 0) * 0.8))}m` : ''}</span>
 			</button>
-			<div class="m-item static">
-				<span class="m-num">3</span>
-				<span class="m-text">
-					<span class="m-name muted">Daily briefing</span>
-					<span class="m-sub">deploys with the current-affairs pipeline (Prompt 13)</span>
+			<button class="m-item" onclick={() => goto('/briefing')}>
+				<span class="m-num" class:done-num={briefingDone}>
+					{#if briefingDone}✓{:else}3{/if}
 				</span>
-			</div>
+				<span class="m-text">
+					{#if !briefingLoaded}
+						<Skeleton width="140px" height="14px" />
+					{:else}
+						<span class="m-name" class:done-line={briefingDone}>
+							Daily briefing{briefingCount > 0 ? ` — ${briefingCount} item${briefingCount === 1 ? '' : 's'}` : ''}
+						</span>
+						<span class="m-sub">
+							{briefingCount > 0
+								? briefingDone
+									? 'mini-quizzes cleared'
+									: 'read + mini-quiz each item'
+								: 'items land at 07:00 IST after review'}
+						</span>
+					{/if}
+				</span>
+				<span class="m-min">{briefingCount > 0 ? `${briefingCount * 2}m` : ''}</span>
+			</button>
 		</div>
 		<Button variant="primary" onclick={beginMission}>Begin Mission →</Button>
 	</div>
@@ -239,7 +265,10 @@
 				<span class="qa-name">PYQ Vault</span><span class="qa-sub">free · all years</span>
 			</button>
 			<button class="qa" onclick={() => goto('/briefing')}>
-				<span class="qa-name">Daily Briefing</span><span class="qa-sub">Prompt 13</span>
+				<span class="qa-name">Daily Briefing</span>
+				<span class="qa-sub" class:hot={briefingLoaded && briefingCount > 0 && !briefingDone}>
+					{!briefingLoaded ? '…' : briefingCount > 0 ? (briefingDone ? 'read ✓' : `${briefingCount} new`) : 'none yet'}
+				</span>
 			</button>
 			<button class="qa" onclick={() => goto('/profile')}>
 				<span class="qa-name">Profile</span><span class="qa-sub">ranks & badges</span>
@@ -411,7 +440,6 @@
 		cursor: pointer;
 		font-family: var(--font-ui);
 	}
-	.m-item.static,
 	.m-item:disabled {
 		cursor: default;
 	}
@@ -442,9 +470,6 @@
 		font-weight: 900;
 		font-size: 14px;
 		color: var(--ink-1);
-	}
-	.m-name.muted {
-		color: var(--ink-3);
 	}
 	.m-name.done-line {
 		color: var(--ink-3);

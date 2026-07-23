@@ -1,0 +1,11 @@
+{
+  "name": "upscvidya-ca-pipeline",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Current-affairs ingestion job (build book Prompt 13)",
+  "scripts": {
+    "start": "node index.js",
+    "dry": "node index.js --dry-run --print --limit 5"
+  }
+}
