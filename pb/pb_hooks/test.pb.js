@@ -351,7 +351,7 @@ routerAdd("POST", "/api/test/start", (e) => {
   // for a dynamically-composed mock
   attempt.set("palette_state", { qids });
   attempt.set("score", 0);
-  attempt.set("max_score", qids.length * (cfg.correct || 2));
+  attempt.set("max_score", qids.length * (cfg.correct == null ? 2 : cfg.correct));
   e.app.save(attempt);
 
   return e.json(200, { attempt_id: attempt.id, test_id: test.id, resumed: false });
@@ -434,7 +434,7 @@ routerAdd("POST", "/api/test/state", (e) => {
     submitted: isSet(attempt.get("submitted_at")),
     duration_sec: duration,
     remaining_sec: remaining,
-    marking: { correct: cfg.correct || 2, negative: cfg.negative || 0.667 },
+    marking: { correct: cfg.correct == null ? 2 : cfg.correct, negative: cfg.negative == null ? 0.667 : cfg.negative },
     questions,
     answers: asObj(attempt.get("answers")),
     marked: palette.marked || {},
@@ -485,8 +485,8 @@ routerAdd("POST", "/api/test/submit", (e) => {
 
   const test = e.app.findRecordById("tests", attempt.get("test"));
   const cfg = asObj(test.get("config"));
-  const perCorrect = cfg.correct || 2;
-  const perWrong = cfg.negative || 0.667;
+  const perCorrect = cfg.correct == null ? 2 : cfg.correct;
+  const perWrong = cfg.negative == null ? 0.667 : cfg.negative;
 
   const palette = asObj(attempt.get("palette_state"));
   let qids = asArr(palette.qids) || asArr(test.get("question_ids")) || [];

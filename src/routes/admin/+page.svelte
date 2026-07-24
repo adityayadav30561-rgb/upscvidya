@@ -10,8 +10,10 @@
 		rejectQuestion,
 		publishQuestion,
 		batchApprove,
+		composeBriefing,
 		lowRiskIds,
 		BATCH_CONFIDENCE,
+		istToday,
 		type AdminQueue,
 		type QueueCaItem,
 		type QueueMcq
@@ -29,6 +31,29 @@
 	/* inline edits keyed by item id */
 	let edits = $state<Record<string, { headline: string; summary: string }>>({});
 	let openItem = $state<string | null>(null);
+
+	/* compose-from-text (manual CA ingestion) */
+	let composeOpen = $state(false);
+	let composeText = $state('');
+	let composeDate = $state(istToday());
+	let composing = $state(false);
+	async function runCompose() {
+		if (composing || !composeText.trim()) return;
+		composing = true;
+		try {
+			const res = await composeBriefing(composeText.trim(), composeDate);
+			showToast(`${res.created} draft item${res.created === 1 ? '' : 's'} added to the queue`, 'success');
+			composeText = '';
+			composeOpen = false;
+			tab = 'ca';
+			await load();
+		} catch (err) {
+			const msg = err instanceof Error ? err.message : 'Compose failed';
+			showToast(msg, 'error');
+		} finally {
+			composing = false;
+		}
+	}
 
 	onMount(load);
 
@@ -167,6 +192,34 @@
 			<Button variant="secondary" onclick={load}>Retry</Button>
 		</div>
 	{:else}
+		<!-- compose from pasted content → AI drafts briefs + MCQs into the queue -->
+		<div class="composer">
+			<button class="compose-toggle" onclick={() => (composeOpen = !composeOpen)}>
+				<span>✎ Compose briefing from text</span>
+				<span class="chev">{composeOpen ? '▲' : '▼'}</span>
+			</button>
+			{#if composeOpen}
+				<div class="compose-body">
+					<label class="c-label" for="c-date">Briefing date</label>
+					<input id="c-date" class="c-date" type="date" bind:value={composeDate} />
+					<label class="c-label" for="c-text">Paste today's current-affairs notes</label>
+					<textarea
+						id="c-text"
+						class="c-text"
+						rows="7"
+						bind:value={composeText}
+						placeholder="Paste raw notes — multiple items, one after another. The model turns each into a brief (60-90 words) plus 2-3 MCQs, tagged to Polity topics, and drops them into the queue as drafts for your review."
+					></textarea>
+					<div class="c-actions">
+						<span class="c-hint">Drafts land below for approval — nothing goes live automatically.</span>
+						<button class="c-run" disabled={composing || !composeText.trim()} onclick={runCompose}>
+							{composing ? 'Drafting…' : 'Draft with AI →'}
+						</button>
+					</div>
+				</div>
+			{/if}
+		</div>
+
 		<div class="tabs">
 			<button class="tab" class:on={tab === 'ca'} onclick={() => (tab = 'ca')}>CA · {queue.counts.ca}</button>
 			<button class="tab" class:on={tab === 'mcq'} onclick={() => (tab = 'mcq')}>MCQ · {queue.counts.mcq}</button>
@@ -307,6 +360,84 @@
 		font-size: 11px;
 		font-weight: 700;
 		color: var(--ink-3);
+	}
+	.composer {
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-lg);
+		background: var(--bg-2);
+		overflow: hidden;
+	}
+	.compose-toggle {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background: var(--khaki-tint);
+		border: none;
+		padding: 11px 14px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12.5px;
+		color: var(--khaki-deep);
+		cursor: pointer;
+	}
+	.compose-body {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 12px 14px;
+	}
+	.c-label {
+		font-size: 10px;
+		font-weight: 900;
+		color: var(--ink-3);
+	}
+	.c-date,
+	.c-text {
+		font-family: var(--font-ui);
+		font-size: 13px;
+		background: var(--bg-0);
+		border: var(--bw) solid var(--line-soft);
+		border-radius: var(--r-md);
+		padding: 9px 11px;
+		color: var(--ink-1);
+		width: 100%;
+		box-sizing: border-box;
+	}
+	.c-text {
+		font-family: var(--font-read);
+		line-height: 1.5;
+		resize: vertical;
+	}
+	.c-date {
+		align-self: flex-start;
+		width: auto;
+	}
+	.c-actions {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		justify-content: space-between;
+	}
+	.c-hint {
+		font-size: 10px;
+		color: var(--ink-3);
+		flex: 1;
+	}
+	.c-run {
+		flex: none;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12.5px;
+		background: var(--green);
+		color: #4d4433;
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-full);
+		padding: 9px 16px;
+		cursor: pointer;
+	}
+	.c-run:disabled {
+		opacity: 0.5;
 	}
 	.tabs {
 		display: flex;

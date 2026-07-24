@@ -124,6 +124,46 @@ export const batchApprove = (ids: string[], min_confidence = 0.92) =>
 		min_confidence
 	});
 
+/** Admin: paste a day's raw CA notes → AI drafts briefs + MCQs into the queue.
+ *  (Or pass a pre-structured `items` array to author manually.) */
+export interface ComposeResult {
+	created: number;
+	date: string;
+	mode: 'ai' | 'manual';
+	need_key?: boolean;
+	detail: { headline: string; questions?: number; skipped?: string }[];
+}
+export const composeBriefing = (raw: string, date?: string) =>
+	post<ComposeResult>('/api/ca/compose', { raw, date: date ?? '' });
+
+/* ---------- Monthly Current Affairs ---------- */
+
+export interface MonthlyMonth {
+	month: string; // YYYY-MM
+	items: number;
+	questions: number;
+	attempted: number;
+	is_current: boolean;
+}
+export const fetchMonthlyIndex = () =>
+	post<{ months: MonthlyMonth[]; current_month: string }>('/api/ca/monthly-index', {});
+export const startMonthly = (month: string) =>
+	post<{ attempt_id: string; test_id: string; resumed: boolean; count: number }>(
+		'/api/ca/monthly-start',
+		{ month }
+	);
+
+/** "July 2026" from a YYYY-MM key. */
+export function monthLabel(month: string): string {
+	const [y, m] = month.split('-').map(Number);
+	if (!y || !m) return month;
+	return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString('en-IN', {
+		month: 'long',
+		year: 'numeric',
+		timeZone: 'UTC'
+	});
+}
+
 /* ---------- pure helpers (unit-tested) ---------- */
 
 /** IST calendar date, matching the server's day boundary. */

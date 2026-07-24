@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isFreeDate, istToday, dateStrip, stripLabel, lowRiskIds, BATCH_CONFIDENCE } from '../ca';
+import { isFreeDate, istToday, dateStrip, stripLabel, lowRiskIds, BATCH_CONFIDENCE, monthLabel } from '../ca';
 
 const DAY = 86400000;
 // a fixed instant so IST-boundary maths is deterministic
@@ -51,5 +51,16 @@ describe('batch approve gate', () => {
 	});
 	it('threshold is adjustable for a stricter sweep', () => {
 		expect(lowRiskIds(items, 0.94)).toEqual(['a']);
+	});
+});
+
+describe('monthLabel', () => {
+	it('renders a YYYY-MM as a readable month', () => {
+		expect(monthLabel('2026-07')).toBe('July 2026');
+		expect(monthLabel('2026-01')).toBe('January 2026');
+		expect(monthLabel('2025-12')).toBe('December 2025');
+	});
+	it('passes through a malformed key unchanged', () => {
+		expect(monthLabel('nope')).toBe('nope');
 	});
 });

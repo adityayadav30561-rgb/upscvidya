@@ -295,6 +295,26 @@ notification type (Prompt-15 infra; Saturday 09:00 IST cron).
 `total`, `best`, `source` (manual/routine), `routine_code`, `client_id`,
 `logged_at`. Full CRUD on own rows; XP/streak are server-side (create hook).
 
+## CA manual ingest + Monthly CA (post-Prompt-13)
+
+[pb_hooks/ca_extra.pb.js](pb_hooks/ca_extra.pb.js) adds:
+- `POST /api/ca/compose` (admin) — paste a day's raw notes → with `GROQ_API_KEY`
+  set (server env, `$os.getenv`, called via `$http.send`) the model drafts
+  briefs (60-90w) + 2-3 MCQs each, tagged to POL topics, inserted as `draft`
+  ca_items + `draft` questions for the existing queue. Without a key it returns
+  `422 { need_key }`, or the admin can POST a pre-structured `items` array to
+  author manually. Nothing bypasses approval.
+- `POST /api/ca/monthly-index` — months (YYYY-MM) that have published CA MCQs,
+  with live-question + attempted counts; current IST month flagged.
+- `POST /api/ca/monthly-start {month}` — unions every live CA MCQ published that
+  month into a reusable `tests` record and starts an attempt through the
+  standard test engine. Practice marking (+1, NO negative), a generous 2-min/Q
+  budget. Current month free; older months premium (`entitle.js`).
+
+Fixed alongside: the test engine coerced a legitimate `0` negative-marking (a
+practice set) to the `0.667` default via `cfg.negative || 0.667` — now nullish-
+guarded so 0 stays 0.
+
 ## Collections
 
 ### users (auth, extended)

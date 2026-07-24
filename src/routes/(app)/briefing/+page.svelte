@@ -117,13 +117,30 @@
 
 <div class="brief">
 	<header class="bhead">
-		<h1>Daily Briefing</h1>
+		<div class="bhead-row">
+			<h1>Daily Briefing</h1>
+			<button class="monthly-btn" onclick={() => goto('/briefing/monthly')}>
+				<svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" /><path d="M3 8 H17 M7 2 V5 M13 2 V5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+				Monthly CA
+			</button>
+		</div>
 		{#if brief && !brief.locked}
 			<p class="bsub">{prettyDate(date)} · {readCount} of {brief.items.length} read</p>
 		{:else}
 			<p class="bsub">{prettyDate(date)}</p>
 		{/if}
 	</header>
+
+	{#if brief && !brief.locked && brief.items.length > 0}
+		{@const totalQ = brief.items.reduce((n, i) => n + i.quiz.length, 0)}
+		{@const doneQ = brief.items.reduce((n, i) => n + i.quiz_answered, 0)}
+		<div class="hero">
+			<div class="hero-stat"><div class="hs-v">{brief.items.length}</div><div class="hs-k">BRIEFS</div></div>
+			<div class="hero-stat"><div class="hs-v">{totalQ}</div><div class="hs-k">MCQs</div></div>
+			<div class="hero-stat"><div class="hs-v">{doneQ}/{totalQ}</div><div class="hs-k">DONE</div></div>
+			<div class="hero-stat"><div class="hs-v">~{Math.max(2, brief.items.length * 2)}m</div><div class="hs-k">READ</div></div>
+		</div>
+	{/if}
 
 	<!-- date strip -->
 	<div class="strip">
@@ -248,11 +265,54 @@
 		font-size: 26px;
 		text-transform: uppercase;
 	}
+	.bhead-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+	.monthly-btn {
+		flex: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 11px;
+		color: var(--blue-deep);
+		background: var(--blue-tint);
+		border: var(--bw) solid var(--blue-deep);
+		border-radius: var(--r-full);
+		padding: 6px 12px;
+		cursor: pointer;
+	}
 	.bsub {
 		margin: 2px 0 0;
 		font-size: 11.5px;
 		font-weight: 700;
 		color: var(--ink-3);
+	}
+	.hero {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 8px;
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-lg);
+		padding: 12px;
+	}
+	.hero-stat {
+		text-align: center;
+	}
+	.hs-v {
+		font-family: var(--font-display);
+		font-size: 17px;
+	}
+	.hs-k {
+		font-size: 8.5px;
+		font-weight: 900;
+		color: var(--ink-3);
+		letter-spacing: 0.05em;
 	}
 	.strip {
 		display: flex;
