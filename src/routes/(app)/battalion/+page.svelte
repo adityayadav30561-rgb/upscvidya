@@ -12,8 +12,13 @@
 		type BoardRow
 	} from '$lib/board';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
+	import BadgeIcon from '$lib/components/BadgeIcon.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
+	import { RANKS } from '$lib/ranks';
+	import { BADGES } from '$lib/xp';
+
+	const rankLabel = (code: string) => RANKS.find((r) => r.code === code)?.label ?? 'Cadet';
 
 	let board = $state<Board | null>(null);
 	let error = $state('');
@@ -114,6 +119,7 @@
 						{#if i === 1}<span class="crown">♛</span>{/if}
 						<div class="p-ins"><RankInsignia rank={p.rank_code} width={i === 1 ? 30 : 26} /></div>
 						<button class="p-name" onclick={() => openPeek(p)}>{p.name}</button>
+						<div class="p-rank">{rankLabel(p.rank_code)}</div>
 						<div class="p-xp">{p.xp_week.toLocaleString('en-IN')} XP</div>
 						<div
 							class="pillar"
@@ -139,11 +145,16 @@
 					<span class="r-ins"><RankInsignia rank={r.rank_code} width={17} /></span>
 					<span class="r-text">
 						<span class="r-name">{r.is_you ? `You — ${r.name}` : r.name}</span>
-						{#if r.is_you}
-							{@const label = deltaLabel(r, board.behind)}
-							{#if label}<span class="r-delta">{label}</span>{/if}
-						{/if}
+						<span class="r-rank">
+							{rankLabel(r.rank_code)}
+							{#if r.is_you}{@const label = deltaLabel(r, board.behind)}{#if label} · {label}{/if}{/if}
+						</span>
 					</span>
+					{#if r.badges && r.badges.length}
+						<span class="r-badges">
+							{#each r.badges.slice(0, 3) as code (code)}<BadgeIcon {code} earned size={18} />{/each}
+						</span>
+					{/if}
 					<span class="r-xp">{r.xp_week.toLocaleString('en-IN')}</span>
 				</button>
 			{/each}
@@ -186,11 +197,27 @@
 		<div class="peek">
 			<div class="peek-ins"><RankInsignia rank={peek.rank_code} width={44} /></div>
 			<div class="peek-stats">
+				<div class="peek-row"><span>Rank</span><span class="pv">{rankLabel(peek.rank_code)}</span></div>
 				<div class="peek-row"><span>Position</span><span class="pv">#{peek.rank}</span></div>
 				<div class="peek-row"><span>XP this week</span><span class="pv">{peek.xp_week.toLocaleString('en-IN')}</span></div>
 				<div class="peek-row"><span>Streak</span><span class="pv">{peek.streak} {peek.streak === 1 ? 'day' : 'days'}</span></div>
 			</div>
 		</div>
+
+		{#if peek.badges && peek.badges.length}
+			<div class="peek-decos">
+				<div class="pd-title">DECORATIONS</div>
+				<div class="pd-grid">
+					{#each peek.badges as code (code)}
+						<div class="pd-item">
+							<BadgeIcon {code} earned size={44} />
+							<span class="pd-name">{BADGES[code]?.label ?? code}</span>
+						</div>
+					{/each}
+				</div>
+			</div>
+		{/if}
+
 		<p class="peek-note">Weekly XP only — everyone restarts Monday, so a bad week never buries anyone.</p>
 	{/if}
 </Sheet>
@@ -414,6 +441,59 @@
 		font-size: 11px;
 		font-weight: 700;
 		color: var(--ink-3);
+	}
+	.r-rank {
+		font-size: 10px;
+		font-weight: 700;
+		color: var(--ink-3);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.row.me .r-rank {
+		color: var(--orange-deep);
+	}
+	.r-badges {
+		flex: none;
+		display: flex;
+		gap: 2px;
+		align-items: center;
+	}
+	.p-rank {
+		font-size: 9px;
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		color: var(--khaki-deep);
+	}
+	.peek-decos {
+		margin-top: 18px;
+	}
+	.pd-title {
+		font-size: 10px;
+		font-weight: 900;
+		letter-spacing: 0.04em;
+		color: var(--ink-3);
+		margin-bottom: 10px;
+	}
+	.pd-grid {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+	.pd-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 5px;
+		width: 60px;
+	}
+	.pd-name {
+		font-size: 9px;
+		font-weight: 900;
+		text-align: center;
+		color: var(--ink-2);
+		line-height: 1.15;
 	}
 
 	.note {

@@ -71,14 +71,21 @@ routerAdd("POST", "/api/board", (e) => {
     let name = "Cadet";
     let rankCode = "cadet";
     let streak = 0;
+    let badges = [];
     try {
       const u = e.app.findRecordById("users", uid);
       rankCode = u.get("rank_code") || "cadet";
       streak = u.getInt("streak_current");
-      // mask for everyone except the owner viewing their own row
-      name = u.getBool("anonymous") && !isYou
-        ? "Anonymous Cadet"
-        : (u.get("display_name") || "Cadet");
+      const masked = u.getBool("anonymous") && !isYou;
+      // mask name AND showcase for everyone except the owner viewing themselves
+      name = masked ? "Anonymous Cadet" : (u.get("display_name") || "Cadet");
+      if (!masked) {
+        try {
+          const raw = u.get("featured_badges");
+          const arr = raw ? JSON.parse(String(raw)) : [];
+          if (Array.isArray(arr)) badges = arr.filter((c) => typeof c === "string").slice(0, 5);
+        } catch (_) { badges = []; }
+      }
     } catch (_) { /* user removed */ }
 
     const before = prevRank[uid] || null;
@@ -88,6 +95,7 @@ routerAdd("POST", "/api/board", (e) => {
       name,
       rank_code: rankCode,
       streak,
+      badges,
       xp_week: en.getInt("xp_week"),
       is_you: isYou,
       delta: before ? before - rank : null, // +ve = climbed
@@ -99,11 +107,18 @@ routerAdd("POST", "/api/board", (e) => {
 
   // caller has earned nothing yet this week — still show them their position
   if (!you) {
+    let myBadges = [];
+    try {
+      const raw = auth.get("featured_badges");
+      const arr = raw ? JSON.parse(String(raw)) : [];
+      if (Array.isArray(arr)) myBadges = arr.filter((c) => typeof c === "string").slice(0, 5);
+    } catch (_) { myBadges = []; }
     you = {
       rank: rows.length + 1,
       name: auth.getBool("anonymous") ? "Anonymous Cadet" : (auth.get("display_name") || "Cadet"),
       rank_code: auth.get("rank_code") || "cadet",
       streak: auth.getInt("streak_current"),
+      badges: myBadges,
       xp_week: 0,
       is_you: true,
       delta: prevRank[auth.id] ? prevRank[auth.id] - (rows.length + 1) : null,

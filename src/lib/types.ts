@@ -54,6 +54,7 @@ export interface User extends BaseRecord {
 	notification_prefs: Record<string, boolean>;
 	analytics_minimal: boolean;
 	tour_done: boolean;
+	featured_badges: string[];
 }
 
 export interface Topic extends BaseRecord {

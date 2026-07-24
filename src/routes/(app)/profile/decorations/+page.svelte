@@ -1,10 +1,51 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { pb } from '$lib/pb';
+	import { auth } from '$lib/auth.svelte';
+	import { showToast } from '$lib/toast.svelte';
 	import { BADGES } from '$lib/xp';
 	import BadgeIcon from '$lib/components/BadgeIcon.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
+
+	/* Featured badges: pick up to 5 to show other aspirants on the battalion
+	 * board. Server-owned display list, self-writable. */
+	const MAX_FEATURED = 5;
+	let featured = $state<string[]>([]);
+	let featInit = false;
+	$effect(() => {
+		if (featInit || !auth.user) return;
+		featInit = true;
+		const f = (auth.user as unknown as { featured_badges?: string[] }).featured_badges;
+		featured = Array.isArray(f) ? f.slice(0, MAX_FEATURED) : [];
+	});
+	const isFeatured = (code: string) => featured.includes(code);
+	let savingFeat = $state(false);
+	async function toggleFeatured(code: string) {
+		if (savingFeat) return;
+		let next: string[];
+		if (featured.includes(code)) {
+			next = featured.filter((c) => c !== code);
+		} else {
+			if (featured.length >= MAX_FEATURED) {
+				showToast(`Feature up to ${MAX_FEATURED} — remove one first`, 'info');
+				return;
+			}
+			next = [...featured, code];
+		}
+		const prev = featured;
+		featured = next;
+		savingFeat = true;
+		try {
+			await pb.collection('users').update(pb.authStore.record!.id, { featured_badges: next });
+			await pb.collection('users').authRefresh().catch(() => {});
+		} catch {
+			featured = prev;
+			showToast('Could not save', 'error');
+		} finally {
+			savingFeat = false;
+		}
+	}
 
 	let earned = $state<Set<string> | null>(null);
 	let earnedAt = $state<Record<string, string>>({});
@@ -65,9 +106,11 @@
 		</button>
 		<div class="head-text">
 			<h1>Decorations</h1>
-			<span class="count">{earnedCount} of {total} earned</span>
+			<span class="count">{earnedCount} of {total} earned · {featured.length}/{MAX_FEATURED} on board</span>
 		</div>
 	</header>
+
+	<p class="feat-hint">Tap a medal to see it — earned ones can be <strong>featured on the battalion board</strong> (up to {MAX_FEATURED} shown to other aspirants).</p>
 
 	{#if earned === null}
 		<Skeleton height="140px" radius="var(--r-lg)" />
@@ -83,7 +126,8 @@
 				<div class="grid">
 					{#each cat.codes as code (code)}
 						{@const has = earned.has(code)}
-						<button class="cell" class:won={has} onclick={() => openBadge(code)}>
+						<button class="cell" class:won={has} class:feat={isFeatured(code)} onclick={() => openBadge(code)}>
+							{#if isFeatured(code)}<span class="cell-star" title="featured on board">★</span>{/if}
 							<BadgeIcon {code} earned={has} size={58} />
 							<span class="c-name">{BADGES[code]?.label ?? code}</span>
 						</button>
@@ -104,6 +148,16 @@
 				{has ? `Earned ${fmtDate(earnedAt[openCode])}` : 'Locked'}
 			</div>
 			<p class="d-hint">{BADGES[openCode]?.hint ?? ''}</p>
+			{#if has}
+				<button
+					class="feature-btn"
+					class:on={isFeatured(openCode)}
+					disabled={savingFeat}
+					onclick={() => toggleFeatured(openCode!)}
+				>
+					{isFeatured(openCode) ? '★ Featured on your board' : '☆ Feature on my board'}
+				</button>
+			{/if}
 		</div>
 	{/if}
 </Sheet>
@@ -148,6 +202,48 @@
 		font-weight: 700;
 		color: var(--ink-3);
 		margin-top: 3px;
+	}
+	.feat-hint {
+		margin: 0;
+		font-size: 11.5px;
+		color: var(--ink-3);
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line-soft);
+		border-radius: var(--r-md);
+		padding: 10px 13px;
+	}
+	.cell {
+		position: relative;
+	}
+	.cell-star {
+		position: absolute;
+		top: 4px;
+		right: 6px;
+		font-size: 12px;
+		color: var(--gold-lo);
+	}
+	.cell.feat {
+		box-shadow: 0 0 0 2px var(--gold-lo) inset;
+		border-radius: var(--r-md);
+	}
+	.feature-btn {
+		margin-top: 14px;
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 13px;
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-full);
+		padding: 11px 20px;
+		cursor: pointer;
+		color: var(--ink-1);
+	}
+	.feature-btn.on {
+		background: linear-gradient(160deg, var(--gold-hi), var(--gold-lo));
+		color: #4d4433;
+	}
+	.feature-btn:disabled {
+		opacity: 0.6;
 	}
 	.cat {
 		display: flex;

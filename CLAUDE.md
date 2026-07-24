@@ -96,6 +96,19 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    manual `items` array otherwise). Fixed a shared bug: the test engine coerced
    a legit `0` negative-marking to `0.667` (`cfg.negative || 0.667`) — now
    nullish-guarded.
+5. *Gamified Test Centre + in-test guard + leaderboard showcase* — Test Centre
+   ([tests/+page.svelte](src/routes/(app)/tests/+page.svelte)) rebuilt as a
+   command hub (ops-run · best-percentile · avg-accuracy, all real from
+   `test_attempts`) with 3 pill tabs (Mock Ops · Drills · **Record** = attempt
+   history) and medal-graded mission cards. The mock player
+   ([tests/[attempt]](src/routes/(app)/tests/[attempt]/+page.svelte)) blocks
+   leaving a running test via `beforeNavigate` → an "Abort the operation?" modal
+   → submit → evaluation, only then navigation is free (+ `beforeunload`).
+   Battalion board now shows each aspirant's **rank name** (rows + podium +
+   mini-profile) and their chosen **featured badges** (`users.featured_badges`,
+   ≤5, picked in `profile/decorations`, masked for anonymous users; server adds
+   them to `/api/board` rows). [Modal.svelte](src/lib/components/Modal.svelte)
+   got a spring pop, backdrop fade, safe-area padding + scroll.
 
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).

@@ -53,7 +53,7 @@ Auth: send the PocketBase token as the `Authorization` header. "admin" =
 | POST `/api/ca/monthly-start` | `{month}` | Union every live CA MCQ published that month into a reusable practice test (+1/correct, no negative, 2-min/Q). Current month free; older months premium. |
 
 ### Battalion — `pb/pb_hooks/board.pb.js`
-| POST `/api/board` | `{}` | This week's cohort standings assembled server-side. Emits only display_name (or "Anonymous Cadet"), rank_code, streak, xp_week — never emails or user ids. |
+| POST `/api/board` | `{}` | This week's cohort standings assembled server-side. Emits only display_name (or "Anonymous Cadet"), rank_code, streak, xp_week, and each aspirant's ≤5 featured badge codes — never emails or user ids. Anonymous users' name AND badges are masked to other viewers. |
 
 ---
 

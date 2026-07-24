@@ -10,6 +10,8 @@ export interface BoardRow {
 	name: string;
 	rank_code: RankCode;
 	streak: number;
+	/** up to 5 featured badge codes the aspirant chose to show (empty if none/anon) */
+	badges?: string[];
 	xp_week: number;
 	is_you: boolean;
 	/** positions climbed since last week (+ve = up); null when no history */
