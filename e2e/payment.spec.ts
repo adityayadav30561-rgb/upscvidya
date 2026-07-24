@@ -58,8 +58,8 @@ for (const plan of ['till_exam', 'monthly'] as const) {
 		// success card (simulate path resolves synchronously)
 		await expect(page.getByRole('heading', { name: 'Campaign unlocked' })).toBeVisible();
 
-		// entitlement reflected on the profile plan card
-		await page.goto('/profile');
+		// entitlement reflected on the plan card (moved to the billing sub-route)
+		await page.goto('/profile/billing');
 		await expect(page.getByText(/Active until/)).toBeVisible();
 	});
 }

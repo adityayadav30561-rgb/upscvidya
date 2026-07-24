@@ -50,7 +50,7 @@ async function enlist(page: Page, name: string): Promise<string> {
 
 test('profile exposes a shareable referral code', async ({ page }) => {
 	await enlist(page, 'Referrer One');
-	await page.goto('/profile');
+	await page.goto('/profile/billing');
 	await expect(page.getByRole('heading', { name: 'Recruit a batchmate' })).toBeVisible();
 	await expect(page.getByText(/7 days of Premium/)).toBeVisible();
 	await expect(page.getByRole('button', { name: 'Share link' })).toBeVisible();
@@ -59,7 +59,7 @@ test('profile exposes a shareable referral code', async ({ page }) => {
 test('a /r/[code] link lands on signup with the code applied', async ({ page }) => {
 	// grab a real referral code from an existing account
 	await enlist(page, 'Referrer Two');
-	await page.goto('/profile');
+	await page.goto('/profile/billing');
 	const code = (await page.locator('.ref-code').innerText()).trim();
 	expect(code).toMatch(/^[A-Z0-9]{6,}$/);
 

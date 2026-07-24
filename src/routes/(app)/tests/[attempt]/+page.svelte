@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 	import { page } from '$app/state';
-	import { goto } from '$app/navigation';
+	import { goto, beforeNavigate } from '$app/navigation';
 	import {
 		fetchTestState,
 		submitTest,
@@ -37,6 +37,32 @@
 	let paletteOpen = $state(false);
 	let confirmOpen = $state(false);
 	let reviewOpen = $state(false);
+	let quitOpen = $state(false);
+
+	// Guard: while a test is IN PROGRESS, block any attempt to leave (bottom nav,
+	// back, a link) — pop an abort confirm. Confirming submits + shows the
+	// evaluation on this page; only then (phase = results) is navigation free.
+	beforeNavigate((nav) => {
+		if (phase !== 'playing' || submitting) return; // results/loading: leave freely
+		nav.cancel();
+		quitOpen = true;
+	});
+
+	// native tab-close / refresh warning while a test is running
+	$effect(() => {
+		if (phase !== 'playing') return;
+		const onUnload = (e: BeforeUnloadEvent) => {
+			e.preventDefault();
+			e.returnValue = '';
+		};
+		window.addEventListener('beforeunload', onUnload);
+		return () => window.removeEventListener('beforeunload', onUnload);
+	});
+
+	async function abortAndSubmit() {
+		await doSubmit(); // → results (evaluation); the guard lifts afterwards
+		quitOpen = false;
+	}
 
 	let ticker: ReturnType<typeof setInterval> | undefined;
 	let saveTimer: ReturnType<typeof setTimeout> | undefined;
@@ -256,6 +282,21 @@
 		<div class="conf-cta">
 			<Button variant="secondary" onclick={() => (confirmOpen = false)}>Return to test</Button>
 			<Button variant="primary" disabled={submitting} onclick={doSubmit}>Submit final answers</Button>
+		</div>
+	</Modal>
+
+	<Modal bind:open={quitOpen} title="Abort the operation?">
+		<p class="conf-line">
+			Leaving ends the test. Your answers so far will be submitted and scored — there's no
+			dropping back in.
+		</p>
+		<div class="conf-grid">
+			<div class="conf-cell"><div class="cv">{counts.answered}</div><div class="ck">ANSWERED</div></div>
+			<div class="conf-cell warn"><div class="cv">{counts.unanswered}</div><div class="ck">UNANSWERED</div></div>
+		</div>
+		<div class="conf-cta">
+			<Button variant="secondary" onclick={() => (quitOpen = false)}>Resume test</Button>
+			<Button variant="primary" disabled={submitting} onclick={abortAndSubmit}>Abort &amp; submit</Button>
 		</div>
 	</Modal>
 {:else if phase === 'results' && result}
