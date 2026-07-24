@@ -52,10 +52,8 @@ architecture (see the territory map, Prompt 05).
 | 13 | CA pipeline + Daily Briefing + admin queue | ✅ | 6cf8e44 |
 | 14 | Payments (Razorpay), paywall, entitlements, referrals | ✅ | e75d0ed |
 | 15 | Push (OneSignal) + analytics (PostHog) | ✅ | 406108d |
-| 16 | Fitness tracker "Drill Ground" (pivot from PET) | ✅ | (this branch) |
+| 16 | Fitness tracker "Drill Ground" (pivot from PET) | ✅ | f753bc6 |
 | **17** | **Deployment, hardening, QA sweep** | ⬅️ **NEXT** | — |
-| 16 | PET tracker | ⬜ | — |
-| 17 | Deployment, hardening, QA sweep | ⬜ | — |
 | 18 | Beta cohort + launch instrumentation | ⬜ | — |
 
 Extra design screens not yet built (see screen-map): **21 Community / Mess Hall**

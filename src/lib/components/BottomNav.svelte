@@ -43,7 +43,8 @@
 		position: fixed;
 		left: 12px;
 		right: 12px;
-		bottom: 12px;
+		/* sit above the iOS home indicator / Android gesture bar */
+		bottom: calc(12px + env(safe-area-inset-bottom, 0px));
 		max-width: 480px;
 		margin: 0 auto;
 		background: var(--bg-2);

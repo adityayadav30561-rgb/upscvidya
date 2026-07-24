@@ -17,6 +17,11 @@ body {
 	margin: 0;
 	padding: 0;
 	min-height: 100%;
+	/* native-app feel: no browser pull-to-refresh / scroll-chaining bounce,
+	   no iOS text auto-zoom on orientation change */
+	overscroll-behavior-y: none;
+	text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -29,6 +34,26 @@ body {
 	font-family: var(--font-ui);
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
+	/* kill the grey tap flash + long-press callout on touch */
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+}
+
+/* interactive chrome: no double-tap-zoom delay, non-selectable, no callout.
+   Reading surfaces re-enable selection explicitly (they carry .notes). */
+button,
+a,
+[role='button'],
+[role='switch'],
+[role='tab'] {
+	touch-action: manipulation;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.notes,
+.notes * {
+	-webkit-user-select: text;
+	user-select: text;
 }
 
 a {

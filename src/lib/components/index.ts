@@ -14,3 +14,5 @@ export { default as Toast } from './Toast.svelte';
 export { default as Skeleton } from './Skeleton.svelte';
 export { default as InstallPrompt } from './InstallPrompt.svelte';
 export { default as OfflineNotes } from './OfflineNotes.svelte';
+export { default as BadgeIcon } from './BadgeIcon.svelte';
+export { default as EdgeSwipe } from './EdgeSwipe.svelte';

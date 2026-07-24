@@ -41,7 +41,10 @@
 	.shell {
 		max-width: 480px;
 		margin: 0 auto;
-		padding: 20px 20px 96px; /* clearance for the floating nav (mockup) */
+		/* clearance for the floating nav (mockup) + device safe areas (notch,
+		   home indicator) so nothing hides under the hardware */
+		padding: calc(20px + env(safe-area-inset-top, 0px)) 20px
+			calc(96px + env(safe-area-inset-bottom, 0px));
 		min-height: 100dvh;
 	}
 	.expiry {

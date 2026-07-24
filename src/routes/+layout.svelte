@@ -3,6 +3,7 @@
 	import Toast from '$lib/components/Toast.svelte';
 	import InstallPrompt from '$lib/components/InstallPrompt.svelte';
 	import Splash from '$lib/components/Splash.svelte';
+	import EdgeSwipe from '$lib/components/EdgeSwipe.svelte';
 	import { bootAuth, auth } from '$lib/auth.svelte';
 	import { initAnalytics } from '$lib/analytics';
 	import { initPush } from '$lib/push';
@@ -47,4 +48,5 @@
 {@render children()}
 <Toast />
 <InstallPrompt />
+<EdgeSwipe />
 <Splash />
