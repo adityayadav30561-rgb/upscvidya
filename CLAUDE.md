@@ -27,6 +27,9 @@ architecture (see the territory map, Prompt 05).
 - [docs/claude-code-build-book.md](docs/claude-code-build-book.md) — the 18-prompt build sequence (00-A, 00-B, then 01→18). Each prompt is one build unit and ends with **acceptance criteria that must pass before moving on**.
 - [docs/polity-mvp-master.md](docs/polity-mvp-master.md) — the content model: every topic ID, MCQ floor, region grouping, and the MCQ provenance schema.
 - [docs/screen-map.md](docs/screen-map.md) — maps the 22 design screens to build prompts. **The design wins where it conflicts with the build book** (the build book is one revision behind — e.g. 14 rank grades, not 10).
+- [docs/API.md](docs/API.md) — every network surface: all 37 custom `/api/*` endpoints (by consumer), the PocketBase built-ins the client uses, crons, and the content CLI. Update it in the same commit as any route/rule/cron change.
+- [pb/SCHEMA.md](pb/SCHEMA.md) — every collection, rule, and server-side subsystem (quiz/SR/XP/board/test/CA/pay/notify), migration by migration.
+- [ENTITLEMENTS.md](ENTITLEMENTS.md) — the free-vs-premium matrix, enforced through `entitle.js`.
 
 ---
 
@@ -60,14 +63,39 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
 (needs new `posts`/`challenges` collections; insert after Prompt 10) and
 **22 Progress & Study Stats** (folds into the profile area, Prompt 09 phase).
 
-**Extra feature shipped outside the prompt sequence:** *Ustad's walkthrough* — a
-Clash-of-Clans-style first-run guided tour (drill-instructor character "Ustad")
-that spotlights UI elements across Home → Map → Topic → Quiz → Drill Ground.
-Engine [tour.svelte.ts](src/lib/tour.svelte.ts), overlay
-[TourGuide.svelte](src/lib/components/TourGuide.svelte) (mounted in the (app)
-layout), avatar [UstadAvatar.svelte](src/lib/components/UstadAvatar.svelte).
-Targets are `data-tour="…"` attributes on real elements; auto-starts once for a
-freshly-onboarded user (`users.tour_done`), replayable from Profile.
+**Extras shipped outside the prompt sequence** (all committed, tested, green):
+
+1. *Ustad's walkthrough* — a Clash-of-Clans-style first-run guided tour
+   (drill-instructor "Ustad") across Home → Map → Topic → Quiz → Drill Ground.
+   Engine [tour.svelte.ts](src/lib/tour.svelte.ts), overlay
+   [TourGuide.svelte](src/lib/components/TourGuide.svelte) (mounted in the (app)
+   layout), avatar [UstadAvatar.svelte](src/lib/components/UstadAvatar.svelte).
+   Targets are `data-tour="…"` attributes; auto-starts once for a
+   freshly-onboarded user (`users.tour_done`), replayable from Profile settings.
+   ⚠️ It navigates to each step's route, so it will bounce you to Home on load
+   for a `tour_done=false` user — set `localStorage['tour-seen']='1'` (or
+   `tour_done`) to suppress while debugging other screens.
+2. *Motion polish* (commit 57c5994) — cold-start [Splash.svelte](src/lib/components/Splash.svelte),
+   View-Transitions route/tab animations + quiz question slides (root layout +
+   `src/app.css`), all `prefers-reduced-motion`-safe.
+3. *Profile hub redesign + native mobile gestures* (commit 3bf1275) — the
+   profile is now a **game-style hub** ([profile/+page.svelte](src/routes/(app)/profile/+page.svelte))
+   with dedicated sub-routes `profile/ranks`, `profile/decorations`,
+   `profile/billing`, `profile/settings`. 25 achievement emblems in
+   [BadgeIcon.svelte](src/lib/components/BadgeIcon.svelte) (unique SVG per badge,
+   earned/locked). Native: edge-swipe-to-go-back
+   [EdgeSwipe.svelte](src/lib/components/EdgeSwipe.svelte) (mounted in root
+   layout) + [native.ts](src/lib/native.ts) (haptics/isTouch); `app.css` kills
+   pull-to-refresh / tap-flash / tap-delay; safe-area insets on shell + nav.
+4. *CA manual ingestion + Monthly Current Affairs* (commit 8f8ff1b) — admins
+   paste raw notes → AI drafts briefs+MCQs into the queue
+   (`/api/ca/compose`, [ca_extra.pb.js](pb/pb_hooks/ca_extra.pb.js)); a
+   [briefing/monthly](src/routes/(app)/briefing/monthly/+page.svelte) view
+   compiles every day's CA MCQs into a monthly practice set through the test
+   engine. Needs `GROQ_API_KEY` on the PB server for the AI path (heuristic/
+   manual `items` array otherwise). Fixed a shared bug: the test engine coerced
+   a legit `0` negative-marking to `0.667` (`cfg.negative || 0.667`) — now
+   nullish-guarded.
 
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
@@ -159,16 +187,21 @@ upscvidya/
 │  ├─ claude-code-build-book.md   ← the 18-prompt plan (scope source of truth)
 │  ├─ polity-mvp-master.md        ← content model + MCQ provenance schema
 │  ├─ screen-map.md               ← 22 screens → prompts (design wins)
+│  ├─ API.md                      ← every endpoint + collection + cron (keep current)
 │  └─ design/                     ← Fable 5 handoff: tokens.css, HTML mockups
+├─ ENTITLEMENTS.md  POSTHOG.md    ← free/premium matrix · analytics dashboards
 ├─ src/
 │  ├─ routes/
 │  │  ├─ (app)/               ← authed group, wrapped in BottomNav shell
 │  │  │  ├─ map/  topic/[code]/  quiz/[code]/  revision/
-│  │  │  ├─ tests/  tests/[attempt]/  briefing/  battalion/  profile/
+│  │  │  ├─ tests/  tests/[attempt]/  battalion/  pt/  pt/[routine]/
+│  │  │  ├─ briefing/  briefing/monthly/          ← daily + monthly CA
+│  │  │  ├─ paywall/  checkout/                    ← Prompt 14 (Screens 15/20)
+│  │  │  └─ profile/  profile/{ranks,decorations,billing,settings}/ ← hub + sub-screens
 │  │  ├─ login/  forgot/  onboarding/  path/       ← unauth + first-run
 │  │  ├─ r/[code]/            ← referral landing (/r/CODE)
 │  │  ├─ pyq/  pyq/[slug]/    ← PYQ vault (public, prerendered landings)
-│  │  ├─ admin/               ← role-gated CA/question validation queue
+│  │  ├─ admin/               ← role-gated CA/question queue + text→AI composer
 │  │  └─ dev/kitchen-sink/    ← every component state, side by side
 │  └─ lib/
 │     ├─ pb.ts               ← typed PocketBase singleton (see §7)
@@ -176,11 +209,14 @@ upscvidya/
 │     ├─ *.svelte.ts         ← rune stores: auth, theme, toast, reader
 │     ├─ xp.ts ranks.ts      ← client mirror of server progression math
 │     ├─ map.ts polity.ts quiz.ts sr.ts test.ts board.ts ca.ts pyq.ts plan.ts
+│     ├─ pay.ts push.ts analytics.ts native.ts   ← money · push · PostHog · haptics
+│     ├─ tour.svelte.ts workout.svelte.ts pt.ts   ← tour engine · fitness store/catalog
 │     ├─ markdown.ts offline.ts
 │     ├─ components/         ← Button Card Chip ProgressRing StreakFlame
 │     │                        RankInsignia MapNode OptionRow BottomNav Sheet
 │     │                        Modal Toast Skeleton RegionMap RankUp InstallPrompt
-│     │                        OfflineNotes  (+ __tests__, index.ts barrel)
+│     │                        OfflineNotes Splash BadgeIcon EdgeSwipe
+│     │                        TourGuide UstadAvatar  (+ __tests__, index.ts)
 │     └─ styles/tokens.css
 ├─ content/                  ← Git-tracked source content, synced to PB
 │  ├─ polity/POL-05-preamble/ {topic.md, mcqs.json}  (POL-10, POL-19 too)
@@ -192,10 +228,12 @@ upscvidya/
 ├─ pb/                       ← PocketBase working dir (local dev)
 │  ├─ pocketbase.exe         ← local binary (Windows dev)
 │  ├─ pb_migrations/         ← schema as timestamped JS migrations (see §6)
-│  ├─ pb_hooks/              ← custom API + business logic (see §7)
-│  │  ├─ quiz.pb.js sr.pb.js test.pb.js board.pb.js ca.pb.js pyq.pb.js
+│  ├─ pb_hooks/              ← custom API + business logic (see §7 · docs/API.md)
+│  │  ├─ quiz.pb.js sr.pb.js test.pb.js board.pb.js pyq.pb.js
+│  │  ├─ ca.pb.js ca_extra.pb.js   ← daily/admin CA · manual ingest + monthly
+│  │  ├─ pay.pb.js notify.pb.js pt.pb.js   ← payments · push · fitness
 │  │  ├─ users.pb.js referral.pb.js cron.pb.js
-│  │  └─ lib/xp.js           ← the ONE awardXP path (shared via require)
+│  │  └─ lib/  xp.js  entitle.js  notify.js   ← shared modules (require at call time)
 │  ├─ pb_data/               ← local SQLite data (gitignored)
 │  ├─ seed/                  ← dev seed (sample topics + questions)
 │  └─ SCHEMA.md              ← every collection + API rule documented
@@ -213,10 +251,15 @@ upscvidya/
 Full detail: **[pb/SCHEMA.md](pb/SCHEMA.md)** — read it before any schema change.
 
 Schema lives as **timestamped JS migrations** in `pb/pb_migrations/` (apply in
-order; a fresh PB + migrations reproduces the schema exactly). Existing:
+order; a fresh PB + migrations reproduces the schema exactly). In order:
 `init_schema`, `topics_teaser`, `quiz_sessions`, `xp_badges`,
-`anonymous_toggle`, `mock_tests`, `ca_pipeline`. **Add a new timestamped
-migration; never edit an applied one.**
+`anonymous_toggle`, `mock_tests`, `ca_pipeline`, `payments_referrals`,
+`notifications`, `workout_logs`, `tour`. **Add a new timestamped migration;
+never edit an applied one.** (New collections since the init 14: `quiz_sessions`,
+`topics_teaser`/`topics_public` views, `badges`, `xp_events`, `sources`,
+`jobs_log`, `workout_logs`; plus added `users` fields — `anonymous`,
+`premium_credit_days`, `notification_prefs`, `analytics_minimal`,
+`pt_weekly_goal`, `tour_done` — and `ca_items` pipeline fields.)
 
 14 core collections: `users` (extends auth: xp, rank_code, streak_*, is_premium,
 premium_until, battalion_id, referral_code, referred_by, role), `topics`,
@@ -245,7 +288,10 @@ Status lifecycle: `draft → validated → live → retired`. See master doc §M
 Custom server logic is JS in `pb/pb_hooks/*.pb.js`, exposing `/api/*` routes and
 record/cron hooks. Gotchas that will bite you:
 
-- **JSVM isolation.** Each handler runs in an isolated pool VM. **File-scope helper functions are NOT visible inside a handler** — inline every helper inside its handler. The one sanctioned shared module is loaded at call time: `const xp = require(\`${__hooks}/lib/xp.js\`);`.
+- **JSVM isolation.** Each handler runs in an isolated pool VM. **File-scope helper functions are NOT visible inside a handler** — inline every helper inside its handler. The sanctioned shared modules load at call time via `require`: `lib/xp.js` (awardXP), `lib/entitle.js` (entitlement + pricing + premium grant), `lib/notify.js` (push send). e.g. `const ent = require(\`${__hooks}/lib/entitle.js\`);`.
+- **JSON/date fields come back "raw."** `record.get(jsonField)` returns a type whose `typeof` is `"object"` but whose properties read `undefined` — parse the STRING form first (`JSON.parse(String(v))`). Date fields return an always-truthy object — test with `String(v).trim() !== ""`, never `!!v`. Both bit us in test.pb.js/ca.pb.js; the `asObj`/`asArr`/`isSet` inline helpers are the fix.
+- **Falsy-coercion trap:** `cfg.negative || 0.667` turns a legit `0` into the default. Use `== null ?` guards for any config value where 0 is valid (fixed across the test engine for practice sets).
+- **Outbound HTTP** from a hook uses `$http.send({url,method,headers,body,timeout})` and server env via `$os.getenv(...)` (see pay.pb.js, notify.js, ca_extra.pb.js Groq call).
 - **Hooks run as superuser**, so collection API rules are bypassed inside them. That is deliberate (quiz/SR/XP writes) — which is exactly why the client must never be trusted to do these writes.
 - **Type reference:** each hook starts with `/// <reference path="../pb_data/types.d.ts" />` for editor types.
 - **`lib/xp.js` is the single `awardXP` path.** Every XP mutation funnels through it. It holds its own copy of the 14-grade `RANKS` table (mirror of `src/lib/ranks.ts`) and the XP rules (tier multipliers, anti-farm: repeat-correct within 7 days = 0). Keep it in lock-step with the client mirror.
@@ -326,5 +372,8 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 
 ---
 
-*Last synced to repo state at commit 6cf8e44 (Prompt 13 complete). When you
-finish a prompt, update §2 and any changed convention here in the same commit.*
+*Last synced to repo state at commit 8f8ff1b (Prompts 00–16 done + tour, motion,
+profile-hub/native-gestures, CA manual-ingest + Monthly CA; next = Prompt 17).
+When you finish a prompt or a standalone feature, update §2, the repo map, and
+any changed convention here — and the matching row in docs/API.md / pb/SCHEMA.md
+— in the same commit.*
