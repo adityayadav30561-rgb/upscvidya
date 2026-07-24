@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
+	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
+
+	// respect reduced-motion for the per-question slide
+	const qReduced = browser && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	import {
 		startQuiz,
 		resumeQuiz,
@@ -268,8 +274,9 @@
 			</div>
 		</div>
 
-		<!-- question -->
-		<div class="qbody">
+		<!-- question (slides in as you advance) -->
+		{#key current}
+		<div class="qbody" in:fly={{ x: qReduced ? 0 : 22, duration: qReduced ? 0 : 210, easing: cubicOut }}>
 			<div class="qtop">
 				<span class="tier-tag">TIER {q.tier}</span>
 				<button class="flag-btn" class:on={q.flagged} onclick={toggleFlag} aria-pressed={q.flagged}>
@@ -317,6 +324,7 @@
 				</div>
 			{/if}
 		</div>
+		{/key}
 
 		<!-- footer -->
 		<div class="qfoot">

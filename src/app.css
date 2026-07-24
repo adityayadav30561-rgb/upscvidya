@@ -73,3 +73,27 @@ button {
 		opacity: 0.55;
 	}
 }
+
+/* ---- SPA route / tab transitions (View Transitions API) ----
+   Progressive enhancement: browsers without support navigate instantly.
+   A gentle cross-fade + slide-up so tab switches feel native on mobile. */
+@media (prefers-reduced-motion: no-preference) {
+	::view-transition-old(root) {
+		animation: vt-out 150ms ease both;
+	}
+	::view-transition-new(root) {
+		animation: vt-in 240ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+	}
+}
+@keyframes vt-out {
+	to {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+}
+@keyframes vt-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+}
