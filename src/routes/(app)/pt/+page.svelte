@@ -338,11 +338,11 @@
 		display: flex;
 		align-items: center;
 		gap: 18px;
-		background: var(--bg-2);
-		border: var(--bw-bold) solid var(--line);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--line);
 		border-radius: var(--r-xl);
 		padding: 16px;
-		box-shadow: var(--shadow-2);
+		box-shadow: var(--shadow-lift), var(--emboss);
 	}
 	.ring {
 		flex: none;
@@ -376,16 +376,23 @@
 		color: var(--ink-3);
 	}
 	.log-btn {
-		font-family: var(--font-ui);
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 14px;
-		background: var(--orange);
-		color: #4d4433;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		background: var(--grad-rust);
+		color: #fff;
+		border: none;
+		border-radius: var(--r-md);
 		padding: 12px;
 		cursor: pointer;
-		box-shadow: var(--shadow-2);
+		box-shadow: 0 3px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+		transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+	}
+	.log-btn:active {
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.group {
 		display: flex;
@@ -404,16 +411,23 @@
 		flex-direction: column;
 		gap: 10px;
 	}
+	/* circuits are operation folders too — olive spine */
 	.circuit {
 		text-align: left;
-		background: var(--khaki-tint);
+		background: var(--grad-plate);
 		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
+		border-left: 7px solid var(--green);
+		border-radius: 4px var(--r-lg) var(--r-lg) 4px;
 		padding: 13px 15px;
 		cursor: pointer;
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
+		box-shadow: var(--shadow-lift), var(--emboss);
+		transition: transform var(--t-fast) var(--ease);
+	}
+	.circuit:active {
+		transform: translateY(2px);
 	}
 	.c-top {
 		display: flex;

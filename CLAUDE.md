@@ -125,6 +125,20 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    `data-tour="home-hero"` (HUD), `home-mission` (quests), `home-ring` (campaign)
    — keep those attributes if you touch this file.
 
+7. *FIELD DOSSIER redesign* — the whole app moved onto the new visual system
+   (see **§4.1**): `tokens.css` v4 palette + [dossier.css](src/lib/styles/dossier.css)
+   material utilities, Big Shoulders Display / Barlow fonts, and a moulded
+   [BottomNav](src/lib/components/BottomNav.svelte). Rebuilt to the handoff:
+   **Base** (brass rank plate · ink ribbon · wax-seal streak · ammo-belt XP ·
+   rubber-stamp objective ring · dark campaign panel), **Test Centre** (mock
+   papers as sealed operation folders with a spine rail + flap tag),
+   **Profile** (brass rank board · service bars · dark MEDAL CASE hexagons ·
+   dossier rows), **Map** (sector folder tabs). Extrapolated to the rest:
+   OptionRow (moulded answer keys + sockets), battalion podium/rows, Drill
+   Ground, paywall, Button/Card/Chip. ⚠️ Screens inherit the palette
+   automatically via tokens — when restyling, delete the old
+   `background/border/box-shadow` before adding a `.plate`, or they fight.
+
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
 - **Pricing:** build-book matrix — monthly ₹199→₹99, till-exam ₹999→₹499; ₹399/₹1999 struck as MRP. Server (`entitle.js`) is the only price authority.
@@ -195,7 +209,7 @@ search "PROMPT 17" in [docs/claude-code-build-book.md](docs/claude-code-build-bo
 | Framework | **SvelteKit 2 + Svelte 5 (runes)** | `.svelte.ts` files are rune-based stores (`$state`, `$derived`). |
 | Language | **TypeScript, strict** | `pnpm check` = `svelte-check`. |
 | Build target | **adapter-static** | Pure static SPA → Cloudflare Pages (Prompt 17). No SSR server at runtime. |
-| Styling | **Plain CSS + design tokens** | `src/lib/styles/tokens.css`. **No Tailwind, no UI library.** Components hand-built from mockups. Dark theme default; `data-theme` toggle persisted. |
+| Styling | **Plain CSS + design tokens + material utilities** | `src/lib/styles/tokens.css` (v4 "Field Dossier") + `src/lib/styles/dossier.css` (global material classes). **No Tailwind, no UI library.** Light default; `data-theme="dark"` night variant. See §4.1. |
 | Backend | **PocketBase** (single Go binary + SQLite) | Runs on an Oracle Always-Free ARM VPS behind Caddy. Custom logic in `pb_hooks` (JS VM). |
 | Markdown | `marked` + `dompurify` | Notes render markdown → sanitised HTML. |
 | AI | **Groq** (`llama-3.3-70b`) | Ingestion CLI + CA pipeline drafting. Key in `GROQ_API_KEY`. |
@@ -203,6 +217,37 @@ search "PROMPT 17" in [docs/claude-code-build-book.md](docs/claude-code-build-bo
 | Push / Analytics | OneSignal / PostHog (Prompt 15) | |
 | Package manager | **pnpm** | Workspace repo (`pnpm-workspace.yaml`). |
 | Tests | **vitest** (unit) + **Playwright** (e2e) | e2e in `/e2e`. |
+
+### 4.1 The FIELD DOSSIER design language (current visual system)
+
+Source: **`Army game app redesign directions/Force Prep - Gamified Directions.dc.html`**
+(Fable handoff; direction **1a "Field Dossier"** was chosen, and 2a/2b/2c roll it
+out to Map / Test Centre / Profile). It supersedes the older v3 "Field Manual"
+look — the earlier `docs/design` mockups are still the source of truth for
+*layout, copy and IA*, but **colour/material/typography now come from here**.
+
+The system is **physical material, not flat UI**, and two rules carry all of it:
+
+- **RAISED** = hard *bottom* edge `0 3px 0 var(--edge)` + soft ambient shadow +
+  a white top inset (`var(--emboss)`). Buttons press to `0 1px 0` +
+  `translateY(2px)`.
+- **RECESSED** = darker fill + inset top shadow (`var(--recess-in)`).
+  Light always comes from above.
+
+Compose screens from the **global utility classes** in
+[dossier.css](src/lib/styles/dossier.css) — do **not** re-declare gradients:
+`.plate` / `.plate-lift` / `.plate-dark` (card stock & inverted panels),
+`.recess`, `.btn3d` (+`-gold` `-olive` `-quiet`), `.segbar`+`.seg`
+(ammo-belt progress), `.track`+`.fill`, `.brass` (rank plate), `.seal`
+(wax-seal medallion), `.stamp` (rotated dashed ring), `.stencil`, `.label`,
+`.ribbon`, `.tag` (floating FREE/PREMIUM flap), `.statchip`, `.tabrail`+`.tab`,
+`.foldertab` (map sector tabs), `.dossier-row`+`.row-ico/.row-body/.chev`,
+`.hex` (medal case).
+
+Type: **Big Shoulders Display** 800 (stencil headings, numbers, buttons) ·
+**Barlow** (body) · **Barlow Condensed** (stat chips). Accents: rust `--orange`
+(primary action), brass `--gold-*` (reward/premium), olive `--green` (success),
+khaki `--khaki` (identity), `--red` (alarm).
 
 ---
 
@@ -216,7 +261,8 @@ upscvidya/
 │  ├─ polity-mvp-master.md        ← content model + MCQ provenance schema
 │  ├─ screen-map.md               ← 22 screens → prompts (design wins)
 │  ├─ API.md                      ← every endpoint + collection + cron (keep current)
-│  └─ design/                     ← Fable 5 handoff: tokens.css, HTML mockups
+│  └─ design/                     ← Fable 5 handoff: 22 screen mockups (layout/copy/IA)
+├─ Army game app redesign directions/  ← Fable handoff: FIELD DOSSIER visual system (§4.1)
 ├─ ENTITLEMENTS.md  POSTHOG.md    ← free/premium matrix · analytics dashboards
 ├─ src/
 │  ├─ routes/
@@ -245,7 +291,7 @@ upscvidya/
 │     │                        Modal Toast Skeleton RegionMap RankUp InstallPrompt
 │     │                        OfflineNotes Splash BadgeIcon EdgeSwipe
 │     │                        TourGuide UstadAvatar  (+ __tests__, index.ts)
-│     └─ styles/tokens.css
+│     └─ styles/  tokens.css (v4 palette)  dossier.css (material utilities)
 ├─ content/                  ← Git-tracked source content, synced to PB
 │  ├─ polity/POL-05-preamble/ {topic.md, mcqs.json}  (POL-10, POL-19 too)
 │  └─ pyq/CAPF-2023/  CAPF-2024/  {mcqs.json}
@@ -384,7 +430,7 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 - **Runes, not legacy stores.** New shared state = a `*.svelte.ts` module using `$state`/`$derived` (see `auth.svelte.ts`, `theme.svelte.ts`, `toast.svelte.ts`, `reader.svelte.ts`).
 - **Typed PB access only** via the `pb` singleton in [src/lib/pb.ts](src/lib/pb.ts) — it maps collection names to hand-written types in `src/lib/types.ts`. Update `types.ts` whenever the schema changes.
 - **Components** are added to `src/lib/components/`, exported through `index.ts`, given a vitest, and shown in `/dev/kitchen-sink` in every state. Match the mockups; don't restyle.
-- **Design fidelity:** implement `docs/design` faithfully. Colours/spacing/typography come from `tokens.css` — no ad-hoc values.
+- **Design fidelity:** `docs/design` owns layout/copy/IA; the **Field Dossier** handoff (§4.1) owns colour, material and type. Compose from `dossier.css` utilities + `tokens.css` variables — no ad-hoc hex or one-off gradients.
 - **Content edits** go through `content/` → `pnpm validate` → `pnpm sync`, never by editing PB directly (except transient dev data).
 - **Commits:** one per build prompt, Conventional-Commits style matching git history. Only commit/push when the user asks.
 - **Offline:** notes are cache-for-offline; everything write-based (quizzes, reviews, submits) is online-only with a clean offline error state.
@@ -401,9 +447,9 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 
 ---
 
-*Last synced to repo state after the Base Camp v2 rebuild (Prompts 00–16 done +
-tour, motion, profile-hub/native-gestures, CA manual-ingest + Monthly CA,
-gamified Test Centre + in-test guard, leaderboard rank + featured badges + modal
-polish, Base Camp v2 game-app home; next = Prompt 17). When you finish a prompt
-or a standalone feature, update §2, the repo map, and any changed convention here
-— and the matching row in docs/API.md / pb/SCHEMA.md — in the same commit.*
+*Last synced after the FIELD DOSSIER redesign (Prompts 00–16 done + tour, motion,
+profile-hub/native-gestures, CA manual-ingest + Monthly CA, gamified Test Centre
++ in-test guard, leaderboard rank + featured badges + modal polish, Base Camp v2,
+Field Dossier visual system; next = Prompt 17). When you finish a prompt or a
+standalone feature, update §2, the repo map, and any changed convention here —
+and the matching row in docs/API.md / pb/SCHEMA.md — in the same commit.*

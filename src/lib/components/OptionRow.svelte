@@ -39,41 +39,51 @@
 </button>
 
 <style>
+	/* FIELD DOSSIER: each option is a raised card-stock key. Selecting presses
+	   it into the page; verdicts recolour the whole plate. */
 	.row {
 		display: flex;
 		align-items: center;
 		gap: 12px;
 		width: 100%;
 		text-align: left;
-		background: var(--bg-2);
+		background: var(--grad-plate-2);
 		border: var(--bw) solid var(--line);
-		border-radius: var(--r-md);
-		padding: 13px 16px;
-		min-height: 44px;
+		border-radius: 11px;
+		padding: 13px 15px;
+		min-height: 46px;
 		cursor: pointer;
 		font-family: var(--font-ui);
-		/* answer feedback: border + tint transition 200ms (interaction notes) */
+		box-shadow: 0 3px 0 #cfc4a0, var(--emboss);
 		transition:
 			background var(--t-base) var(--ease),
 			border-color var(--t-base) var(--ease),
-			box-shadow var(--t-base) var(--ease);
+			box-shadow var(--t-base) var(--ease),
+			transform var(--t-fast) var(--ease);
+	}
+	.row:not(:disabled):active {
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 #cfc4a0, var(--emboss);
 	}
 	.row:disabled {
 		cursor: default;
 	}
+	/* chosen: seated into the page */
 	.row.selected {
-		background: var(--orange-tint);
-		border: var(--bw-bold) solid var(--line);
-		box-shadow: var(--shadow-2);
+		background: linear-gradient(#f8e3d3, #f0d0ba);
+		border-color: var(--orange-deep);
+		box-shadow: inset 0 2px 5px rgba(120, 60, 25, 0.22);
 	}
 	.row.correct,
 	.row.missed {
-		background: var(--green-tint);
-		border: var(--bw-bold) solid var(--green-deep);
+		background: linear-gradient(#e9efd8, #dbe4c3);
+		border-color: var(--green-deep);
+		box-shadow: 0 3px 0 #b8c298, var(--emboss);
 	}
 	.row.incorrect {
-		background: var(--red-tint);
-		border: var(--bw-bold) solid var(--red-deep);
+		background: linear-gradient(#f7ddd4, #f0cabd);
+		border-color: var(--red);
+		box-shadow: 0 3px 0 var(--red-edge), var(--emboss);
 		animation: shake var(--t-base) var(--ease) 1;
 	}
 	@keyframes shake {
@@ -89,33 +99,36 @@
 		}
 	}
 
+	/* the pip: a moulded socket that fills when answered */
 	.indicator {
 		flex: none;
-		width: 20px;
-		height: 20px;
-		border-radius: var(--r-full);
-		border: var(--bw) solid var(--line);
+		width: 24px;
+		height: 24px;
+		border-radius: 50%;
+		border: 2px solid var(--khaki);
+		background: radial-gradient(circle at 35% 30%, #fff, #e6ddbf);
+		box-shadow: inset 0 -2px 4px rgba(90, 78, 40, 0.25);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-	.indicator.selected {
-		background: var(--bg-2);
-	}
 	.sel-dot {
-		width: 10px;
-		height: 10px;
-		border-radius: var(--r-full);
-		background: var(--orange-deep);
+		width: 11px;
+		height: 11px;
+		border-radius: 50%;
+		background: var(--grad-rust);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 	}
 	.indicator.correct,
 	.indicator.missed {
-		background: var(--green-deep);
-		border: none;
+		background: var(--grad-olive);
+		border-color: var(--green-edge);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.indicator.incorrect {
-		background: var(--red-deep);
-		border: none;
+		background: linear-gradient(#a8402f, #7d2a1a);
+		border-color: #5d1d11;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 	}
 
 	.text {

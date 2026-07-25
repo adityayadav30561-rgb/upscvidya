@@ -66,7 +66,7 @@
 	}
 
 	const pillarHeights = [56, 74, 44]; // silver, gold, bronze
-	const pillarColors = ['var(--green)', 'var(--orange)', 'var(--blue)'];
+	const pillarColors = ['var(--grad-olive)', 'var(--grad-rust)', 'linear-gradient(#6f8ba3, #4a6379)'];
 </script>
 
 <svelte:head><title>UPSCVidya — Battalion Board</title></svelte:head>
@@ -321,6 +321,7 @@
 		font-weight: 700;
 		color: var(--ink-3);
 	}
+	/* moulded podium blocks */
 	.pillar {
 		width: 100%;
 		border: var(--bw) solid var(--line);
@@ -329,15 +330,17 @@
 		align-items: center;
 		justify-content: center;
 		font-family: var(--font-display);
-		font-size: 16px;
-		color: var(--ink-1);
+		font-weight: 800;
+		font-size: 17px;
+		color: #fff;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+		box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 -6px 10px rgba(0, 0, 0, 0.22);
 		animation: rise var(--t-conquest) var(--ease-pop);
 		transform-origin: bottom;
 	}
 	.pillar.gold {
 		border-width: var(--bw-bold);
-		font-size: 20px;
-		box-shadow: var(--shadow-2);
+		font-size: 22px;
 	}
 	.pillar.mine {
 		outline: 2px dashed var(--khaki-deep);
@@ -371,19 +374,24 @@
 		display: flex;
 		align-items: center;
 		gap: 11px;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
 		border-radius: var(--r-lg);
 		padding: 10px 14px;
 		font-family: var(--font-ui);
 		text-align: left;
 		cursor: pointer;
 		width: 100%;
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
+		transition: transform var(--t-fast) var(--ease);
+	}
+	.row:active {
+		transform: translateY(2px);
 	}
 	.row.me {
-		background: var(--orange-tint);
-		border-width: var(--bw-bold);
-		box-shadow: var(--shadow-2);
+		background: linear-gradient(#f8e3d3, #f0d0ba);
+		border-color: var(--orange-deep);
+		box-shadow: 0 3px 0 #d8a98c, var(--emboss);
 		padding: 12px 14px;
 	}
 	.r-num {
@@ -571,11 +579,11 @@
 		display: flex;
 		align-items: center;
 		gap: 11px;
-		background: var(--orange-tint);
-		border: var(--bw-bold) solid var(--line);
+		background: linear-gradient(#f8e3d3, #f0d0ba);
+		border: var(--bw) solid var(--orange-deep);
 		border-radius: var(--r-lg);
 		padding: 10px 14px;
-		box-shadow: var(--shadow-2);
+		box-shadow: 0 4px 0 #d8a98c, 0 12px 20px rgba(60, 50, 25, 0.25), var(--emboss);
 		z-index: 40;
 	}
 

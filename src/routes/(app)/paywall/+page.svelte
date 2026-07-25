@@ -214,22 +214,32 @@
 		gap: 12px;
 		text-align: left;
 		width: 100%;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
 		border-radius: var(--r-xl);
 		padding: 16px 18px;
 		cursor: pointer;
 		color: var(--ink-1);
 		font-family: var(--font-ui);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease),
+			border-color var(--t-fast) var(--ease);
+	}
+	.plan:active {
+		transform: translateY(2px);
 	}
 	.plan.hero {
-		border-width: var(--bw-bold);
 		flex-direction: row;
 		align-items: flex-start;
-		box-shadow: var(--shadow-2);
+		box-shadow: var(--shadow-lift), var(--emboss);
 	}
+	/* the chosen plan seats into the page */
 	.plan.on {
 		border-color: var(--orange-deep);
+		background: linear-gradient(#f8e3d3, #f0d0ba);
+		box-shadow: inset 0 2px 5px rgba(120, 60, 25, 0.18);
 	}
 	.badge {
 		position: absolute;
@@ -359,17 +369,24 @@
 	}
 	.cta {
 		width: 100%;
-		font-family: var(--font-ui);
-		font-weight: 900;
-		font-size: 15px;
-		background: var(--orange);
-		color: #4d4433;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 16px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		background: var(--grad-rust);
+		color: #fff;
+		border: none;
+		border-radius: var(--r-md);
 		padding: 14px;
-		min-height: 48px;
+		min-height: 50px;
 		cursor: pointer;
-		box-shadow: var(--shadow-2);
+		box-shadow: 0 3px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+		transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+	}
+	.cta:active {
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.trust {
 		display: flex;
