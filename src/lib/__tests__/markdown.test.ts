@@ -40,3 +40,21 @@ describe('wordCount', () => {
 		expect(wordCount('')).toBe(0);
 	});
 });
+
+describe('renderNotes callouts', () => {
+	it('turns a [!note] blockquote into a FIELD NOTE callout', () => {
+		const html = renderNotes('> [!note] Added by the **42nd Amendment**.');
+		expect(html).toContain('class="callout note"');
+		expect(html).toContain('FIELD NOTE');
+		expect(html).toContain('<strong>42nd Amendment</strong>');
+		expect(html).not.toContain('[!note]');
+	});
+	it('leaves an unmarked blockquote as a plain blockquote', () => {
+		const html = renderNotes('> just a normal quote');
+		expect(html).toContain('<blockquote');
+		expect(html).not.toContain('callout');
+	});
+	it('maps [!exam] to EXAM ANGLE', () => {
+		expect(renderNotes('> [!exam] asked in 2019')).toContain('class="callout exam"');
+	});
+});

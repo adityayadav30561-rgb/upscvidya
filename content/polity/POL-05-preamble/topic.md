@@ -26,7 +26,7 @@ The Preamble is the introductory statement of the Constitution, based on the **O
 
 It declares India a **Sovereign, Socialist, Secular, Democratic Republic** and secures to all citizens **Justice** (social, economic, political), **Liberty** (of thought, expression, belief, faith and worship), **Equality** (of status and opportunity) and **Fraternity** (assuring the dignity of the individual and the unity and integrity of the Nation).
 
-The words **socialist**, **secular** and **integrity** were added by the **42nd Constitutional Amendment Act, 1976** — the only amendment to the Preamble so far.
+> [!note] The words **socialist**, **secular** and **integrity** were added by the **42nd Constitutional Amendment Act, 1976** — the only amendment to the Preamble so far.
 
 The date in the Preamble — **26 November 1949** — is the date of adoption; the Constitution commenced on 26 January 1950.
 

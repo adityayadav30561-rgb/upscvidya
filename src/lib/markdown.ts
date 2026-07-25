@@ -27,10 +27,35 @@ function configure() {
 	});
 }
 
+/** Admonition callouts. Authors (and the AI when it drafts notes) mark a key
+ *  takeaway as a blockquote led by `[!type]`, e.g.
+ *    > [!note] Socialist, secular and integrity were added by the 42nd Amendment.
+ *  These render as the Field Dossier callout boxes. A plain blockquote with no
+ *  marker stays the default EXAM ANGLE block. */
+const CALLOUTS: Record<string, { cls: string; label: string }> = {
+	note: { cls: 'note', label: 'FIELD NOTE' },
+	field: { cls: 'note', label: 'FIELD NOTE' },
+	exam: { cls: 'exam', label: 'EXAM ANGLE' },
+	tip: { cls: 'tip', label: 'TIP' },
+	warn: { cls: 'warn', label: 'WATCH OUT' }
+};
+
+/** Rewrite `<blockquote><p>[!type] …</p>…</blockquote>` → a callout div. */
+function transformCallouts(html: string): string {
+	return html.replace(/<blockquote>\s*([\s\S]*?)\s*<\/blockquote>/g, (whole, inner) => {
+		const m = inner.match(/^<p>\s*\[!(\w+)\]\s*/i);
+		if (!m) return whole; // unmarked → leave as an exam-angle blockquote
+		const spec = CALLOUTS[m[1].toLowerCase()];
+		if (!spec) return whole;
+		const body = inner.replace(/^<p>\s*\[!\w+\]\s*/i, '<p>');
+		return `<div class="callout ${spec.cls}"><span class="callout-label">${spec.label}</span><div class="callout-body">${body}</div></div>`;
+	});
+}
+
 /** Render markdown to sanitised HTML. Runs only where a DOM exists (SPA). */
 export function renderNotes(md: string): string {
 	if (!md) return '';
-	const raw = marked.parse(md, { async: false }) as string;
+	const raw = transformCallouts(marked.parse(md, { async: false }) as string);
 	if (typeof document === 'undefined') return raw; // SSR guard (app is SPA)
 	configure();
 	return DOMPurify.sanitize(raw, {

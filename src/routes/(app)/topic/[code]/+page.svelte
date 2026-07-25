@@ -580,6 +580,55 @@
 	.notes :global(em) {
 		font-style: italic;
 	}
+	/* admonition callouts (author marks `> [!note] …` etc.) */
+	.notes :global(.callout) {
+		margin: 13px 0;
+		border-radius: 10px;
+		padding: 11px 12px;
+		box-shadow: inset 0 1px 0 #fff;
+	}
+	.notes :global(.callout .callout-label) {
+		display: block;
+		font-family: var(--font-ui);
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+	}
+	.notes :global(.callout .callout-body) {
+		font-size: 0.92em;
+		margin-top: 4px;
+	}
+	.notes :global(.callout .callout-body p) {
+		margin: 0 0 4px;
+	}
+	.notes :global(.callout.note) {
+		background: #f0e7c9;
+		border: 1.5px dashed #b5883a;
+	}
+	.notes :global(.callout.note .callout-label) {
+		color: #8d6a24;
+	}
+	.notes :global(.callout.exam) {
+		background: var(--blue-tint);
+		border: var(--bw) solid var(--blue-deep);
+	}
+	.notes :global(.callout.exam .callout-label) {
+		color: var(--blue-deep);
+	}
+	.notes :global(.callout.tip) {
+		background: var(--green-tint);
+		border: var(--bw) solid var(--green-deep);
+	}
+	.notes :global(.callout.tip .callout-label) {
+		color: var(--green-deep);
+	}
+	.notes :global(.callout.warn) {
+		background: var(--red-tint);
+		border: var(--bw) solid var(--red-deep);
+	}
+	.notes :global(.callout.warn .callout-label) {
+		color: var(--red-deep);
+	}
 	/* blockquote → EXAM ANGLE accent block */
 	.notes :global(blockquote) {
 		margin: 12px 0;
