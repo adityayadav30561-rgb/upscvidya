@@ -267,12 +267,13 @@ Schema lives as **timestamped JS migrations** in `pb/pb_migrations/` (apply in
 order; a fresh PB + migrations reproduces the schema exactly). In order:
 `init_schema`, `topics_teaser`, `quiz_sessions`, `xp_badges`,
 `anonymous_toggle`, `mock_tests`, `ca_pipeline`, `payments_referrals`,
-`notifications`, `workout_logs`, `tour`. **Add a new timestamped migration;
-never edit an applied one.** (New collections since the init 14: `quiz_sessions`,
-`topics_teaser`/`topics_public` views, `badges`, `xp_events`, `sources`,
-`jobs_log`, `workout_logs`; plus added `users` fields — `anonymous`,
-`premium_credit_days`, `notification_prefs`, `analytics_minimal`,
-`pt_weekly_goal`, `tour_done` — and `ca_items` pipeline fields.)
+`notifications`, `workout_logs`, `tour`, `featured_badges`. **Add a new
+timestamped migration; never edit an applied one.** (New collections since the
+init 14: `quiz_sessions`, `topics_teaser`/`topics_public` views, `badges`,
+`xp_events`, `sources`, `jobs_log`, `workout_logs`; plus added `users` fields —
+`anonymous`, `premium_credit_days`, `notification_prefs`, `analytics_minimal`,
+`pt_weekly_goal`, `tour_done`, `featured_badges` — and `ca_items` pipeline
+fields.)
 
 14 core collections: `users` (extends auth: xp, rank_code, streak_*, is_premium,
 premium_until, battalion_id, referral_code, referred_by, role), `topics`,
@@ -385,8 +386,9 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 
 ---
 
-*Last synced to repo state at commit 8f8ff1b (Prompts 00–16 done + tour, motion,
-profile-hub/native-gestures, CA manual-ingest + Monthly CA; next = Prompt 17).
-When you finish a prompt or a standalone feature, update §2, the repo map, and
-any changed convention here — and the matching row in docs/API.md / pb/SCHEMA.md
-— in the same commit.*
+*Last synced to repo state at commit c3b5720 (Prompts 00–16 done + tour, motion,
+profile-hub/native-gestures, CA manual-ingest + Monthly CA, gamified Test Centre
++ in-test guard, leaderboard rank + featured badges + modal polish; next =
+Prompt 17). When you finish a prompt or a standalone feature, update §2, the repo
+map, and any changed convention here — and the matching row in docs/API.md /
+pb/SCHEMA.md — in the same commit.*
