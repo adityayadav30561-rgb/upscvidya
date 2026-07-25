@@ -109,6 +109,21 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    ≤5, picked in `profile/decorations`, masked for anonymous users; server adds
    them to `/api/board` rows). [Modal.svelte](src/lib/components/Modal.svelte)
    got a spring pop, backdrop fade, safe-area padding + scroll.
+6. *Base Camp v2 — game-app home* ([(app)/+page.svelte](src/routes/(app)/+page.svelte))
+   — a full gamified rebuild of the dashboard: HUD (insignia + XP bar to next
+   rank with a ghosted next-rank preview + streak w/ **at-risk** state), a
+   **Daily Objectives** quest card (3 quests derived from today's `xp_events` —
+   `topic_quiz` / `sr_review` / `daily_ca`+briefing — with a done-count ring,
+   per-quest XP chips, progress tracks, and a "Day secured" all-clear state),
+   a **Campaign** strip (front-region % + held/103 + next node → map), **rival**
+   (battalion rank + XP gap + live week countdown) and **next-medal** tiles, a
+   weekly-momentum bar (today lit), and a tidy quick-actions grid. Motion: XP/
+   held/week **count-ups** (`tweened`), **sheen** sweeping the progress bars,
+   momentum bars **grow-in**, ghost-rank **breathe**, undone-quest chip **glow**,
+   check-pop + all-clear burst, staggered card entrance, press-scale + haptics —
+   all `prefers-reduced-motion`-guarded. ⚠️ The Ustad tour targets live here:
+   `data-tour="home-hero"` (HUD), `home-mission` (quests), `home-ring` (campaign)
+   — keep those attributes if you touch this file.
 
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
@@ -386,9 +401,9 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 
 ---
 
-*Last synced to repo state at commit c3b5720 (Prompts 00–16 done + tour, motion,
-profile-hub/native-gestures, CA manual-ingest + Monthly CA, gamified Test Centre
-+ in-test guard, leaderboard rank + featured badges + modal polish; next =
-Prompt 17). When you finish a prompt or a standalone feature, update §2, the repo
-map, and any changed convention here — and the matching row in docs/API.md /
-pb/SCHEMA.md — in the same commit.*
+*Last synced to repo state after the Base Camp v2 rebuild (Prompts 00–16 done +
+tour, motion, profile-hub/native-gestures, CA manual-ingest + Monthly CA,
+gamified Test Centre + in-test guard, leaderboard rank + featured badges + modal
+polish, Base Camp v2 game-app home; next = Prompt 17). When you finish a prompt
+or a standalone feature, update §2, the repo map, and any changed convention here
+— and the matching row in docs/API.md / pb/SCHEMA.md — in the same commit.*

@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
+	import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
 	import { goto } from '$app/navigation';
 	import { auth } from '$lib/auth.svelte';
 	import { buildMap } from '$lib/map';
@@ -7,49 +10,49 @@
 	import { fetchBoard, formatCountdown, type Board } from '$lib/board';
 	import { fetchBriefing, type Briefing } from '$lib/ca';
 	import { TOTAL_UNITS } from '$lib/polity';
+	import { haptic } from '$lib/native';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import StreakFlame from '$lib/components/StreakFlame.svelte';
 	import ProgressRing from '$lib/components/ProgressRing.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
-	import Button from '$lib/components/Button.svelte';
 
 	let { data } = $props();
 
 	const user = $derived(auth.user);
-	const ptStreak = $derived((user as unknown as { pt_streak_current?: number })?.pt_streak_current || 0);
 	const map = $derived(buildMap(data.topics, data.progress, data.isPremium));
 	const rp = $derived(rankProgress(user?.xp ?? 0));
 
-	/* SR due loads client-side (needs auth token) with its own skeleton slot */
+	/* client-side loads (need the auth token) */
 	let sr = $state<SrDue | null>(null);
 	let srLoaded = $state(false);
+	let board = $state<Board | null>(null);
+	let briefing = $state<Briefing | null>(null);
+	let briefingLoaded = $state(false);
+	let secondsLeft = $state(0);
 	let booted = false;
 	$effect(() => {
 		if (booted) return;
 		booted = true;
-		fetchDue()
-			.then((d) => (sr = d))
-			.catch(() => (sr = null))
-			.finally(() => (srLoaded = true));
+		fetchDue().then((d) => (sr = d)).catch(() => (sr = null)).finally(() => (srLoaded = true));
 		fetchBoard()
-			.then((b) => (board = b))
+			.then((b) => {
+				board = b;
+				secondsLeft = b.seconds_left;
+			})
 			.catch(() => (board = null));
-		fetchBriefing()
-			.then((b) => (briefing = b))
-			.catch(() => (briefing = null))
-			.finally(() => (briefingLoaded = true));
+		fetchBriefing().then((b) => (briefing = b)).catch(() => (briefing = null)).finally(() => (briefingLoaded = true));
 	});
+	const tick = setInterval(() => {
+		if (secondsLeft > 0) secondsLeft -= 1;
+	}, 1000);
+	onDestroy(() => clearInterval(tick));
 
-	let board = $state<Board | null>(null);
-	let briefing = $state<Briefing | null>(null);
-	let briefingLoaded = $state(false);
 	const briefingCount = $derived(briefing?.items.length ?? 0);
 	const briefingDone = $derived(
 		!!briefing && briefingCount > 0 && briefing.items.every((i) => i.quiz.length > 0 && i.quiz_answered >= i.quiz.length)
 	);
 
-	/* greeting is time-aware (interaction notes) */
 	const greeting = (() => {
 		const h = new Date().getHours();
 		if (h < 4) return 'Still at it?';
@@ -57,35 +60,92 @@
 		if (h < 17) return 'Good afternoon,';
 		return 'Good evening,';
 	})();
-
 	const firstName = $derived((user?.display_name || 'Recruit').split(' ')[0]);
-	const rankLabel = $derived(rp.current.label);
 
-	/* stats row */
+	/* count-ups (juice) */
+	const xpDisplay = tweened(0, { duration: 700, easing: cubicOut });
+	$effect(() => {
+		xpDisplay.set(user?.xp ?? 0);
+	});
+	const heldDisplay = tweened(0, { duration: 650, easing: cubicOut });
+	const weekDisplay = tweened(0, { duration: 650, easing: cubicOut });
+
+	/* ---- campaign ---- */
 	const held = $derived(map.held);
 	const goldCount = $derived(map.regions.reduce((s, r) => s + r.gold, 0));
-	const decayCount = $derived(
-		map.regions.flatMap((r) => r.nodes).filter((n) => n.visual === 'decaying').length
-	);
-	const accuracy = $derived.by(() => {
-		// quiz accuracy from progress best scores (rough but honest with local data)
-		const scored = data.progress.filter((p) => p.best_score_pct > 0);
-		if (!scored.length) return null;
-		return Math.round(scored.reduce((s, p) => s + p.best_score_pct, 0) / scored.length);
-	});
-
-	/* mission assembly: next guided topic + SR due + daily briefing (P13 stub) */
+	const front = $derived(map.regions.find((r) => r.pct < 100) ?? map.regions[0] ?? null);
 	const nextTopic = $derived(map.next);
-	const missionMinutes = $derived(
-		(nextTopic?.topic?.est_read_minutes ?? 0) + 12 + Math.round((sr?.count ?? 0) * 0.8)
-	);
+	const nextName = $derived(nextTopic?.topic?.title ?? nextTopic?.unit?.code ?? '');
 
-	/* weekly XP sparkline: sum xp_events per IST day, last 7 days */
+	/* ---- daily objectives (real, from today's xp_events + SR + briefing) ---- */
+	const todayIST = istDate(Date.now());
+	const evToday = $derived(
+		data.xpEvents.filter(
+			(e) => istDate(new Date(e.created.replace(' ', 'T')).getTime()) === todayIST
+		)
+	);
+	const quizToday = $derived(evToday.some((e) => e.reason === 'topic_quiz'));
+	const srToday = $derived(evToday.filter((e) => e.reason === 'sr_review').length);
+	const caToday = $derived(evToday.some((e) => e.reason === 'daily_ca') || briefingDone);
+	// no briefing published today → the objective is a no-op (auto-complete)
+	const caApplicable = $derived(briefingLoaded ? briefingCount > 0 : true);
+
+	interface Quest {
+		key: string;
+		label: string;
+		sub: string;
+		done: boolean;
+		cur: number;
+		target: number;
+		xp: string;
+		go: () => void;
+	}
+	const quests = $derived<Quest[]>([
+		{
+			key: 'quiz',
+			label: 'Conquer a territory',
+			sub: quizToday ? 'done today' : nextName ? `next: ${nextName}` : 'read + 12-question quiz',
+			done: quizToday,
+			cur: quizToday ? 1 : 0,
+			target: 1,
+			xp: '+100',
+			go: () => (nextTopic ? goto(`/topic/${nextTopic.unit.code}`) : goto('/map'))
+		},
+		{
+			key: 'sr',
+			label: 'Clear 10 revision cards',
+			sub: srToday >= 10 ? 'done today' : `${srToday}/10 reviewed`,
+			done: srToday >= 10,
+			cur: Math.min(srToday, 10),
+			target: 10,
+			xp: '+80',
+			go: () => goto('/revision')
+		},
+		{
+			key: 'ca',
+			label: 'Daily briefing',
+			sub: !caApplicable ? 'none today' : caToday ? 'cleared' : `${briefingCount} to read`,
+			done: caToday || !caApplicable,
+			cur: caToday || !caApplicable ? 1 : 0,
+			target: 1,
+			xp: '+30',
+			go: () => goto('/briefing')
+		}
+	]);
+	const doneCount = $derived(quests.filter((q) => q.done).length);
+	const allDone = $derived(doneCount === quests.length);
+	const streakSafeToday = $derived(quizToday || srToday >= 10 || caToday);
+	const atRisk = $derived((user?.streak_current ?? 0) > 0 && !streakSafeToday);
+	const firstUndone = $derived(quests.find((q) => !q.done) ?? null);
+
+	/* ---- next decoration (streak milestone) ---- */
+	const nextMilestone = $derived([7, 30, 100].find((m) => (user?.streak_current ?? 0) < m) ?? null);
+	const milestoneLeft = $derived(nextMilestone ? nextMilestone - (user?.streak_current ?? 0) : 0);
+
+	/* ---- weekly momentum ---- */
 	const spark = $derived.by(() => {
 		const days: { day: string; xp: number }[] = [];
-		for (let i = 6; i >= 0; i--) {
-			days.push({ day: istDate(Date.now() - i * 86400000), xp: 0 });
-		}
+		for (let i = 6; i >= 0; i--) days.push({ day: istDate(Date.now() - i * 86400000), xp: 0 });
 		for (const ev of data.xpEvents) {
 			const d = istDate(new Date(ev.created.replace(' ', 'T')).getTime());
 			const slot = days.find((x) => x.day === d);
@@ -94,8 +154,16 @@
 		const max = Math.max(1, ...days.map((d) => d.xp));
 		return { days, max };
 	});
+	const weekXp = $derived(spark.days.reduce((s, d) => s + d.xp, 0));
+	const dayInitials = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+	$effect(() => {
+		heldDisplay.set(held);
+	});
+	$effect(() => {
+		weekDisplay.set(weekXp);
+	});
 
-	/* streak sheet: last 30 days calendar (active = XP earned that day) */
+	/* streak sheet */
 	let streakSheet = $state(false);
 	const last30 = $derived.by(() => {
 		const active = new Set(spark.days.filter((d) => d.xp > 0).map((d) => d.day));
@@ -108,198 +176,172 @@
 		return out;
 	});
 
-	function beginMission() {
-		if (nextTopic) goto(`/topic/${nextTopic.unit.code}`);
-		else if ((sr?.count ?? 0) > 0) goto('/revision');
-		else goto('/map');
+	function questTap(q: Quest) {
+		haptic();
+		q.go();
+	}
+	function nav(path: string) {
+		haptic();
+		goto(path);
 	}
 </script>
 
 <svelte:head><title>UPSCVidya — Base Camp</title></svelte:head>
 
 <div class="dash">
-	<!-- header: insignia, greeting, XP bar, streak -->
-	<div class="header" data-tour="home-hero">
-		<div class="insignia-slot">
-			{#if user}
-				<RankInsignia rank={auth.rankCode} width={34} />
-			{:else}
-				<Skeleton width="34px" height="56px" />
-			{/if}
-		</div>
-		<div class="who">
+	<!-- ============ HUD ============ -->
+	<div class="hud sect" style="--i:0" data-tour="home-hero">
+		<button class="hud-ins" onclick={() => nav('/profile/ranks')} aria-label="ranks">
+			{#if user}<RankInsignia rank={rp.current.code} width={34} />{:else}<Skeleton width="34px" height="52px" />{/if}
+		</button>
+		<div class="hud-mid">
 			<div class="greet">{greeting}</div>
+			<div class="name">{firstName}</div>
+			<div class="rank-line">{rp.current.label}</div>
 			{#if user}
-				<div class="name">{rankLabel} {firstName}</div>
-				<div class="xp-row">
-					<div class="xp-track"><div class="xp-fill" style:width="{rp.pct}%"></div></div>
-					<span class="xp-num">
-						{(user.xp ?? 0).toLocaleString('en-IN')}{rp.next ? ` / ${rp.next.xp.toLocaleString('en-IN')}` : ''} XP
-					</span>
+				<div class="xp-wrap">
+					<div class="xp-bar"><div class="xp-fill" style:width="{rp.pct}%"></div></div>
+					<div class="xp-nums">
+						<span class="xp-cur">{Math.round($xpDisplay).toLocaleString('en-IN')} XP</span>
+						{#if rp.next}<span class="xp-next">{(rp.next.xp - (user.xp ?? 0)).toLocaleString('en-IN')} → {rp.next.label}</span>{/if}
+					</div>
 				</div>
-			{:else}
-				<Skeleton width="150px" height="18px" />
-				<Skeleton width="180px" height="10px" />
 			{/if}
 		</div>
-		<button class="streak-chip" onclick={() => (streakSheet = true)} aria-label="streak details">
-			{#if user}
-				<StreakFlame count={user.streak_current ?? 0} freezes={user.streak_freezes ?? 0} size={18} showLabel={false} />
-			{:else}
-				<Skeleton width="40px" height="40px" />
+		<div class="hud-right">
+			<button class="flame-btn" class:risk={atRisk} onclick={() => { haptic(); streakSheet = true; }} aria-label="streak">
+				{#if user}
+					<StreakFlame count={user.streak_current ?? 0} freezes={user.streak_freezes ?? 0} size={20} showLabel={false} />
+				{:else}<Skeleton width="34px" height="40px" />{/if}
+			</button>
+			{#if rp.next}
+				<div class="ghost-rank" title="next rank">
+					<RankInsignia rank={rp.next.code} width={22} />
+				</div>
 			{/if}
+		</div>
+	</div>
+
+	{#if atRisk}
+		<button class="risk-bar sect" style="--i:1" onclick={() => firstUndone && questTap(firstUndone)}>
+			🔥 Streak at risk — finish one objective to keep day {(user?.streak_current ?? 0) + 1}
+		</button>
+	{/if}
+
+	<!-- ============ DAILY OBJECTIVES ============ -->
+	<div class="quests sect" style="--i:2" data-tour="home-mission">
+		<div class="q-head">
+			<div class="q-title">Daily Objectives</div>
+			<div class="q-ring">
+				<ProgressRing value={(doneCount / quests.length) * 100} size={44} stroke={5} label={`${doneCount}/${quests.length}`} />
+			</div>
+		</div>
+
+		{#if allDone}
+			<div class="q-clear">
+				<span class="q-clear-mark">✓</span>
+				<div>
+					<div class="q-clear-t">Day secured</div>
+					<div class="q-clear-s">All objectives cleared — streak locked for today.</div>
+				</div>
+			</div>
+		{/if}
+
+		<div class="q-list">
+			{#each quests as q (q.key)}
+				<button class="quest" class:done={q.done} onclick={() => questTap(q)}>
+					<span class="q-check" class:on={q.done}>{q.done ? '✓' : ''}</span>
+					<span class="q-body">
+						<span class="q-label">{q.label}</span>
+						<span class="q-sub">{q.sub}</span>
+						{#if q.target > 1 && !q.done}
+							<span class="q-track"><span class="q-track-fill" style:width="{(q.cur / q.target) * 100}%"></span></span>
+						{/if}
+					</span>
+					<span class="q-xp" class:spent={q.done}>{q.xp}</span>
+				</button>
+			{/each}
+		</div>
+	</div>
+
+	<!-- ============ CAMPAIGN ============ -->
+	<button class="campaign sect" style="--i:3" data-tour="home-ring" onclick={() => nav('/map')}>
+		<div class="camp-top">
+			<span class="camp-k">Campaign</span>
+			<span class="camp-held">{Math.round($heldDisplay)}/{TOTAL_UNITS} held{goldCount > 0 ? ` · ${goldCount} gold` : ''}</span>
+		</div>
+		{#if front}
+			<div class="camp-front">
+				<span class="camp-region">{front.meta.name}</span>
+				<span class="camp-pct">{front.pct}%</span>
+			</div>
+			<div class="camp-bar"><div class="camp-fill" style:width="{front.pct}%"></div></div>
+		{/if}
+		<div class="camp-next">
+			{#if nextName}Next front: <strong>{nextName}</strong> →{:else}Open the territory map →{/if}
+		</div>
+	</button>
+
+	<!-- ============ TILES: rival + medal ============ -->
+	<div class="tiles sect" style="--i:4">
+		<button class="tile rival" onclick={() => nav('/battalion')}>
+			<div class="tile-k">Battalion</div>
+			{#if board?.you}
+				<div class="tile-big">#{board.you.rank}</div>
+				<div class="tile-sub">
+					{#if board.behind && board.behind > 0}
+						+{board.behind.toLocaleString('en-IN')} to #{board.you.rank - 1}
+					{:else if board.you.rank === 1}
+						holding the top
+					{:else}
+						{board.you.xp_week.toLocaleString('en-IN')} XP this week
+					{/if}
+				</div>
+				<div class="tile-foot">⏱ {formatCountdown(secondsLeft)}</div>
+			{:else}
+				<div class="tile-big">—</div>
+				<div class="tile-sub">weekly cohort race</div>
+			{/if}
+		</button>
+
+		<button class="tile medal" onclick={() => nav('/profile/decorations')}>
+			<div class="tile-k">Next medal</div>
+			{#if nextMilestone}
+				<div class="tile-big">{nextMilestone}🔥</div>
+				<div class="tile-sub">{milestoneLeft} day{milestoneLeft === 1 ? '' : 's'} to the {nextMilestone}-day badge</div>
+			{:else}
+				<div class="tile-big">★</div>
+				<div class="tile-sub">collect region & mock medals</div>
+			{/if}
+			<div class="tile-foot">Decorations →</div>
 		</button>
 	</div>
 
-	<!-- Today's Mission -->
-	<div class="mission" data-tour="home-mission">
-		<div class="m-head">
-			<span class="m-title">Today's Mission</span>
-			<span class="m-time">~{missionMinutes || 45} min</span>
+	<!-- ============ WEEKLY MOMENTUM ============ -->
+	<div class="momentum sect" style="--i:5">
+		<div class="mo-head">
+			<span class="mo-k">This week</span>
+			<span class="mo-xp">{Math.round($weekDisplay).toLocaleString('en-IN')} XP</span>
 		</div>
-		<div class="m-items">
-			<button class="m-item" onclick={() => nextTopic && goto(`/topic/${nextTopic.unit.code}`)} disabled={!nextTopic}>
-				<span class="m-num">1</span>
-				<span class="m-text">
-					<span class="m-name">{nextTopic ? nextTopic.unit.title : 'All live territory held'}</span>
-					<span class="m-sub">
-						{nextTopic
-							? `Guided path · ${nextTopic.unit.region} · read + ${nextTopic.topic?.mcq_floor ?? nextTopic.unit.floor}Q quiz`
-							: 'New drops arrive with the content pipeline'}
-					</span>
-				</span>
-				<span class="m-min">{nextTopic?.topic?.est_read_minutes ?? '—'}m</span>
-			</button>
-			<button class="m-item" onclick={() => goto('/revision')}>
-				<span class="m-num" class:done-num={srLoaded && (sr?.count ?? 0) === 0}>
-					{#if srLoaded && (sr?.count ?? 0) === 0}✓{:else}2{/if}
-				</span>
-				<span class="m-text">
-					{#if !srLoaded}
-						<Skeleton width="160px" height="14px" />
-					{:else}
-						<span class="m-name" class:done-line={(sr?.count ?? 0) === 0}>
-							Revision stack{(sr?.count ?? 0) > 0 ? ` — ${sr?.count} cards due` : ' — clear'}
-						</span>
-						<span class="m-sub">
-							{(sr?.decays.length ?? 0) > 0
-								? `${sr?.decays.length} decaying ${sr?.decays.length === 1 ? 'territory' : 'territories'} inside`
-								: 'wrong answers report here'}
-						</span>
-					{/if}
-				</span>
-				<span class="m-min">{srLoaded ? `${Math.max(1, Math.round((sr?.count ?? 0) * 0.8))}m` : ''}</span>
-			</button>
-			<button class="m-item" onclick={() => goto('/briefing')}>
-				<span class="m-num" class:done-num={briefingDone}>
-					{#if briefingDone}✓{:else}3{/if}
-				</span>
-				<span class="m-text">
-					{#if !briefingLoaded}
-						<Skeleton width="140px" height="14px" />
-					{:else}
-						<span class="m-name" class:done-line={briefingDone}>
-							Daily briefing{briefingCount > 0 ? ` — ${briefingCount} item${briefingCount === 1 ? '' : 's'}` : ''}
-						</span>
-						<span class="m-sub">
-							{briefingCount > 0
-								? briefingDone
-									? 'mini-quizzes cleared'
-									: 'read + mini-quiz each item'
-								: 'items land at 07:00 IST after review'}
-						</span>
-					{/if}
-				</span>
-				<span class="m-min">{briefingCount > 0 ? `${briefingCount * 2}m` : ''}</span>
-			</button>
-		</div>
-		<Button variant="primary" onclick={beginMission}>Begin Mission →</Button>
-	</div>
-
-	<!-- ring + stats band -->
-	<div class="band">
-		<div class="ring-card" data-tour="home-ring">
-			<ProgressRing value={map.pct} size={92} stroke={9} label="POLITY" />
-		</div>
-		<div class="stats">
-			<div class="stat-row"><span>Territories held</span><span class="v green">{held} / {TOTAL_UNITS}</span></div>
-			<div class="stat-row"><span>Gold mastery</span><span class="v gold">{goldCount}</span></div>
-			<button class="stat-row link" onclick={() => goto('/revision')}>
-				<span>Decaying</span>
-				<span class="v" class:red={decayCount > 0}>{decayCount > 0 ? `${decayCount} — retake soon` : '0'}</span>
-			</button>
-			<div class="stat-row"><span>Quiz accuracy</span><span class="v">{accuracy === null ? '—' : `${accuracy}%`}</span></div>
-		</div>
-	</div>
-
-	<!-- weekly XP sparkline -->
-	<div class="spark-card">
-		<div class="spark-head">
-			<span class="s-title">This week</span>
-			<span class="s-total">{spark.days.reduce((s, d) => s + d.xp, 0)} XP</span>
-		</div>
-		<div class="spark">
-			{#each spark.days as d (d.day)}
-				<div class="s-col">
-					<div class="s-bar" style:height="{Math.max(3, (d.xp / spark.max) * 44)}px" class:zero={d.xp === 0}></div>
-					<span class="s-day">{new Date(d.day + 'T00:00:00').toLocaleDateString('en-IN', { weekday: 'narrow' })}</span>
+		<div class="mo-bars">
+			{#each spark.days as d, i (d.day)}
+				<div class="mo-col">
+					<div class="mo-bar" class:today={d.day === todayIST} style="height:{Math.max(4, (d.xp / spark.max) * 46)}px; --j:{i}"></div>
+					<span class="mo-lbl" class:today={d.day === todayIST}>{dayInitials[i]}</span>
 				</div>
 			{/each}
 		</div>
 	</div>
 
-	<!-- quick actions -->
-	<div class="qa-block">
-		<div class="qa-title">Quick actions</div>
-		<div class="qa-grid">
-			<button class="qa khaki" onclick={() => goto('/map')}>
-				<span class="qa-name">Territory Map</span><span class="qa-sub">8 regions</span>
-			</button>
-			<button class="qa blue" onclick={() => goto('/revision')}>
-				<span class="qa-name">Revision Stack</span>
-				<span class="qa-sub" class:hot={(sr?.count ?? 0) > 0}>{srLoaded ? ((sr?.count ?? 0) > 0 ? `${sr?.count} due` : 'clear') : '…'}</span>
-			</button>
-			<button class="qa orange" onclick={() => goto('/tests')}>
-				<span class="qa-name">Test Centre</span><span class="qa-sub">Prompt 11</span>
-			</button>
-			<button class="qa green" onclick={() => goto('/pyq')}>
-				<span class="qa-name">PYQ Vault</span><span class="qa-sub">free · all years</span>
-			</button>
-			<button class="qa" onclick={() => goto('/briefing')}>
-				<span class="qa-name">Daily Briefing</span>
-				<span class="qa-sub" class:hot={briefingLoaded && briefingCount > 0 && !briefingDone}>
-					{!briefingLoaded ? '…' : briefingCount > 0 ? (briefingDone ? 'read ✓' : `${briefingCount} new`) : 'none yet'}
-				</span>
-			</button>
-			<button class="qa orange" onclick={() => goto('/pt')}>
-				<span class="qa-name">Drill Ground</span>
-				<span class="qa-sub">{ptStreak > 0 ? `${ptStreak}-day streak` : 'home workouts'}</span>
-			</button>
-			<button class="qa" onclick={() => goto('/profile')}>
-				<span class="qa-name">Profile</span><span class="qa-sub">ranks & badges</span>
-			</button>
-		</div>
+	<!-- ============ QUICK ACTIONS ============ -->
+	<div class="qa sect" style="--i:6">
+		<button class="qa-btn khaki" onclick={() => nav('/map')}><span class="qa-n">Map</span></button>
+		<button class="qa-btn orange" onclick={() => nav('/tests')}><span class="qa-n">Tests</span></button>
+		<button class="qa-btn blue" onclick={() => nav('/revision')}>
+			<span class="qa-n">Revision</span>{#if srLoaded && (sr?.count ?? 0) > 0}<span class="qa-badge">{sr?.count}</span>{/if}
+		</button>
+		<button class="qa-btn green" onclick={() => nav('/pt')}><span class="qa-n">Drill</span></button>
 	</div>
-
-	<!-- battalion standing (Prompt 10) -->
-	<button class="batt-row" onclick={() => goto('/battalion')}>
-		<span class="batt-icon">
-			<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 V9 M10 16 V4 M16 16 V12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></svg>
-		</span>
-		<span class="batt-text">
-			<span class="batt-title">
-				Battalion board{board?.you ? ` — #${board.you.rank} of ${board.battalion?.member_count ?? ''}` : ''}
-			</span>
-			<span class="batt-sub">
-				{#if board}
-					Week resets in {formatCountdown(board.seconds_left)}{board.behind ? ` · ${board.behind.toLocaleString('en-IN')} XP behind #${(board.you?.rank ?? 2) - 1}` : ''}
-				{:else}
-					weekly XP race inside your cohort
-				{/if}
-			</span>
-		</span>
-		<svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-	</button>
 </div>
 
 <!-- streak sheet: 30-day calendar + freeze explainer -->
@@ -325,389 +367,616 @@
 	.dash {
 		display: flex;
 		flex-direction: column;
-		gap: 18px;
+		gap: 14px;
 	}
-	/* header */
-	.header {
+	.sect {
+		animation: enter 0.42s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+		animation-delay: calc(var(--i, 0) * 55ms);
+	}
+	@keyframes enter {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.sect {
+			animation: none;
+		}
+	}
+
+	/* ---------- HUD ---------- */
+	.hud {
 		display: flex;
 		align-items: center;
 		gap: 12px;
-	}
-	.insignia-slot {
-		flex: none;
-		width: 52px;
-		height: 66px;
 		background: var(--bg-2);
+		border: var(--bw-bold) solid var(--line);
+		border-radius: var(--r-xl);
+		padding: 14px 15px;
+		box-shadow: var(--shadow-2);
+	}
+	.hud-ins {
+		flex: none;
+		background: var(--bg-0);
 		border: var(--bw) solid var(--line);
 		border-radius: var(--r-md);
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		padding: 6px 10px;
+		cursor: pointer;
 	}
-	.who {
+	.hud-mid {
 		flex: 1;
 		min-width: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 3px;
 	}
 	.greet {
-		font-size: 12.5px;
+		font-size: 11.5px;
 		font-weight: 700;
 		color: var(--ink-3);
 	}
 	.name {
 		font-family: var(--font-display);
-		font-size: 17px;
-		line-height: 1.2;
+		font-size: 19px;
+		line-height: 1.05;
 		text-transform: uppercase;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	.xp-row {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		margin-top: 2px;
+	.rank-line {
+		font-size: 10px;
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		color: var(--khaki-deep);
+		margin-top: 1px;
 	}
-	.xp-track {
-		flex: 1;
+	.xp-wrap {
+		margin-top: 7px;
+	}
+	.xp-bar {
 		height: 8px;
-		border: var(--bw) solid var(--line);
+		background: var(--bg-0);
+		border: 1.5px solid var(--line);
 		border-radius: var(--r-full);
-		background: var(--bg-2);
 		overflow: hidden;
 	}
 	.xp-fill {
 		height: 100%;
-		background: var(--khaki);
-		transition: width var(--t-conquest) var(--ease);
+		background: linear-gradient(90deg, var(--gold-lo), var(--gold-hi));
+		transition: width 700ms cubic-bezier(0.2, 0.9, 0.3, 1);
 	}
-	.xp-num {
+	.xp-nums {
+		display: flex;
+		justify-content: space-between;
+		gap: 8px;
+		margin-top: 4px;
+	}
+	.xp-cur {
 		font-size: 10.5px;
 		font-weight: 900;
-		color: var(--ink-3);
-		white-space: nowrap;
 	}
-	.streak-chip {
+	.xp-next {
+		font-size: 10px;
+		font-weight: 700;
+		color: var(--ink-3);
+	}
+	.hud-right {
 		flex: none;
-		background: var(--bg-2);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+	}
+	.flame-btn {
+		background: var(--bg-0);
 		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
-		padding: 8px 12px;
+		border-radius: var(--r-md);
+		padding: 4px 8px;
+		cursor: pointer;
+	}
+	.flame-btn.risk {
+		border-color: var(--red-deep);
+		background: var(--red-tint);
+		animation: riskpulse 1.4s ease-in-out infinite;
+	}
+	@keyframes riskpulse {
+		50% {
+			opacity: 0.6;
+		}
+	}
+	.ghost-rank {
+		opacity: 0.4;
+		filter: grayscale(0.5);
+	}
+
+	.risk-bar {
+		background: var(--red-tint);
+		border: var(--bw) solid var(--red-deep);
+		border-radius: var(--r-md);
+		padding: 9px 13px;
+		font-size: 11.5px;
+		font-weight: 900;
+		color: var(--red-deep);
+		text-align: left;
 		cursor: pointer;
 	}
 
-	/* mission */
-	.mission {
-		background: var(--bg-2);
+	/* ---------- quests ---------- */
+	.quests {
+		background: var(--bg-0);
 		border: var(--bw-bold) solid var(--line);
 		border-radius: var(--r-xl);
-		padding: 18px;
+		padding: 16px;
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
-		box-shadow: var(--shadow-2);
+		box-shadow: var(--shadow-soft);
 	}
-	.m-head {
+	.q-head {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		justify-content: space-between;
 	}
-	.m-title {
+	.q-title {
 		font-family: var(--font-display);
-		font-size: 12px;
+		font-size: 17px;
 		text-transform: uppercase;
-		color: var(--orange-deep);
 	}
-	.m-time {
-		font-size: 11.5px;
-		font-weight: 900;
-		background: var(--orange-tint);
-		border: var(--bw) solid var(--line);
+	.q-clear {
+		display: flex;
+		align-items: center;
+		gap: 11px;
+		background: var(--green-tint);
+		border: var(--bw) solid var(--green-deep);
+		border-radius: var(--r-lg);
+		padding: 11px 14px;
+	}
+	.q-clear-mark {
+		flex: none;
+		width: 30px;
+		height: 30px;
 		border-radius: var(--r-full);
-		padding: 3px 10px;
+		background: var(--green);
+		border: var(--bw) solid var(--green-deep);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 900;
+		color: #2f4a22;
 	}
-	.m-items {
+	.q-clear-t {
+		font-family: var(--font-display);
+		font-size: 14px;
+		text-transform: uppercase;
+	}
+	.q-clear-s {
+		font-size: 10.5px;
+		font-weight: 700;
+		color: var(--ink-2);
+	}
+	.q-list {
 		display: flex;
 		flex-direction: column;
 		gap: 9px;
 	}
-	.m-item {
+	.quest {
 		display: flex;
 		align-items: center;
-		gap: 11px;
-		background: none;
-		border: none;
-		padding: 0;
-		text-align: left;
+		gap: 12px;
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-lg);
+		padding: 12px 14px;
 		cursor: pointer;
+		text-align: left;
 		font-family: var(--font-ui);
+		transition: transform var(--t-fast) var(--ease);
 	}
-	.m-item:disabled {
-		cursor: default;
+	.quest:active {
+		transform: scale(0.985);
 	}
-	.m-num {
+	.quest.done {
+		opacity: 0.62;
+		background: var(--bg-1);
+	}
+	.q-check {
 		flex: none;
-		width: 22px;
-		height: 22px;
+		width: 24px;
+		height: 24px;
 		border-radius: var(--r-full);
 		border: var(--bw) solid var(--line);
 		background: var(--bg-0);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 10px;
 		font-weight: 900;
-		color: var(--ink-1);
+		font-size: 13px;
+		color: #2f4a22;
 	}
-	.m-num.done-num {
+	.q-check.on {
 		background: var(--green);
+		border-color: var(--green-deep);
 	}
-	.m-text {
+	.q-body {
 		flex: 1;
 		min-width: 0;
 		display: flex;
 		flex-direction: column;
+		gap: 3px;
 	}
-	.m-name {
+	.q-label {
 		font-weight: 900;
-		font-size: 14px;
-		color: var(--ink-1);
+		font-size: 13.5px;
 	}
-	.m-name.done-line {
-		color: var(--ink-3);
+	.quest.done .q-label {
 		text-decoration: line-through;
 	}
-	.m-sub {
-		font-size: 11.5px;
+	.q-sub {
+		font-size: 10.5px;
+		font-weight: 700;
 		color: var(--ink-3);
 	}
-	.m-min {
+	.q-track {
+		margin-top: 3px;
+		height: 5px;
+		background: var(--bg-0);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-full);
+		overflow: hidden;
+	}
+	.q-track-fill {
+		display: block;
+		height: 100%;
+		background: var(--blue);
+		transition: width var(--t-base) var(--ease);
+	}
+	.q-xp {
 		flex: none;
 		font-size: 11px;
-		font-weight: 700;
-		color: var(--ink-3);
-	}
-	.mission :global(.btn) {
-		width: 100%;
-	}
-
-	/* band */
-	.band {
-		display: flex;
-		gap: 14px;
-	}
-	.ring-card {
-		flex: none;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 14px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.stats {
-		flex: 1;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 14px 16px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 7px;
-	}
-	.stat-row {
-		display: flex;
-		justify-content: space-between;
-		font-size: 11.5px;
-		font-weight: 700;
-		color: var(--ink-1);
-		background: none;
-		border: none;
-		padding: 0;
-		font-family: var(--font-ui);
-	}
-	.stat-row.link {
-		cursor: pointer;
-	}
-	.v.green {
+		font-weight: 900;
 		color: var(--green-deep);
+		background: var(--green-tint);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-sm);
+		padding: 3px 8px;
 	}
-	.v.gold {
-		color: var(--gold-lo);
-	}
-	.v.red {
-		color: var(--red-deep);
+	.q-xp.spent {
+		color: var(--ink-3);
+		background: var(--bg-0);
 	}
 
-	/* sparkline */
-	.spark-card {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 14px 16px;
+	/* ---------- campaign ---------- */
+	.campaign {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: 8px;
+		background: var(--khaki-tint);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-xl);
+		padding: 15px 16px;
+		cursor: pointer;
+		text-align: left;
+		transition: transform var(--t-fast) var(--ease);
 	}
-	.spark-head {
+	.campaign:active {
+		transform: scale(0.99);
+	}
+	.camp-top {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: baseline;
 	}
-	.s-title {
+	.camp-k {
 		font-family: var(--font-display);
 		font-size: 13px;
 		text-transform: uppercase;
 	}
-	.s-total {
-		font-size: 11px;
-		font-weight: 900;
-		color: var(--ink-2);
-	}
-	.spark {
-		display: flex;
-		gap: 8px;
-		align-items: flex-end;
-	}
-	.s-col {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 4px;
-	}
-	.s-bar {
-		width: 100%;
-		max-width: 26px;
-		background: var(--khaki);
-		border: 1.5px solid var(--line);
-		border-radius: 3px 3px 0 0;
-	}
-	.s-bar.zero {
-		background: var(--bg-1);
-		border-color: var(--line-soft);
-	}
-	.s-day {
-		font-size: 9px;
+	.camp-held {
+		font-size: 10.5px;
 		font-weight: 900;
 		color: var(--ink-3);
 	}
-
-	/* quick actions */
-	.qa-block {
+	.camp-front {
 		display: flex;
-		flex-direction: column;
-		gap: 10px;
+		justify-content: space-between;
+		align-items: baseline;
 	}
-	.qa-title {
+	.camp-region {
+		font-weight: 900;
+		font-size: 14.5px;
+	}
+	.camp-pct {
 		font-family: var(--font-display);
-		font-size: 13px;
-		text-transform: uppercase;
+		font-size: 16px;
+		color: var(--khaki-deep);
 	}
-	.qa-grid {
+	.camp-bar {
+		height: 9px;
+		background: var(--bg-0);
+		border: 1.5px solid var(--line);
+		border-radius: var(--r-full);
+		overflow: hidden;
+	}
+	.camp-fill {
+		height: 100%;
+		background: linear-gradient(90deg, var(--khaki-deep), var(--khaki));
+		transition: width var(--t-base) var(--ease);
+	}
+	.camp-next {
+		font-size: 11.5px;
+		font-weight: 700;
+		color: var(--orange-deep);
+	}
+
+	/* ---------- tiles ---------- */
+	.tiles {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 12px;
 	}
-	.qa {
+	.tile {
 		display: flex;
 		flex-direction: column;
-		gap: 2px;
+		gap: 3px;
 		background: var(--bg-2);
 		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
-		padding: 13px 14px;
+		border-radius: var(--r-xl);
+		padding: 14px;
 		cursor: pointer;
 		text-align: left;
-		font-family: var(--font-ui);
-		transition:
-			box-shadow var(--t-fast) var(--ease),
-			transform var(--t-fast) var(--ease);
-	}
-	.qa:hover {
 		box-shadow: var(--shadow-2);
-		transform: translate(-1px, -1px);
+		transition: transform var(--t-fast) var(--ease);
 	}
-	.qa.khaki {
-		background: var(--khaki-tint);
+	.tile:active {
+		transform: translateY(1px);
 	}
-	.qa.blue {
-		background: var(--blue-tint);
-	}
-	.qa.orange {
-		background: var(--orange-tint);
-	}
-	.qa.green {
-		background: var(--green-tint);
-	}
-	.qa-name {
+	.tile-k {
+		font-size: 10px;
 		font-weight: 900;
-		font-size: 13px;
-		color: var(--ink-1);
-	}
-	.qa-sub {
-		font-size: 10.5px;
+		text-transform: uppercase;
 		color: var(--ink-3);
+		letter-spacing: 0.04em;
 	}
-	.qa-sub.hot {
-		color: var(--red-deep);
+	.tile-big {
+		font-family: var(--font-display);
+		font-size: 30px;
+		line-height: 1.1;
+	}
+	.tile.rival .tile-big {
+		color: var(--orange-deep);
+	}
+	.tile.medal .tile-big {
+		color: var(--khaki-deep);
+	}
+	.tile-sub {
+		font-size: 10.5px;
 		font-weight: 700;
+		color: var(--ink-2);
+		min-height: 26px;
+	}
+	.tile-foot {
+		font-size: 10px;
+		font-weight: 900;
+		color: var(--ink-3);
+		margin-top: 2px;
 	}
 
-	/* battalion row */
-	.batt-row {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-		background: var(--bg-1);
+	/* ---------- momentum ---------- */
+	.momentum {
+		background: var(--bg-2);
 		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
-		padding: 12px 16px;
-		cursor: pointer;
-		font-family: var(--font-ui);
-		text-align: left;
-		color: var(--ink-1);
-	}
-	.batt-row:hover {
+		border-radius: var(--r-xl);
+		padding: 14px 16px;
 		box-shadow: var(--shadow-2);
 	}
-	.batt-icon {
-		flex: none;
+	.mo-head {
 		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 10px;
 	}
-	.batt-text {
+	.mo-k {
+		font-family: var(--font-display);
+		font-size: 13px;
+		text-transform: uppercase;
+	}
+	.mo-xp {
+		font-size: 11.5px;
+		font-weight: 900;
+		color: var(--ink-2);
+	}
+	.mo-bars {
+		display: flex;
+		align-items: flex-end;
+		gap: 8px;
+		height: 64px;
+	}
+	.mo-col {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		gap: 2px;
-		min-width: 0;
+		align-items: center;
+		gap: 5px;
+		justify-content: flex-end;
 	}
-	.batt-title {
+	.mo-bar {
+		width: 100%;
+		background: var(--blue);
+		border: 1.5px solid var(--line);
+		border-radius: 4px 4px 0 0;
+		transition: height var(--t-base) var(--ease);
+	}
+	.mo-bar.today {
+		background: var(--orange);
+	}
+	.mo-lbl {
+		font-size: 9px;
 		font-weight: 900;
-		font-size: 13px;
-	}
-	.batt-sub {
-		font-size: 11px;
 		color: var(--ink-3);
 	}
+	.mo-lbl.today {
+		color: var(--orange-deep);
+	}
 
-	/* streak sheet */
-	.cal-head {
+	/* ---------- game motion (all reduced-motion-guarded) ---------- */
+	.xp-fill,
+	.camp-fill {
+		position: relative;
+		overflow: hidden;
+	}
+	@media (prefers-reduced-motion: no-preference) {
+		/* sheen sweeping the progress bars — the classic game-UI look */
+		.xp-fill::after,
+		.camp-fill::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				100deg,
+				transparent 20%,
+				rgba(255, 255, 255, 0.55) 50%,
+				transparent 80%
+			);
+			transform: translateX(-100%);
+			animation: sheen 2.6s ease-in-out infinite;
+		}
+		.camp-fill::after {
+			animation-duration: 3.2s;
+			animation-delay: 0.6s;
+		}
+		/* momentum bars grow up on load, left→right */
+		.mo-bar {
+			transform-origin: bottom;
+			animation: grow 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+			animation-delay: calc(0.25s + var(--j, 0) * 45ms);
+		}
+		/* next-rank ghost breathes — teases the unlock */
+		.ghost-rank {
+			animation: breathe 2.8s ease-in-out infinite;
+		}
+		/* undone objective's reward chip pulses to draw the eye */
+		.quest:not(.done) .q-xp {
+			animation: xpglow 2s ease-in-out infinite;
+		}
+		/* completed check pops in */
+		.q-check.on {
+			animation: checkpop 0.42s cubic-bezier(0.2, 0.9, 0.3, 1.5) both;
+		}
+		/* all-clear card bursts in with a glowing mark */
+		.q-clear {
+			animation: clearpop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+		}
+		.q-clear-mark {
+			animation: markglow 1.6s ease-in-out infinite;
+		}
+	}
+	@keyframes sheen {
+		0% {
+			transform: translateX(-120%);
+		}
+		60%,
+		100% {
+			transform: translateX(220%);
+		}
+	}
+	@keyframes grow {
+		from {
+			transform: scaleY(0);
+		}
+	}
+	@keyframes breathe {
+		50% {
+			opacity: 0.62;
+			transform: scale(1.08);
+		}
+	}
+	@keyframes xpglow {
+		50% {
+			box-shadow: 0 0 9px rgba(122, 168, 80, 0.6);
+		}
+	}
+	@keyframes checkpop {
+		from {
+			transform: scale(0);
+		}
+	}
+	@keyframes clearpop {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+	}
+	@keyframes markglow {
+		50% {
+			box-shadow: 0 0 12px 2px rgba(120, 170, 80, 0.7);
+		}
+	}
+
+	/* ---------- quick actions ---------- */
+	.qa {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		gap: 9px;
+	}
+	.qa-btn {
+		position: relative;
+		background: var(--bg-2);
+		border: var(--bw) solid var(--line);
+		border-radius: var(--r-lg);
+		padding: 14px 6px;
+		cursor: pointer;
+		box-shadow: var(--shadow-2);
+		transition: transform var(--t-fast) var(--ease);
+	}
+	.qa-btn:active {
+		transform: translateY(1px);
+	}
+	.qa-btn.khaki {
+		background: var(--khaki-tint);
+	}
+	.qa-btn.orange {
+		background: var(--orange-tint);
+	}
+	.qa-btn.blue {
+		background: var(--blue-tint);
+	}
+	.qa-btn.green {
+		background: var(--green-tint);
+	}
+	.qa-n {
+		font-family: var(--font-ui);
+		font-weight: 900;
+		font-size: 12.5px;
+	}
+	.qa-badge {
+		position: absolute;
+		top: -6px;
+		right: -6px;
+		min-width: 18px;
+		height: 18px;
+		padding: 0 4px;
+		border-radius: var(--r-full);
+		background: var(--red-deep);
+		color: #fff;
+		font-size: 10px;
+		font-weight: 900;
 		display: flex;
 		align-items: center;
-		gap: 14px;
-		margin-bottom: 12px;
+		justify-content: center;
+		border: 1.5px solid var(--bg-0);
+	}
+
+	/* ---------- streak sheet ---------- */
+	.cal-head {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		margin-bottom: 14px;
 	}
 	.cal-note {
 		margin: 0;
-		font-size: 12px;
+		font-size: 11.5px;
 		color: var(--ink-2);
-		line-height: 1.5;
 	}
 	.cal {
 		display: grid;
@@ -716,19 +985,18 @@
 	}
 	.cal-day {
 		aspect-ratio: 1;
-		border: var(--bw) solid var(--line-soft);
 		border-radius: var(--r-sm);
 		background: var(--bg-1);
+		border: 1px solid var(--line-soft);
 	}
 	.cal-day.on {
 		background: var(--orange);
 		border-color: var(--line);
 	}
 	.cal-legend {
-		margin: 10px 0 0;
-		text-align: center;
+		margin: 12px 0 0;
 		font-size: 10.5px;
-		font-weight: 700;
 		color: var(--ink-3);
+		text-align: center;
 	}
 </style>
