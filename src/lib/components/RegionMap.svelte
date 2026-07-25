@@ -1,6 +1,11 @@
 <script lang="ts">
+	/* FIELD DOSSIER · direction 2a — a sector laid out as TERRAIN inside the
+	   dossier: contour grid, terrain masses, a dashed FRONT LINE, and territory
+	   markers scattered across it. The terrain scrolls HORIZONTALLY so a sector
+	   with 14 territories keeps every marker at a readable size (the old SVG
+	   squeezed them all into one screen width). The attack order sits on top of
+	   the terrain and does not scroll away. */
 	import type { MapRegionData, MapNodeData } from '$lib/map';
-	import { layoutNodes, roadPath, REGION_W } from '$lib/map';
 
 	let {
 		region,
@@ -8,32 +13,23 @@
 		onTap
 	}: {
 		region: MapRegionData;
-		/** id_code freshly conquered — node pops (interaction notes) */
+		/** id_code freshly conquered — marker pops (interaction notes) */
 		conquestCode?: string | null;
 		onTap: (node: MapNodeData) => void;
 	} = $props();
 
-	const layout = $derived(layoutNodes(region.nodes.length));
-	const nextIdx = $derived(region.nodes.findIndex((n) => n.isNext));
+	/* markers march left→right on a gentle wave so the field reads as terrain,
+	   not a list. Step is fixed, so the strip simply grows with the sector. */
+	const STEP = 94;
+	const LEAD = 26;
+	const WAVE = [62, 100, 56, 118, 84, 70];
+	const trackWidth = $derived(LEAD + region.nodes.length * STEP + 40);
 
-	/** khaki travelled dots up to the next node; solid orange leg into it;
-	 *  faded dashed orange onward (interaction notes) */
-	const travelled = $derived(
-		nextIdx > 0 ? roadPath(layout.points.slice(0, nextIdx)) : nextIdx === -1 ? roadPath(layout.points) : ''
-	);
-	const nextLeg = $derived(
-		nextIdx > 0 ? roadPath(layout.points.slice(nextIdx - 1, nextIdx + 1)) : ''
-	);
-	const planned = $derived(
-		nextIdx >= 0 && nextIdx < layout.points.length - 1 ? roadPath(layout.points.slice(nextIdx)) : ''
-	);
+	const pos = (i: number) => ({ x: LEAD + i * STEP, y: WAVE[i % WAVE.length] });
+	const held = (n: MapNodeData) => n.visual === 'conquered' || n.visual === 'gold';
+	const num = (i: number) => String(i + 1).padStart(2, '0');
 
-	/** organic terrain blob scaled to the region height */
-	const blob = $derived.by(() => {
-		const h = layout.height;
-		return `M14 36 Q42 10 122 15 T250 12 Q332 12 338 56 Q346 ${h * 0.5} 332 ${h - 46} Q304 ${h - 8} 190 ${h - 12} Q84 ${h - 4} 36 ${h - 28} Q6 ${h - 56} 10 ${h * 0.55} Q8 68 14 36 Z`;
-	});
-
+	const next = $derived(region.nodes.find((n) => n.isNext) ?? null);
 	const daysStale = (n: MapNodeData) => {
 		const last = n.progress?.last_activity;
 		if (!last) return '';
@@ -42,213 +38,344 @@
 	};
 </script>
 
-<div class="region" class:front={region.isFront} id="region-{region.meta.code}">
+<div class="sector plate" class:front={region.isFront}>
 	<div class="head">
-		<span class="name" class:frontname={region.isFront}>
+		<span class="stencil name">
 			{region.meta.name}{#if region.isFront}&nbsp;— current front{/if}
 		</span>
-		<span class="count">{region.conquered}/{region.total} · {region.pct}%</span>
+		<span class="count">{region.conquered} / {region.total} HELD</span>
 	</div>
-	<svg
-		width="100%"
-		viewBox="0 0 {REGION_W} {layout.height}"
-		style="display:block"
-		role="group"
-		aria-label="{region.meta.name} — {region.conquered} of {region.total} territories held"
-	>
-		<path
-			d={blob}
-			fill={region.isFront ? 'var(--orange-tint)' : region.started ? 'var(--green-tint)' : 'var(--bg-1)'}
-			stroke="var(--line)"
-			stroke-width="1.5"
-		/>
-		{#if travelled}<path d={travelled} class="road-travelled" />{/if}
-		{#if planned}<path d={planned} class="road-planned" />{/if}
-		{#if nextLeg}<path d={nextLeg} class="road-next" />{/if}
 
-		{#each region.nodes as node, i (node.unit.code)}
-			{@const p = layout.points[i]}
-			<g
-				transform="translate({p.x} {p.y})"
-				class="node"
-				class:pop={node.unit.code === conquestCode}
-				class:dim={node.comingSoon || node.drillLocked}
-				role="button"
-				tabindex="0"
-				aria-label="{node.unit.title} — {node.visual}"
-				onclick={() => onTap(node)}
-				onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && onTap(node)}
-			>
-				{#if node.isNext}
-					<circle r="17" class="pulse" />
-				{/if}
+	<div class="terrain">
+		<!-- the field scrolls; the order button below stays put -->
+		<div class="scroller">
+			<div class="track" style:width="{trackWidth}px">
+				<div class="grid"></div>
+				<div class="mass mass-a"></div>
+				<div class="mass mass-b"></div>
+				<div class="frontline"></div>
+				<span class="frontline-lbl">FRONT LINE</span>
 
-				{#if node.unit.kind === 'appendix'}
-					<!-- drill node: rotated square -->
-					<rect
-						x="-12.5"
-						y="-12.5"
-						width="25"
-						height="25"
-						rx="5"
-						transform="rotate(45)"
-						fill={node.visual === 'conquered' || node.visual === 'gold' ? 'var(--green)' : 'var(--khaki-tint)'}
-						stroke="var(--line)"
-						stroke-width="1.5"
-						stroke-dasharray={node.drillLocked ? '3 3' : undefined}
-					/>
-					{#if node.drillLocked}
-						<path d="M-3 0 h6 v4 h-6 Z M-2 0 v-2 a2 2 0 0 1 4 0 v2" fill="none" stroke="var(--khaki-deep)" stroke-width="1.4" />
-					{:else}
-						<circle r="4.5" fill="none" stroke="var(--khaki-deep)" stroke-width="1.6" />
-						<circle r="1.4" fill="var(--khaki-deep)" />
-					{/if}
-				{:else if node.isNext}
-					<circle r="15" fill="var(--orange)" stroke="var(--line)" stroke-width="2" />
-					<circle r="5" fill="var(--line)" />
-					<g transform="translate(0 -38)">
-						<rect x="-42" y="-12" width="84" height="20" rx="6" fill="var(--line)" />
-						<path d="M-4 8 L0 13 L4 8 Z" fill="var(--line)" />
-						<text y="2.5" text-anchor="middle" class="flag">NEXT MISSION</text>
-					</g>
-				{:else if node.visual === 'gold'}
-					<circle r="15" fill="url(#tm-gold)" stroke="var(--line)" stroke-width="1.5" />
-					<use href="#tm-star" transform="scale(.72)" />
-				{:else if node.visual === 'conquered'}
-					<circle r="15" fill="var(--green)" stroke="var(--line)" stroke-width="1.5" />
-					<use href="#tm-check" />
-				{:else if node.visual === 'decaying'}
-					<circle r="15" fill="var(--bg-1)" stroke="var(--khaki)" stroke-width="2" stroke-dasharray="4 3" opacity=".8" />
-					<use href="#tm-check-khaki" />
-				{:else if node.visual === 'unconquered'}
-					<circle r="15" fill="var(--orange-tint)" stroke="var(--orange-deep)" stroke-width="2.5" />
-					<circle r="5" fill="var(--orange)" />
-				{:else}
-					<!-- free-roam: readable, untouched -->
-					<circle r="15" fill="var(--bg-0)" stroke="var(--line)" stroke-width="1.5" />
-					<use href="#tm-book" />
-				{/if}
+				{#each region.nodes as node, i (node.unit.code)}
+					{@const p = pos(i)}
+					<button
+						class="marker"
+						class:pop={node.unit.code === conquestCode}
+						style="left:{p.x}px; top:{p.y}px"
+						onclick={() => onTap(node)}
+						aria-label="{node.unit.title} — {node.visual}"
+					>
+						{#if node.unit.kind === 'appendix'}
+							<span class="hexnode" class:locked={node.drillLocked} class:done={held(node)}>
+								{#if node.drillLocked}🔒{:else}◎{/if}
+							</span>
+						{:else}
+							<span
+								class="disc"
+								class:brass={held(node) || node.isNext}
+								class:current={node.isNext}
+								class:pending={node.visual === 'unconquered'}
+								class:decaying={node.visual === 'decaying'}
+							>
+								{num(i)}
+								{#if node.visual === 'gold'}<span class="star">★</span>{/if}
+							</span>
+						{/if}
+						<span class="mk-lbl" class:stale={node.visual === 'decaying'}>
+							{node.unit.label}{node.visual === 'decaying' ? daysStale(node) : ''}
+						</span>
+					</button>
+				{/each}
+			</div>
+		</div>
 
-				<text y="30" text-anchor="middle" class="lbl" class:stale={node.visual === 'decaying'}>
-					{node.unit.label}{node.visual === 'decaying' ? daysStale(node) : ''}
-				</text>
-			</g>
-		{/each}
-	</svg>
+		{#if next}
+			<button class="order btn3d" onclick={() => onTap(next)}>
+				Attack {next.unit.label} →
+			</button>
+		{/if}
+	</div>
 </div>
 
 <style>
-	.region {
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-xl);
-		overflow: hidden;
-		background: var(--bg-2);
+	.sector {
+		padding: 13px;
 	}
-	.region.front {
-		border-width: var(--bw-bold);
-		box-shadow: var(--shadow-2);
+	.sector.front {
+		border-color: var(--line);
+		box-shadow: var(--shadow-lift), var(--emboss);
 	}
 	.head {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
-		padding: 12px 16px 4px;
+		align-items: baseline;
+		gap: 10px;
+		margin-bottom: 11px;
 	}
 	.name {
-		font-family: var(--font-display);
-		font-size: 13px;
-		text-transform: uppercase;
+		font-size: 17px;
+		letter-spacing: 0.1em;
 	}
-	.frontname {
+	.sector.front .name {
 		color: var(--orange-deep);
 	}
 	.count {
-		font-size: 11px;
-		font-weight: 900;
-		color: var(--ink-2);
+		flex: none;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--ink-3);
 	}
-	.road-travelled {
-		fill: none;
-		stroke: var(--khaki);
-		stroke-width: 2.5;
-		stroke-dasharray: 1 7;
-		stroke-linecap: round;
+
+	/* ── the field ─────────────────────────────────────────────── */
+	.terrain {
+		position: relative;
+		height: 210px;
+		border-radius: 10px;
+		overflow: hidden;
+		background: radial-gradient(80% 70% at 30% 25%, #e9dfbd, #cfc49f 70%, #bcb086);
+		box-shadow:
+			inset 0 0 30px rgba(90, 78, 40, 0.3),
+			inset 0 0 0 1.5px #b3aa88;
 	}
-	.road-next {
-		fill: none;
-		stroke: var(--orange);
-		stroke-width: 3.5;
-		stroke-linecap: round;
+	:global([data-theme='dark']) .terrain {
+		background: radial-gradient(80% 70% at 30% 25%, #35341f, #262517 70%, #1d1c12);
+		box-shadow:
+			inset 0 0 30px rgba(0, 0, 0, 0.5),
+			inset 0 0 0 1.5px #47432e;
 	}
-	.road-planned {
-		fill: none;
-		stroke: var(--orange);
-		stroke-width: 2.5;
-		stroke-dasharray: 6 5;
-		stroke-linecap: round;
-		opacity: 0.55;
+	.scroller {
+		position: absolute;
+		inset: 0;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
 	}
-	.node {
+	.scroller::-webkit-scrollbar {
+		display: none;
+	}
+	.track {
+		position: relative;
+		height: 100%;
+		min-width: 100%;
+	}
+	/* survey grid */
+	.grid {
+		position: absolute;
+		inset: 0;
+		background-image:
+			repeating-linear-gradient(0deg, rgba(120, 105, 70, 0.12) 0 1px, transparent 1px 20px),
+			repeating-linear-gradient(90deg, rgba(120, 105, 70, 0.12) 0 1px, transparent 1px 20px);
+	}
+	:global([data-theme='dark']) .grid {
+		background-image:
+			repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 20px),
+			repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 20px);
+	}
+	/* terrain masses */
+	.mass {
+		position: absolute;
+		pointer-events: none;
+	}
+	.mass-a {
+		left: -30px;
+		bottom: -40px;
+		width: 250px;
+		height: 150px;
+		border-radius: 50%;
+		background: rgba(127, 145, 83, 0.26);
+	}
+	.mass-b {
+		right: -40px;
+		top: -30px;
+		width: 190px;
+		height: 150px;
+		border-radius: 48%;
+		background: rgba(181, 136, 58, 0.18);
+	}
+	.frontline {
+		position: absolute;
+		left: 14px;
+		right: 14px;
+		top: 34px;
+		height: 2px;
+		background: repeating-linear-gradient(
+			90deg,
+			var(--orange-deep) 0 8px,
+			transparent 8px 15px
+		);
+	}
+	.frontline-lbl {
+		position: absolute;
+		left: 16px;
+		top: 14px;
+		font-size: 8px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		color: var(--orange-deep);
+	}
+
+	/* ── territory markers ─────────────────────────────────────── */
+	.marker {
+		position: absolute;
+		transform: translateX(-50%);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 5px;
+		background: none;
+		border: none;
+		padding: 0;
 		cursor: pointer;
-		outline: none;
+		width: 84px;
 	}
-	.node:focus-visible circle:first-of-type {
-		stroke-width: 3;
+	.disc {
+		position: relative;
+		width: 42px;
+		height: 42px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 14px;
+		/* not yet taken: dashed outpost */
+		background: linear-gradient(#efe6cd, #ddd3b1);
+		border: 2.5px dashed var(--ink-3);
+		color: var(--ink-3);
+		box-shadow: 0 3px 0 var(--line-soft);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
 	}
-	.node.dim {
-		opacity: 0.55;
+	/* taken (or the live objective): stamped brass */
+	.disc.brass {
+		width: 48px;
+		height: 48px;
+		font-size: 16px;
+		background: var(--grad-brass);
+		border: 2.5px solid var(--brass-dark);
+		color: #3b2f11;
+		box-shadow:
+			0 4px 0 var(--brass-dark),
+			0 8px 14px rgba(60, 48, 20, 0.35),
+			inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	}
-	.node.pop {
-		animation: conquest-pop var(--t-conquest) var(--ease-pop);
-		transform-origin: center;
-		transform-box: fill-box;
+	.disc.current {
+		border-color: var(--orange-edge);
+		box-shadow:
+			0 4px 0 var(--orange-edge),
+			0 8px 14px rgba(90, 40, 15, 0.35),
+			inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	}
+	.disc.pending {
+		border-style: solid;
+		border-color: var(--orange-deep);
+		color: var(--orange-deep);
+	}
+	.disc.decaying {
+		opacity: 0.75;
+	}
+	.marker:active .disc {
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 var(--brass-dark);
+	}
+	.star {
+		position: absolute;
+		top: -6px;
+		right: -4px;
+		font-size: 13px;
+		color: var(--gold-hi);
+		text-shadow: 0 1px 0 var(--brass-dark);
+	}
+	/* drill node: a hex bunker */
+	.hexnode {
+		width: 38px;
+		height: 40px;
+		background: #cfc4a0;
+		clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 12px;
+		color: var(--ink-3);
+	}
+	.hexnode.done {
+		background: var(--grad-olive);
+		color: #fff;
+	}
+	.hexnode.locked {
+		opacity: 0.85;
+	}
+	.mk-lbl {
+		font-size: 9px;
+		font-weight: 700;
+		color: #4a4229;
+		text-align: center;
+		line-height: 1.15;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	}
+	:global([data-theme='dark']) .mk-lbl {
+		color: var(--ink-2);
+		text-shadow: none;
+	}
+	.mk-lbl.stale {
+		color: var(--ink-3);
+	}
+
+	/* ── the attack order (pinned over the terrain) ────────────── */
+	.order {
+		position: absolute;
+		left: 14px;
+		bottom: 12px;
+		font-size: 11px;
+		letter-spacing: 0.12em;
+		padding: 8px 14px;
+		box-shadow:
+			0 3px 0 var(--orange-edge),
+			0 8px 14px rgba(90, 40, 15, 0.3);
+		max-width: calc(100% - 28px);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.marker.pop .disc {
+			animation: conquest-pop var(--t-conquest) var(--ease-pop);
+		}
+		.disc.current::after {
+			content: '';
+			position: absolute;
+			inset: -7px;
+			border-radius: 50%;
+			border: 2px solid var(--orange);
+			opacity: 0.55;
+			animation: here-pulse 1.8s ease-in-out infinite;
+		}
 	}
 	@keyframes conquest-pop {
 		0% {
 			transform: scale(0.4);
 		}
 		60% {
-			transform: scale(1.25);
+			transform: scale(1.2);
 		}
 		100% {
 			transform: scale(1);
 		}
 	}
-	.pulse {
-		fill: none;
-		stroke: var(--orange);
-		stroke-width: 2;
-		opacity: 0.5;
-		animation: here-pulse 1.8s ease-in-out infinite;
-	}
 	@keyframes here-pulse {
 		0%,
 		100% {
-			r: 16;
+			transform: scale(1);
+			opacity: 0.5;
 		}
 		50% {
-			r: 19;
-		}
-	}
-	.lbl {
-		font-family: var(--font-ui);
-		font-weight: 700;
-		font-size: 9px;
-		fill: var(--ink-2);
-	}
-	.lbl.stale {
-		fill: var(--ink-3);
-	}
-	.flag {
-		font-family: var(--font-ui);
-		font-weight: 900;
-		font-size: 9.5px;
-		fill: var(--ink-inverse);
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.pulse,
-		.node.pop {
-			animation: none;
+			transform: scale(1.12);
+			opacity: 0.15;
 		}
 	}
 </style>

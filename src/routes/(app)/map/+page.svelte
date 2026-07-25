@@ -7,7 +7,6 @@
 	import { startRestore } from '$lib/sr';
 	import { showToast } from '$lib/toast.svelte';
 	import RegionMap from '$lib/components/RegionMap.svelte';
-	import ProgressRing from '$lib/components/ProgressRing.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Chip from '$lib/components/Chip.svelte';
@@ -107,6 +106,15 @@
 
 	const regionName = (code: Region) => REGIONS.find((r) => r.code === code)?.name ?? code;
 
+	/* dossier sector numbering + lock state. There is no region-level lock in the
+	   data model (free roam is absolute for READING) — a sector reads "locked"
+	   only when every one of its chapters is premium-gated for this user. */
+	const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+	const isLocked = (r: (typeof map.regions)[number]) => {
+		const chapters = r.nodes.filter((n) => n.unit.kind !== 'appendix');
+		return chapters.length > 0 && chapters.every((n) => n.premiumLocked);
+	};
+
 	/** decaying → 5-Q restore micro-quiz (Prompt 08); everything else → full quiz */
 	async function attemptQuiz(n: MapNodeData) {
 		if (n.visual === 'decaying') {
@@ -156,10 +164,14 @@
 <div class="screen">
 	<header class="head">
 		<div class="titles">
-			<h1>Indian Polity</h1>
-			<p class="sub">8 regions · {map.total} territories · {map.held} held</p>
+			<h1 class="stencil">Indian Polity</h1>
+			<p class="sub">8 SECTORS · {map.total} TERRITORIES · {map.held} HELD</p>
 		</div>
-		<ProgressRing value={map.pct} size={54} stroke={6} />
+		<!-- brass survey dial -->
+		<div class="taken">
+			<span class="taken-n">{map.pct}%</span>
+			<span class="taken-k">TAKEN</span>
+		</div>
 	</header>
 
 	<!-- sector tabs: physical dossier tabs, the current front pulled forward -->
@@ -182,34 +194,30 @@
 				<RegionMap {region} {conquestCode} onTap={openSheet} />
 				<button class="collapse" onclick={() => toggle(region.meta.code)}>collapse ↑</button>
 			{:else}
+				<!-- collapsed sector: a filed folder in the dossier -->
 				<button
-					class="banner"
-					class:secured={region.secured && region.started}
+					class="dossier-row"
+					class:locked={isLocked(region)}
 					onclick={() => toggle(region.meta.code)}
 				>
-					<svg width="20" height="20" viewBox="0 0 20 20" style="flex:none" aria-hidden="true">
-						{#if region.secured && region.started}
-							<path d="M5 18 V3 M5 3 H15 L12.5 6.5 L15 10 H5" fill="var(--green)" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round" />
-						{:else}
-							<path d="M3 5 L8 3 L12 5 L17 3 V15 L12 17 L8 15 L3 17 Z" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round" opacity=".5" />
-						{/if}
-					</svg>
-					<span class="btext">
-						<span class="bname" class:muted={!region.started}>
-							{region.meta.name}
-							{#if region.secured && region.started}<span class="stamp">SECURED</span>{/if}
-						</span>
-						<span class="bsub">
-							{#if region.secured && region.started}
-								{region.total}/{region.total} territories · {region.gold} gold
+					<span class="row-ico">{ROMAN[i] ?? i + 1}</span>
+					<span class="row-body">
+						<span class="row-t stencil sector-name">{region.meta.name}</span>
+						<span class="row-s">
+							{#if isLocked(region)}
+								{region.total} territories · locked
+							{:else if region.secured && region.started}
+								{region.total}/{region.total} territories · {region.gold} gold · secured
 							{:else}
-								{region.total} territories · free roam — read anytime
+								{region.total} territories · free roam
 							{/if}
 						</span>
 					</span>
-					<svg width="12" height="12" viewBox="0 0 14 14" aria-hidden="true">
-						<path d="M5 2 L10 7 L5 12" fill="none" stroke="var(--ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-					</svg>
+					{#if isLocked(region)}
+						<span class="lock">🔒</span>
+					{:else}
+						<span class="chev"></span>
+					{/if}
 				</button>
 			{/if}
 		</section>
@@ -290,15 +298,42 @@
 	}
 	h1 {
 		margin: 0;
-		font-family: var(--font-display);
-		font-size: 18px;
-		text-transform: uppercase;
+		font-size: 30px;
 	}
 	.sub {
-		margin: 0;
-		font-size: 11.5px;
-		font-weight: 700;
+		margin: 3px 0 0;
+		font-size: 10px;
+		font-weight: 600;
+		letter-spacing: 0.12em;
 		color: var(--ink-3);
+	}
+	/* brass survey dial */
+	.taken {
+		flex: none;
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		background: linear-gradient(#fdf8ea, #efe6cd);
+		border: 2px solid var(--khaki);
+		box-shadow: 0 3px 0 var(--edge), inset 0 1px 0 #fff;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+	}
+	.taken-n {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 17px;
+		color: var(--orange-deep);
+	}
+	.taken-k {
+		font-size: 7px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--ink-3);
+		margin-top: 2px;
 	}
 	/* secured sectors get an olive tab; the front tab is rust (.on, global) */
 	.foldertab.done {
@@ -306,55 +341,18 @@
 		background: var(--grad-olive);
 		box-shadow: 0 3px 0 var(--green-edge);
 	}
-	.banner {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		gap: 12px;
-		text-align: left;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-lg);
-		padding: 12px 16px;
-		cursor: pointer;
-		font-family: var(--font-ui);
+	/* collapsed sector rows (.dossier-row is global) */
+	.sector-name {
+		font-size: 15px;
+		letter-spacing: 0.06em;
 	}
-	.banner.secured {
-		background: var(--green-tint);
-		border-color: var(--line);
-	}
-	.btext {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-	}
-	.bname {
-		font-family: var(--font-display);
-		font-size: 13px;
-		text-transform: uppercase;
-		color: var(--ink-1);
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
-	.bname.muted {
+	.dossier-row.locked .sector-name {
 		color: var(--ink-3);
+		text-shadow: none;
 	}
-	.stamp {
-		font-family: var(--font-ui);
-		font-size: 9px;
-		font-weight: 900;
-		background: var(--green);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-sm);
-		padding: 2px 7px;
-		transform: rotate(-2deg);
-	}
-	.bsub {
+	.lock {
+		flex: none;
 		font-size: 11px;
-		font-weight: 700;
-		color: var(--ink-3);
 	}
 	.collapse {
 		width: 100%;

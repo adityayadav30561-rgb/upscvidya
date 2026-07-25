@@ -138,6 +138,17 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    Ground, paywall, Button/Card/Chip. ⚠️ Screens inherit the palette
    automatically via tokens — when restyling, delete the old
    `background/border/box-shadow` before adding a `.plate`, or they fight.
+   **Map (2a) in full:** [RegionMap.svelte](src/lib/components/RegionMap.svelte)
+   was rewritten from a fixed-width SVG (which squeezed all N nodes into one
+   screen) into an **HTML terrain panel that scrolls horizontally** — survey
+   grid, terrain masses, dashed FRONT LINE, and markers on a fixed 94px step
+   wave, so a 14-territory sector keeps every marker readable. Markers: brass
+   disc + `01` number when held or current (rust ring + pulse on the objective),
+   dashed outpost otherwise, hex bunker for drills (🔒 when locked). The
+   `ATTACK <next> →` order is pinned over the terrain so it never scrolls away.
+   Collapsed sectors are `.dossier-row`s with roman-numeral tiles; a sector
+   reads "locked" only when every one of its chapters is `premiumLocked`
+   (there is no region-level lock — free roam for READING is absolute).
 
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
