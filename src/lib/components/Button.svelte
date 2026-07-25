@@ -23,67 +23,95 @@
 </button>
 
 <style>
-	/* Foundations §05: Lato 900, black outlines, 44px min target, pill radius.
-	   Hover lifts with the 3px hard shadow; press snaps flat. */
+	/* FIELD DOSSIER: a moulded key — raised on a hard bottom edge, pressed flat
+	   on tap. Stencil face, 44px+ target. */
 	.btn {
-		font-family: var(--font-ui);
-		font-weight: 700;
-		font-size: 14.5px;
-		border-radius: var(--r-full);
-		padding: 12px 24px;
-		min-height: 44px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 15px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		border-radius: var(--r-md);
+		padding: 12px 22px;
+		min-height: 46px;
 		cursor: pointer;
-		border: var(--bw) solid var(--line);
+		border: none;
 		transition:
 			box-shadow var(--t-fast) var(--ease),
 			transform var(--t-fast) var(--ease),
 			background var(--t-fast) var(--ease);
 	}
-	.btn:hover:not(:disabled) {
-		box-shadow: var(--shadow-2);
-		transform: translate(-1px, -1px);
-	}
 	.btn:active:not(:disabled) {
-		box-shadow: none;
-		transform: translate(0, 0);
+		transform: translateY(2px);
+	}
+	.btn:disabled {
+		opacity: 0.55;
+		cursor: not-allowed;
 	}
 
 	.primary {
-		font-weight: 900;
-		background: var(--orange);
-		color: var(--line);
+		color: #fff;
+		background: var(--grad-rust);
+		box-shadow:
+			0 3px 0 var(--orange-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.35);
+	}
+	.primary:active:not(:disabled) {
+		box-shadow:
+			0 1px 0 var(--orange-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.secondary {
-		background: var(--bg-2);
-		color: var(--line);
+		color: var(--ink-1);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
 	}
-	.secondary:hover:not(:disabled) {
-		background: var(--bg-1);
+	.secondary:active:not(:disabled) {
+		box-shadow: 0 1px 0 var(--edge), var(--emboss);
 	}
 	.success {
-		background: var(--green);
-		color: var(--line);
+		color: #fff;
+		background: var(--grad-olive);
+		box-shadow:
+			0 3px 0 var(--green-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.4);
+	}
+	.success:active:not(:disabled) {
+		box-shadow:
+			0 1px 0 var(--green-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.4);
 	}
 	.ghost {
+		font-family: var(--font-ui);
+		font-weight: 700;
+		font-size: 13.5px;
+		letter-spacing: 0;
+		text-transform: none;
 		background: transparent;
 		color: var(--ink-2);
-		border: none;
-		padding: 12px 14px;
-	}
-	.ghost:hover:not(:disabled) {
-		color: var(--ink-1);
 		box-shadow: none;
+		padding: 12px 14px;
+		min-height: 44px;
+	}
+	.ghost:active:not(:disabled) {
 		transform: none;
+		color: var(--ink-1);
 	}
 	.danger {
-		background: var(--red-tint);
-		color: var(--red-deep);
-		border-color: var(--red-deep);
+		color: #fff;
+		background: linear-gradient(#a8402f, #7d2a1a);
+		box-shadow:
+			0 3px 0 #5d1d11,
+			inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	}
+	.danger:active:not(:disabled) {
+		box-shadow: 0 1px 0 #5d1d11;
 	}
 	.locked {
 		background: var(--bg-1);
 		color: var(--ink-3);
-		border-color: var(--line-soft);
+		box-shadow: var(--recess-in);
 		cursor: not-allowed;
 	}
 </style>

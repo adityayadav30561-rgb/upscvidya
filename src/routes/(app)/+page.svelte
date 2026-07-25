@@ -6,6 +6,7 @@
 	import { auth } from '$lib/auth.svelte';
 	import { buildMap } from '$lib/map';
 	import { rankProgress, istDate } from '$lib/xp';
+	import { RANKS } from '$lib/ranks';
 	import { fetchDue, type SrDue } from '$lib/sr';
 	import { fetchBoard, formatCountdown, type Board } from '$lib/board';
 	import { fetchBriefing, type Briefing } from '$lib/ca';
@@ -13,7 +14,6 @@
 	import { haptic } from '$lib/native';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import StreakFlame from '$lib/components/StreakFlame.svelte';
-	import ProgressRing from '$lib/components/ProgressRing.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
 
@@ -61,6 +61,24 @@
 		return 'Good evening,';
 	})();
 	const firstName = $derived((user?.display_name || 'Recruit').split(' ')[0]);
+	const rankIndex = $derived(RANKS.findIndex((r) => r.code === rp.current.code));
+
+	/* ammo-belt progress: the design reads progress as discrete rounds, not a bar */
+	const SEGMENTS = 8;
+	const xpSegments = $derived(Math.round((rp.pct / 100) * SEGMENTS));
+
+	/* "RESETS IN 5H 12M" — objectives roll over at IST midnight */
+	let now = $state(Date.now());
+	const resetTick = setInterval(() => (now = Date.now()), 60000);
+	onDestroy(() => clearInterval(resetTick));
+	const resetsIn = $derived.by(() => {
+		const ist = now + 5.5 * 3600 * 1000;
+		const msIntoDay = ist % 86400000;
+		const left = 86400000 - msIntoDay;
+		const h = Math.floor(left / 3600000);
+		const m = Math.floor((left % 3600000) / 60000);
+		return h > 0 ? `${h}H ${m}M` : `${m}M`;
+	});
 
 	/* count-ups (juice) */
 	const xpDisplay = tweened(0, { duration: 700, easing: cubicOut });
@@ -72,10 +90,10 @@
 
 	/* ---- campaign ---- */
 	const held = $derived(map.held);
-	const goldCount = $derived(map.regions.reduce((s, r) => s + r.gold, 0));
 	const front = $derived(map.regions.find((r) => r.pct < 100) ?? map.regions[0] ?? null);
 	const nextTopic = $derived(map.next);
 	const nextName = $derived(nextTopic?.topic?.title ?? nextTopic?.unit?.code ?? '');
+	const campSegments = $derived(Math.round((held / TOTAL_UNITS) * SEGMENTS));
 
 	/* ---- daily objectives (real, from today's xp_events + SR + briefing) ---- */
 	const todayIST = istDate(Date.now());
@@ -189,51 +207,57 @@
 <svelte:head><title>UPSCVidya — Base Camp</title></svelte:head>
 
 <div class="dash">
-	<!-- ============ HUD ============ -->
-	<div class="hud sect" style="--i:0" data-tour="home-hero">
-		<button class="hud-ins" onclick={() => nav('/profile/ranks')} aria-label="ranks">
-			{#if user}<RankInsignia rank={rp.current.code} width={34} />{:else}<Skeleton width="34px" height="52px" />{/if}
-		</button>
-		<div class="hud-mid">
-			<div class="greet">{greeting}</div>
-			<div class="name">{firstName}</div>
-			<div class="rank-line">{rp.current.label}</div>
-			{#if user}
-				<div class="xp-wrap">
-					<div class="xp-bar"><div class="xp-fill" style:width="{rp.pct}%"></div></div>
-					<div class="xp-nums">
-						<span class="xp-cur">{Math.round($xpDisplay).toLocaleString('en-IN')} XP</span>
-						{#if rp.next}<span class="xp-next">{(rp.next.xp - (user.xp ?? 0)).toLocaleString('en-IN')} → {rp.next.label}</span>{/if}
-					</div>
-				</div>
-			{/if}
-		</div>
-		<div class="hud-right">
-			<button class="flame-btn" class:risk={atRisk} onclick={() => { haptic(); streakSheet = true; }} aria-label="streak">
-				{#if user}
-					<StreakFlame count={user.streak_current ?? 0} freezes={user.streak_freezes ?? 0} size={20} showLabel={false} />
-				{:else}<Skeleton width="34px" height="40px" />{/if}
+	<!-- ============ HUD — service dossier header ============ -->
+	<div class="hud plate sect" style="--i:0" data-tour="home-hero">
+		<div class="hud-row">
+			<button class="brass rank-plate" onclick={() => nav('/profile/ranks')} aria-label="rank ladder">
+				{#if user}<RankInsignia rank={rp.current.code} width={30} />{:else}<Skeleton width="30px" height="46px" />{/if}
 			</button>
-			{#if rp.next}
-				<div class="ghost-rank" title="next rank">
-					<RankInsignia rank={rp.next.code} width={22} />
-				</div>
-			{/if}
+			<div class="hud-mid">
+				<div class="label">{greeting}</div>
+				<div class="stencil name">{firstName}</div>
+				<span class="ribbon">
+					{rp.current.label}
+					<span class="grade">GRADE {rankIndex + 1}/{RANKS.length}</span>
+				</span>
+			</div>
+			<button class="seal streak-seal" class:risk={atRisk} onclick={() => { haptic(); streakSheet = true; }} aria-label="streak">
+				<span class="seal-n">{user?.streak_current ?? 0}</span>
+				<span class="seal-k">DAY ON</span>
+			</button>
 		</div>
+		{#if user}
+			<div class="xp-wrap">
+				<div class="xp-nums">
+					<span class="xp-cur">{Math.round($xpDisplay).toLocaleString('en-IN')} XP</span>
+					{#if rp.next}<span class="xp-next">{(rp.next.xp - (user.xp ?? 0)).toLocaleString('en-IN')} TO {rp.next.label}</span>{/if}
+				</div>
+				<div class="segbar">
+					{#each Array(SEGMENTS) as _, i (i)}
+						<span class="seg" class:on={i < xpSegments}></span>
+					{/each}
+				</div>
+			</div>
+		{/if}
 	</div>
 
 	{#if atRisk}
 		<button class="risk-bar sect" style="--i:1" onclick={() => firstUndone && questTap(firstUndone)}>
-			🔥 Streak at risk — finish one objective to keep day {(user?.streak_current ?? 0) + 1}
+			<span class="risk-dot"></span>
+			<span>STREAK AT RISK — clear one objective to hold day {(user?.streak_current ?? 0) + 1}</span>
 		</button>
 	{/if}
 
 	<!-- ============ DAILY OBJECTIVES ============ -->
-	<div class="quests sect" style="--i:2" data-tour="home-mission">
+	<div class="quests plate sect" style="--i:2" data-tour="home-mission">
 		<div class="q-head">
-			<div class="q-title">Daily Objectives</div>
-			<div class="q-ring">
-				<ProgressRing value={(doneCount / quests.length) * 100} size={44} stroke={5} label={`${doneCount}/${quests.length}`} />
+			<div>
+				<div class="stencil q-title">Daily Objectives</div>
+				<div class="label q-reset">RESETS IN {resetsIn}</div>
+			</div>
+			<div class="stamp q-stamp">
+				<span class="q-pct">{Math.round((doneCount / quests.length) * 100)}%</span>
+				<span class="q-frac">{doneCount} / {quests.length}</span>
 			</div>
 		</div>
 
@@ -253,9 +277,11 @@
 					<span class="q-check" class:on={q.done}>{q.done ? '✓' : ''}</span>
 					<span class="q-body">
 						<span class="q-label">{q.label}</span>
-						<span class="q-sub">{q.sub}</span>
 						{#if q.target > 1 && !q.done}
-							<span class="q-track"><span class="q-track-fill" style:width="{(q.cur / q.target) * 100}%"></span></span>
+							<span class="track olive q-track"><span class="fill" style:width="{(q.cur / q.target) * 100}%"></span></span>
+							<span class="q-sub">{q.sub}</span>
+						{:else}
+							<span class="q-sub">{q.sub}</span>
 						{/if}
 					</span>
 					<span class="q-xp" class:spent={q.done}>{q.xp}</span>
@@ -265,26 +291,25 @@
 	</div>
 
 	<!-- ============ CAMPAIGN ============ -->
-	<button class="campaign sect" style="--i:3" data-tour="home-ring" onclick={() => nav('/map')}>
+	<button class="campaign plate-dark sect" style="--i:3" data-tour="home-ring" onclick={() => nav('/map')}>
 		<div class="camp-top">
-			<span class="camp-k">Campaign</span>
-			<span class="camp-held">{Math.round($heldDisplay)}/{TOTAL_UNITS} held{goldCount > 0 ? ` · ${goldCount} gold` : ''}</span>
+			<span class="camp-k">Campaign{front ? ` · ${front.meta.name}` : ''}</span>
+			<span class="camp-held">{Math.round($heldDisplay)} / {TOTAL_UNITS} HELD</span>
 		</div>
-		{#if front}
-			<div class="camp-front">
-				<span class="camp-region">{front.meta.name}</span>
-				<span class="camp-pct">{front.pct}%</span>
-			</div>
-			<div class="camp-bar"><div class="camp-fill" style:width="{front.pct}%"></div></div>
-		{/if}
-		<div class="camp-next">
-			{#if nextName}Next front: <strong>{nextName}</strong> →{:else}Open the territory map →{/if}
+		<div class="segbar camp-belt">
+			{#each Array(SEGMENTS) as _, i (i)}
+				<span class="seg" class:on={i < campSegments}></span>
+			{/each}
+		</div>
+		<div class="camp-foot">
+			<span class="camp-next">{nextName ? `Next front · ${nextName}` : 'Open the territory map'}</span>
+			<span class="btn3d btn3d-gold camp-cta">Deploy →</span>
 		</div>
 	</button>
 
 	<!-- ============ TILES: rival + medal ============ -->
 	<div class="tiles sect" style="--i:4">
-		<button class="tile rival" onclick={() => nav('/battalion')}>
+		<button class="tile plate rival" onclick={() => nav('/battalion')}>
 			<div class="tile-k">Battalion</div>
 			{#if board?.you}
 				<div class="tile-big">#{board.you.rank}</div>
@@ -304,7 +329,7 @@
 			{/if}
 		</button>
 
-		<button class="tile medal" onclick={() => nav('/profile/decorations')}>
+		<button class="tile plate medal" onclick={() => nav('/profile/decorations')}>
 			<div class="tile-k">Next medal</div>
 			{#if nextMilestone}
 				<div class="tile-big">{nextMilestone}🔥</div>
@@ -318,9 +343,9 @@
 	</div>
 
 	<!-- ============ WEEKLY MOMENTUM ============ -->
-	<div class="momentum sect" style="--i:5">
+	<div class="momentum plate sect" style="--i:5">
 		<div class="mo-head">
-			<span class="mo-k">This week</span>
+			<span class="stencil mo-k">This week</span>
 			<span class="mo-xp">{Math.round($weekDisplay).toLocaleString('en-IN')} XP</span>
 		</div>
 		<div class="mo-bars">
@@ -385,142 +410,162 @@
 		}
 	}
 
-	/* ---------- HUD ---------- */
+	/* ---------- HUD (service dossier header) ---------- */
 	.hud {
+		padding: 14px 14px 16px;
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		gap: 12px;
-		background: var(--bg-2);
-		border: var(--bw-bold) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 14px 15px;
-		box-shadow: var(--shadow-2);
 	}
-	.hud-ins {
+	.hud-row {
+		display: flex;
+		gap: 12px;
+		align-items: flex-start;
+	}
+	.rank-plate {
 		flex: none;
-		background: var(--bg-0);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-md);
-		padding: 6px 10px;
+		width: 56px;
+		height: 74px;
 		cursor: pointer;
+		padding: 0;
 	}
 	.hud-mid {
 		flex: 1;
 		min-width: 0;
-	}
-	.greet {
-		font-size: 11.5px;
-		font-weight: 700;
-		color: var(--ink-3);
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding-top: 2px;
+		align-items: flex-start;
 	}
 	.name {
-		font-family: var(--font-display);
-		font-size: 19px;
-		line-height: 1.05;
-		text-transform: uppercase;
+		font-size: 30px;
+		max-width: 100%;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	.rank-line {
-		font-size: 10px;
-		font-weight: 900;
-		text-transform: uppercase;
+	.ribbon {
+		margin-top: 3px;
+	}
+	.grade {
+		color: #d8c48a;
 		letter-spacing: 0.04em;
-		color: var(--khaki-deep);
-		margin-top: 1px;
 	}
-	.xp-wrap {
-		margin-top: 7px;
+	.streak-seal {
+		flex: none;
+		width: 58px;
+		height: 58px;
+		border: none;
+		cursor: pointer;
+		padding: 0;
 	}
-	.xp-bar {
-		height: 8px;
-		background: var(--bg-0);
-		border: 1.5px solid var(--line);
-		border-radius: var(--r-full);
-		overflow: hidden;
+	.streak-seal .seal-n {
+		font-size: 20px;
 	}
-	.xp-fill {
-		height: 100%;
-		background: linear-gradient(90deg, var(--gold-lo), var(--gold-hi));
-		transition: width 700ms cubic-bezier(0.2, 0.9, 0.3, 1);
+	.streak-seal.risk {
+		animation: riskpulse 1.6s ease-in-out infinite;
+	}
+	@keyframes riskpulse {
+		50% {
+			opacity: 0.62;
+		}
 	}
 	.xp-nums {
 		display: flex;
 		justify-content: space-between;
+		align-items: baseline;
 		gap: 8px;
-		margin-top: 4px;
+		margin-bottom: 5px;
 	}
 	.xp-cur {
-		font-size: 10.5px;
-		font-weight: 900;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--ink-2);
 	}
 	.xp-next {
 		font-size: 10px;
-		font-weight: 700;
+		font-weight: 600;
+		letter-spacing: 0.02em;
 		color: var(--ink-3);
-	}
-	.hud-right {
-		flex: none;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 6px;
-	}
-	.flame-btn {
-		background: var(--bg-0);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-md);
-		padding: 4px 8px;
-		cursor: pointer;
-	}
-	.flame-btn.risk {
-		border-color: var(--red-deep);
-		background: var(--red-tint);
-		animation: riskpulse 1.4s ease-in-out infinite;
-	}
-	@keyframes riskpulse {
-		50% {
-			opacity: 0.6;
-		}
-	}
-	.ghost-rank {
-		opacity: 0.4;
-		filter: grayscale(0.5);
+		text-transform: uppercase;
 	}
 
+	/* alarm strip */
 	.risk-bar {
-		background: var(--red-tint);
-		border: var(--bw) solid var(--red-deep);
-		border-radius: var(--r-md);
-		padding: 9px 13px;
-		font-size: 11.5px;
-		font-weight: 900;
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		background: linear-gradient(#f7ddd4, #f2cec2);
+		border: var(--bw) solid var(--red);
+		border-radius: var(--r-lg);
+		padding: 10px 12px;
+		font-size: 12px;
+		font-weight: 700;
 		color: var(--red-deep);
 		text-align: left;
 		cursor: pointer;
+		box-shadow: 0 3px 0 var(--red-edge), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+	}
+	.risk-dot {
+		flex: none;
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		background: #c9522f;
+		box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+	}
+	@media (prefers-reduced-motion: no-preference) {
+		.risk-dot {
+			animation: pulseGlow 1.8s infinite;
+		}
+	}
+	@keyframes pulseGlow {
+		0%,
+		100% {
+			opacity: 0.55;
+		}
+		50% {
+			opacity: 1;
+		}
 	}
 
 	/* ---------- quests ---------- */
 	.quests {
-		background: var(--bg-0);
-		border: var(--bw-bold) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 16px;
+		padding: 13px 13px 14px;
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
-		box-shadow: var(--shadow-soft);
 	}
 	.q-head {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: space-between;
 	}
 	.q-title {
+		font-size: 20px;
+		letter-spacing: 0.06em;
+	}
+	.q-reset {
+		margin-top: 3px;
+		letter-spacing: 0.12em;
+	}
+	.q-stamp {
+		flex: none;
+		width: 58px;
+		height: 58px;
+		margin-top: -4px;
+	}
+	.q-pct {
 		font-family: var(--font-display);
-		font-size: 17px;
-		text-transform: uppercase;
+		font-weight: 800;
+		font-size: 19px;
+	}
+	.q-frac {
+		font-size: 8px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
 	}
 	.q-clear {
 		display: flex;
@@ -562,40 +607,47 @@
 	.quest {
 		display: flex;
 		align-items: center;
-		gap: 12px;
-		background: var(--bg-2);
+		gap: 11px;
+		background: var(--grad-plate-2);
 		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
-		padding: 12px 14px;
+		border-radius: 11px;
+		padding: 11px 12px;
 		cursor: pointer;
 		text-align: left;
 		font-family: var(--font-ui);
-		transition: transform var(--t-fast) var(--ease);
+		box-shadow: 0 3px 0 #cfc4a0, var(--emboss);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
 	}
 	.quest:active {
-		transform: scale(0.985);
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 #cfc4a0, var(--emboss);
 	}
+	/* cleared objectives sink into the card */
 	.quest.done {
-		opacity: 0.62;
 		background: var(--bg-1);
+		border-color: var(--line-soft);
+		box-shadow: inset 0 2px 5px rgba(90, 78, 40, 0.18);
 	}
 	.q-check {
 		flex: none;
-		width: 24px;
-		height: 24px;
-		border-radius: var(--r-full);
-		border: var(--bw) solid var(--line);
-		background: var(--bg-0);
+		width: 26px;
+		height: 26px;
+		border-radius: 50%;
+		border: 2px solid var(--khaki);
+		background: radial-gradient(circle at 35% 30%, #fff, #e6ddbf);
+		box-shadow: inset 0 -2px 4px rgba(90, 78, 40, 0.25);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-weight: 900;
-		font-size: 13px;
-		color: #2f4a22;
+		font-weight: 700;
+		font-size: 14px;
+		color: #fff;
 	}
 	.q-check.on {
-		background: var(--green);
-		border-color: var(--green-deep);
+		background: var(--grad-olive);
+		border-color: var(--green-edge);
 	}
 	.q-body {
 		flex: 1;
@@ -605,107 +657,94 @@
 		gap: 3px;
 	}
 	.q-label {
-		font-weight: 900;
-		font-size: 13.5px;
+		font-weight: 700;
+		font-size: 14px;
+		color: var(--ink-1);
 	}
 	.quest.done .q-label {
+		color: var(--ink-3);
 		text-decoration: line-through;
 	}
 	.q-sub {
-		font-size: 10.5px;
-		font-weight: 700;
+		font-size: 11px;
+		font-weight: 500;
 		color: var(--ink-3);
 	}
 	.q-track {
-		margin-top: 3px;
-		height: 5px;
-		background: var(--bg-0);
-		border: 1px solid var(--line-soft);
-		border-radius: var(--r-full);
-		overflow: hidden;
+		height: 8px;
+		margin-top: 2px;
 	}
-	.q-track-fill {
-		display: block;
-		height: 100%;
-		background: var(--blue);
-		transition: width var(--t-base) var(--ease);
-	}
+	/* the reward plaque — stamped brass-green, dulled once banked */
 	.q-xp {
 		flex: none;
-		font-size: 11px;
-		font-weight: 900;
-		color: var(--green-deep);
-		background: var(--green-tint);
-		border: 1px solid var(--line-soft);
-		border-radius: var(--r-sm);
-		padding: 3px 8px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 13px;
+		color: #fff;
+		background: var(--grad-olive);
+		border-radius: 6px;
+		padding: 5px 9px;
+		box-shadow:
+			0 2px 0 var(--green-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.4);
 	}
 	.q-xp.spent {
 		color: var(--ink-3);
-		background: var(--bg-0);
+		background: #ded5b6;
+		box-shadow: none;
 	}
 
-	/* ---------- campaign ---------- */
+	/* ---------- campaign (official dark panel) ---------- */
 	.campaign {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
-		background: var(--khaki-tint);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 15px 16px;
+		gap: 10px;
+		padding: 13px;
 		cursor: pointer;
 		text-align: left;
 		transition: transform var(--t-fast) var(--ease);
 	}
 	.campaign:active {
-		transform: scale(0.99);
+		transform: translateY(2px);
 	}
 	.camp-top {
 		display: flex;
 		justify-content: space-between;
 		align-items: baseline;
+		gap: 10px;
 	}
 	.camp-k {
 		font-family: var(--font-display);
-		font-size: 13px;
+		font-weight: 800;
+		font-size: 15px;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
 	}
 	.camp-held {
-		font-size: 10.5px;
-		font-weight: 900;
-		color: var(--ink-3);
+		flex: none;
+		font-size: 11px;
+		font-weight: 700;
+		color: #d8c48a;
 	}
-	.camp-front {
+	.camp-belt {
+		margin-top: 1px;
+	}
+	.camp-foot {
 		display: flex;
 		justify-content: space-between;
-		align-items: baseline;
-	}
-	.camp-region {
-		font-weight: 900;
-		font-size: 14.5px;
-	}
-	.camp-pct {
-		font-family: var(--font-display);
-		font-size: 16px;
-		color: var(--khaki-deep);
-	}
-	.camp-bar {
-		height: 9px;
-		background: var(--bg-0);
-		border: 1.5px solid var(--line);
-		border-radius: var(--r-full);
-		overflow: hidden;
-	}
-	.camp-fill {
-		height: 100%;
-		background: linear-gradient(90deg, var(--khaki-deep), var(--khaki));
-		transition: width var(--t-base) var(--ease);
+		align-items: center;
+		gap: 10px;
+		margin-top: 1px;
 	}
 	.camp-next {
-		font-size: 11.5px;
-		font-weight: 700;
-		color: var(--orange-deep);
+		font-size: 11px;
+		font-weight: 600;
+		color: #ded5b6;
+	}
+	.camp-cta {
+		flex: none;
+		font-size: 12px;
+		padding: 7px 14px;
 	}
 
 	/* ---------- tiles ---------- */
@@ -718,29 +757,27 @@
 		display: flex;
 		flex-direction: column;
 		gap: 3px;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 14px;
+		padding: 11px;
 		cursor: pointer;
 		text-align: left;
-		box-shadow: var(--shadow-2);
 		transition: transform var(--t-fast) var(--ease);
 	}
 	.tile:active {
-		transform: translateY(1px);
+		transform: translateY(2px);
 	}
 	.tile-k {
-		font-size: 10px;
-		font-weight: 900;
+		font-size: 9px;
+		font-weight: 700;
 		text-transform: uppercase;
 		color: var(--ink-3);
-		letter-spacing: 0.04em;
+		letter-spacing: 0.14em;
 	}
 	.tile-big {
 		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 30px;
-		line-height: 1.1;
+		line-height: 1;
+		text-shadow: 0 1px 0 #fff;
 	}
 	.tile.rival .tile-big {
 		color: var(--orange-deep);
@@ -763,11 +800,7 @@
 
 	/* ---------- momentum ---------- */
 	.momentum {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-xl);
-		padding: 14px 16px;
-		box-shadow: var(--shadow-2);
+		padding: 13px 15px;
 	}
 	.mo-head {
 		display: flex;
@@ -776,9 +809,8 @@
 		margin-bottom: 10px;
 	}
 	.mo-k {
-		font-family: var(--font-display);
-		font-size: 13px;
-		text-transform: uppercase;
+		font-size: 15px;
+		letter-spacing: 0.12em;
 	}
 	.mo-xp {
 		font-size: 11.5px;
@@ -801,13 +833,14 @@
 	}
 	.mo-bar {
 		width: 100%;
-		background: var(--blue);
-		border: 1.5px solid var(--line);
+		background: linear-gradient(#a99c6d, #837751);
 		border-radius: 4px 4px 0 0;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 		transition: height var(--t-base) var(--ease);
 	}
 	.mo-bar.today {
-		background: var(--orange);
+		background: var(--grad-rust);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.mo-lbl {
 		font-size: 9px;
@@ -819,15 +852,13 @@
 	}
 
 	/* ---------- game motion (all reduced-motion-guarded) ---------- */
-	.xp-fill,
-	.camp-fill {
+	.q-track :global(.fill) {
 		position: relative;
 		overflow: hidden;
 	}
 	@media (prefers-reduced-motion: no-preference) {
-		/* sheen sweeping the progress bars — the classic game-UI look */
-		.xp-fill::after,
-		.camp-fill::after {
+		/* sheen sweeping a filled bar — the classic game-UI gloss */
+		.q-track :global(.fill)::after {
 			content: '';
 			position: absolute;
 			inset: 0;
@@ -840,9 +871,10 @@
 			transform: translateX(-100%);
 			animation: sheen 2.6s ease-in-out infinite;
 		}
-		.camp-fill::after {
-			animation-duration: 3.2s;
-			animation-delay: 0.6s;
+		/* rounds seat into the belt, left to right */
+		.hud :global(.segbar .seg.on),
+		.campaign :global(.segbar .seg.on) {
+			animation: seat 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
 		}
 		/* momentum bars grow up on load, left→right */
 		.mo-bar {
@@ -850,11 +882,11 @@
 			animation: grow 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
 			animation-delay: calc(0.25s + var(--j, 0) * 45ms);
 		}
-		/* next-rank ghost breathes — teases the unlock */
-		.ghost-rank {
-			animation: breathe 2.8s ease-in-out infinite;
+		/* the brass plate catches the light once on arrival */
+		.rank-plate {
+			animation: gleam 1.6s ease-out 0.3s 1;
 		}
-		/* undone objective's reward chip pulses to draw the eye */
+		/* undone objective's reward plaque pulses to draw the eye */
 		.quest:not(.done) .q-xp {
 			animation: xpglow 2s ease-in-out infinite;
 		}
@@ -879,15 +911,24 @@
 			transform: translateX(220%);
 		}
 	}
+	@keyframes seat {
+		from {
+			transform: scaleY(0.3);
+			opacity: 0.4;
+		}
+	}
+	@keyframes gleam {
+		0%,
+		100% {
+			filter: brightness(1);
+		}
+		40% {
+			filter: brightness(1.18);
+		}
+	}
 	@keyframes grow {
 		from {
 			transform: scaleY(0);
-		}
-	}
-	@keyframes breathe {
-		50% {
-			opacity: 0.62;
-			transform: scale(1.08);
 		}
 	}
 	@keyframes xpglow {
@@ -920,33 +961,38 @@
 	}
 	.qa-btn {
 		position: relative;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
 		border-radius: var(--r-lg);
-		padding: 14px 6px;
+		padding: 13px 6px;
 		cursor: pointer;
-		box-shadow: var(--shadow-2);
-		transition: transform var(--t-fast) var(--ease);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
 	}
 	.qa-btn:active {
-		transform: translateY(1px);
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 var(--edge), var(--emboss);
 	}
 	.qa-btn.khaki {
-		background: var(--khaki-tint);
+		background: linear-gradient(#efe7cf, #e2d8ba);
 	}
 	.qa-btn.orange {
-		background: var(--orange-tint);
+		background: linear-gradient(#f8e3d3, #f0d0ba);
 	}
 	.qa-btn.blue {
-		background: var(--blue-tint);
+		background: linear-gradient(#e6edf1, #d6e0e7);
 	}
 	.qa-btn.green {
-		background: var(--green-tint);
+		background: linear-gradient(#eaefdb, #dce4c6);
 	}
 	.qa-n {
-		font-family: var(--font-ui);
-		font-weight: 900;
-		font-size: 12.5px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 13px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 	}
 	.qa-badge {
 		position: absolute;

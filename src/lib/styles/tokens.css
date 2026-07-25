@@ -1,47 +1,174 @@
-/* CAPF AC Prep — Design Tokens v3 "Field Manual" (paper grain, olive & brick, stencil display).
-   Light is default; OLED night-study variant via [data-theme="dark"]. */
-:root{
-  /* surfaces — aged paper */
-  --bg-0:#f3ecdc; --bg-1:#e9e0c8; --bg-2:#faf5e8; --bg-3:#efe6cf; --bg-raise:#fdf9ee;
-  --line:#4d4433; --line-soft:#c4b896;
-  /* ink */
-  --ink-1:#33301f; --ink-2:#55503a; --ink-3:#807a5c; --ink-inverse:#f3ecdc;
-  /* accents — field palette */
-  --orange:#cf6a4a; --orange-deep:#8a3d2e; --orange-tint:#edd6c4;
-  --green:#9db271; --green-deep:#57703c; --green-tint:#e3e6cc;
-  --blue:#5872a8; --blue-deep:#2e4a7a; --blue-tint:#dbe2ef;
-  --red:#b04a3c; --red-deep:#8a3025; --red-tint:#eed3cd;
-  /* CAPF identity */
-  --khaki:#8d7d4f; --khaki-deep:#5b5433; --khaki-tint:#e5dcc0;
-  --gold-lo:#8f6b1e; --gold-hi:#d8b04a;
-  /* borders — drawn with a ruler */
-  --bw:2px; --bw-bold:2.5px;
-  /* type */
-  --font-display:'Saira Stencil One','Oswald',system-ui,sans-serif;
-  --font-ui:'Lato',system-ui,-apple-system,sans-serif;
-  --font-read:'Source Serif 4',Georgia,serif;
-  --fs-11:11px; --fs-12:12px; --fs-13:13px; --fs-14:14px; --fs-15:15px;
-  --fs-17:17px; --fs-20:20px; --fs-24:24px; --fs-28:28px; --fs-34:34px; --fs-44:44px;
-  --lh-tight:1.2; --lh-ui:1.45; --lh-read:1.65;
-  /* spacing (4px base) */
-  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px; --sp-8:32px; --sp-10:40px; --sp-12:48px;
-  /* radii — document corners, not bubbles */
-  --r-sm:3px; --r-md:5px; --r-lg:7px; --r-xl:10px; --r-full:999px;
-  /* elevation — hard print offsets */
-  --shadow-1:1px 1px 0 rgba(77,68,51,.22);
-  --shadow-2:3px 3px 0 rgba(77,68,51,.35);
-  --shadow-soft:4px 4px 0 rgba(77,68,51,.16);
-  --shadow-glow-gold:0 0 12px rgba(216,176,74,.55);
-  /* motion */
-  --t-fast:120ms; --t-base:200ms; --t-slow:350ms; --t-conquest:700ms;
-  --ease:cubic-bezier(.2,.7,.3,1); --ease-pop:cubic-bezier(.34,1.56,.64,1);
+/* CAPF AC Prep — Design Tokens v4 "FIELD DOSSIER"
+   (Army game app redesign directions · direction 1a)
+
+   The look is PHYSICAL MATERIAL, not flat UI: aged card stock on canvas,
+   embossed brass rank plates, stamped ink, recessed ammo-belt tracks, and
+   pressable buttons with a hard bottom edge. Two rules carry the whole system:
+
+     1. RAISED things sit on a hard *bottom* shadow  (0 3px 0 var(--edge))
+        plus a soft ambient shadow and a 1px white top-inset highlight.
+     2. RECESSED things (tracks, inactive slots) are a darker fill with an
+        inset top shadow — light comes from above, always.
+
+   Material recipes live as global utility classes in src/app.css (.plate,
+   .recess, .btn3d, .segbar, .brass, .seal, .stamp …) so screens compose them
+   instead of re-declaring gradients. Light is default; night variant via
+   [data-theme="dark"]. */
+:root {
+	/* ── surfaces: canvas + card stock ───────────────────────────── */
+	--bg-0: #e8e1c9; /* the dossier canvas (page) */
+	--bg-1: #ded5b6; /* recessed / inactive fill */
+	--bg-2: #fdf8ea; /* card top (lightest) */
+	--bg-3: #f3ebd4; /* card bottom */
+	--bg-raise: #fffdf4; /* raised inner tile */
+	--line: #4f4a2e; /* strong border */
+	--line-soft: #b3aa88; /* light border */
+	--edge: #c8bd99; /* the hard bottom-edge shadow colour */
+	--edge-deep: #c2b795;
+
+	/* ── ink ─────────────────────────────────────────────────────── */
+	--ink-1: #2f2a1c;
+	--ink-2: #5c5537;
+	--ink-3: #8b8158;
+	--ink-4: #a39a78;
+	--ink-inverse: #f6efd9;
+
+	/* ── accents ─────────────────────────────────────────────────── */
+	--orange: #c9622f; /* rust — primary action */
+	--orange-deep: #a04a2c;
+	--orange-edge: #742d13;
+	--orange-tint: #f7e6d8;
+	--green: #7f9153; /* olive — reward / success */
+	--green-deep: #5e6d38;
+	--green-edge: #46521f;
+	--green-tint: #e6ebd4;
+	--blue: #5b7a94;
+	--blue-deep: #3c5872;
+	--blue-tint: #dde5ea;
+	--red: #8f2f22; /* alarm */
+	--red-deep: #7d2a1a;
+	--red-edge: #cf9d8c;
+	--red-tint: #f7ddd4;
+
+	/* ── CAPF identity: khaki + brass ────────────────────────────── */
+	--khaki: #6d6440;
+	--khaki-deep: #4f4a2e;
+	--khaki-tint: #eae2c6;
+	--gold-hi: #f0cf82; /* brass highlight */
+	--gold-lo: #b5883a; /* brass shade */
+	--gold-mid: #c79a45;
+	--gold-edge: #8d6a24;
+	--brass-dark: #6f5622;
+
+	/* ── material gradients (used by app.css utilities) ──────────── */
+	--grad-plate: linear-gradient(#fdf8ea, #f3ebd4);
+	--grad-plate-2: linear-gradient(#fffdf4, #f7f0da);
+	--grad-dark: linear-gradient(#6d6440, #4f4a2e);
+	--grad-rust: linear-gradient(#c9622f, #96401d);
+	--grad-brass: linear-gradient(#f0cf82, #b5883a);
+	--grad-gold: linear-gradient(#f0cf82, #c79a45);
+	--grad-olive: linear-gradient(#7f9153, #5e6d38);
+	--grad-metal: linear-gradient(150deg, #d8bd77, #a6853c 45%, #6f5622);
+	--grad-seal: radial-gradient(circle at 35% 28%, #f6d9a4, #c9622f 70%, #8d3a17);
+	--grad-nav: linear-gradient(#f8f1dc, #e9e0c2);
+	--emboss: inset 0 1px 0 #fff;
+	--recess-in: inset 0 2px 4px rgba(80, 68, 35, 0.35);
+
+	/* ── borders ─────────────────────────────────────────────────── */
+	--bw: 1.5px;
+	--bw-bold: 2px;
+
+	/* ── type ────────────────────────────────────────────────────── */
+	--font-display: 'Big Shoulders Display', 'Oswald', system-ui, sans-serif;
+	--font-ui: 'Barlow', system-ui, -apple-system, sans-serif;
+	--font-cond: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+	--font-read: 'Source Serif 4', Georgia, serif;
+	--fs-11: 11px;
+	--fs-12: 12px;
+	--fs-13: 13px;
+	--fs-14: 14px;
+	--fs-15: 15px;
+	--fs-17: 17px;
+	--fs-20: 20px;
+	--fs-24: 24px;
+	--fs-28: 28px;
+	--fs-34: 34px;
+	--fs-44: 44px;
+	--lh-tight: 1.2;
+	--lh-ui: 1.45;
+	--lh-read: 1.65;
+	/* stencil display tracking — headings are stamped, not typed */
+	--track-display: 0.03em;
+	--track-label: 0.14em;
+
+	/* ── spacing (4px base) ──────────────────────────────────────── */
+	--sp-1: 4px;
+	--sp-2: 8px;
+	--sp-3: 12px;
+	--sp-4: 16px;
+	--sp-5: 20px;
+	--sp-6: 24px;
+	--sp-8: 32px;
+	--sp-10: 40px;
+	--sp-12: 48px;
+
+	/* ── radii — moulded parts, not paper corners ────────────────── */
+	--r-sm: 5px;
+	--r-md: 9px;
+	--r-lg: 12px;
+	--r-xl: 14px;
+	--r-2xl: 18px;
+	--r-full: 999px;
+
+	/* ── elevation — hard bottom edge + soft ambient ─────────────── */
+	--shadow-1: 0 2px 0 var(--edge);
+	--shadow-2: 0 3px 0 var(--edge), inset 0 1px 0 #fff;
+	--shadow-soft: 0 4px 0 var(--edge-deep), 0 12px 22px rgba(60, 50, 25, 0.2);
+	--shadow-lift: 0 4px 0 var(--edge-deep), 0 12px 20px rgba(60, 50, 25, 0.18);
+	--shadow-glow-gold: 0 0 12px rgba(240, 207, 130, 0.6);
+
+	/* ── motion ──────────────────────────────────────────────────── */
+	--t-fast: 120ms;
+	--t-base: 200ms;
+	--t-slow: 350ms;
+	--t-conquest: 700ms;
+	--ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+	--ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-[data-theme="dark"]{
-  --bg-0:#0d0e09; --bg-1:#15160f; --bg-2:#1b1c13; --bg-3:#232418; --bg-raise:#2a2b1d;
-  --line:#d8d0b6; --line-soft:#4a4733;
-  --ink-1:#e6e0c8; --ink-2:#aaa588; --ink-3:#6e6a50; --ink-inverse:#0d0e09;
-  --orange-tint:#33201666; --green-tint:#20261455; --blue-tint:#16203255; --red-tint:#33181455; --khaki-tint:#2a261777;
-  --shadow-1:1px 1px 0 rgba(0,0,0,.6);
-  --shadow-2:3px 3px 0 rgba(0,0,0,.8);
-  --shadow-soft:4px 4px 0 rgba(0,0,0,.5);
+
+/* Night watch — same materials, lit from a dying lamp. */
+[data-theme='dark'] {
+	--bg-0: #16170f;
+	--bg-1: #23241a;
+	--bg-2: #242519;
+	--bg-3: #1d1e14;
+	--bg-raise: #2c2d1f;
+	--line: #6f6a4a;
+	--line-soft: #47432e;
+	--edge: #0c0d07;
+	--edge-deep: #0a0b06;
+
+	--ink-1: #ece5cb;
+	--ink-2: #b8b092;
+	--ink-3: #8d876a;
+	--ink-4: #6d684f;
+	--ink-inverse: #16170f;
+
+	--orange-tint: #3a20124d;
+	--green-tint: #23291533;
+	--blue-tint: #18232c40;
+	--red-tint: #35161033;
+	--khaki-tint: #2b2717aa;
+
+	--grad-plate: linear-gradient(#2a2b1d, #1f2015);
+	--grad-plate-2: linear-gradient(#31321f, #24251a);
+	--grad-dark: linear-gradient(#3a3722, #262415);
+	--grad-nav: linear-gradient(#2a2b1d, #1c1d13);
+	--emboss: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	--recess-in: inset 0 2px 5px rgba(0, 0, 0, 0.55);
+
+	--shadow-1: 0 2px 0 var(--edge);
+	--shadow-2: 0 3px 0 var(--edge), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	--shadow-soft: 0 4px 0 var(--edge-deep), 0 12px 22px rgba(0, 0, 0, 0.55);
+	--shadow-lift: 0 4px 0 var(--edge-deep), 0 12px 20px rgba(0, 0, 0, 0.5);
 }

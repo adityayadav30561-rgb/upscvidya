@@ -21,18 +21,28 @@
 </div>
 
 <style>
+	/* FIELD DOSSIER: card stock, lit from above. */
 	.card {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
 		border-radius: var(--r-xl);
+		box-shadow: var(--emboss);
 	}
 	.card.bold {
+		border-color: var(--line);
 		border-width: var(--bw-bold);
 	}
 	.lifted {
-		box-shadow: var(--shadow-2);
+		box-shadow:
+			0 3px 0 var(--edge),
+			0 10px 18px rgba(60, 50, 25, 0.16),
+			var(--emboss);
 	}
 	.gold {
-		box-shadow: var(--shadow-glow-gold);
+		border-color: var(--gold-edge);
+		box-shadow:
+			0 3px 0 var(--gold-edge),
+			var(--shadow-glow-gold),
+			var(--emboss);
 	}
 </style>

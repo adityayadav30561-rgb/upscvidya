@@ -162,13 +162,13 @@
 		<ProgressRing value={map.pct} size={54} stroke={6} />
 	</header>
 
-	<div class="chips" aria-label="jump to region">
+	<!-- sector tabs: physical dossier tabs, the current front pulled forward -->
+	<div class="foldertabs" aria-label="jump to region">
 		{#each map.regions as r (r.meta.code)}
 			<button
-				class="chip"
+				class="foldertab"
+				class:on={r.isFront}
 				class:done={r.secured && r.started}
-				class:going={r.started && !r.secured}
-				class:frontc={r.isFront}
 				onclick={() => jumpTo(r.meta.code)}
 			>
 				{r.meta.name} {r.pct}%
@@ -300,42 +300,11 @@
 		font-weight: 700;
 		color: var(--ink-3);
 	}
-	.chips {
-		display: flex;
-		gap: 8px;
-		overflow-x: auto;
-		padding: 0 4px 4px;
-		scrollbar-width: none;
-	}
-	.chips::-webkit-scrollbar {
-		display: none;
-	}
-	.chip {
-		flex: none;
-		font-family: var(--font-ui);
-		font-size: 11px;
-		font-weight: 900;
-		background: var(--bg-2);
-		color: var(--ink-3);
-		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-full);
-		padding: 5px 11px;
-		cursor: pointer;
-	}
-	.chip.going {
-		background: var(--green-tint);
-		color: var(--ink-1);
-		border-color: var(--line);
-	}
-	.chip.done {
-		background: var(--green);
-		color: var(--ink-1);
-		border-color: var(--line);
-	}
-	.chip.frontc {
-		background: var(--orange-tint);
-		color: var(--ink-1);
-		border: var(--bw-bold) solid var(--line);
+	/* secured sectors get an olive tab; the front tab is rust (.on, global) */
+	.foldertab.done {
+		color: #fff;
+		background: var(--grad-olive);
+		box-shadow: 0 3px 0 var(--green-edge);
 	}
 	.banner {
 		width: 100%;

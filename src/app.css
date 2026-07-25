@@ -1,8 +1,10 @@
-/* UPSCVidya global styles — faithful to the design handoff.
-   Tokens: src/lib/styles/tokens.css (v3 "Field Manual", light default,
-   OLED dark via [data-theme="dark"]). Base body treatment (paper grain,
-   ink, UI font) comes straight from the mockups' shared <style> block. */
+/* UPSCVidya global styles — "FIELD DOSSIER" (Army game app redesign, dir. 1a).
+   Tokens: src/lib/styles/tokens.css (v4, light default, night via
+   [data-theme="dark"]). The MATERIAL SYSTEM lives at the bottom of this file as
+   global utility classes (.plate, .recess, .btn3d, .segbar, .brass, .seal,
+   .stamp, .tag …) — screens compose those instead of redeclaring gradients. */
 @import './lib/styles/tokens.css';
+@import './lib/styles/dossier.css';
 
 * {
 	box-sizing: border-box;
@@ -26,10 +28,11 @@ body {
 
 body {
 	background: var(--bg-0);
-	/* paper grain from the mockups */
+	/* dossier canvas: soft top-left light + a 45° canvas weave */
 	background-image:
-		repeating-linear-gradient(0deg, rgba(110, 95, 58, 0.035) 0 1px, transparent 1px 3px),
-		repeating-linear-gradient(90deg, rgba(110, 95, 58, 0.03) 0 1px, transparent 1px 4px);
+		radial-gradient(circle at 20% 8%, rgba(255, 255, 255, 0.5), transparent 55%),
+		repeating-linear-gradient(45deg, rgba(120, 105, 70, 0.05) 0 2px, transparent 2px 5px);
+	background-attachment: fixed;
 	color: var(--ink-1);
 	font-family: var(--font-ui);
 	-webkit-font-smoothing: antialiased;

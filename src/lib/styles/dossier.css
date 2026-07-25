@@ -1,0 +1,479 @@
+/* ════════════════════════════════════════════════════════════════════════
+   FIELD DOSSIER — MATERIAL SYSTEM
+   (Army game app redesign directions · direction 1a)
+
+   Global utility classes so every screen composes ONE physical language
+   instead of re-declaring gradients. Two rules carry the whole system:
+
+     RAISED   = hard bottom edge (0 3px 0) + soft ambient + white top inset
+     RECESSED = darker fill + inset top shadow
+
+   Light always comes from above. Tokens: tokens.css (v4).
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* night canvas: no white bloom */
+[data-theme='dark'] body {
+	background-image:
+		radial-gradient(circle at 20% 8%, rgba(255, 255, 255, 0.05), transparent 55%),
+		repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.018) 0 2px, transparent 2px 5px);
+}
+
+/* ── raised card stock ────────────────────────────────────────────── */
+.plate {
+	border: var(--bw) solid var(--khaki);
+	border-radius: var(--r-xl);
+	background: var(--grad-plate);
+	box-shadow:
+		0 3px 0 var(--edge),
+		0 10px 18px rgba(60, 50, 25, 0.16),
+		var(--emboss);
+}
+.plate-lift {
+	border: var(--bw) solid var(--line);
+	border-radius: var(--r-xl);
+	background: var(--grad-plate);
+	box-shadow: var(--shadow-lift), var(--emboss);
+}
+/* inverted panel — "official" blocks (campaign, medal case) */
+.plate-dark {
+	border: var(--bw) solid var(--line);
+	border-radius: var(--r-xl);
+	background: var(--grad-dark);
+	box-shadow:
+		0 4px 0 #3b3720,
+		0 12px 20px rgba(45, 38, 18, 0.3),
+		inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	color: var(--ink-inverse);
+}
+/* pressed-in slot */
+.recess {
+	background: var(--bg-1);
+	border-radius: var(--r-md);
+	box-shadow: var(--recess-in);
+}
+
+/* ── pressable 3D buttons ─────────────────────────────────────────── */
+.btn3d {
+	font-family: var(--font-display);
+	font-weight: 800;
+	letter-spacing: var(--track-label);
+	text-transform: uppercase;
+	color: #fff;
+	background: var(--grad-rust);
+	border: none;
+	border-radius: var(--r-md);
+	padding: 10px 16px;
+	cursor: pointer;
+	box-shadow:
+		0 3px 0 var(--orange-edge),
+		inset 0 1px 0 rgba(255, 255, 255, 0.35);
+	transition:
+		transform var(--t-fast) var(--ease),
+		box-shadow var(--t-fast) var(--ease);
+}
+.btn3d:active {
+	transform: translateY(2px);
+	box-shadow:
+		0 1px 0 var(--orange-edge),
+		inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.btn3d:disabled {
+	opacity: 0.55;
+	transform: none;
+	box-shadow: 0 3px 0 var(--orange-edge);
+}
+.btn3d-gold {
+	color: #3b2f11;
+	background: var(--grad-gold);
+	box-shadow:
+		0 3px 0 var(--gold-edge),
+		inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.btn3d-gold:active {
+	box-shadow:
+		0 1px 0 var(--gold-edge),
+		inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.btn3d-olive {
+	color: #fff;
+	background: var(--grad-olive);
+	box-shadow:
+		0 3px 0 var(--green-edge),
+		inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.btn3d-olive:active {
+	box-shadow:
+		0 1px 0 var(--green-edge),
+		inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+/* quiet: raised card stock instead of colour */
+.btn3d-quiet {
+	color: var(--ink-1);
+	background: var(--grad-plate);
+	border: var(--bw) solid var(--khaki);
+	box-shadow: 0 3px 0 var(--edge), var(--emboss);
+}
+.btn3d-quiet:active {
+	box-shadow: 0 1px 0 var(--edge), var(--emboss);
+}
+
+/* ── segmented "ammo belt" progress ───────────────────────────────── */
+.segbar {
+	display: flex;
+	gap: 3px;
+	height: 14px;
+	padding: 3px;
+	border-radius: 8px;
+	background: var(--bg-1);
+	box-shadow: var(--recess-in);
+}
+.segbar .seg {
+	flex: 1;
+	border-radius: 2px;
+	background: #cfc4a0;
+	transition: background var(--t-base) var(--ease);
+}
+.segbar .seg.on {
+	background: var(--grad-brass);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.segbar.olive .seg.on {
+	background: var(--grad-olive);
+}
+/* on a dark panel the empty slots read as holes, not chips */
+.plate-dark .segbar {
+	background: transparent;
+	box-shadow: none;
+	padding: 0;
+	gap: 4px;
+	height: 10px;
+}
+.plate-dark .segbar .seg {
+	background: rgba(0, 0, 0, 0.28);
+}
+.plate-dark .segbar .seg.on {
+	background: var(--gold-lo);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ── continuous bar (when segments would be too fine) ─────────────── */
+.track {
+	height: 9px;
+	border-radius: 5px;
+	background: var(--bg-1);
+	box-shadow: var(--recess-in);
+	overflow: hidden;
+}
+.track > .fill {
+	display: block;
+	height: 100%;
+	background: var(--grad-brass);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+	transition: width var(--t-slow) var(--ease);
+}
+.track.olive > .fill {
+	background: var(--grad-olive);
+}
+.track.rust > .fill {
+	background: var(--grad-rust);
+}
+
+/* ── brass rank plate (shoulder board) ────────────────────────────── */
+.brass {
+	background: var(--grad-metal);
+	border: var(--bw) solid #5d4a1e;
+	border-radius: 7px;
+	box-shadow:
+		inset 0 2px 3px rgba(255, 255, 255, 0.6),
+		inset 0 -4px 8px rgba(0, 0, 0, 0.35),
+		0 4px 8px rgba(50, 40, 15, 0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ── wax-seal medallion (streak / count) ──────────────────────────── */
+.seal {
+	border-radius: 50%;
+	background: var(--grad-seal);
+	border: 2px solid #7c3317;
+	box-shadow:
+		0 4px 10px rgba(110, 45, 15, 0.4),
+		inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+	color: #fff5e2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+}
+.seal .seal-n {
+	font-family: var(--font-display);
+	font-weight: 800;
+}
+.seal .seal-k {
+	font-size: 7px;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+}
+
+/* ── rubber stamp (rotated dashed ring) ───────────────────────────── */
+.stamp {
+	border: 2.5px dashed var(--orange-deep);
+	border-radius: 50%;
+	transform: rotate(-11deg);
+	color: var(--orange-deep);
+	opacity: 0.85;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+}
+
+/* ── stencilled headings + labels ─────────────────────────────────── */
+.stencil {
+	font-family: var(--font-display);
+	font-weight: 800;
+	letter-spacing: var(--track-display);
+	text-transform: uppercase;
+	color: var(--ink-1);
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	line-height: 0.95;
+}
+[data-theme='dark'] .stencil {
+	text-shadow: none;
+}
+.label {
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: var(--track-label);
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+
+/* ── ink ribbon (rank chip) ───────────────────────────────────────── */
+.ribbon {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 3px 8px;
+	border-radius: 4px;
+	background: var(--khaki);
+	box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+	color: var(--ink-inverse);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+/* ── floating corner tag (FREE / PREMIUM) ─────────────────────────── */
+.tag {
+	position: absolute;
+	right: 11px;
+	top: -9px;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 9px;
+	letter-spacing: 0.14em;
+	padding: 4px 9px;
+	border-radius: 5px;
+	color: #fff;
+	background: var(--grad-olive);
+	box-shadow: 0 2px 0 var(--green-edge);
+}
+.tag.gold {
+	color: #3b2f11;
+	background: var(--grad-gold);
+	box-shadow: 0 2px 0 var(--gold-edge);
+}
+.tag.rust {
+	background: var(--grad-rust);
+	box-shadow: 0 2px 0 var(--orange-edge);
+}
+
+/* ── stat chip (125 Q · 120 MIN) ──────────────────────────────────── */
+.statchip {
+	font-family: var(--font-cond);
+	font-weight: 700;
+	font-size: 11px;
+	letter-spacing: 0.06em;
+	color: var(--ink-1);
+	background: #e6ddbf;
+	border: 1px solid var(--line-soft);
+	padding: 4px 8px;
+	border-radius: 5px;
+	white-space: nowrap;
+}
+[data-theme='dark'] .statchip {
+	background: var(--bg-1);
+}
+.statchip.warn {
+	color: var(--red);
+	background: var(--red-tint);
+	border-color: #d8a898;
+}
+
+/* ── segmented tab rail (recessed rail, raised active) ────────────── */
+.tabrail {
+	display: flex;
+	gap: 4px;
+	padding: 4px;
+	border-radius: 11px;
+	background: #ddd3b1;
+	box-shadow: inset 0 2px 4px rgba(80, 68, 35, 0.32);
+}
+[data-theme='dark'] .tabrail {
+	background: var(--bg-1);
+}
+.tabrail > .tab {
+	flex: 1;
+	text-align: center;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 11px;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-3);
+	background: none;
+	border: none;
+	padding: 8px 0;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: color var(--t-fast) var(--ease);
+}
+.tabrail > .tab.on {
+	color: #fff;
+	background: var(--grad-rust);
+	box-shadow: 0 2px 0 var(--orange-edge);
+}
+
+/* ── dossier folder tabs (map sectors) ────────────────────────────── */
+.foldertabs {
+	display: flex;
+	gap: 6px;
+	overflow-x: auto;
+	scrollbar-width: none;
+	padding-top: 2px;
+}
+.foldertabs::-webkit-scrollbar {
+	display: none;
+}
+.foldertab {
+	flex: none;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--ink-2);
+	background: linear-gradient(#f2ead3, #e4dbbd);
+	border: none;
+	padding: 8px 12px;
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 3px 0 var(--edge);
+	white-space: nowrap;
+	cursor: pointer;
+}
+[data-theme='dark'] .foldertab {
+	background: var(--grad-plate);
+}
+.foldertab.on {
+	color: #fff;
+	background: var(--grad-rust);
+	box-shadow: 0 3px 0 var(--orange-edge);
+}
+
+/* ── list row (navigation / settings) ─────────────────────────────── */
+.dossier-row {
+	display: flex;
+	align-items: center;
+	gap: 11px;
+	width: 100%;
+	padding: 12px;
+	border: var(--bw) solid var(--khaki);
+	border-radius: var(--r-lg);
+	background: linear-gradient(#fdf8ea, #f4ecd6);
+	box-shadow: 0 3px 0 var(--edge), var(--emboss);
+	text-align: left;
+	font-family: var(--font-ui);
+	color: var(--ink-1);
+	cursor: pointer;
+	transition: transform var(--t-fast) var(--ease);
+}
+[data-theme='dark'] .dossier-row {
+	background: var(--grad-plate);
+}
+.dossier-row:active {
+	transform: translateY(1px);
+}
+.dossier-row.locked {
+	border-color: var(--line-soft);
+	background: var(--bg-1);
+	box-shadow: inset 0 2px 5px rgba(90, 78, 40, 0.16);
+	color: var(--ink-3);
+}
+.dossier-row .row-ico {
+	flex: none;
+	width: 34px;
+	height: 34px;
+	border-radius: 9px;
+	background: linear-gradient(#e4dbbd, #cfc4a0);
+	border: var(--bw) solid var(--ink-3);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 12px;
+	color: var(--ink-2);
+}
+.dossier-row .row-body {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+}
+.dossier-row .row-t {
+	display: block;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 1.25;
+}
+.dossier-row .row-s {
+	display: block;
+	font-size: 11px;
+	font-weight: 500;
+	color: var(--ink-3);
+	line-height: 1.3;
+}
+/* chevron */
+.chev {
+	flex: none;
+	width: 8px;
+	height: 8px;
+	border-right: 2px solid var(--ink-3);
+	border-top: 2px solid var(--ink-3);
+	transform: rotate(45deg);
+}
+
+/* ── medal hexagon (medal case) ───────────────────────────────────── */
+.hex {
+	aspect-ratio: 1 / 1.1;
+	clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 12px;
+	color: #3b2f11;
+	background: var(--grad-brass);
+}
+.hex.locked {
+	background: rgba(0, 0, 0, 0.28);
+	color: transparent;
+}

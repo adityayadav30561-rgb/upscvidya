@@ -30,7 +30,8 @@
 </span>
 
 <style>
-	/* Foundations §05 CHIPS & STICKERS */
+	/* FIELD DOSSIER chips: stickers are stamped plaques with a hard bottom edge;
+	   pills are pressed card stock. */
 	.chip {
 		display: inline-flex;
 		align-items: center;
@@ -40,29 +41,37 @@
 	}
 	.sticker-green,
 	.sticker-orange {
-		font-weight: 900;
-		font-size: 12px;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-md);
-		padding: 6px 14px;
-		box-shadow: var(--shadow-2);
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 12.5px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #fff;
+		border: none;
+		border-radius: var(--r-sm);
+		padding: 6px 13px;
 	}
 	.sticker-green {
-		background: var(--green);
-		color: var(--ink-1);
+		background: var(--grad-olive);
+		box-shadow:
+			0 2px 0 var(--green-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.4);
 	}
 	.sticker-orange {
-		background: var(--orange);
-		color: var(--ink-1);
+		background: var(--grad-rust);
+		box-shadow:
+			0 2px 0 var(--orange-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.pill {
 		font-size: 12.5px;
 		font-weight: 700;
-		background: var(--bg-2);
+		background: var(--grad-plate);
 		color: var(--ink-1);
-		border: var(--bw) solid var(--line);
+		border: var(--bw) solid var(--khaki);
 		border-radius: var(--r-full);
 		padding: 6px 13px;
+		box-shadow: var(--emboss);
 	}
 	.blue {
 		font-size: 12.5px;

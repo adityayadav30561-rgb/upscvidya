@@ -127,7 +127,7 @@
 <div class="centre">
 	<header class="masthead">
 		<div>
-			<h1>Test Centre</h1>
+			<h1 class="stencil">Test Centre</h1>
 			<p class="tagline">Prove it under fire — timed, scored, ranked.</p>
 		</div>
 		{#if bestMedal}
@@ -141,23 +141,23 @@
 	<!-- command hub -->
 	{#if loaded && opsRun > 0}
 		<div class="hub">
-			<div class="stat">
+			<div class="stat plate">
 				<div class="stat-n">{opsRun}</div>
 				<div class="stat-l">Ops run</div>
 			</div>
-			<div class="stat">
-				<div class="stat-n">{bestPct !== null ? bestPct + 'th' : '—'}</div>
+			<div class="stat plate">
+				<div class="stat-n rust">{bestPct !== null ? bestPct + 'th' : '—'}</div>
 				<div class="stat-l">Best rank</div>
 			</div>
-			<div class="stat">
+			<div class="stat plate">
 				<div class="stat-n">{avgAcc}%</div>
-				<div class="stat-l">Avg accuracy</div>
+				<div class="stat-l">Accuracy</div>
 			</div>
 		</div>
 	{/if}
 
 	<!-- tabs -->
-	<div class="tabs" role="tablist">
+	<div class="tabrail" role="tablist">
 		<button class="tab" class:on={tab === 'mocks'} role="tab" aria-selected={tab === 'mocks'} onclick={() => (tab = 'mocks')}>
 			Mock Ops
 		</button>
@@ -181,29 +181,29 @@
 				{#each mocks as m (m.id)}
 					{@const attemptedRow = history.find((h) => h.title === m.title && h.kind === 'mock') ?? null}
 					{@const med = medalFor(attemptedRow?.percentile ?? null)}
+					<!-- sealed operation folder: colour rail on the spine, tag on the flap -->
 					<button class="op" class:locked={m.locked} onclick={() => beginMock(m)} disabled={busy}>
-						<div class="op-rail {m.locked ? 'lk' : 'go'}"></div>
-						<div class="op-body">
-							<div class="op-head">
-								<span class="op-title">{m.title}</span>
-								{#if m.is_free}<span class="tag free">FREE</span>{:else if m.locked}<span class="tag prem">🔒 PREMIUM</span>{/if}
-							</div>
-							<div class="op-sub">{m.blurb}</div>
-							<div class="op-stats">
-								<span class="os"><b>{m.count}</b> Q</span>
-								<span class="os"><b>{Math.round(m.duration_sec / 60)}</b> min</span>
-								<span class="os neg">−{m.negative.toFixed(2)} wrong</span>
-							</div>
-							<div class="op-foot">
-								<span class="reward">up to +400 XP</span>
-								{#if med}
-									<span class="medal {med}">★ {medalLabel[med]}</span>
-								{:else if m.attempted}
-									<span class="cleared">✓ Attempted</span>
-								{/if}
-								<span class="deploy">{m.locked ? 'Unlock →' : 'Deploy →'}</span>
-							</div>
-						</div>
+						{#if m.is_free}
+							<span class="tag">FREE</span>
+						{:else if m.locked}
+							<span class="tag gold">PREMIUM</span>
+						{/if}
+						<span class="op-title stencil">{m.title}</span>
+						<span class="op-sub">{m.blurb}</span>
+						<span class="op-stats">
+							<span class="statchip">{m.count} Q</span>
+							<span class="statchip">{Math.round(m.duration_sec / 60)} MIN</span>
+							{#if m.negative > 0}<span class="statchip warn">−{m.negative.toFixed(2)} WRONG</span>{/if}
+						</span>
+						<span class="op-foot">
+							<span class="reward">
+								UP TO +400 XP{#if m.attempted} · ATTEMPTED{/if}
+							</span>
+							{#if med}<span class="medal {med}">★ {medalLabel[med]}</span>{/if}
+							<span class="deploy {m.locked ? 'btn3d btn3d-gold' : 'btn3d'}">
+								{m.locked ? 'Unlock →' : 'Deploy →'}
+							</span>
+						</span>
 					</button>
 				{/each}
 			</div>
@@ -380,62 +380,33 @@
 		gap: 8px;
 	}
 	.stat {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
-		padding: 12px 8px;
+		padding: 10px 8px;
 		text-align: center;
-		box-shadow: var(--shadow-2);
+		border-radius: var(--r-lg);
 	}
 	.stat-n {
 		font-family: var(--font-display);
-		font-size: 22px;
+		font-weight: 800;
+		font-size: 24px;
+		line-height: 1;
 		color: var(--ink-1);
 	}
+	.stat-n.rust {
+		color: var(--orange-deep);
+	}
 	.stat-l {
-		font-size: 9.5px;
-		font-weight: 900;
+		font-size: 8px;
+		font-weight: 700;
 		text-transform: uppercase;
 		color: var(--ink-3);
-		letter-spacing: 0.04em;
-		margin-top: 2px;
-	}
-
-	/* tabs */
-	.tabs {
-		display: flex;
-		gap: 6px;
-		background: var(--bg-1);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		padding: 4px;
-	}
-	.tab {
-		flex: 1;
-		font-family: var(--font-ui);
-		font-size: 11.5px;
-		font-weight: 900;
-		text-transform: uppercase;
-		background: none;
-		border: none;
-		border-radius: var(--r-full);
-		padding: 9px 6px;
-		cursor: pointer;
-		color: var(--ink-3);
-		transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 5px;
-	}
-	.tab.on {
-		background: var(--orange);
-		color: #4d4433;
-		box-shadow: var(--shadow-2);
+		letter-spacing: 0.14em;
+		margin-top: 3px;
 	}
 	.tab-count {
+		display: inline-block;
+		margin-left: 5px;
 		font-size: 9px;
-		background: rgba(77, 68, 51, 0.22);
+		background: rgba(0, 0, 0, 0.18);
 		border-radius: var(--r-full);
 		padding: 1px 6px;
 	}
@@ -446,113 +417,67 @@
 		flex-direction: column;
 		gap: 12px;
 	}
+	/* sealed operation folder */
 	.op {
-		display: flex;
-		text-align: left;
-		background: var(--bg-2);
-		border: var(--bw-bold) solid var(--line);
-		border-radius: var(--r-xl);
-		overflow: hidden;
-		cursor: pointer;
-		font-family: var(--font-ui);
-		box-shadow: var(--shadow-2);
-		padding: 0;
-		transition: transform var(--t-fast) var(--ease);
-	}
-	.op:active {
-		transform: translateY(1px);
-	}
-	.op.locked {
-		opacity: 0.82;
-		box-shadow: none;
-	}
-	.op-rail {
-		flex: none;
-		width: 8px;
-	}
-	.op-rail.go {
-		background: var(--orange);
-	}
-	.op-rail.lk {
-		background: var(--khaki-deep);
-	}
-	.op-body {
-		flex: 1;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		gap: 7px;
-		padding: 15px 16px;
-		min-width: 0;
+		text-align: left;
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--line);
+		border-left: 7px solid var(--orange);
+		border-radius: 4px var(--r-xl) var(--r-xl) 4px;
+		cursor: pointer;
+		font-family: var(--font-ui);
+		box-shadow: var(--shadow-lift);
+		padding: 13px;
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
 	}
-	.op-head {
-		display: flex;
-		align-items: center;
-		gap: 8px;
+	.op:active {
+		transform: translateY(2px);
+		box-shadow: 0 2px 0 var(--edge-deep), 0 8px 14px rgba(60, 50, 25, 0.18);
+	}
+	.op.locked {
+		border-left-color: var(--gold-lo);
 	}
 	.op-title {
-		flex: 1;
-		font-family: var(--font-display);
-		font-size: 17px;
-		text-transform: uppercase;
-	}
-	.tag {
-		font-size: 9px;
-		font-weight: 900;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-sm);
-		padding: 3px 7px;
-	}
-	.tag.free {
-		background: var(--green);
-	}
-	.tag.prem {
-		background: var(--khaki-tint);
-		color: var(--khaki-deep);
+		font-size: 20px;
+		letter-spacing: 0.05em;
 	}
 	.op-sub {
-		font-size: 11.5px;
+		font-size: 11px;
+		font-weight: 500;
 		color: var(--ink-3);
+		margin-top: -3px;
 	}
 	.op-stats {
 		display: flex;
-		gap: 12px;
-		font-size: 11px;
-		font-weight: 700;
-		color: var(--ink-2);
-	}
-	.os b {
-		font-family: var(--font-display);
-		font-weight: 400;
-		font-size: 13px;
-	}
-	.os.neg {
-		color: var(--red-deep);
+		gap: 7px;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-top: 2px;
 	}
 	.op-foot {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-		margin-top: 2px;
+		gap: 8px;
+		margin-top: 4px;
 	}
 	.reward {
-		font-size: 10.5px;
-		font-weight: 900;
-		color: var(--green-deep);
-		background: var(--green-tint);
-		border: 1px solid var(--line-soft);
-		border-radius: var(--r-sm);
-		padding: 2px 7px;
-	}
-	.cleared {
-		font-size: 10.5px;
-		font-weight: 900;
-		color: var(--ink-3);
+		flex: 1;
+		min-width: 0;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		color: var(--ink-2);
 	}
 	.deploy {
-		margin-left: auto;
-		font-size: 12.5px;
-		font-weight: 900;
-		color: var(--orange-deep);
+		flex: none;
+		font-size: 12px;
+		padding: 8px 15px;
 	}
 	.medal {
 		font-size: 10px;

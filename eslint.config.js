@@ -63,6 +63,7 @@ export default ts.config(
 			'static/',
 			'e2e/',
 			'docs/', // design prototypes — not project code
+			'Army game app redesign directions/', // Fable handoff bundle (vendor)
 			'content/'
 		]
 	}

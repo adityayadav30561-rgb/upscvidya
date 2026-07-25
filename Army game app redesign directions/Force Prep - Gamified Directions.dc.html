@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#e6e0cb;font-family:Barlow,system-ui,sans-serif}a{color:#a9522f}a:hover{color:#7d3a20}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 Barlow,system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Barlow,system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;border-radius:26px;overflow:hidden;box-shadow:0 18px 40px rgba(40,34,20,.28)}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 Barlow,system-ui,sans-serif;color:rgba(0,0,0,.5)}@keyframes pulseGlow{0%,100%{opacity:.55}50%{opacity:1}}</style></helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Field Dossier (<a class="dv-oid" href="#1a">1a</a>) rolled out to the rest of the app</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Map — sectors as physical dossier tabs, territory nodes on terrain</div>
+<div class="dv-card" style="width:393px;background:#e8e1c9;background-image:radial-gradient(circle at 20% 8%,rgba(255,255,255,.5),transparent 55%),repeating-linear-gradient(45deg,rgba(120,105,70,.05) 0 2px,transparent 2px 5px);padding:16px 14px 92px;position:relative">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div>
+      <div style="font:800 30px/0.95 'Big Shoulders Display',sans-serif;letter-spacing:.03em;color:#2f2a1c;text-shadow:0 1px 0 rgba(255,255,255,.8)">INDIAN POLITY</div>
+      <div style="font:600 10px Barlow,sans-serif;letter-spacing:.12em;color:#8b8158;margin-top:3px">8 SECTORS · 103 TERRITORIES · 0 HELD</div>
+    </div>
+    <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(#fdf8ea,#efe6cd);border:2px solid #6d6440;box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <div style="font:800 17px/1 'Big Shoulders Display',sans-serif;color:#a04a2c">0%</div>
+      <div style="font:700 7px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">TAKEN</div>
+    </div>
+  </div>
+
+  <div style="margin-top:14px;display:flex;gap:6px;overflow:hidden">
+    <div style="font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.1em;color:#fff;background:linear-gradient(#c9622f,#96401d);padding:8px 12px;border-radius:8px 8px 0 0;box-shadow:0 3px 0 #742d13;white-space:nowrap">FOUNDATIONS 0%</div>
+    <div style="font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.1em;color:#5c5537;background:linear-gradient(#f2ead3,#e4dbbd);padding:8px 12px;border-radius:8px 8px 0 0;box-shadow:0 3px 0 #c8bd99;white-space:nowrap">THE SYSTEM 0%</div>
+    <div style="font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.1em;color:#5c5537;background:linear-gradient(#f2ead3,#e4dbbd);padding:8px 12px;border-radius:8px 8px 0 0;box-shadow:0 3px 0 #c8bd99;white-space:nowrap">THE CENTRE 0%</div>
+    <div style="font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.1em;color:#5c5537;background:linear-gradient(#f2ead3,#e4dbbd);padding:8px 12px;border-radius:8px 8px 0 0;box-shadow:0 3px 0 #c8bd99;white-space:nowrap">STATES</div>
+  </div>
+
+  <div style="border:1.5px solid #4f4a2e;border-radius:0 14px 14px 14px;background:linear-gradient(#fdf8ea,#f3ebd4);box-shadow:0 4px 0 #c2b795,0 12px 22px rgba(60,50,25,.18);padding:13px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <span style="font:800 17px 'Big Shoulders Display',sans-serif;letter-spacing:.1em;color:#2f2a1c">FOUNDATIONS</span>
+      <span style="font:700 10px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">0 / 14 HELD</span>
+    </div>
+    <div style="margin-top:11px;position:relative;height:210px;border-radius:10px;overflow:hidden;background:radial-gradient(80% 70% at 30% 25%,#e9dfbd,#cfc49f 70%,#bcb086);box-shadow:inset 0 0 30px rgba(90,78,40,.3),inset 0 0 0 1.5px #b3aa88">
+      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(120,105,70,.12) 0 1px,transparent 1px 20px),repeating-linear-gradient(90deg,rgba(120,105,70,.12) 0 1px,transparent 1px 20px)"></div>
+      <div style="position:absolute;left:-30px;bottom:-40px;width:250px;height:150px;border-radius:50%;background:rgba(127,145,83,.26)"></div>
+      <div style="position:absolute;right:-40px;top:-30px;width:190px;height:150px;border-radius:48%;background:rgba(181,136,58,.18)"></div>
+      <div style="position:absolute;left:14px;top:34px;right:14px;height:2px;background:repeating-linear-gradient(90deg,#a04a2c 0 8px,transparent 8px 15px)"></div>
+      <div style="position:absolute;left:16px;top:14px;font:700 8px Barlow,sans-serif;letter-spacing:.16em;color:#a04a2c">FRONT LINE</div>
+
+      <div style="position:absolute;left:26px;top:62px;display:flex;flex-direction:column;align-items:center;gap:5px">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(#f0cf82,#b5883a);border:2.5px solid #6f5622;box-shadow:0 4px 0 #6f5622,0 8px 14px rgba(60,48,20,.35),inset 0 1px 0 rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font:800 16px 'Big Shoulders Display',sans-serif;color:#3b2f11">01</div>
+        <span style="font:700 9px Barlow,sans-serif;color:#4a4229;text-align:center">Preamble</span>
+      </div>
+      <div style="position:absolute;left:118px;top:92px;display:flex;flex-direction:column;align-items:center;gap:5px">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(#efe6cd,#ddd3b1);border:2.5px dashed #8b8158;box-shadow:0 3px 0 #b3aa88;display:flex;align-items:center;justify-content:center;font:800 14px 'Big Shoulders Display',sans-serif;color:#8b8158">02</div>
+        <span style="font:700 9px Barlow,sans-serif;color:#7a7250;text-align:center">Fundamental R.</span>
+      </div>
+      <div style="position:absolute;left:212px;top:58px;display:flex;flex-direction:column;align-items:center;gap:5px">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(#efe6cd,#ddd3b1);border:2.5px dashed #8b8158;box-shadow:0 3px 0 #b3aa88;display:flex;align-items:center;justify-content:center;font:800 14px 'Big Shoulders Display',sans-serif;color:#8b8158">03</div>
+        <span style="font:700 9px Barlow,sans-serif;color:#7a7250;text-align:center">DPSP</span>
+      </div>
+      <div style="position:absolute;left:296px;top:118px;display:flex;flex-direction:column;align-items:center;gap:5px">
+        <div style="width:38px;height:40px;background:#cfc4a0;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;justify-content:center;font:700 11px Barlow,sans-serif;color:#8b8158">🔒</div>
+        <span style="font:700 9px Barlow,sans-serif;color:#8b8158">Drill</span>
+      </div>
+      <div style="position:absolute;left:14px;bottom:12px;font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#fff;background:linear-gradient(#c9622f,#96401d);padding:8px 14px;border-radius:8px;box-shadow:0 3px 0 #742d13,0 8px 14px rgba(90,40,15,.3)">ATTACK PREAMBLE →</div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;display:flex;flex-direction:column;gap:9px">
+    <div style="display:flex;align-items:center;gap:11px;padding:12px;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f4ecd6);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff">
+      <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(#e4dbbd,#cfc4a0);border:1.5px solid #8b8158;box-shadow:inset 0 1px 0 rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font:800 12px 'Big Shoulders Display',sans-serif;color:#5c5537">II</div>
+      <div style="flex:1"><div style="font:800 15px 'Big Shoulders Display',sans-serif;letter-spacing:.06em;color:#2f2a1c">THE SYSTEM</div><div style="font:500 11px Barlow,sans-serif;color:#8b8158">6 territories · free roam</div></div>
+      <div style="width:8px;height:8px;border-right:2px solid #8b8158;border-top:2px solid #8b8158;transform:rotate(45deg)"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:12px;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f4ecd6);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff">
+      <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(#e4dbbd,#cfc4a0);border:1.5px solid #8b8158;box-shadow:inset 0 1px 0 rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font:800 12px 'Big Shoulders Display',sans-serif;color:#5c5537">III</div>
+      <div style="flex:1"><div style="font:800 15px 'Big Shoulders Display',sans-serif;letter-spacing:.06em;color:#2f2a1c">THE CENTRE</div><div style="font:500 11px Barlow,sans-serif;color:#8b8158">14 territories · free roam</div></div>
+      <div style="width:8px;height:8px;border-right:2px solid #8b8158;border-top:2px solid #8b8158;transform:rotate(45deg)"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:12px;border:1.5px solid #b3aa88;border-radius:12px;background:#eae2c6;box-shadow:inset 0 2px 5px rgba(90,78,40,.16)">
+      <div style="width:34px;height:34px;border-radius:9px;background:#ded5b6;border:1.5px solid #b3aa88;display:flex;align-items:center;justify-content:center;font:800 12px 'Big Shoulders Display',sans-serif;color:#8b8158">IV</div>
+      <div style="flex:1"><div style="font:800 15px 'Big Shoulders Display',sans-serif;letter-spacing:.06em;color:#8b8158">THE STATES</div><div style="font:500 11px Barlow,sans-serif;color:#a39a78">9 territories · locked</div></div>
+      <span style="font:700 10px Barlow,sans-serif;color:#8b8158">🔒</span>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:12px;right:12px;bottom:14px;height:62px;border:1.5px solid #4f4a2e;border-radius:18px;background:linear-gradient(#f8f1dc,#e9e0c2);box-shadow:0 6px 0 #c2b795,0 14px 24px rgba(50,42,20,.25);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">BASE</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(#c9622f,#96401d);box-shadow:0 2px 0 #742d13,inset 0 1px 0 rgba(255,255,255,.45)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#2f2a1c">MAP</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">TESTS</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">DRILL</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">PROFILE</span></div>
+  </div>
+</div>
+</div>
+
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Test Centre — mock papers as sealed operation folders with wax-seal difficulty</div>
+<div class="dv-card" style="width:393px;background:#e8e1c9;background-image:radial-gradient(circle at 20% 8%,rgba(255,255,255,.5),transparent 55%),repeating-linear-gradient(45deg,rgba(120,105,70,.05) 0 2px,transparent 2px 5px);padding:16px 14px 92px;position:relative">
+  <div style="font:800 32px/0.95 'Big Shoulders Display',sans-serif;letter-spacing:.03em;color:#2f2a1c;text-shadow:0 1px 0 rgba(255,255,255,.8)">TEST CENTRE</div>
+  <div style="font:600 11px Barlow,sans-serif;color:#8b8158;margin-top:3px">Prove it under fire — timed, scored, ranked.</div>
+
+  <div style="margin-top:13px;display:flex;gap:9px">
+    <div style="flex:1;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f2ead3);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff;padding:10px;text-align:center">
+      <div style="font:800 24px/1 'Big Shoulders Display',sans-serif;color:#2f2a1c">5</div>
+      <div style="font:700 8px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158;margin-top:2px">OPS RUN</div>
+    </div>
+    <div style="flex:1;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f2ead3);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff;padding:10px;text-align:center">
+      <div style="font:800 24px/1 'Big Shoulders Display',sans-serif;color:#a04a2c">33rd</div>
+      <div style="font:700 8px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158;margin-top:2px">BEST RANK</div>
+    </div>
+    <div style="flex:1;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f2ead3);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff;padding:10px;text-align:center">
+      <div style="font:800 24px/1 'Big Shoulders Display',sans-serif;color:#2f2a1c">7%</div>
+      <div style="font:700 8px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158;margin-top:2px">ACCURACY</div>
+    </div>
+  </div>
+
+  <div style="margin-top:13px;display:flex;gap:4px;padding:4px;border-radius:11px;background:#ddd3b1;box-shadow:inset 0 2px 4px rgba(80,68,35,.32)">
+    <div style="flex:1;text-align:center;font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#fff;background:linear-gradient(#c9622f,#96401d);padding:8px 0;border-radius:8px;box-shadow:0 2px 0 #742d13">MOCK OPS</div>
+    <div style="flex:1;text-align:center;font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#7a7250;padding:8px 0">DRILLS</div>
+    <div style="flex:1;text-align:center;font:800 11px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#7a7250;padding:8px 0">RECORD</div>
+  </div>
+
+  <div style="margin-top:13px;display:flex;flex-direction:column;gap:12px">
+    <div style="position:relative;border:1.5px solid #4f4a2e;border-radius:4px 14px 14px 4px;border-left:7px solid #c9622f;background:linear-gradient(#fdf8ea,#f3ebd4);box-shadow:0 4px 0 #c2b795,0 12px 20px rgba(60,50,25,.18);padding:13px 13px 12px">
+      <div style="position:absolute;right:11px;top:-9px;font:800 9px 'Big Shoulders Display',sans-serif;letter-spacing:.14em;color:#fff;background:linear-gradient(#7f9153,#5e6d38);padding:4px 9px;border-radius:5px;box-shadow:0 2px 0 #46521f">FREE</div>
+      <div style="font:800 20px/1 'Big Shoulders Display',sans-serif;letter-spacing:.05em;color:#2f2a1c">MOCK 01 — FULL PAPER</div>
+      <div style="font:500 11px Barlow,sans-serif;color:#8b8158;margin-top:3px">Fresh · syllabus-weighted like CAPF 2025</div>
+      <div style="margin-top:9px;display:flex;gap:7px;align-items:center">
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#2f2a1c;background:#e6ddbf;border:1px solid #b3aa88;padding:4px 8px;border-radius:5px">125 Q</span>
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#2f2a1c;background:#e6ddbf;border:1px solid #b3aa88;padding:4px 8px;border-radius:5px">120 MIN</span>
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#8f2f22;background:#f5ded6;border:1px solid #d8a898;padding:4px 8px;border-radius:5px">−0.67 WRONG</span>
+      </div>
+      <div style="margin-top:11px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font:700 10px Barlow,sans-serif;letter-spacing:.08em;color:#5c5537">UP TO +400 XP · ATTEMPTED</span>
+        <span style="font:800 12px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#fff;background:linear-gradient(#c9622f,#96401d);padding:8px 16px;border-radius:8px;box-shadow:0 3px 0 #742d13">DEPLOY →</span>
+      </div>
+    </div>
+
+    <div style="position:relative;border:1.5px solid #4f4a2e;border-radius:4px 14px 14px 4px;border-left:7px solid #b5883a;background:linear-gradient(#fdf8ea,#f3ebd4);box-shadow:0 4px 0 #c2b795,0 12px 20px rgba(60,50,25,.18);padding:13px">
+      <div style="position:absolute;right:11px;top:-9px;font:800 9px 'Big Shoulders Display',sans-serif;letter-spacing:.14em;color:#3b2f11;background:linear-gradient(#f0cf82,#c79a45);padding:4px 9px;border-radius:5px;box-shadow:0 2px 0 #8d6a24">PREMIUM</div>
+      <div style="font:800 20px/1 'Big Shoulders Display',sans-serif;letter-spacing:.05em;color:#2f2a1c">MOCK 02 — FULL PAPER</div>
+      <div style="font:500 11px Barlow,sans-serif;color:#8b8158;margin-top:3px">Full-length rehearsal</div>
+      <div style="margin-top:9px;display:flex;gap:7px;align-items:center">
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#2f2a1c;background:#e6ddbf;border:1px solid #b3aa88;padding:4px 8px;border-radius:5px">125 Q</span>
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#2f2a1c;background:#e6ddbf;border:1px solid #b3aa88;padding:4px 8px;border-radius:5px">120 MIN</span>
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#8f2f22;background:#f5ded6;border:1px solid #d8a898;padding:4px 8px;border-radius:5px">−0.67 WRONG</span>
+      </div>
+      <div style="margin-top:11px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font:700 10px Barlow,sans-serif;letter-spacing:.08em;color:#5c5537">UP TO +400 XP</span>
+        <span style="font:800 12px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#3b2f11;background:linear-gradient(#f0cf82,#c79a45);padding:8px 16px;border-radius:8px;box-shadow:0 3px 0 #8d6a24">UNLOCK →</span>
+      </div>
+    </div>
+
+    <div style="position:relative;border:1.5px solid #4f4a2e;border-radius:4px 14px 14px 4px;border-left:7px solid #6d6440;background:linear-gradient(#fdf8ea,#f3ebd4);box-shadow:0 4px 0 #c2b795,0 12px 20px rgba(60,50,25,.16);padding:13px">
+      <div style="position:absolute;right:11px;top:-9px;font:800 9px 'Big Shoulders Display',sans-serif;letter-spacing:.14em;color:#fff;background:linear-gradient(#7f9153,#5e6d38);padding:4px 9px;border-radius:5px;box-shadow:0 2px 0 #46521f">FREE</div>
+      <div style="font:800 20px/1 'Big Shoulders Display',sans-serif;letter-spacing:.05em;color:#2f2a1c">CAPF 2024 — PYQ PAPER</div>
+      <div style="font:500 11px Barlow,sans-serif;color:#8b8158;margin-top:3px">Past paper · real battlefield conditions</div>
+      <div style="margin-top:9px;display:flex;gap:7px;align-items:center">
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#2f2a1c;background:#e6ddbf;border:1px solid #b3aa88;padding:4px 8px;border-radius:5px">6 Q</span>
+        <span style="font:700 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#2f2a1c;background:#e6ddbf;border:1px solid #b3aa88;padding:4px 8px;border-radius:5px">7 MIN</span>
+      </div>
+      <div style="margin-top:11px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font:700 10px Barlow,sans-serif;letter-spacing:.08em;color:#5c5537">UP TO +400 XP · ATTEMPTED</span>
+        <span style="font:800 12px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#fff;background:linear-gradient(#c9622f,#96401d);padding:8px 16px;border-radius:8px;box-shadow:0 3px 0 #742d13">DEPLOY →</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:12px;right:12px;bottom:14px;height:62px;border:1.5px solid #4f4a2e;border-radius:18px;background:linear-gradient(#f8f1dc,#e9e0c2);box-shadow:0 6px 0 #c2b795,0 14px 24px rgba(50,42,20,.25);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">BASE</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">MAP</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(#c9622f,#96401d);box-shadow:0 2px 0 #742d13,inset 0 1px 0 rgba(255,255,255,.45)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#2f2a1c">TESTS</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">DRILL</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">PROFILE</span></div>
+  </div>
+</div>
+</div>
+
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Profile — service record: brass rank board, ribbon rack, medal case</div>
+<div class="dv-card" style="width:393px;background:#e8e1c9;background-image:radial-gradient(circle at 20% 8%,rgba(255,255,255,.5),transparent 55%),repeating-linear-gradient(45deg,rgba(120,105,70,.05) 0 2px,transparent 2px 5px);padding:16px 14px 92px;position:relative">
+  <div style="border:1.5px solid #4f4a2e;border-radius:16px;background:linear-gradient(#fdf8ea,#f1e8d0);box-shadow:0 4px 0 #c2b795,0 12px 22px rgba(60,50,25,.2),inset 0 1px 0 #fff;padding:15px;display:flex;flex-direction:column;gap:13px">
+    <div style="display:flex;gap:13px;align-items:center">
+      <div style="width:66px;height:86px;border-radius:7px;background:linear-gradient(150deg,#d8bd77,#a6853c 45%,#6f5622);border:2px solid #5d4a1e;box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -4px 8px rgba(0,0,0,.35),0 4px 8px rgba(50,40,15,.4);display:flex;align-items:center;justify-content:center">
+        <div style="width:34px;height:19px;background:#8f2f22;clip-path:polygon(50% 0,100% 100%,72% 100%,50% 42%,28% 100%,0 100%);filter:drop-shadow(0 1px 0 rgba(255,255,255,.45))"></div>
+      </div>
+      <div style="flex:1">
+        <div style="font:800 27px/0.95 'Big Shoulders Display',sans-serif;letter-spacing:.03em;color:#2f2a1c;text-shadow:0 1px 0 #fff">CONSTABLE</div>
+        <div style="font:600 12px Barlow,sans-serif;color:#8b8158;margin-top:2px">Aditya Yadav · Grade 2 / 14</div>
+        <div style="margin-top:7px;display:flex;gap:5px">
+          <div style="width:26px;height:12px;border-radius:2px;background:linear-gradient(#c9622f,#96401d);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)"></div>
+          <div style="width:26px;height:12px;border-radius:2px;background:#ddd3b1;box-shadow:inset 0 1px 2px rgba(80,68,35,.3)"></div>
+          <div style="width:26px;height:12px;border-radius:2px;background:#ddd3b1;box-shadow:inset 0 1px 2px rgba(80,68,35,.3)"></div>
+          <div style="width:26px;height:12px;border-radius:2px;background:#ddd3b1;box-shadow:inset 0 1px 2px rgba(80,68,35,.3)"></div>
+        </div>
+      </div>
+      <div style="width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#f6d9a4,#c9622f 70%,#8d3a17);border:2px solid #7c3317;box-shadow:0 4px 10px rgba(110,45,15,.4),inset 0 -3px 6px rgba(0,0,0,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff5e2">
+        <div style="font:800 19px/1 'Big Shoulders Display',sans-serif">1</div>
+        <div style="font:700 7px Barlow,sans-serif;letter-spacing:.1em">DAY ON</div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;font:700 10px Barlow,sans-serif;letter-spacing:.1em;color:#5c5537;margin-bottom:5px"><span>875 XP</span><span>1,200</span></div>
+      <div style="display:flex;gap:3px;height:14px;padding:3px;border-radius:8px;background:#ddd3b1;box-shadow:inset 0 2px 4px rgba(80,68,35,.35)">
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a)"></div>
+        <div style="flex:1;border-radius:2px;background:#cfc4a0"></div>
+        <div style="flex:1;border-radius:2px;background:#cfc4a0"></div>
+        <div style="flex:1;border-radius:2px;background:#cfc4a0"></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:9px">
+      <div style="flex:1;border:1.5px solid #b3aa88;border-radius:10px;background:#f6efd9;box-shadow:inset 0 1px 0 #fff;padding:9px;text-align:center"><div style="font:800 20px/1 'Big Shoulders Display',sans-serif;color:#2f2a1c">875</div><div style="font:700 8px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158">XP</div></div>
+      <div style="flex:1;border:1.5px solid #b3aa88;border-radius:10px;background:#f6efd9;box-shadow:inset 0 1px 0 #fff;padding:9px;text-align:center"><div style="font:800 20px/1 'Big Shoulders Display',sans-serif;color:#2f2a1c">1/25</div><div style="font:700 8px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158">MEDALS</div></div>
+      <div style="flex:1;border:1.5px solid #b3aa88;border-radius:10px;background:#f6efd9;box-shadow:inset 0 1px 0 #fff;padding:9px;text-align:center"><div style="font:800 20px/1 'Big Shoulders Display',sans-serif;color:#a04a2c">#1</div><div style="font:700 8px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158">BATTALION</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:13px;border:1.5px solid #4f4a2e;border-radius:14px;background:linear-gradient(#6d6440,#4f4a2e);box-shadow:0 4px 0 #3b3720,0 12px 20px rgba(45,38,18,.3);padding:13px;color:#f6efd9">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 15px 'Big Shoulders Display',sans-serif;letter-spacing:.14em">MEDAL CASE</span><span style="font:700 10px Barlow,sans-serif;color:#d8c48a">1 OF 25</span></div>
+    <div style="margin-top:11px;display:grid;grid-template-columns:repeat(5,1fr);gap:9px">
+      <div style="aspect-ratio:1/1.1;background:linear-gradient(#f0cf82,#b5883a);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;align-items:center;justify-content:center;font:800 12px 'Big Shoulders Display',sans-serif;color:#3b2f11">01</div>
+      <div style="aspect-ratio:1/1.1;background:rgba(0,0,0,.28);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></div>
+      <div style="aspect-ratio:1/1.1;background:rgba(0,0,0,.28);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></div>
+      <div style="aspect-ratio:1/1.1;background:rgba(0,0,0,.28);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></div>
+      <div style="aspect-ratio:1/1.1;background:rgba(0,0,0,.28);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></div>
+    </div>
+    <div style="margin-top:11px;font:600 11px Barlow,sans-serif;color:#ded5b6">Next: 7-day streak badge — 6 days out</div>
+  </div>
+
+  <div style="margin-top:13px;display:flex;flex-direction:column;gap:9px">
+    <div style="display:flex;align-items:center;gap:11px;padding:12px;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f4ecd6);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff">
+      <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(#e4dbbd,#cfc4a0);border:1.5px solid #8b8158;display:flex;align-items:flex-end;justify-content:center;gap:2px;padding-bottom:7px"><div style="width:4px;height:8px;background:#6d6440"></div><div style="width:4px;height:13px;background:#6d6440"></div><div style="width:4px;height:17px;background:#6d6440"></div></div>
+      <div style="flex:1"><div style="font:700 14px Barlow,sans-serif;color:#2f2a1c">Rank Ladder</div><div style="font:500 11px Barlow,sans-serif;color:#8b8158">325 XP to Sr. Constable</div></div>
+      <div style="width:8px;height:8px;border-right:2px solid #8b8158;border-top:2px solid #8b8158;transform:rotate(45deg)"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:12px;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f4ecd6);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff">
+      <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(#e4dbbd,#cfc4a0);border:1.5px solid #8b8158;display:flex;align-items:center;justify-content:center;font:700 14px Barlow,sans-serif;color:#6d6440">★</div>
+      <div style="flex:1"><div style="font:700 14px Barlow,sans-serif;color:#2f2a1c">Decorations</div><div style="font:500 11px Barlow,sans-serif;color:#8b8158">1 of 25 earned</div></div>
+      <div style="width:8px;height:8px;border-right:2px solid #8b8158;border-top:2px solid #8b8158;transform:rotate(45deg)"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:12px;border:1.5px solid #8f2f22;border-radius:12px;background:linear-gradient(#f7ddd4,#f0cabd);box-shadow:0 3px 0 #cf9d8c">
+      <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(#f0cf82,#c79a45);border:1.5px solid #8d6a24;display:flex;align-items:center;justify-content:center;font:800 13px 'Big Shoulders Display',sans-serif;color:#3b2f11">P</div>
+      <div style="flex:1"><div style="font:700 14px Barlow,sans-serif;color:#7d2a1a">Plan &amp; Billing</div><div style="font:500 11px Barlow,sans-serif;color:#a05a44">Free tier · go Premium</div></div>
+      <span style="font:800 10px 'Big Shoulders Display',sans-serif;letter-spacing:.12em;color:#fff;background:linear-gradient(#c9622f,#96401d);padding:6px 11px;border-radius:6px;box-shadow:0 2px 0 #742d13">UPGRADE</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:12px;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f4ecd6);box-shadow:0 3px 0 #c8bd99,inset 0 1px 0 #fff">
+      <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(#e4dbbd,#cfc4a0);border:1.5px solid #8b8158;display:flex;align-items:center;justify-content:center;font:700 13px Barlow,sans-serif;color:#6d6440">⚙</div>
+      <div style="flex:1"><div style="font:700 14px Barlow,sans-serif;color:#2f2a1c">Settings</div><div style="font:500 11px Barlow,sans-serif;color:#8b8158">Notifications · privacy · training</div></div>
+      <div style="width:8px;height:8px;border-right:2px solid #8b8158;border-top:2px solid #8b8158;transform:rotate(45deg)"></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:12px;right:12px;bottom:14px;height:62px;border:1.5px solid #4f4a2e;border-radius:18px;background:linear-gradient(#f8f1dc,#e9e0c2);box-shadow:0 6px 0 #c2b795,0 14px 24px rgba(50,42,20,.25);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">BASE</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">MAP</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">TESTS</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">DRILL</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(#c9622f,#96401d);box-shadow:0 2px 0 #742d13,inset 0 1px 0 rgba(255,255,255,.45)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#2f2a1c">PROFILE</span></div>
+  </div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "add the level-up / XP-gain animations" · "design the in-question quiz screen in this style" · "show the territory-captured reward moment"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Making the Base screen feel like a game, not a website — three depth strategies on your existing khaki/regiment palette</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Field Dossier — same layout, real material: embossed brass, stamped ink, segmented ammo-belt progress</div>
+<div class="dv-card" style="width:393px;background:#e8e1c9;background-image:radial-gradient(circle at 20% 8%,rgba(255,255,255,.55),transparent 55%),repeating-linear-gradient(45deg,rgba(120,105,70,.05) 0 2px,transparent 2px 5px);padding:16px 14px 92px;position:relative">
+
+  <div style="position:relative;border:1.5px solid #6d6440;border-radius:14px;background:linear-gradient(#fdf8ea,#f3ebd4);box-shadow:0 3px 0 #c8bd99,0 10px 18px rgba(60,50,25,.16),inset 0 1px 0 #fff;padding:14px 14px 16px;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;gap:12px;align-items:flex-start">
+      <div style="width:56px;height:74px;border-radius:6px;background:linear-gradient(150deg,#d8bd77,#a6853c 45%,#6f5622);box-shadow:inset 0 2px 3px rgba(255,255,255,.6),inset 0 -3px 6px rgba(0,0,0,.35),0 3px 6px rgba(50,40,15,.35);border:1.5px solid #5d4a1e;display:flex;align-items:center;justify-content:center">
+        <div style="width:30px;height:16px;background:#8f2f22;clip-path:polygon(50% 0,100% 100%,72% 100%,50% 42%,28% 100%,0 100%);filter:drop-shadow(0 1px 0 rgba(255,255,255,.45))"></div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:2px;padding-top:2px">
+        <div style="font:600 10px Barlow,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8b8158">Good evening,</div>
+        <div style="font:800 30px/0.95 'Big Shoulders Display',sans-serif;letter-spacing:.02em;color:#2f2a1c;text-shadow:0 1px 0 rgba(255,255,255,.8)">ADITYA</div>
+        <div style="display:inline-flex;align-self:flex-start;margin-top:3px;gap:6px;align-items:center;padding:3px 8px;border-radius:4px;background:#6d6440;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)">
+          <span style="font:700 10px Barlow,sans-serif;letter-spacing:.16em;color:#f6efd9">CONSTABLE</span>
+          <span style="font:700 10px Barlow,sans-serif;color:#d8c48a">GRADE 2/14</span>
+        </div>
+      </div>
+      <div style="width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#f6d9a4,#c9622f 70%,#8d3a17);border:2px solid #7c3317;box-shadow:0 4px 10px rgba(110,45,15,.4),inset 0 -3px 6px rgba(0,0,0,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff5e2">
+        <div style="font:800 20px/1 'Big Shoulders Display',sans-serif">1</div>
+        <div style="font:700 7px Barlow,sans-serif;letter-spacing:.12em">DAY ON</div>
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
+        <span style="font:700 11px Barlow,sans-serif;letter-spacing:.1em;color:#5c5537">875 XP</span>
+        <span style="font:600 10px Barlow,sans-serif;color:#8b8158">325 TO SR. CONSTABLE</span>
+      </div>
+      <div style="display:flex;gap:3px;height:14px;padding:3px;border-radius:8px;background:#ddd3b1;box-shadow:inset 0 2px 4px rgba(80,68,35,.35)">
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)"></div>
+        <div style="flex:1;border-radius:2px;background:linear-gradient(#f0cf82,#b5883a);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)"></div>
+        <div style="flex:1;border-radius:2px;background:#cfc4a0"></div>
+        <div style="flex:1;border-radius:2px;background:#cfc4a0"></div>
+        <div style="flex:1;border-radius:2px;background:#cfc4a0"></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;position:relative;border:1.5px solid #8f2f22;border-radius:12px;background:linear-gradient(#f7ddd4,#f2cec2);box-shadow:0 3px 0 #d3a695,inset 0 1px 0 rgba(255,255,255,.7);padding:10px 12px;display:flex;align-items:center;gap:9px">
+    <div style="width:22px;height:22px;border-radius:50%;background:#c9522f;box-shadow:inset 0 -2px 4px rgba(0,0,0,.3);animation:pulseGlow 1.8s infinite"></div>
+    <div style="font:700 12px Barlow,sans-serif;color:#7d2a1a;letter-spacing:.01em">STREAK AT RISK — clear one objective to hold day 2</div>
+  </div>
+
+  <div style="margin-top:14px;border:1.5px solid #6d6440;border-radius:14px;background:linear-gradient(#fdf8ea,#f4ecd6);box-shadow:0 3px 0 #c8bd99,0 10px 18px rgba(60,50,25,.14);padding:13px 13px 14px;position:relative">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div style="font:800 20px/1 'Big Shoulders Display',sans-serif;letter-spacing:.06em;color:#2f2a1c">DAILY OBJECTIVES</div>
+        <div style="font:600 10px Barlow,sans-serif;letter-spacing:.12em;color:#8b8158;margin-top:3px">RESETS IN 5H 12M</div>
+      </div>
+      <div style="width:58px;height:58px;margin-top:-4px;border:2.5px dashed #a04a2c;border-radius:50%;transform:rotate(-11deg);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#a04a2c;opacity:.85">
+        <div style="font:800 19px/1 'Big Shoulders Display',sans-serif">33%</div>
+        <div style="font:700 8px Barlow,sans-serif;letter-spacing:.1em">1 / 3</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px">
+      <div style="display:flex;align-items:center;gap:11px;padding:11px 12px;border:1.5px solid #4f4a2e;border-radius:11px;background:linear-gradient(#fffdf4,#f7f0da);box-shadow:0 3px 0 #cfc4a0,inset 0 1px 0 #fff">
+        <div style="width:26px;height:26px;border-radius:50%;border:2px solid #6d6440;background:radial-gradient(circle at 35% 30%,#fff,#e6ddbf);box-shadow:inset 0 -2px 4px rgba(90,78,40,.25)"></div>
+        <div style="flex:1"><div style="font:700 14px Barlow,sans-serif;color:#2f2a1c">Conquer a territory</div><div style="font:500 11px Barlow,sans-serif;color:#8b8158">next front · Preamble</div></div>
+        <div style="font:800 13px 'Big Shoulders Display',sans-serif;color:#fff;background:linear-gradient(#7f9153,#5e6d38);padding:5px 9px;border-radius:6px;box-shadow:0 2px 0 #46521f,inset 0 1px 0 rgba(255,255,255,.4)">+100</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px;padding:11px 12px;border:1.5px solid #4f4a2e;border-radius:11px;background:linear-gradient(#fffdf4,#f7f0da);box-shadow:0 3px 0 #cfc4a0,inset 0 1px 0 #fff">
+        <div style="width:26px;height:26px;border-radius:50%;border:2px solid #6d6440;background:radial-gradient(circle at 35% 30%,#fff,#e6ddbf);box-shadow:inset 0 -2px 4px rgba(90,78,40,.25)"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+          <div style="font:700 14px Barlow,sans-serif;color:#2f2a1c">Clear 10 revision cards</div>
+          <div style="height:8px;border-radius:5px;background:#ddd3b1;box-shadow:inset 0 1px 3px rgba(80,68,35,.35);overflow:hidden"><div style="width:{{ dailyPct }}%;height:100%;background:linear-gradient(#7f9153,#5e6d38);box-shadow:inset 0 1px 0 rgba(255,255,255,.45)"></div></div>
+        </div>
+        <div style="font:800 13px 'Big Shoulders Display',sans-serif;color:#fff;background:linear-gradient(#7f9153,#5e6d38);padding:5px 9px;border-radius:6px;box-shadow:0 2px 0 #46521f,inset 0 1px 0 rgba(255,255,255,.4)">+80</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px;padding:11px 12px;border:1.5px solid #b3aa88;border-radius:11px;background:#eae2c6;box-shadow:inset 0 2px 5px rgba(90,78,40,.18)">
+        <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(#7f9153,#5e6d38);border:2px solid #46521f;display:flex;align-items:center;justify-content:center;color:#fff;font:700 14px Barlow,sans-serif">✓</div>
+        <div style="flex:1"><div style="font:700 14px Barlow,sans-serif;color:#8b8158;text-decoration:line-through">Daily briefing</div><div style="font:500 11px Barlow,sans-serif;color:#a39a78">banked</div></div>
+        <div style="font:800 13px 'Big Shoulders Display',sans-serif;color:#8b8158;background:#ded5b6;padding:5px 9px;border-radius:6px">+30</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;border:1.5px solid #4f4a2e;border-radius:14px;padding:13px;background:linear-gradient(#6d6440,#4f4a2e);box-shadow:0 4px 0 #3b3720,0 12px 20px rgba(45,38,18,.3),inset 0 1px 0 rgba(255,255,255,.2);color:#f6efd9">
+    <div style="display:flex;justify-content:space-between;align-items:baseline">
+      <span style="font:800 15px 'Big Shoulders Display',sans-serif;letter-spacing:.12em">CAMPAIGN · FOUNDATIONS</span>
+      <span style="font:700 11px Barlow,sans-serif;color:#d8c48a">0 / 103 HELD</span>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:4px">
+      <div style="flex:1;height:10px;border-radius:2px;background:#b5883a;box-shadow:inset 0 1px 0 rgba(255,255,255,.5)"></div>
+      <div style="flex:1;height:10px;border-radius:2px;background:rgba(0,0,0,.28)"></div>
+      <div style="flex:1;height:10px;border-radius:2px;background:rgba(0,0,0,.28)"></div>
+      <div style="flex:1;height:10px;border-radius:2px;background:rgba(0,0,0,.28)"></div>
+      <div style="flex:1;height:10px;border-radius:2px;background:rgba(0,0,0,.28)"></div>
+      <div style="flex:1;height:10px;border-radius:2px;background:rgba(0,0,0,.28)"></div>
+      <div style="flex:1;height:10px;border-radius:2px;background:rgba(0,0,0,.28)"></div>
+      <div style="flex:1;height:10px;border-radius:2px;background:rgba(0,0,0,.28)"></div>
+    </div>
+    <div style="margin-top:11px;display:flex;justify-content:space-between;align-items:center">
+      <span style="font:600 11px Barlow,sans-serif;color:#ded5b6">Next front · Preamble</span>
+      <span style="font:800 12px 'Big Shoulders Display',sans-serif;letter-spacing:.1em;color:#2f2a1c;background:linear-gradient(#f0cf82,#c79a45);padding:7px 14px;border-radius:7px;box-shadow:0 3px 0 #8d6a24,inset 0 1px 0 rgba(255,255,255,.7)">DEPLOY →</span>
+    </div>
+  </div>
+
+  <div style="margin-top:12px;display:flex;gap:10px">
+    <div style="flex:1;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f2ead3);box-shadow:0 3px 0 #c8bd99;padding:11px">
+      <div style="font:700 9px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158">BATTALION</div>
+      <div style="font:800 30px/1 'Big Shoulders Display',sans-serif;color:#a04a2c;text-shadow:0 1px 0 #fff">#1</div>
+      <div style="font:600 10px Barlow,sans-serif;color:#5c5537">holding the top · 1d 2h</div>
+    </div>
+    <div style="flex:1;border:1.5px solid #6d6440;border-radius:12px;background:linear-gradient(#fdf8ea,#f2ead3);box-shadow:0 3px 0 #c8bd99;padding:11px">
+      <div style="font:700 9px Barlow,sans-serif;letter-spacing:.14em;color:#8b8158">NEXT MEDAL</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="font:800 30px/1 'Big Shoulders Display',sans-serif;color:#2f2a1c;text-shadow:0 1px 0 #fff">7</div>
+        <div style="width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f6d9a4,#c9622f);border:1.5px solid #8d3a17"></div>
+      </div>
+      <div style="font:600 10px Barlow,sans-serif;color:#5c5537">6 days to 7-day badge</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:12px;right:12px;bottom:14px;height:62px;border:1.5px solid #4f4a2e;border-radius:18px;background:linear-gradient(#f8f1dc,#e9e0c2);box-shadow:0 6px 0 #c2b795,0 14px 24px rgba(50,42,20,.25);display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 6px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:linear-gradient(#c9622f,#96401d);box-shadow:0 2px 0 #742d13,inset 0 1px 0 rgba(255,255,255,.45)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#2f2a1c">BASE</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">MAP</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">TESTS</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">DRILL</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:26px;height:26px;border-radius:8px;background:#ded5b6;box-shadow:inset 0 2px 3px rgba(80,68,35,.3)"></div><span style="font:700 8px Barlow,sans-serif;letter-spacing:.1em;color:#8b8158">PROFILE</span></div>
+  </div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "add reward/level-up animations" · "design the quiz screen in this style"</p>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;rankProgress&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:73,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Demo state&quot;},&quot;dailyProgress&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:10,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Demo state&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const rankPct = this.props.rankProgress ?? 73;
+    return {
+      rankPct,
+      xpDeg: Math.round(rankPct * 3.6),
+      dailyPct: this.props.dailyProgress ?? 10
+    };
+  }
+}
+</script>
+</body>
+</html>
