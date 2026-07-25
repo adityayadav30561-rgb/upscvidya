@@ -149,6 +149,21 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    Collapsed sectors are `.dossier-row`s with roman-numeral tiles; a sector
    reads "locked" only when every one of its chapters is `premiumLocked`
    (there is no region-level lock — free roam for READING is absolute).
+   **Base 4a + reward moments:** the Base header is a full-bleed **command post**
+   (dark olive band, rotating rays, a live conic **XP ring** around the brass
+   grade disc, wax-seal streak, dark magazine belt) followed by a **hero
+   next-mission card** (terrain preview + brass disc + DEPLOY). Two ceremony
+   components carry the reward beats, both `prefers-reduced-motion`-gated with
+   the shared keyframes at the bottom of dossier.css (`raySpin`, `confettiFall`,
+   `popIn`, `rise`, `barGrow`, `xpFly`, `sparkUp`, `stampIn`, `chevRise`,
+   `medalShine`, `floatBob`, `flameFlicker`):
+   [RankUp.svelte](src/lib/components/RankUp.svelte) = **4c promotion ceremony**
+   (rays, confetti, chevrons rising onto a brass plate, spoils, next-rank bar)
+   and [TerritoryCaptured.svelte](src/lib/components/TerritoryCaptured.svelte) =
+   **4d conquest** (flag plants, score/accuracy/best-run stamps, sector bar,
+   next-front unlock), shown on a passing topic quiz ahead of the score card.
+   ⏳ **Still to apply from the handoff: turn 3 (3a reader · 3b quiz · 3c drill
+   composer · 3d record empty · 3e briefing · 3f rank ladder · 3g decorations).**
 
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).

@@ -14,7 +14,6 @@
 	import { haptic } from '$lib/native';
 	import RankInsignia from '$lib/components/RankInsignia.svelte';
 	import StreakFlame from '$lib/components/StreakFlame.svelte';
-	import Skeleton from '$lib/components/Skeleton.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
 
 	let { data } = $props();
@@ -94,6 +93,10 @@
 	const nextTopic = $derived(map.next);
 	const nextName = $derived(nextTopic?.topic?.title ?? nextTopic?.unit?.code ?? '');
 	const campSegments = $derived(Math.round((held / TOTAL_UNITS) * SEGMENTS));
+	/** 1-based position of the next mission inside its sector (for the 4a hero) */
+	const missionIndex = $derived(
+		nextTopic && front ? front.nodes.findIndex((n) => n.unit.code === nextTopic.unit.code) + 1 : 1
+	);
 
 	/* ---- daily objectives (real, from today's xp_events + SR + briefing) ---- */
 	const todayIST = istDate(Date.now());
@@ -207,34 +210,49 @@
 <svelte:head><title>UPSCVidya — Base Camp</title></svelte:head>
 
 <div class="dash">
-	<!-- ============ HUD — service dossier header ============ -->
-	<div class="hud plate sect" style="--i:0" data-tour="home-hero">
-		<div class="hud-row">
-			<button class="brass rank-plate" onclick={() => nav('/profile/ranks')} aria-label="rank ladder">
-				{#if user}<RankInsignia rank={rp.current.code} width={30} />{:else}<Skeleton width="30px" height="46px" />{/if}
+	<!-- ============ COMMAND POST header (4a) ============ -->
+	<div class="post" data-tour="home-hero">
+		<div class="post-rays" aria-hidden="true"></div>
+		<div class="post-row">
+			<!-- live XP ring wrapping the brass grade disc -->
+			<button
+				class="xpring"
+				style="--deg:{Math.round(rp.pct * 3.6)}deg"
+				onclick={() => nav('/profile/ranks')}
+				aria-label="rank ladder"
+			>
+				<span class="xpring-in">
+					{#if user}<RankInsignia rank={rp.current.code} width={26} />{/if}
+					<span class="xpring-grade">GRADE {rankIndex + 1}</span>
+				</span>
 			</button>
-			<div class="hud-mid">
-				<div class="label">{greeting}</div>
-				<div class="stencil name">{firstName}</div>
-				<span class="ribbon">
-					{rp.current.label}
-					<span class="grade">GRADE {rankIndex + 1}/{RANKS.length}</span>
+			<div class="post-mid">
+				<div class="post-greet">{greeting.replace(',', '')}</div>
+				<div class="post-name">{firstName}</div>
+				<span class="post-chip">
+					<span class="pc-rank">{rp.current.label}</span>
+					<span class="pc-xp">{Math.round($xpDisplay).toLocaleString('en-IN')} XP</span>
 				</span>
 			</div>
-			<button class="seal streak-seal" class:risk={atRisk} onclick={() => { haptic(); streakSheet = true; }} aria-label="streak">
-				<span class="seal-n">{user?.streak_current ?? 0}</span>
-				<span class="seal-k">DAY ON</span>
+			<button
+				class="post-streak"
+				class:risk={atRisk}
+				onclick={() => { haptic(); streakSheet = true; }}
+				aria-label="streak"
+			>
+				<span class="ps-n">{user?.streak_current ?? 0}</span>
+				<span class="ps-k">DAY ON</span>
 			</button>
 		</div>
 		{#if user}
-			<div class="xp-wrap">
-				<div class="xp-nums">
-					<span class="xp-cur">{Math.round($xpDisplay).toLocaleString('en-IN')} XP</span>
-					{#if rp.next}<span class="xp-next">{(rp.next.xp - (user.xp ?? 0)).toLocaleString('en-IN')} TO {rp.next.label}</span>{/if}
+			<div class="post-xp">
+				<div class="post-xp-line">
+					<span>RANK PROGRESS</span>
+					{#if rp.next}<span>{(rp.next.xp - (user.xp ?? 0)).toLocaleString('en-IN')} TO {rp.next.label.toUpperCase()}</span>{/if}
 				</div>
-				<div class="segbar">
+				<div class="post-belt">
 					{#each Array(SEGMENTS) as _, i (i)}
-						<span class="seg" class:on={i < xpSegments}></span>
+						<span class="pb-seg" class:on={i < xpSegments} style="--k:{i}"></span>
 					{/each}
 				</div>
 			</div>
@@ -244,7 +262,32 @@
 	{#if atRisk}
 		<button class="risk-bar sect" style="--i:1" onclick={() => firstUndone && questTap(firstUndone)}>
 			<span class="risk-dot"></span>
-			<span>STREAK AT RISK — clear one objective to hold day {(user?.streak_current ?? 0) + 1}</span>
+			<span class="risk-text">STREAK AT RISK — one objective holds day {(user?.streak_current ?? 0) + 1}</span>
+			<span class="risk-cta">SAVE IT</span>
+		</button>
+	{/if}
+
+	<!-- ============ HERO: the next mission (4a) ============ -->
+	{#if nextTopic}
+		<button class="mission sect" style="--i:2" onclick={() => nav(`/topic/${nextTopic.unit.code}`)}>
+			<div class="mission-field">
+				<div class="mf-grid" aria-hidden="true"></div>
+				<div class="mf-mass" aria-hidden="true"></div>
+				<div class="mf-line" aria-hidden="true"></div>
+				<span class="mf-tag">FRONT LINE{front ? ` · ${front.meta.name.toUpperCase()}` : ''}</span>
+				<span class="mf-xp">+100 XP</span>
+				<span class="mf-disc">{String(missionIndex).padStart(2, '0')}</span>
+			</div>
+			<div class="mission-body">
+				<div class="mb-text">
+					<div class="mb-k">NEXT MISSION</div>
+					<div class="mb-title stencil">Take the {nextName}</div>
+					<div class="mb-sub">
+						{nextTopic.topic?.est_read_minutes ?? 6} min read · {nextTopic.topic?.mcq_floor ?? 12} questions · pass ≥70%
+					</div>
+				</div>
+				<span class="mb-cta">Deploy</span>
+			</div>
 		</button>
 	{/if}
 
@@ -410,86 +453,192 @@
 		}
 	}
 
-	/* ---------- HUD (service dossier header) ---------- */
-	.hud {
-		padding: 14px 14px 16px;
+	/* ---------- COMMAND POST header (4a) ---------- */
+	.post {
+		position: relative;
+		/* full-bleed out of the 20px shell padding */
+		margin: -20px -20px 0;
+		padding: 15px 18px 17px;
+		background: linear-gradient(#3d4429, #2a3020);
+		box-shadow:
+			0 5px 0 #1f2313,
+			0 14px 24px rgba(30, 26, 12, 0.3);
+		overflow: hidden;
+	}
+	.post-rays {
+		position: absolute;
+		top: -120px;
+		left: -60px;
+		width: 300px;
+		height: 300px;
+		background: conic-gradient(
+			from 0deg,
+			rgba(240, 207, 130, 0.14) 0 12deg,
+			transparent 12deg 34deg,
+			rgba(240, 207, 130, 0.1) 34deg 46deg,
+			transparent 46deg 90deg
+		);
+		pointer-events: none;
+	}
+	.post-row {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 13px;
+	}
+	/* the live XP ring — a conic sweep around the brass grade disc */
+	.xpring {
+		position: relative;
+		flex: none;
+		width: 82px;
+		height: 82px;
+		border: none;
+		padding: 0;
+		border-radius: 50%;
+		cursor: pointer;
+		background: conic-gradient(
+			var(--gold-hi) 0 var(--deg),
+			rgba(255, 255, 255, 0.12) var(--deg) 360deg
+		);
+		box-shadow: 0 0 22px rgba(240, 207, 130, 0.35);
+		transition: transform var(--t-fast) var(--ease);
+	}
+	.xpring:active {
+		transform: scale(0.97);
+	}
+	.xpring-in {
+		position: absolute;
+		inset: 6px;
+		border-radius: 50%;
+		background: var(--grad-metal);
+		border: var(--bw) solid #5d4a1e;
+		box-shadow:
+			inset 0 2px 3px rgba(255, 255, 255, 0.55),
+			inset 0 -3px 7px rgba(0, 0, 0, 0.35);
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
+		align-items: center;
+		justify-content: center;
+		gap: 1px;
 	}
-	.hud-row {
-		display: flex;
-		gap: 12px;
-		align-items: flex-start;
+	.xpring-grade {
+		font-size: 7px;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		color: #3b2f11;
 	}
-	.rank-plate {
-		flex: none;
-		width: 56px;
-		height: 74px;
-		cursor: pointer;
-		padding: 0;
-	}
-	.hud-mid {
+	.post-mid {
 		flex: 1;
 		min-width: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		padding-top: 2px;
-		align-items: flex-start;
+		color: #f2ecd6;
 	}
-	.name {
-		font-size: 30px;
-		max-width: 100%;
+	.post-greet {
+		font-size: 9px;
+		font-weight: 600;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: #c3bb98;
+	}
+	.post-name {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 27px;
+		line-height: 0.95;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		margin-top: 2px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	.ribbon {
-		margin-top: 3px;
+	.post-chip {
+		display: inline-flex;
+		margin-top: 5px;
+		align-items: center;
+		gap: 7px;
+		padding: 3px 8px;
+		border-radius: 5px;
+		background: rgba(240, 207, 130, 0.2);
+		border: 1px solid rgba(240, 207, 130, 0.4);
 	}
-	.grade {
-		color: #d8c48a;
-		letter-spacing: 0.04em;
-	}
-	.streak-seal {
-		flex: none;
-		width: 58px;
-		height: 58px;
-		border: none;
-		cursor: pointer;
-		padding: 0;
-	}
-	.streak-seal .seal-n {
-		font-size: 20px;
-	}
-	.streak-seal.risk {
-		animation: riskpulse 1.6s ease-in-out infinite;
-	}
-	@keyframes riskpulse {
-		50% {
-			opacity: 0.62;
-		}
-	}
-	.xp-nums {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		gap: 8px;
-		margin-bottom: 5px;
-	}
-	.xp-cur {
-		font-size: 11px;
+	.pc-rank {
+		font-size: 10px;
 		font-weight: 700;
-		letter-spacing: 0.1em;
-		color: var(--ink-2);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--gold-hi);
 	}
-	.xp-next {
+	.pc-xp {
 		font-size: 10px;
 		font-weight: 600;
-		letter-spacing: 0.02em;
-		color: var(--ink-3);
-		text-transform: uppercase;
+		color: #c3bb98;
+	}
+	.post-streak {
+		flex: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 3px;
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+	}
+	.ps-n {
+		width: 46px;
+		height: 46px;
+		border-radius: 50%;
+		background: radial-gradient(circle at 35% 28%, #ffd7a8, #c9522f 70%, #8d3a17);
+		border: 2px solid var(--orange-edge);
+		box-shadow:
+			0 0 18px rgba(201, 82, 47, 0.55),
+			inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 18px;
+		color: #fff5e2;
+	}
+	.ps-k {
+		font-size: 7px;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		color: #f0c0aa;
+	}
+	.post-xp {
+		position: relative;
+		margin-top: 13px;
+	}
+	.post-xp-line {
+		display: flex;
+		justify-content: space-between;
+		gap: 8px;
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		color: #c3bb98;
+		margin-bottom: 5px;
+	}
+	/* the belt reads as rounds in a dark magazine */
+	.post-belt {
+		display: flex;
+		gap: 3px;
+		height: 13px;
+		padding: 3px;
+		border-radius: 8px;
+		background: rgba(0, 0, 0, 0.35);
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+	}
+	.pb-seg {
+		flex: 1;
+		border-radius: 2px;
+		background: rgba(255, 255, 255, 0.14);
+	}
+	.pb-seg.on {
+		background: var(--grad-brass);
+		transform-origin: left;
 	}
 
 	/* alarm strip */
@@ -497,16 +646,170 @@
 		display: flex;
 		align-items: center;
 		gap: 9px;
-		background: linear-gradient(#f7ddd4, #f2cec2);
+		background: linear-gradient(#f7ddd4, #f0cabd);
 		border: var(--bw) solid var(--red);
 		border-radius: var(--r-lg);
 		padding: 10px 12px;
-		font-size: 12px;
-		font-weight: 700;
-		color: var(--red-deep);
 		text-align: left;
 		cursor: pointer;
 		box-shadow: 0 3px 0 var(--red-edge), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+	}
+	.risk-text {
+		flex: 1;
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--red-deep);
+	}
+	.risk-cta {
+		flex: none;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 10px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #fff;
+		background: var(--grad-rust);
+		padding: 6px 10px;
+		border-radius: 6px;
+		box-shadow: 0 2px 0 var(--orange-edge);
+	}
+
+	/* ---------- HERO: next mission (4a) ---------- */
+	.mission {
+		position: relative;
+		display: block;
+		width: 100%;
+		padding: 0;
+		text-align: left;
+		border: var(--bw) solid var(--line);
+		border-radius: 16px;
+		overflow: hidden;
+		cursor: pointer;
+		box-shadow:
+			0 5px 0 var(--edge-deep),
+			0 14px 24px rgba(60, 50, 25, 0.2);
+		transition: transform var(--t-fast) var(--ease);
+	}
+	.mission:active {
+		transform: translateY(2px);
+	}
+	.mission-field {
+		position: relative;
+		height: 112px;
+		background: radial-gradient(80% 90% at 25% 20%, #e9dfbd, #cfc49f 70%, #bcb086);
+	}
+	:global([data-theme='dark']) .mission-field {
+		background: radial-gradient(80% 90% at 25% 20%, #35341f, #262517 70%, #1d1c12);
+	}
+	.mf-grid {
+		position: absolute;
+		inset: 0;
+		background-image:
+			repeating-linear-gradient(0deg, rgba(120, 105, 70, 0.12) 0 1px, transparent 1px 18px),
+			repeating-linear-gradient(90deg, rgba(120, 105, 70, 0.12) 0 1px, transparent 1px 18px);
+	}
+	.mf-mass {
+		position: absolute;
+		left: -20px;
+		bottom: -40px;
+		width: 200px;
+		height: 120px;
+		border-radius: 50%;
+		background: rgba(127, 145, 83, 0.26);
+	}
+	.mf-line {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 34px;
+		height: 2px;
+		background: repeating-linear-gradient(90deg, var(--orange-deep) 0 8px, transparent 8px 15px);
+	}
+	.mf-tag {
+		position: absolute;
+		left: 14px;
+		top: 12px;
+		font-size: 8px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		color: var(--orange-deep);
+	}
+	.mf-xp {
+		position: absolute;
+		right: 12px;
+		top: 12px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 10px;
+		letter-spacing: 0.12em;
+		color: #3b2f11;
+		background: var(--grad-gold);
+		padding: 5px 9px;
+		border-radius: 6px;
+		box-shadow: 0 2px 0 var(--gold-edge);
+	}
+	.mf-disc {
+		position: absolute;
+		left: 16px;
+		top: 52px;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		background: var(--grad-brass);
+		border: 2.5px solid var(--brass-dark);
+		box-shadow:
+			0 4px 0 var(--brass-dark),
+			0 0 18px rgba(240, 207, 130, 0.6);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 15px;
+		color: #3b2f11;
+	}
+	.mission-body {
+		padding: 12px 13px 13px;
+		background: var(--grad-plate);
+		display: flex;
+		align-items: center;
+		gap: 11px;
+	}
+	.mb-text {
+		flex: 1;
+		min-width: 0;
+	}
+	.mb-k {
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		color: var(--ink-3);
+	}
+	.mb-title {
+		font-size: 21px;
+		letter-spacing: 0.05em;
+		margin-top: 3px;
+	}
+	.mb-sub {
+		font-size: 11px;
+		font-weight: 500;
+		color: var(--ink-3);
+		margin-top: 3px;
+	}
+	.mb-cta {
+		flex: none;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 13px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #fff;
+		background: var(--grad-rust);
+		padding: 12px 15px;
+		border-radius: 11px;
+		box-shadow:
+			0 4px 0 var(--orange-edge),
+			inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.risk-dot {
 		flex: none;
@@ -872,9 +1175,27 @@
 			animation: sheen 2.6s ease-in-out infinite;
 		}
 		/* rounds seat into the belt, left to right */
-		.hud :global(.segbar .seg.on),
+		.post-belt .pb-seg.on {
+			animation: barGrow 0.5s both ease-out;
+			animation-delay: calc(0.05s + var(--k, 0) * 80ms);
+		}
 		.campaign :global(.segbar .seg.on) {
 			animation: seat 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+		}
+		.post-rays {
+			animation: raySpin 26s linear infinite;
+		}
+		.ps-n {
+			animation: flameFlicker 2.4s ease-in-out infinite;
+		}
+		.mf-disc {
+			animation: floatBob 3.4s ease-in-out infinite;
+		}
+		.mission {
+			animation: rise 0.45s 0.06s both;
+		}
+		.risk-bar {
+			animation: rise 0.4s both;
 		}
 		/* momentum bars grow up on load, left→right */
 		.mo-bar {
@@ -882,8 +1203,8 @@
 			animation: grow 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) both;
 			animation-delay: calc(0.25s + var(--j, 0) * 45ms);
 		}
-		/* the brass plate catches the light once on arrival */
-		.rank-plate {
+		/* the brass grade disc catches the light once on arrival */
+		.xpring-in {
 			animation: gleam 1.6s ease-out 0.3s 1;
 		}
 		/* undone objective's reward plaque pulses to draw the eye */

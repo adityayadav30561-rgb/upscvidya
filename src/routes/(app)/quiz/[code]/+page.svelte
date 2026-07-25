@@ -33,6 +33,7 @@
 	import Chip from '$lib/components/Chip.svelte';
 	import ProgressRing from '$lib/components/ProgressRing.svelte';
 	import RankUp from '$lib/components/RankUp.svelte';
+	import TerritoryCaptured from '$lib/components/TerritoryCaptured.svelte';
 	import type { RankCode } from '$lib/ranks';
 
 	const code = $derived(page.params.code ?? '');
@@ -164,6 +165,31 @@
 
 	let rankUpTo = $state<RankCode | null>(null);
 
+	/* ---- conquest ceremony inputs (4d) ---- */
+	/** longest unbroken run of correct answers in this attempt */
+	const bestRun = $derived.by(() => {
+		if (!summary) return 0;
+		let run = 0;
+		let best = 0;
+		for (const r of summary.review) {
+			if (r.is_correct) best = Math.max(best, ++run);
+			else run = 0;
+		}
+		return best;
+	});
+	/** this unit's 1-based position inside its sector, and the one after it */
+	const sectorUnits = $derived(
+		unit ? UNITS.filter((u) => u.region === unit.region).sort((a, b) => a.order - b.order) : []
+	);
+	const unitIndex = $derived(
+		unit ? sectorUnits.findIndex((u) => u.code === unit.code) + 1 || null : null
+	);
+	const nextFront = $derived.by(() => {
+		if (!unit || unitIndex === null) return null;
+		const n = sectorUnits[unitIndex]; // unitIndex is 1-based → this is the next one
+		return n ? { label: n.label, index: unitIndex + 1, code: n.code } : null;
+	});
+
 	async function finish() {
 		if (!session || submitting) return;
 		submitting = true;
@@ -236,7 +262,11 @@
 <svelte:head><title>{unit ? `${unit.title} — Quiz` : 'Quiz'} — UPSCVidya</title></svelte:head>
 
 {#if rankUpTo}
-	<RankUp to={rankUpTo} onclose={() => (rankUpTo = null)} />
+	<RankUp
+		to={rankUpTo}
+		from={(summary?.rank_up?.from ?? null) as RankCode | null}
+		onclose={() => (rankUpTo = null)}
+	/>
 {/if}
 
 <div class="quiz">
@@ -339,7 +369,23 @@
 	{:else if phase === 'results' && summary}
 		{@const s = summary}
 		<div class="results">
-			<div class="score-card" class:won={s.pass} class:goldcard={s.gold}>
+			<!-- 4d: a conquest gets the full ceremony instead of a score card -->
+			{#if s.pass && s.kind === 'topic_quiz'}
+				<TerritoryCaptured
+					title={unit?.label ?? s.code}
+					correct={s.correct}
+					total={s.total}
+					scorePct={s.score_pct}
+					xpAwarded={s.xp_awarded}
+					gold={s.gold}
+					bestRun={bestRun}
+					index={unitIndex}
+					next={nextFront}
+					onAdvance={() => goto(nextFront ? `/topic/${nextFront.code}` : '/map')}
+					onReview={() => (phase = 'review')}
+				/>
+			{/if}
+			<div class="score-card" class:won={s.pass} class:goldcard={s.gold} class:secondary={s.pass && s.kind === 'topic_quiz'}>
 				{#if s.pass}
 					<span class="confetti c1"></span><span class="confetti c2"></span><span class="confetti c3"></span>
 				{/if}
@@ -728,6 +774,17 @@
 	}
 	.score-card.goldcard {
 		background: linear-gradient(180deg, #f7ecc8, var(--bg-2));
+	}
+	/* when the 4d ceremony leads, the old score card becomes a quiet appendix */
+	.score-card.secondary {
+		padding: 16px;
+		border-width: var(--bw);
+		border-color: var(--line-soft);
+		background: var(--grad-plate);
+		box-shadow: var(--emboss);
+	}
+	.score-card.secondary :global(.confetti) {
+		display: none;
 	}
 	.score-chips {
 		display: flex;
