@@ -223,8 +223,24 @@
 					{#if view.bookRef}<span class="rchip khaki">{view.bookRef}</span>{/if}
 					<span class="rchip">{unit?.kind === 'appendix' ? 'Drill bank' : 'Chapter'}</span>
 				</div>
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -- html is DOMPurify-sanitised in renderNotes() -->
-				<article class="notes">{@html html}</article>
+
+				<div class="dossier-sheet">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -- html is DOMPurify-sanitised in renderNotes() -->
+					<article class="notes">{@html html}</article>
+				</div>
+
+				{#if !view.teaser}
+					<div class="stat-tiles">
+						<div class="stile">
+							<div class="st-k">READ TIME</div>
+							<div class="st-v">{view.minutes}<span class="st-u"> MIN</span></div>
+						</div>
+						<div class="stile">
+							<div class="st-k">ON CAPTURE</div>
+							<div class="st-v rust">+100<span class="st-u"> XP</span></div>
+						</div>
+					</div>
+				{/if}
 
 				{#if view.teaser}
 					<div class="paywall">
@@ -245,7 +261,7 @@
 		{#if !view.teaser}
 			<div class="cta-wrap">
 				<button class="cta" class:pulse={ctaPulsed} data-tour="reader-cta" onclick={attemptQuiz}>
-					Attempt quiz ({view.quizN} questions) →
+					Attempt quiz · {view.quizN} questions →
 				</button>
 			</div>
 		{/if}
@@ -326,10 +342,15 @@
 		--ink-2: #5f5333;
 	}
 
+	/* FIELD DOSSIER header — dark olive command band (chrome stays olive in
+	   every reading theme; light comes from above) */
 	.topbar {
 		flex: none;
-		background: var(--bg-0);
-		border-bottom: var(--bw) solid var(--line);
+		background: linear-gradient(#3d4429, #2c3120);
+		box-shadow:
+			0 4px 0 #1f2313,
+			0 10px 18px rgba(30, 26, 12, 0.3);
+		color: #f2ecd6;
 		transition: transform var(--t-base) var(--ease);
 	}
 	.topbar.hidden {
@@ -338,17 +359,18 @@
 	.topbar-row {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-		padding: 12px 16px 10px;
+		gap: 11px;
+		padding: 12px 14px 11px;
 	}
 	.icon-btn {
 		flex: none;
 		width: 34px;
 		height: 34px;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		background: var(--bg-2);
-		color: var(--ink-1);
+		border: 1.5px solid rgba(255, 255, 255, 0.25);
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.12);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+		color: #f2ecd6;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -356,45 +378,62 @@
 	}
 	.icon-btn.aa {
 		font-family: var(--font-read);
-		font-weight: 600;
-		font-size: 14px;
+		font-weight: 700;
+		font-size: 13px;
 	}
 	.crumb {
 		flex: 1;
 		min-width: 0;
 	}
 	.ctitle {
-		font-weight: 900;
-		font-size: 13px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 16px;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 	.csub {
-		font-size: 10.5px;
-		font-weight: 700;
-		color: var(--ink-3);
+		font-size: 9px;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #c3bb98;
+		margin-top: 2px;
 	}
 	.offline-chip {
 		flex: none;
 		display: inline-flex;
 		align-items: center;
-		gap: 5px;
-		font-size: 10px;
-		font-weight: 900;
-		color: var(--green-deep);
+		gap: 4px;
+		font-size: 8px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: #d8ecb4;
+		background: rgba(127, 145, 83, 0.35);
+		border: 1px solid rgba(180, 205, 130, 0.45);
+		border-radius: 6px;
+		padding: 5px 7px;
 	}
+	.offline-chip :global(svg circle) {
+		fill: rgba(180, 205, 130, 0.25);
+		stroke: #d8ecb4;
+	}
+	.offline-chip :global(svg path) {
+		stroke: #d8ecb4;
+	}
+	/* brass progress rail — recessed track, warm fill */
 	.progress-track {
-		height: 6px;
-		margin: 0 16px 8px;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		background: var(--bg-2);
+		height: 7px;
+		background: #ddd3b1;
+		box-shadow: inset 0 1px 3px rgba(80, 68, 35, 0.4);
 		overflow: hidden;
 	}
 	.progress-fill {
 		height: 100%;
-		background: var(--blue);
+		background: linear-gradient(90deg, #b5883a, #f0cf82);
 		transition: width 80ms linear;
 	}
 
@@ -413,18 +452,67 @@
 		display: flex;
 		gap: 8px;
 	}
+	/* raised brass pills */
 	.rchip {
 		font-size: 10px;
-		font-weight: 900;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		padding: 3px 10px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #5c5537;
+		background: linear-gradient(#f6efd9, #e6ddbf);
+		border: 1.5px solid #b3aa88;
+		border-radius: 20px;
+		padding: 5px 10px;
+		box-shadow: 0 2px 0 #c8bd99;
 	}
 	.rchip.khaki {
-		background: var(--khaki-tint);
-		color: var(--khaki-deep);
-		border-color: var(--khaki-deep);
+		color: #8d6a24;
+	}
+	/* raised cream dossier sheet wrapping the notes */
+	.dossier-sheet {
+		border: 1.5px solid #4f4a2e;
+		border-radius: 14px;
+		background: linear-gradient(var(--bg-raise, #fdf8ea), var(--bg-2, #f4ecd6));
+		box-shadow:
+			0 4px 0 #c2b795,
+			0 12px 20px rgba(60, 50, 25, 0.16),
+			inset 0 1px 0 #fff;
+		padding: 15px 15px 16px;
+	}
+	.reader-sepia .dossier-sheet {
+		background: linear-gradient(#f7eed6, #efe2c2);
+	}
+	/* stat tiles */
+	.stat-tiles {
+		display: flex;
+		gap: 9px;
+	}
+	.stile {
+		flex: 1;
+		border: 1.5px solid #6d6440;
+		border-radius: 11px;
+		background: linear-gradient(#fdf8ea, #f2ead3);
+		box-shadow: 0 3px 0 #c8bd99;
+		padding: 9px 11px;
+	}
+	.st-k {
+		font-size: 8px;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		color: #8b8158;
+	}
+	.st-v {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 15px;
+		color: #2f2a1c;
+		margin-top: 2px;
+	}
+	.st-v.rust {
+		color: #a04a2c;
+	}
+	.st-u {
+		font-size: 10px;
 	}
 
 	/* notes typography — Source Serif at reader sizes, one accent per block */
@@ -435,22 +523,43 @@
 		font-family: var(--font-read);
 	}
 	.notes :global(h1),
-	.notes :global(h2) {
+	.notes :global(h2),
+	.notes :global(h3) {
 		font-family: var(--font-display);
 		text-transform: uppercase;
-		line-height: 1.3;
-		margin: 18px 0 4px;
+		letter-spacing: 0.06em;
+		line-height: 1.2;
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		color: #5c5537;
+	}
+	/* accent bar to the left of each heading (rust for the lead title, brass under) */
+	.notes :global(h1)::before,
+	.notes :global(h2)::before,
+	.notes :global(h3)::before {
+		content: '';
+		flex: none;
+		width: 5px;
+		border-radius: 3px;
+		align-self: stretch;
+		background: #b5883a;
 	}
 	.notes :global(h1) {
-		font-size: 1.35em;
+		font-size: 1.3em;
+		margin: 4px 0 6px;
+		color: #2f2a1c;
+	}
+	.notes :global(h1)::before {
+		background: linear-gradient(#c9622f, #96401d);
 	}
 	.notes :global(h2) {
-		font-size: 1.15em;
+		font-size: 1.1em;
+		margin: 18px 0 6px;
 	}
 	.notes :global(h3) {
-		font-size: 1.02em;
-		margin: 14px 0 2px;
-		font-weight: 900;
+		font-size: 0.98em;
+		margin: 14px 0 4px;
 	}
 	.notes :global(p),
 	.notes :global(li) {
@@ -585,23 +694,34 @@
 		background: linear-gradient(180deg, transparent, var(--bg-0) 40%);
 		margin-top: -8px;
 	}
+	/* raised rust ATTACK bar */
 	.cta {
 		width: 100%;
-		font-family: var(--font-ui);
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 15px;
-		background: var(--orange);
-		color: var(--ink-1);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		padding: 14px;
-		min-height: 48px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #fff;
+		background: linear-gradient(#c9622f, #96401d);
+		border: 1.5px solid #742d13;
+		border-radius: 16px;
+		padding: 15px;
+		min-height: 50px;
 		cursor: pointer;
-		box-shadow: var(--shadow-2);
-		transition: transform var(--t-fast) var(--ease);
+		box-shadow:
+			0 5px 0 #742d13,
+			0 14px 22px rgba(90, 40, 15, 0.32),
+			inset 0 1px 0 rgba(255, 255, 255, 0.35);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
 	}
-	.cta:hover {
-		transform: translate(-1px, -1px);
+	.cta:active {
+		transform: translateY(3px);
+		box-shadow:
+			0 2px 0 #742d13,
+			inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.cta.pulse {
 		animation: cta-pulse 600ms var(--ease-pop);
