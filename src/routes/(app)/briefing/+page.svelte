@@ -118,7 +118,7 @@
 <div class="brief">
 	<header class="bhead">
 		<div class="bhead-row">
-			<h1>Daily Briefing</h1>
+			<h1 class="stencil">Daily Briefing</h1>
 			<button class="monthly-btn" onclick={() => goto('/briefing/monthly')}>
 				<svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" /><path d="M3 8 H17 M7 2 V5 M13 2 V5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
 				Monthly CA
@@ -168,9 +168,28 @@
 			</div>
 		</div>
 	{:else if !brief || brief.items.length === 0}
-		<div class="empty">
-			No briefing published for this date yet. Items land at 07:00 IST after review.
+		<!-- 3e: the dispatch hasn't landed — a waiting sheet, not a grey box -->
+		<div class="nodispatch">
+			<div class="nd-clock">07</div>
+			<div class="nd-title stencil">Dispatch not in yet</div>
+			<p class="nd-body">
+				{#if date === istToday()}
+					Today's briefing lands at <strong>07:00 IST</strong> after review. Read it to bank
+					<strong>+30 XP</strong> and hold your streak.
+				{:else}
+					No dispatch was filed for this date. Briefings land at <strong>07:00 IST</strong> after review.
+				{/if}
+			</p>
+			<button class="nd-btn" onclick={() => pickDate(strip[1])}>Read yesterday's dispatch</button>
 		</div>
+		<button class="dossier-row" onclick={() => goto('/briefing/monthly')}>
+			<span class="row-ico brassico">CA</span>
+			<span class="row-body">
+				<span class="row-t">Monthly CA — {date.slice(0, 7)}</span>
+				<span class="row-s">Every dispatch this month, as one practice set</span>
+			</span>
+			<span class="chev"></span>
+		</button>
 	{:else}
 		{#if categories.length > 2}
 			<div class="cats">
@@ -261,44 +280,56 @@
 	}
 	h1 {
 		margin: 0;
-		font-family: var(--font-display);
-		font-size: 26px;
-		text-transform: uppercase;
+		font-size: 30px;
 	}
 	.bhead-row {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: space-between;
 		gap: 10px;
 	}
+	/* brass pressed tab — the month's compilation is the reward route */
 	.monthly-btn {
 		flex: none;
 		display: inline-flex;
 		align-items: center;
 		gap: 5px;
-		font-family: var(--font-ui);
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 11px;
-		color: var(--blue-deep);
-		background: var(--blue-tint);
-		border: var(--bw) solid var(--blue-deep);
-		border-radius: var(--r-full);
-		padding: 6px 12px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #3b2f11;
+		background: var(--grad-gold);
+		border: var(--bw) solid var(--gold-edge);
+		border-radius: 8px;
+		padding: 7px 11px;
 		cursor: pointer;
+		box-shadow: 0 3px 0 var(--gold-edge), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.monthly-btn:active {
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 var(--gold-edge), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	}
 	.bsub {
-		margin: 2px 0 0;
-		font-size: 11.5px;
-		font-weight: 700;
+		margin: 3px 0 0;
+		font-size: 10px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
 		color: var(--ink-3);
 	}
 	.hero {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 8px;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
 		padding: 12px;
 	}
 	.hero-stat {
@@ -306,13 +337,17 @@
 	}
 	.hs-v {
 		font-family: var(--font-display);
-		font-size: 17px;
+		font-weight: 800;
+		font-size: 18px;
+		line-height: 1;
+		color: var(--ink-1);
 	}
 	.hs-k {
-		font-size: 8.5px;
-		font-weight: 900;
+		font-size: 8px;
+		font-weight: 700;
 		color: var(--ink-3);
-		letter-spacing: 0.05em;
+		letter-spacing: 0.14em;
+		margin-top: 3px;
 	}
 	.strip {
 		display: flex;
@@ -324,37 +359,53 @@
 	.strip::-webkit-scrollbar {
 		display: none;
 	}
+	/* each day is a filing tab; the selected one is stamped dark */
 	.day {
 		flex: none;
-		min-width: 46px;
+		width: 52px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 2px;
-		background: var(--bg-2);
+		background: linear-gradient(#fdf8ea, #efe6cd);
 		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-md);
-		padding: 7px 6px;
+		border-radius: 10px;
+		padding: 8px 0;
 		cursor: pointer;
 		font-family: var(--font-ui);
+		box-shadow: 0 3px 0 var(--edge);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.day:active {
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 var(--edge);
 	}
 	.day.on {
-		background: var(--blue);
-		border-color: var(--line);
+		background: linear-gradient(#3d4429, #2c3120);
+		border-color: #21260f;
+		box-shadow: 0 3px 0 #21260f;
 	}
 	.d-name {
-		font-size: 8.5px;
-		font-weight: 900;
+		font-size: 8px;
+		font-weight: 700;
+		letter-spacing: 0.12em;
 		color: var(--ink-3);
 	}
 	.d-num {
 		font-family: var(--font-display);
-		font-size: 14px;
-		color: var(--ink-1);
+		font-weight: 800;
+		font-size: 18px;
+		line-height: 1;
+		color: var(--ink-2);
+		margin-top: 2px;
 	}
-	.day.on .d-name,
+	.day.on .d-name {
+		color: var(--gold-hi);
+	}
 	.day.on .d-num {
-		color: #fff;
+		color: #f2ecd6;
 	}
 	.cats {
 		display: flex;
@@ -364,25 +415,32 @@
 	}
 	.cat {
 		flex: none;
-		font-family: var(--font-ui);
-		font-size: 10.5px;
-		font-weight: 900;
-		background: var(--bg-2);
+		font-family: var(--font-cond);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		background: linear-gradient(#f6efd9, #e6ddbf);
 		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-full);
-		padding: 5px 11px;
+		border-radius: 20px;
+		padding: 6px 11px;
 		cursor: pointer;
-		color: var(--ink-3);
+		color: var(--ink-2);
+		box-shadow: 0 2px 0 var(--edge);
 	}
 	.cat.on {
-		background: var(--khaki-tint);
-		border-color: var(--khaki-deep);
-		color: var(--khaki-deep);
+		color: #fff;
+		background: var(--grad-olive);
+		border-color: var(--green-edge);
+		box-shadow: 0 2px 0 var(--green-edge);
 	}
 	.item {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
+		box-shadow:
+			0 4px 0 var(--edge),
+			0 12px 22px rgba(60, 50, 25, 0.16),
+			var(--emboss);
 		padding: 15px;
 		display: flex;
 		flex-direction: column;
@@ -397,22 +455,29 @@
 		gap: 8px;
 	}
 	.cat-chip {
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 9px;
-		font-weight: 900;
-		background: var(--orange-tint);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-sm);
-		padding: 2px 8px;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		background: var(--khaki);
+		color: var(--ink-inverse);
+		border-radius: 4px;
+		box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+		padding: 3px 8px;
 	}
 	.src {
-		font-size: 10px;
+		font-family: var(--font-cond);
+		font-size: 11px;
 		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
 		color: var(--ink-3);
 	}
 	.i-head {
 		margin: 0;
 		font-size: 15px;
-		font-weight: 900;
+		font-weight: 700;
 		line-height: 1.35;
 	}
 	.i-sum {
@@ -422,13 +487,15 @@
 		line-height: 1.6;
 		color: var(--ink-2);
 	}
+	/* the exam angle is the field note — recessed, brass spine */
 	.angle {
 		font-size: 12px;
 		line-height: 1.5;
-		background: var(--blue-tint);
-		border: var(--bw) solid var(--blue-deep);
+		background: var(--bg-1);
+		border-left: 4px solid var(--gold-lo);
 		border-radius: var(--r-md);
-		padding: 9px 12px;
+		box-shadow: var(--recess-in);
+		padding: 10px 12px;
 	}
 	.chips {
 		display: flex;
@@ -436,13 +503,15 @@
 		flex-wrap: wrap;
 	}
 	.tchip {
-		font-size: 9.5px;
-		font-weight: 900;
-		background: var(--khaki-tint);
-		color: var(--khaki-deep);
-		border: var(--bw) solid var(--khaki-deep);
-		border-radius: var(--r-full);
-		padding: 2px 8px;
+		font-family: var(--font-cond);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		background: #e6ddbf;
+		color: var(--ink-1);
+		border: 1px solid var(--line-soft);
+		border-radius: 5px;
+		padding: 3px 8px;
 		text-decoration: none;
 	}
 	.i-actions {
@@ -452,22 +521,40 @@
 	}
 	.mini,
 	.mark {
-		font-family: var(--font-ui);
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 11.5px;
-		border-radius: var(--r-full);
-		padding: 8px 14px;
-		min-height: 38px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		border: none;
+		border-radius: var(--r-md);
+		padding: 9px 14px;
+		min-height: 40px;
 		cursor: pointer;
-		border: var(--bw) solid var(--line);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.mini:active,
+	.mark:active {
+		transform: translateY(2px);
 	}
 	.mini {
-		background: var(--orange);
-		color: var(--ink-1);
+		background: var(--grad-rust);
+		color: #fff;
+		box-shadow: 0 3px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+	}
+	.mini:active {
+		box-shadow: 0 1px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.mark {
-		background: var(--bg-0);
+		background: linear-gradient(#f6efd9, #e6ddbf);
+		border: var(--bw) solid var(--line-soft);
 		color: var(--ink-2);
+		box-shadow: 0 3px 0 var(--edge);
+	}
+	.mark:active {
+		box-shadow: 0 1px 0 var(--edge);
 	}
 	.quiz {
 		border-top: var(--bw) dashed var(--line-soft);
@@ -483,12 +570,16 @@
 	}
 	.q-title {
 		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 12px;
+		letter-spacing: var(--track-display);
 		text-transform: uppercase;
 	}
 	.q-count {
-		font-size: 10px;
-		font-weight: 900;
+		font-family: var(--font-cond);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
 		color: var(--ink-3);
 	}
 	.q-stem {
@@ -502,15 +593,17 @@
 		gap: 6px;
 	}
 	.q-exp {
-		background: var(--bg-raise);
-		border: var(--bw) solid var(--line-soft);
+		background: var(--bg-1);
+		border-left: 4px solid var(--green-deep);
 		border-radius: var(--r-md);
+		box-shadow: var(--recess-in);
 		padding: 10px 12px;
 	}
 	.exp-label {
-		font-size: 9.5px;
-		font-weight: 900;
-		letter-spacing: 0.08em;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 10px;
+		letter-spacing: 0.16em;
 		color: var(--green-deep);
 	}
 	.q-exp p {
@@ -523,37 +616,54 @@
 	.qcheck,
 	.qnext {
 		align-self: flex-start;
-		font-family: var(--font-ui);
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 12px;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		padding: 8px 16px;
-		min-height: 38px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #fff;
+		border: none;
+		border-radius: var(--r-md);
+		padding: 9px 16px;
+		min-height: 40px;
 		cursor: pointer;
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.qcheck:not(:disabled):active,
+	.qnext:active {
+		transform: translateY(2px);
 	}
 	.qcheck {
-		background: var(--orange);
-		color: var(--ink-1);
+		background: var(--grad-rust);
+		box-shadow: 0 3px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+	}
+	.qcheck:not(:disabled):active {
+		box-shadow: 0 1px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.qcheck:disabled {
 		opacity: 0.5;
 		cursor: default;
 	}
 	.qnext {
-		background: var(--green);
-		color: var(--ink-1);
+		background: var(--grad-olive);
+		box-shadow: 0 3px 0 var(--green-edge), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+	}
+	.qnext:active {
+		box-shadow: 0 1px 0 var(--green-edge), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 	}
 	.q-note {
 		margin: 0;
-		font-size: 10px;
-		font-weight: 700;
+		font-size: 10.5px;
+		font-weight: 500;
 		color: var(--ink-3);
 	}
 	.paywall {
-		background: var(--khaki-tint);
-		border: var(--bw-bold) solid var(--khaki-deep);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--gold-edge);
 		border-radius: var(--r-xl);
+		box-shadow: 0 4px 0 #cbb079, 0 12px 22px rgba(60, 50, 25, 0.18), var(--emboss);
 		padding: 28px 20px;
 		display: flex;
 		flex-direction: column;
@@ -566,7 +676,9 @@
 	}
 	.pw-title {
 		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 17px;
+		letter-spacing: var(--track-display);
 		text-transform: uppercase;
 	}
 	.paywall p {
@@ -580,13 +692,74 @@
 		gap: 10px;
 		margin-top: 4px;
 	}
-	.empty {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-lg);
-		padding: 20px;
+	/* ── 3e: dispatch hasn't landed ───────────────────────────────── */
+	.nodispatch {
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
+		box-shadow:
+			0 4px 0 var(--edge),
+			0 12px 22px rgba(60, 50, 25, 0.18),
+			var(--emboss);
+		padding: 20px 18px;
 		text-align: center;
-		font-size: 12.5px;
+	}
+	/* the hour the dispatch is due, cast as a dial */
+	.nd-clock {
+		width: 60px;
+		height: 60px;
+		margin: 0 auto;
+		border-radius: 50%;
+		background: linear-gradient(#e4dbbd, #cfc4a0);
+		border: 2px solid var(--ink-3);
+		box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5), 0 3px 0 var(--line-soft);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 20px;
 		color: var(--ink-3);
+	}
+	.nd-title {
+		margin-top: 12px;
+		font-size: 18px;
+		letter-spacing: 0.09em;
+	}
+	.nd-body {
+		margin: 5px 0 0;
+		font-size: 13px;
+		line-height: 1.5;
+		font-weight: 500;
+		color: var(--ink-3);
+	}
+	.nd-btn {
+		width: 100%;
+		margin-top: 14px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 12px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--ink-2);
+		background: linear-gradient(#f6efd9, #e6ddbf);
+		border: var(--bw) solid var(--line-soft);
+		border-radius: 12px;
+		padding: 12px 0;
+		cursor: pointer;
+		box-shadow: 0 4px 0 var(--edge);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.nd-btn:active {
+		transform: translateY(2px);
+		box-shadow: 0 2px 0 var(--edge);
+	}
+	/* brass icon tile on the monthly-CA row (beats the global .row-ico) */
+	.dossier-row .brassico {
+		background: var(--grad-gold);
+		border-color: var(--gold-edge);
+		color: #3b2f11;
 	}
 </style>

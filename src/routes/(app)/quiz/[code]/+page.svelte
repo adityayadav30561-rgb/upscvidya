@@ -286,13 +286,13 @@
 					<svg width="12" height="12" viewBox="0 0 10 10"><path d="M2 2 L8 8 M8 2 L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
 				</button>
 				<div class="qmeta">
-					<div class="qtitle">{unit?.title ?? code}</div>
+					<div class="qtitle stencil">{unit?.title ?? code}</div>
 					<div class="qsub">
 						{session.kind === 'drill' ? 'Drill · 20s/question' : 'Topic quiz · untimed · pass ≥70%'}
 					</div>
 				</div>
 				{#if session.timed}
-					<span class="clock" class:warn={secLeft <= 5}>⏱ {drillClock}</span>
+					<span class="clock" class:warn={secLeft <= 5}>{drillClock}</span>
 				{:else}
 					<span class="count">{current + 1}<span class="of">/{session.questions.length}</span></span>
 				{/if}
@@ -302,6 +302,7 @@
 					<span class="dot {d}" class:flag={session.questions[i].flagged}></span>
 				{/each}
 			</div>
+			<span class="rail"></span>
 		</div>
 
 		<!-- question (slides in as you advance) -->
@@ -310,7 +311,7 @@
 			<div class="qtop">
 				<span class="tier-tag">TIER {q.tier}</span>
 				<button class="flag-btn" class:on={q.flagged} onclick={toggleFlag} aria-pressed={q.flagged}>
-					<svg width="11" height="12" viewBox="0 0 12 14"><path d="M2 1 V13 M2 1 H10 L8 4 L10 7 H2" fill={q.flagged ? 'var(--blue)' : 'none'} stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg>
+					<svg width="11" height="12" viewBox="0 0 12 14"><path d="M2 1 V13 M2 1 H10 L8 4 L10 7 H2" fill={q.flagged ? 'currentColor' : 'none'} stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg>
 					FLAG
 				</button>
 			</div>
@@ -442,14 +443,17 @@
 		</div>
 	{:else if phase === 'review' && summary}
 		<div class="review">
-			<div class="rvhead">
-				<button class="icon-btn" aria-label="back to results" onclick={() => (phase = 'results')}>
-					<svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-				</button>
-				<div>
-					<div class="qtitle">Answer review</div>
-					<div class="qsub">{unit?.title ?? summary.code} · {summary.correct}/{summary.total}</div>
+			<div class="qhead rvhead">
+				<div class="qrow">
+					<button class="icon-btn" aria-label="back to results" onclick={() => (phase = 'results')}>
+						<svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+					</button>
+					<div class="qmeta">
+						<div class="qtitle stencil">Answer review</div>
+						<div class="qsub">{unit?.title ?? summary.code} · {summary.correct}/{summary.total}</div>
+					</div>
 				</div>
+				<span class="rail"></span>
 			</div>
 			{#each summary.review as r (r.qid)}
 				<div class="rv-item" class:wrong={r.is_correct === false}>
@@ -530,11 +534,28 @@
 		}
 	}
 
-	/* header */
+	/* ── header: dark olive command band + brass rail ─────────────── */
 	.qhead {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: 9px;
+		padding: 12px 13px 0;
+		border-radius: var(--r-lg);
+		background: linear-gradient(#3d4429, #2c3120);
+		box-shadow:
+			0 4px 0 #21261a,
+			0 12px 20px rgba(45, 38, 18, 0.28),
+			inset 0 1px 0 rgba(255, 255, 255, 0.16);
+		overflow: hidden;
+	}
+	.rvhead {
+		gap: 12px;
+	}
+	.rail {
+		display: block;
+		height: 3px;
+		margin: 0 -13px;
+		background: linear-gradient(90deg, #b5883a, #f0cf82);
 	}
 	.qrow {
 		display: flex;
@@ -543,53 +564,68 @@
 	}
 	.icon-btn {
 		flex: none;
-		width: 34px;
-		height: 34px;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		background: var(--bg-2);
-		color: var(--ink-1);
+		width: 32px;
+		height: 32px;
+		border: 1.5px solid rgba(255, 255, 255, 0.22);
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.3);
+		color: #e8e2c8;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+		transition: transform var(--t-fast) var(--ease);
+	}
+	.icon-btn:active {
+		transform: translateY(1px);
 	}
 	.qmeta {
 		flex: 1;
 		min-width: 0;
 	}
 	.qtitle {
-		font-weight: 900;
-		font-size: 13px;
+		font-size: 14.5px;
+		color: #f2ecd6;
+		text-shadow: none;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 	.qsub {
-		font-size: 10.5px;
+		font-family: var(--font-cond);
+		font-size: 11px;
 		font-weight: 700;
-		color: var(--ink-3);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #b3b98d;
 	}
 	.count {
 		font-family: var(--font-display);
-		font-size: 14px;
+		font-weight: 800;
+		font-size: 18px;
+		color: var(--gold-hi);
+		line-height: 1;
 	}
 	.of {
-		font-size: 10px;
-		color: var(--ink-3);
+		font-size: 11px;
+		color: #97a075;
 	}
 	.clock {
 		font-family: var(--font-display);
-		font-size: 14px;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		padding: 5px 12px;
+		font-weight: 800;
+		font-size: 15px;
+		color: #f5e9c8;
+		background: rgba(0, 0, 0, 0.34);
+		border: 1.5px solid rgba(255, 255, 255, 0.16);
+		border-radius: 6px;
+		padding: 4px 10px;
+		box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 	}
 	.clock.warn {
-		background: var(--red-tint);
-		border-color: var(--red-deep);
-		color: var(--red-deep);
+		color: #ffdccf;
+		border-color: var(--red);
+		background: rgba(150, 45, 25, 0.5);
 		animation: pulse 1s ease-in-out infinite;
 	}
 	@keyframes pulse {
@@ -597,29 +633,30 @@
 			opacity: 0.6;
 		}
 	}
+	/* answered-question belt, read as ammunition in the band */
 	.dots {
 		display: flex;
-		gap: 4px;
+		gap: 3px;
+		padding-bottom: 9px;
 	}
 	.dot {
 		flex: 1;
-		height: 7px;
-		border-radius: var(--r-full);
-		background: var(--bg-2);
-		border: 1px solid var(--line-soft);
+		height: 6px;
+		border-radius: 2px;
+		background: rgba(0, 0, 0, 0.36);
 		position: relative;
 	}
 	.dot.done-correct {
-		background: var(--green);
-		border-color: var(--line);
+		background: var(--grad-olive);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.dot.done-wrong {
-		background: var(--red);
-		border-color: var(--line);
+		background: linear-gradient(#a8402f, #7d2a1a);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 	}
 	.dot.current {
-		background: var(--orange);
-		border: var(--bw) solid var(--line);
+		background: var(--grad-brass);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	}
 	.dot.flag::after {
 		content: '';
@@ -628,16 +665,24 @@
 		right: -1px;
 		width: 4px;
 		height: 4px;
-		background: var(--blue);
+		background: var(--gold-hi);
 		border-radius: var(--r-full);
 	}
 
-	/* question body */
+	/* question body: one raised dossier sheet */
 	.qbody {
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
 		flex: 1;
+		padding: 14px 15px 17px;
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
+		background: var(--grad-plate);
+		box-shadow:
+			0 3px 0 var(--edge),
+			0 10px 18px rgba(60, 50, 25, 0.16),
+			var(--emboss);
 	}
 	.qtop {
 		display: flex;
@@ -645,53 +690,82 @@
 		align-items: center;
 	}
 	.tier-tag {
-		font-size: 11px;
-		font-weight: 900;
-		color: var(--ink-3);
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 10px;
+		letter-spacing: 0.14em;
+		padding: 3px 8px;
+		border-radius: 4px;
+		background: var(--khaki);
+		color: var(--ink-inverse);
+		box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
 	}
 	.flag-btn {
 		display: inline-flex;
 		align-items: center;
 		gap: 5px;
-		font-family: var(--font-ui);
-		font-size: 11px;
-		font-weight: 900;
-		color: var(--ink-3);
-		background: none;
-		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-full);
-		padding: 4px 10px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 10px;
+		letter-spacing: 0.12em;
+		color: var(--ink-2);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		border-radius: 6px;
+		padding: 5px 10px;
 		cursor: pointer;
+		box-shadow: 0 2px 0 var(--edge), var(--emboss);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.flag-btn:active {
+		transform: translateY(1px);
+		box-shadow: 0 1px 0 var(--edge), var(--emboss);
 	}
 	.flag-btn.on {
-		color: var(--blue-deep);
-		border-color: var(--blue-deep);
-		background: var(--blue-tint);
+		color: #3b2f11;
+		background: var(--grad-gold);
+		border-color: var(--gold-edge);
+		box-shadow: 0 2px 0 var(--gold-edge), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	}
 	.lead {
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 11px;
-		font-weight: 900;
+		letter-spacing: var(--track-label);
 		color: var(--ink-3);
 		text-transform: uppercase;
 	}
 	.statements {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: 8px;
 	}
+	/* each statement sits in a pressed-in slot with a brass number tile */
 	.statement {
 		display: flex;
 		gap: 10px;
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
+		align-items: flex-start;
+		background: var(--bg-1);
 		border-radius: var(--r-md);
-		padding: 12px 14px;
+		box-shadow: var(--recess-in);
+		padding: 11px 13px;
 	}
 	.snum {
 		flex: none;
+		width: 20px;
+		height: 20px;
+		border-radius: 5px;
+		background: var(--grad-brass);
+		color: #3b2f11;
 		font-family: var(--font-display);
-		font-size: 12px;
-		color: var(--ink-3);
+		font-weight: 800;
+		font-size: 11px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	}
 	.stext {
 		font-family: var(--font-read);
@@ -699,8 +773,9 @@
 		line-height: 1.55;
 	}
 	.tail {
-		font-weight: 900;
+		font-weight: 700;
 		font-size: 14.5px;
+		color: var(--ink-1);
 	}
 	.stem {
 		font-family: var(--font-read);
@@ -713,23 +788,27 @@
 		flex-direction: column;
 		gap: 9px;
 	}
+	/* verdict note: a pressed-in margin note, olive when correct */
 	.explain {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
-		padding: 14px 16px;
+		background: var(--bg-1);
+		border-left: 4px solid var(--khaki);
+		border-radius: var(--r-md);
+		box-shadow: var(--recess-in);
+		padding: 12px 14px;
 		display: flex;
 		flex-direction: column;
 		gap: 6px;
 	}
 	.explain.good {
 		background: var(--green-tint);
-		border-color: var(--green-deep);
+		border-left-color: var(--green-deep);
+		box-shadow: none;
 	}
 	.ex-label {
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 10px;
-		font-weight: 900;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.16em;
 		color: var(--ink-3);
 	}
 	.explain.good .ex-label {
@@ -745,7 +824,8 @@
 	.qfoot {
 		position: sticky;
 		bottom: 0;
-		padding-top: 6px;
+		padding: 10px 0 4px;
+		background: linear-gradient(180deg, transparent, var(--bg-0) 40%);
 	}
 	.qfoot :global(.btn) {
 		width: 100%;
@@ -763,17 +843,27 @@
 		align-items: center;
 		gap: 14px;
 		padding: 24px 20px;
-		border: var(--bw-bold) solid var(--line);
+		border: var(--bw) solid var(--khaki);
 		border-radius: var(--r-xl);
-		background: var(--bg-2);
+		background: var(--grad-plate);
+		box-shadow:
+			0 3px 0 var(--edge),
+			0 10px 18px rgba(60, 50, 25, 0.16),
+			var(--emboss);
 		position: relative;
 		overflow: hidden;
 	}
 	.score-card.won {
-		background: var(--green-tint);
+		background: linear-gradient(180deg, #e9efd8, var(--bg-2));
+		border-color: var(--green-edge);
 	}
 	.score-card.goldcard {
 		background: linear-gradient(180deg, #f7ecc8, var(--bg-2));
+		border-color: var(--gold-edge);
+		box-shadow:
+			0 3px 0 var(--gold-edge),
+			0 10px 18px rgba(60, 50, 25, 0.18),
+			var(--emboss);
 	}
 	/* when the 4d ceremony leads, the old score card becomes a quiet appendix */
 	.score-card.secondary {
@@ -791,12 +881,16 @@
 		gap: 10px;
 	}
 	.schip {
-		font-size: 11px;
-		font-weight: 900;
-		background: var(--bg-0);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		padding: 5px 12px;
+		font-family: var(--font-cond);
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		color: var(--ink-1);
+		background: #e6ddbf;
+		border: 1px solid var(--line-soft);
+		border-radius: 5px;
+		padding: 5px 11px;
+		white-space: nowrap;
 	}
 	.confetti {
 		position: absolute;
@@ -834,14 +928,17 @@
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
 		padding: 14px 16px;
-		background: var(--bg-2);
+		background: var(--grad-plate);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
 	}
 	.tb-title {
 		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 13px;
+		letter-spacing: var(--track-display);
 		text-transform: uppercase;
 	}
 	.tb-row {
@@ -852,48 +949,55 @@
 	.tb-label {
 		flex: none;
 		width: 92px;
-		font-size: 11px;
-		font-weight: 900;
+		font-family: var(--font-cond);
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
 		color: var(--ink-2);
 	}
 	.tb-track {
 		flex: 1;
-		height: 14px;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
-		background: var(--bg-0);
+		height: 10px;
+		border-radius: 5px;
+		background: var(--bg-1);
+		box-shadow: var(--recess-in);
 		overflow: hidden;
 	}
 	.tb-fill {
 		height: 100%;
-		background: var(--green);
+		background: var(--grad-olive);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 		transition: width var(--t-conquest) var(--ease);
 	}
 	.tb-fill.low {
-		background: var(--orange);
+		background: var(--grad-rust);
 	}
 	.tb-num {
 		flex: none;
-		font-size: 11px;
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 12px;
 	}
 	.tb-hint {
 		margin: 2px 0 0;
 		font-size: 11.5px;
-		font-weight: 700;
+		font-weight: 500;
 		color: var(--ink-3);
 	}
 	.sr-card {
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
-		background: var(--blue-tint);
-		border: var(--bw) solid var(--blue-deep);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		border-left: 4px solid var(--orange-deep);
 		border-radius: var(--r-lg);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
 		padding: 13px 15px;
 	}
 	.sr-title {
-		font-weight: 900;
+		font-weight: 700;
 		font-size: 13px;
 	}
 	.sr-sub {
@@ -911,9 +1015,11 @@
 		align-self: center;
 		background: none;
 		border: none;
-		font-family: var(--font-ui);
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 12px;
-		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
 		color: var(--ink-3);
 		cursor: pointer;
 	}
@@ -924,23 +1030,19 @@
 		flex-direction: column;
 		gap: 12px;
 	}
-	.rvhead {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
 	.rv-item {
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
 		padding: 13px 15px;
-		background: var(--bg-2);
+		background: var(--grad-plate);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
 	}
 	.rv-item.wrong {
-		border-width: var(--bw-bold);
-		border-color: var(--red-deep);
+		border-color: var(--red);
+		box-shadow: 0 3px 0 var(--red-edge), var(--emboss);
 	}
 	.rv-top {
 		display: flex;
@@ -959,18 +1061,22 @@
 		font-weight: 900;
 	}
 	.rv-badge.ok {
-		background: var(--green-deep);
+		background: var(--grad-olive);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.rv-badge.no {
-		background: var(--red-deep);
+		background: linear-gradient(#a8402f, #7d2a1a);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
 	}
 	.rv-tag {
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 10px;
-		font-weight: 900;
+		letter-spacing: 0.12em;
 		color: var(--ink-3);
 	}
 	.rv-flag {
-		color: var(--blue-deep);
+		color: var(--gold-lo);
 	}
 	.rv-stem {
 		font-family: var(--font-read);
@@ -988,13 +1094,15 @@
 		gap: 4px;
 	}
 	.rv-instack {
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 10px;
-		font-weight: 900;
-		color: var(--blue-deep);
-		background: var(--blue-tint);
-		border: var(--bw) solid var(--blue-deep);
-		border-radius: var(--r-full);
-		padding: 3px 9px;
+		letter-spacing: 0.12em;
+		color: var(--ink-inverse);
+		background: var(--khaki);
+		border-radius: 4px;
+		box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+		padding: 4px 9px;
 		align-self: flex-start;
 	}
 	@media (prefers-reduced-motion: reduce) {

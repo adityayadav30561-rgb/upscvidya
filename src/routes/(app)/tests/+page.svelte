@@ -212,14 +212,17 @@
 	<!-- ============ SECTIONAL DRILLS (loadout) ============ -->
 	{:else if tab === 'drills'}
 		<div class="loadout">
-			<div class="lo-title">Compose your drill</div>
+			<div class="lo-head">
+				<span class="lo-spine"></span>
+				<span class="lo-title">Compose your drill</span>
+			</div>
 
 			<div class="lo-field">
-				<div class="lo-label"><span>BATTLEFIELDS</span><span class="lo-count">{picked.size} selected</span></div>
+				<div class="lo-label"><span>BATTLEFIELDS</span><span class="lo-count">{picked.size} SELECTED</span></div>
 				<div class="chips">
 					{#each REGIONS as r (r.code)}
 						<button class="chip" class:on={picked.has(r.code)} onclick={() => toggleRegion(r.code)}>
-							{r.name}
+							{r.name}{#if picked.has(r.code)}&nbsp;✓{/if}
 						</button>
 					{/each}
 				</div>
@@ -243,29 +246,28 @@
 
 			<div class="lo-field">
 				<div class="lo-label"><span>OPERATION SIZE</span></div>
-				<div class="segs">
+				<div class="segs size">
 					<button class="seg" class:on={count === 20} onclick={() => (count = 20)}>
-						<span class="seg-top">20 Q</span><span class="seg-threat">15 min</span>
+						<span class="seg-big">20 Q</span><span class="seg-mins">15 MIN</span>
 					</button>
 					<button class="seg" class:on={count === 50} onclick={() => (count = 50)}>
-						<span class="seg-top">50 Q</span><span class="seg-threat">37 min</span>
+						<span class="seg-big">50 Q</span><span class="seg-mins">37 MIN</span>
 					</button>
 				</div>
 			</div>
 
 			<div class="briefing">
-				<div class="brief-line">
-					<span class="brief-k">BRIEFING</span>
-					<span class="brief-v">
-						{count} Q · {drillMins} min · {activeBand.short}
-						{#if picked.size}· {picked.size} region{picked.size > 1 ? 's' : ''}{/if}
-					</span>
+				<div class="brief-k">BRIEFING</div>
+				<div class="brief-v">
+					{count} Q · {drillMins} MIN
+					{#if picked.size}· {picked.size} BATTLEFIELD{picked.size > 1 ? 'S' : ''}{/if}
+					· {activeBand.label.toUpperCase()}
 				</div>
 				<div class="brief-warn">Timed · negative marking · no feedback until you submit</div>
 			</div>
 
 			<button class="deploy-btn" disabled={busy || picked.size === 0} onclick={beginSectional}>
-				{picked.size === 0 ? 'Select a battlefield' : 'Deploy drill →'}
+				{picked.size === 0 ? 'Select a battlefield' : 'Launch drill →'}
 			</button>
 		</div>
 
@@ -275,9 +277,23 @@
 			<Skeleton height="60px" radius="var(--r-lg)" />
 			<Skeleton height="60px" radius="var(--r-lg)" />
 		{:else if history.length === 0}
-			<div class="empty">
-				<div class="empty-big">No missions on record</div>
-				Your first drill or mock lands here — with its score, rank, and medal.
+			<!-- 3d: an unstamped service file, not a grey box -->
+			<div class="servicefile">
+				<span class="sf-blot"></span>
+				<div class="sf-stamp">NO<br />RECORD</div>
+				<div class="sf-title stencil">Service file is empty</div>
+				<p class="sf-body">
+					Your first drill or mock lands here — with its score, rank and medal stamped on it.
+				</p>
+				<div class="sf-actions">
+					<button class="sf-btn go" onclick={() => (tab = 'drills')}>Run a drill</button>
+					<button class="sf-btn quiet" onclick={() => (tab = 'mocks')}>Mock ops</button>
+				</div>
+			</div>
+			<div class="ghosts">
+				<div class="ghost"><span class="g-l">BEST SCORE</span><span class="g-v">—</span></div>
+				<div class="ghost"><span class="g-l">BEST RANK</span><span class="g-v">—</span></div>
+				<div class="ghost"><span class="g-l">MEDALS</span><span class="g-v">—</span></div>
 			</div>
 		{:else}
 			{#if trend.length >= 2}
@@ -499,38 +515,60 @@
 		color: #3f2a18;
 	}
 
-	/* loadout composer */
+	/* ── 3c: mission-planning board ───────────────────────────────── */
 	.loadout {
-		background: var(--bg-2);
-		border: var(--bw-bold) solid var(--line);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
 		border-radius: var(--r-xl);
-		padding: 18px;
+		padding: 14px;
 		display: flex;
 		flex-direction: column;
-		gap: 16px;
-		box-shadow: var(--shadow-2);
+		gap: 15px;
+		box-shadow:
+			0 4px 0 var(--edge),
+			0 12px 22px rgba(60, 50, 25, 0.18),
+			var(--emboss);
+	}
+	.lo-head {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+	}
+	.lo-spine {
+		flex: none;
+		width: 5px;
+		height: 20px;
+		border-radius: 3px;
+		background: var(--grad-rust);
 	}
 	.lo-title {
 		font-family: var(--font-display);
-		font-size: 16px;
+		font-weight: 800;
+		font-size: 19px;
+		line-height: 1;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
+		color: var(--ink-1);
 	}
 	.lo-field {
 		display: flex;
 		flex-direction: column;
-		gap: 9px;
+		gap: 8px;
 	}
 	.lo-label {
 		display: flex;
 		justify-content: space-between;
-		font-size: 10.5px;
-		font-weight: 900;
+		align-items: baseline;
+		font-size: 10px;
+		font-weight: 700;
 		color: var(--ink-3);
-		letter-spacing: 0.03em;
+		letter-spacing: 0.16em;
 	}
 	.lo-count {
 		color: var(--orange-deep);
+		letter-spacing: 0.06em;
 	}
+	/* battlefield chips: raised pills, olive once claimed */
 	.chips {
 		display: flex;
 		flex-wrap: wrap;
@@ -539,21 +577,30 @@
 	.chip {
 		font-family: var(--font-ui);
 		font-size: 11px;
-		font-weight: 900;
-		background: var(--bg-0);
+		font-weight: 600;
+		background: linear-gradient(#f6efd9, #e6ddbf);
 		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-full);
-		padding: 7px 12px;
+		border-radius: 20px;
+		padding: 6px 11px;
 		cursor: pointer;
 		color: var(--ink-2);
-		transition: all var(--t-fast) var(--ease);
+		box-shadow: 0 2px 0 var(--edge);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.chip:active {
+		transform: translateY(1px);
+		box-shadow: 0 1px 0 var(--edge);
 	}
 	.chip.on {
-		background: var(--orange-tint);
-		border-color: var(--line);
-		color: var(--ink-1);
-		box-shadow: var(--shadow-2);
+		font-weight: 700;
+		color: #fff;
+		background: var(--grad-olive);
+		border-color: var(--green-edge);
+		box-shadow: 0 2px 0 var(--green-edge);
 	}
+	/* threat dial + size selector: raised keys, active one colour-locked */
 	.segs {
 		display: flex;
 		gap: 8px;
@@ -563,81 +610,136 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 3px;
+		gap: 2px;
 		font-family: var(--font-ui);
-		background: var(--bg-0);
+		background: linear-gradient(#f6efd9, #e6ddbf);
 		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-md);
+		border-radius: 11px;
 		padding: 10px 6px;
 		cursor: pointer;
 		color: var(--ink-2);
-		transition: all var(--t-fast) var(--ease);
+		box-shadow: 0 3px 0 var(--edge);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.seg:active {
+		transform: translateY(2px);
+		box-shadow: 0 1px 0 var(--edge);
 	}
 	.seg.on {
-		background: var(--orange-tint);
-		border-color: var(--line);
-		color: var(--ink-1);
-		box-shadow: var(--shadow-2);
+		border: 2px solid var(--orange-edge);
+		background: linear-gradient(#fdeee6, #f8ddd0);
+		box-shadow: 0 3px 0 #d3a695;
 	}
 	.seg-top {
-		font-size: 12px;
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 13px;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+	.seg.on .seg-top {
+		color: var(--red-deep);
 	}
 	.seg-threat {
 		font-size: 10px;
-		font-weight: 900;
+		font-weight: 700;
 		color: var(--red-deep);
 		letter-spacing: 1px;
 	}
 	.seg-threat .dim {
-		color: var(--line-soft);
+		color: #d8b8ab;
 	}
-	.briefing {
-		background: var(--bg-1);
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-lg);
-		padding: 12px 14px;
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-	}
-	.brief-line {
-		display: flex;
-		align-items: baseline;
-		gap: 10px;
-	}
-	.brief-k {
-		font-size: 9.5px;
-		font-weight: 900;
+	.seg:not(.on) .seg-threat {
 		color: var(--ink-3);
 	}
-	.brief-v {
+	/* operation size reads brass, not rust — it buys time, not danger */
+	.segs.size .seg.on {
+		border-color: var(--gold-edge);
+		background: linear-gradient(#fbf1d6, #f2e2b8);
+		box-shadow: 0 3px 0 #cbb079;
+	}
+	.seg-big {
 		font-family: var(--font-display);
-		font-size: 14px;
+		font-weight: 800;
+		font-size: 20px;
+		line-height: 1;
+		color: var(--ink-2);
+	}
+	.segs.size .seg.on .seg-big {
 		color: var(--ink-1);
 	}
-	.brief-warn {
-		font-size: 10.5px;
+	.seg-mins {
+		font-size: 10px;
 		font-weight: 700;
+		letter-spacing: 0.06em;
+		color: var(--ink-3);
+		margin-top: 3px;
+	}
+	.segs.size .seg.on .seg-mins {
+		color: var(--gold-edge);
+	}
+	/* briefing: a pinned order slip, dashed brass edge */
+	.briefing {
+		background: #efe6c8;
+		border: var(--bw) dashed var(--gold-lo);
+		border-radius: 11px;
+		box-shadow: var(--emboss);
+		padding: 11px 12px;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+	:global([data-theme='dark']) .briefing {
+		background: var(--bg-1);
+	}
+	.brief-k {
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		color: var(--gold-edge);
+	}
+	.brief-v {
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--ink-1);
+		margin-top: 3px;
+	}
+	.brief-warn {
+		font-size: 11px;
+		font-weight: 500;
 		color: var(--ink-3);
 	}
 	.deploy-btn {
-		font-family: var(--font-ui);
-		font-weight: 900;
+		font-family: var(--font-display);
+		font-weight: 800;
 		font-size: 15px;
-		background: var(--orange);
-		color: #4d4433;
-		border: var(--bw) solid var(--line);
-		border-radius: var(--r-full);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		background: var(--grad-rust);
+		color: #fff;
+		border: none;
+		border-radius: 14px;
 		padding: 14px;
 		min-height: 48px;
 		cursor: pointer;
-		box-shadow: var(--shadow-2);
+		box-shadow:
+			0 5px 0 var(--orange-edge),
+			0 12px 20px rgba(90, 40, 15, 0.28),
+			inset 0 1px 0 rgba(255, 255, 255, 0.35);
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.deploy-btn:not(:disabled):active {
+		transform: translateY(3px);
+		box-shadow: 0 2px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 	}
 	.deploy-btn:disabled {
-		opacity: 0.55;
+		opacity: 0.5;
 		cursor: default;
-		box-shadow: none;
+		box-shadow: 0 5px 0 var(--orange-edge);
 	}
 
 	/* record */
@@ -758,19 +860,140 @@
 		color: var(--ink-3);
 	}
 	.empty {
-		background: var(--bg-2);
-		border: var(--bw) solid var(--line-soft);
-		border-radius: var(--r-lg);
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
+		box-shadow: 0 3px 0 var(--edge), var(--emboss);
 		padding: 22px 18px;
 		text-align: center;
 		font-size: 12px;
 		color: var(--ink-3);
 	}
-	.empty-big {
+
+	/* ── 3d: the unstamped service file ───────────────────────────── */
+	.servicefile {
+		position: relative;
+		overflow: hidden;
+		background: var(--grad-plate);
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
+		box-shadow:
+			0 4px 0 var(--edge),
+			0 12px 22px rgba(60, 50, 25, 0.18),
+			var(--emboss);
+		padding: 22px 18px;
+		text-align: center;
+	}
+	.sf-blot {
+		position: absolute;
+		left: -30px;
+		top: -30px;
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		background: rgba(181, 136, 58, 0.1);
+	}
+	/* the missing stamp — a dashed ring where the verdict would go */
+	.sf-stamp {
+		position: relative;
+		width: 78px;
+		height: 78px;
+		margin: 0 auto;
+		border: 3px dashed var(--line-soft);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: rotate(-9deg);
 		font-family: var(--font-display);
-		font-size: 15px;
-		color: var(--ink-2);
+		font-weight: 800;
+		font-size: 12px;
+		line-height: 1.1;
+		letter-spacing: 0.1em;
+		color: var(--ink-3);
+	}
+	.sf-title {
+		position: relative;
+		margin-top: 14px;
+		font-size: 19px;
+		letter-spacing: 0.09em;
+	}
+	.sf-body {
+		position: relative;
+		margin: 6px 0 0;
+		font-size: 13px;
+		line-height: 1.5;
+		font-weight: 500;
+		color: var(--ink-3);
+	}
+	.sf-actions {
+		position: relative;
+		display: flex;
+		gap: 9px;
+		margin-top: 15px;
+	}
+	.sf-btn {
+		flex: 1;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 12px;
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		margin-bottom: 4px;
+		border: none;
+		border-radius: 12px;
+		padding: 12px 0;
+		cursor: pointer;
+		transition:
+			transform var(--t-fast) var(--ease),
+			box-shadow var(--t-fast) var(--ease);
+	}
+	.sf-btn:active {
+		transform: translateY(2px);
+	}
+	.sf-btn.go {
+		color: #fff;
+		background: var(--grad-rust);
+		box-shadow: 0 4px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+	}
+	.sf-btn.go:active {
+		box-shadow: 0 2px 0 var(--orange-edge), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+	}
+	.sf-btn.quiet {
+		color: var(--ink-2);
+		background: linear-gradient(#f6efd9, #e6ddbf);
+		border: var(--bw) solid var(--line-soft);
+		box-shadow: 0 4px 0 var(--edge);
+	}
+	.sf-btn.quiet:active {
+		box-shadow: 0 2px 0 var(--edge);
+	}
+	/* stat tiles that have nothing to hold yet */
+	.ghosts {
+		display: flex;
+		gap: 9px;
+		opacity: 0.55;
+	}
+	.ghost {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		border: var(--bw) dashed var(--line-soft);
+		border-radius: 12px;
+		background: var(--bg-1);
+		padding: 11px;
+	}
+	.g-l {
+		font-size: 8px;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		color: var(--ink-3);
+	}
+	.g-v {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 22px;
+		line-height: 1;
+		color: var(--ink-3);
+		margin-top: 3px;
 	}
 </style>
