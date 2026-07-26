@@ -110,17 +110,31 @@
 	let {
 		code,
 		earned = false,
-		size = 60
+		size = 60,
+		engraved = false
 	}: {
 		code: string;
 		earned?: boolean;
 		size?: number;
+		/** glyph only, no coin/ribbon/lock — for empty medal sockets */
+		engraved?: boolean;
 	} = $props();
 
 	const spec = $derived(SPECS[code] ?? FALLBACK);
 	const uid = `bi-${Math.random().toString(36).slice(2, 8)}`;
 </script>
 
+{#if engraved}
+	<!-- socket engraving: the glyph etched into the felt, nothing else -->
+	<div class="emblem etched" style:width="{size}px" style:height="{size}px">
+		<svg viewBox="0 0 64 64" width="100%" height="100%" role="img" aria-label={code}>
+			<g transform="translate(32 32) scale(0.72)" color="currentColor">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -- spec.glyph is a hardcoded SVG-path constant from SPECS above, never user input -->
+				{@html spec.glyph}
+			</g>
+		</svg>
+	</div>
+{:else}
 <div class="emblem" class:earned style:width="{size}px" style:height="{size}px">
 	<svg viewBox="0 0 64 64" width="100%" height="100%" role="img" aria-label={code}>
 		<defs>
@@ -167,6 +181,7 @@
 		{/if}
 	</svg>
 </div>
+{/if}
 
 <style>
 	.emblem {
@@ -175,5 +190,10 @@
 	}
 	.emblem.earned {
 		filter: drop-shadow(0 0 6px rgba(216, 176, 74, 0.35));
+	}
+	/* etched: takes its colour from the socket it sits in */
+	.emblem.etched {
+		filter: none;
+		opacity: 0.85;
 	}
 </style>

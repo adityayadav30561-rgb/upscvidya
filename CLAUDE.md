@@ -205,8 +205,21 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    file: dashed NO-RECORD ring + ghost stat tiles) · **3e briefing** (brass
    MONTHLY CA tab, olive-stamped date tabs, `DISPATCH NOT IN YET` sheet with the
    07 dial). The admin validation queue was restyled too (outside turn 3).
-   ⏳ **Still to apply: 3f rank ladder · 3g decorations.** The handoff HTML is
-   the spec — grep it for `id="3f"`/`id="3g"` and read only that block.
+   **3f rank ladder** ([profile/ranks](src/routes/(app)/profile/ranks/+page.svelte))
+   — glowing brass **summit plate** (Director General, grade 14), future rungs
+   recessed into the canvas, the rung above you raised on card stock with a rust
+   `NEXT UP` caption, an arrow marker reading `N XP TO PROMOTION`, a rust
+   `YOU ARE HERE` card with the XP track, and cleared rungs dashed back.
+   **3g decorations** ([profile/decorations](src/routes/(app)/profile/decorations/+page.svelte))
+   — a felt-lined presentation case: dark **BATTALION BOARD** panel (5 slots,
+   pinned medals bob + shine, empty ones are recessed sockets, brass rail,
+   `EDIT BOARD` toggles a **pin mode** where tapping an earned medal pins/unpins
+   it instead of opening the sheet), a struck / on-board / latest stat strip,
+   then one dark case per **real** badge category (Campaign · Regions Secured ·
+   Streaks in rust · Battalion · Drill Ground) covering all 25 codes in
+   `BADGES` — struck medals lit and shine-swept, unearned pressed into the felt
+   as dimmed sockets. The mockup's "closest decoration" progress card and its
+   RAREST/NEXT tiles were dropped: no per-badge progress exists client-side.
 
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
@@ -518,7 +531,7 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 
 ---
 
-*Last synced after FIELD DOSSIER turn 3 (3b/3c/3d/3e; 3f/3g pending). Prompts
+*Last synced after FIELD DOSSIER turn 3 — complete (3a–3g applied). Prompts
 00–16 done + tour, motion,
 profile-hub/native-gestures, CA manual-ingest + Monthly CA, gamified Test Centre
 + in-test guard, leaderboard rank + featured badges + modal polish, Base Camp v2,
