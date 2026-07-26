@@ -25,6 +25,7 @@
 	} from '$lib/quiz';
 	import { stashConquest } from '$lib/map';
 	import { UNITS } from '$lib/polity';
+	import { answerXp } from '$lib/xp';
 	import { showToast } from '$lib/toast.svelte';
 	import { capture } from '$lib/analytics';
 	import { promptAfterFirstQuiz } from '$lib/push';
@@ -257,6 +258,28 @@
 
 	const parsed = $derived(q ? parseStem(q.stem) : null);
 	const drillClock = $derived(`0:${String(secLeft).padStart(2, '0')}`);
+
+	/* ---- 4b: in-quiz reward beat ---------------------------------- */
+	/** text of the option the server marked correct (subtitle of the hit card) */
+	const correctText = $derived(
+		q && feedback ? (q.options[feedback.correct_display_index] ?? '') : ''
+	);
+	/** unbroken run of correct answers up to and including the current question */
+	const answerRun = $derived.by(() => {
+		if (!session) return 0;
+		let run = 0;
+		for (let i = 0; i <= current; i++) {
+			const item = session.questions[i];
+			if (item.correct === true) run += 1;
+			else if (item.correct === false) run = 0;
+			else break;
+		}
+		return run;
+	});
+	/** XP this answer is worth, from the client mirror of the server table.
+	 *  Anti-farm (repeat-correct inside 7 days = 0) is server-only, so this is
+	 *  the face value of the answer — the finish summary stays the truth. */
+	const hitXp = $derived(q && feedback?.is_correct ? answerXp(q.tier, false) : 0);
 </script>
 
 <svelte:head><title>{unit ? `${unit.title} — Quiz` : 'Quiz'} — UPSCVidya</title></svelte:head>
@@ -299,7 +322,11 @@
 			</div>
 			<div class="dots">
 				{#each dots as d, i (i)}
-					<span class="dot {d}" class:flag={session.questions[i].flagged}></span>
+					<span
+						class="dot {d}"
+						class:flag={session.questions[i].flagged}
+						class:lit={i === current && feedback?.is_correct}
+					></span>
 				{/each}
 			</div>
 			<span class="rail"></span>
@@ -344,14 +371,29 @@
 				{/each}
 			</div>
 
-			{#if feedback}
-				<div class="explain" class:good={feedback.is_correct}>
-					<span class="ex-label">{feedback.is_correct ? 'CORRECT' : 'EXPLANATION'}</span>
-					{#if feedback.explanation}
-						<p>{feedback.explanation}</p>
-					{:else}
-						<p>{feedback.is_correct ? 'Well judged.' : 'Review this in your revision stack.'}</p>
-					{/if}
+			{#if feedback?.is_correct}
+				<!-- 4b: target hit — XP flies off the belt, streak stamps in -->
+				<div class="hit">
+					<span class="xp-fly">+{hitXp} XP</span>
+					<div class="hit-row">
+						<span class="hit-disc" aria-hidden="true">✓</span>
+						<div class="hit-meta">
+							<div class="hit-title">TARGET HIT</div>
+							<div class="hit-sub">{correctText} — correct.</div>
+						</div>
+						{#if answerRun >= 2}
+							<span class="hit-streak">×{answerRun} STREAK</span>
+						{/if}
+					</div>
+					<div class="hit-why">
+						<div class="ex-label">WHY</div>
+						<p>{feedback.explanation || 'Well judged.'}</p>
+					</div>
+				</div>
+			{:else if feedback}
+				<div class="explain">
+					<span class="ex-label">EXPLANATION</span>
+					<p>{feedback.explanation || 'Review this in your revision stack.'}</p>
 				</div>
 			{/if}
 		</div>
@@ -359,10 +401,15 @@
 
 		<!-- footer -->
 		<div class="qfoot">
+			{#if feedback?.is_correct}
+				<span class="spark s1">+{hitXp}</span>
+				<span class="spark s2">+{hitXp}</span>
+				<span class="spark s3">+{hitXp}</span>
+			{/if}
 			{#if !feedback}
 				<Button variant="primary" disabled={submitting} onclick={check}>Check answer</Button>
 			{:else}
-				<Button variant="success" disabled={submitting} onclick={next}>
+				<Button variant="primary" disabled={submitting} onclick={next}>
 					{current < session.questions.length - 1 ? 'Next question →' : 'See results →'}
 				</Button>
 			{/if}
@@ -658,6 +705,13 @@
 		background: var(--grad-brass);
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 	}
+	/* 4b: the round just fired glows in the belt */
+	.dot.lit {
+		background: var(--grad-olive);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.35),
+			0 0 7px rgba(127, 145, 83, 0.85);
+	}
 	.dot.flag::after {
 		content: '';
 		position: absolute;
@@ -788,7 +842,7 @@
 		flex-direction: column;
 		gap: 9px;
 	}
-	/* verdict note: a pressed-in margin note, olive when correct */
+	/* verdict note: a pressed-in margin note (wrong answers) */
 	.explain {
 		background: var(--bg-1);
 		border-left: 4px solid var(--khaki);
@@ -799,10 +853,105 @@
 		flex-direction: column;
 		gap: 6px;
 	}
-	.explain.good {
-		background: var(--green-tint);
-		border-left-color: var(--green-deep);
-		box-shadow: none;
+	/* ── 4b: target-hit card (raised olive sheet under the options) ── */
+	.hit {
+		position: relative;
+		margin-top: 10px; /* headroom for the XP chip flying off the top edge */
+		padding: 14px;
+		border: 2px solid var(--green-edge);
+		border-radius: var(--r-lg);
+		background:
+			linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)),
+			var(--green-tint);
+		box-shadow:
+			0 5px 0 var(--green),
+			inset 0 1px 0 rgba(255, 255, 255, 0.8);
+		animation: popIn 0.45s both;
+	}
+	/* XP chip flies off the ammo belt, up and out of the card */
+	.xp-fly {
+		position: absolute;
+		right: 14px;
+		top: -34px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 22px;
+		letter-spacing: 0.06em;
+		color: var(--green-edge);
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+		animation: xpFly 2.2s 0.3s ease-out infinite;
+	}
+	.hit-row {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+	.hit-disc {
+		flex: none;
+		width: 46px;
+		height: 46px;
+		border-radius: var(--r-full);
+		background: var(--grad-olive);
+		border: 2px solid var(--green-edge);
+		color: #fff;
+		font-size: 20px;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow:
+			0 3px 0 var(--green-edge),
+			0 0 20px rgba(127, 145, 83, 0.6);
+		animation: popIn 0.4s 0.05s both;
+	}
+	.hit-meta {
+		flex: 1;
+		min-width: 0;
+	}
+	.hit-title {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 19px;
+		line-height: 1;
+		letter-spacing: 0.08em;
+		color: var(--green-edge);
+	}
+	.hit-sub {
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--green-deep);
+		margin-top: 3px;
+	}
+	/* brass streak multiplier, stamped on */
+	.hit-streak {
+		flex: none;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 12px;
+		letter-spacing: 0.1em;
+		color: #3b2f11;
+		background: var(--grad-brass);
+		border-radius: 7px;
+		padding: 7px 10px;
+		box-shadow: 0 3px 0 var(--gold-edge);
+		animation: stampIn 0.5s 0.25s both;
+	}
+	.hit-why {
+		margin-top: 12px;
+		padding: 10px 11px;
+		border-radius: var(--r-md);
+		background: var(--bg-2);
+		border: 1.5px dashed var(--green);
+	}
+	.hit-why .ex-label {
+		color: var(--green-deep);
+	}
+	.hit-why p {
+		margin: 3px 0 0;
+		font-family: var(--font-read);
+		font-size: 12.5px;
+		line-height: 1.5;
+		color: var(--ink-1);
 	}
 	.ex-label {
 		font-family: var(--font-display);
@@ -810,9 +959,6 @@
 		font-size: 10px;
 		letter-spacing: 0.16em;
 		color: var(--ink-3);
-	}
-	.explain.good .ex-label {
-		color: var(--green-deep);
 	}
 	.explain p,
 	.rv-explain p {
@@ -826,6 +972,30 @@
 		bottom: 0;
 		padding: 10px 0 4px;
 		background: linear-gradient(180deg, transparent, var(--bg-0) 40%);
+	}
+	/* 4b: XP sparks rise off the belt behind the order button */
+	.spark {
+		position: absolute;
+		bottom: 56px;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 13px;
+		pointer-events: none;
+	}
+	.s1 {
+		left: 22px;
+		color: var(--green);
+		animation: sparkUp 2.4s 0.1s ease-out infinite;
+	}
+	.s2 {
+		left: 120px;
+		color: var(--gold-lo);
+		animation: sparkUp 2.4s 0.8s ease-out infinite;
+	}
+	.s3 {
+		left: 236px;
+		color: var(--orange);
+		animation: sparkUp 2.4s 1.5s ease-out infinite;
 	}
 	.qfoot :global(.btn) {
 		width: 100%;
@@ -1107,8 +1277,16 @@
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.confetti,
-		.clock.warn {
+		.clock.warn,
+		.hit,
+		.hit-disc,
+		.hit-streak {
 			animation: none;
+		}
+		/* the flying XP + sparks are motion-only — drop them entirely */
+		.xp-fly,
+		.spark {
+			display: none;
 		}
 	}
 </style>

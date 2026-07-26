@@ -6,6 +6,7 @@
 	import { RANKS } from '$lib/ranks';
 	import type { RankCode } from '$lib/ranks';
 	import { haptic } from '$lib/native';
+	import RankInsignia from './RankInsignia.svelte';
 
 	let {
 		to,
@@ -23,8 +24,6 @@
 	const prev = $derived(from ? RANKS.find((r) => r.code === from) : idx > 0 ? RANKS[idx - 1] : null);
 	const next = $derived(idx >= 0 && idx < RANKS.length - 1 ? RANKS[idx + 1] : null);
 
-	/* chevrons on the plate: one per grade, capped so the plate stays readable */
-	const chevrons = $derived(Math.min(4, Math.max(1, idx + 1)));
 	/* progress from this rank toward the next */
 	const pct = $derived(
 		next && rank ? Math.round(((rank.xp - (prev?.xp ?? 0)) / (next.xp - (prev?.xp ?? 0))) * 100) : 100
@@ -57,11 +56,9 @@
 		<div class="orders">ORDERS RECEIVED</div>
 		<div class="promoted">PROMOTED</div>
 
-		<!-- the brass plate: chevrons rise onto it -->
+		<!-- the brass plate: this rank's own insignia rises onto it -->
 		<div class="plate-brass">
-			{#each Array(chevrons) as _, i (i)}
-				<span class="chev" style="animation-delay:{0.5 + i * 0.25}s"></span>
-			{/each}
+			<span class="insignia"><RankInsignia rank={to} width={86} /></span>
 			<span class="shine" aria-hidden="true"></span>
 		</div>
 
@@ -183,12 +180,11 @@
 		gap: 9px;
 		overflow: hidden;
 	}
-	.chev {
-		width: 52px;
-		height: 27px;
-		background: var(--red);
-		clip-path: polygon(50% 0, 100% 100%, 72% 100%, 50% 42%, 28% 100%, 0 100%);
-		filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
+	/* the real 14-grade shoulder board for this rank, mounted on the plate */
+	.insignia {
+		display: block;
+		line-height: 0;
+		filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
 	}
 	.shine {
 		position: absolute;
@@ -312,8 +308,8 @@
 		.plate-brass {
 			animation: popIn 0.6s 0.18s both;
 		}
-		.chev {
-			animation: chevRise 0.6s both;
+		.insignia {
+			animation: chevRise 0.6s 0.5s both;
 		}
 		.shine {
 			animation: medalShine 3.6s 1s ease-in-out infinite;

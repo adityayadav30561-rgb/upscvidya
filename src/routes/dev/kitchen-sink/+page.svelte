@@ -13,21 +13,59 @@
 		Modal,
 		Skeleton
 	} from '$lib/components';
+	import RankUp from '$lib/components/RankUp.svelte';
+	import TerritoryCaptured from '$lib/components/TerritoryCaptured.svelte';
 	import { showToast } from '$lib/toast.svelte';
 	import { getTheme, toggleTheme } from '$lib/theme.svelte';
 	import { RANKS } from '$lib/ranks';
+	import type { RankCode } from '$lib/ranks';
 
 	let sheetOpen = $state(false);
 	let modalOpen = $state(false);
+
+	/* reward moments 4c / 4d — replayable without gaming XP on the server */
+	let rankUpTo = $state<RankCode | null>(null);
+	let conquest = $state(false);
 </script>
 
 <svelte:head><title>Kitchen Sink — UPSCVidya</title></svelte:head>
+
+{#if rankUpTo}
+	<RankUp to={rankUpTo} from={null} onclose={() => (rankUpTo = null)} />
+{/if}
+{#if conquest}
+	<TerritoryCaptured
+		title="Preamble"
+		correct={18}
+		total={20}
+		scorePct={90}
+		xpAwarded={236}
+		gold={false}
+		bestRun={7}
+		index={1}
+		next={{ label: 'Fundamental Rights', index: 2 }}
+		onAdvance={() => (conquest = false)}
+		onReview={() => (conquest = false)}
+	/>
+{/if}
 
 <div class="page">
 	<header>
 		<h1>Kitchen <span class="accent">Sink</span></h1>
 		<Button variant="secondary" onclick={toggleTheme}>theme: {getTheme()}</Button>
 	</header>
+
+	<section>
+		<h2>Reward moments (4c / 4d)</h2>
+		<div class="row">
+			{#each ['sr_constable', 'inspector', 'commandant', 'dg'] as const as code (code)}
+				<Button variant="secondary" onclick={() => (rankUpTo = code)}>
+					Promote → {RANKS.find((r) => r.code === code)?.label}
+				</Button>
+			{/each}
+			<Button variant="primary" onclick={() => (conquest = true)}>Territory captured</Button>
+		</div>
+	</section>
 
 	<section>
 		<h2>Buttons</h2>
