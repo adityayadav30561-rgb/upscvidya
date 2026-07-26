@@ -8,6 +8,41 @@
 
 ---
 
+## 0. Session Lifecycle — READ FIRST, EVERY NEW SESSION
+
+**Recover state cheaply. Do not scan the repository on startup.**
+
+On a fresh session, read only these, in order, then summarise and **wait**:
+1. [docs/CURRENT_STATE.md](docs/CURRENT_STATE.md) — current goal, what's in flight, what's next, which files, the Do-NOT list.
+2. [docs/PROJECT_INDEX.md](docs/PROJECT_INDEX.md) — thing → path map (use instead of Glob/Grep).
+3. [DECISIONS.md](DECISIONS.md) — locked architecture decisions (mandatory read).
+4. This file (§2 build status, §3 golden rules).
+
+Then inspect **only** the files named in CURRENT_STATE.md. Do **not** run
+repo-wide `Glob`/`Grep`/`Explore` unless the task needs a file the index
+doesn't list — then read that one file, don't sweep.
+
+### Repository Search Policy
+
+Never search the repository unless one is true:
+- CURRENT_STATE.md doesn't name the file, AND
+- PROJECT_INDEX.md doesn't name the module, OR
+- the user explicitly requests a search.
+
+Searching the repo is expensive. Prefer targeted single-file reads.
+
+**Ending a session (do this before you stop, instead of `/compact`):**
+1. Rewrite [docs/CURRENT_STATE.md](docs/CURRENT_STATE.md) (keep it <500 words): Completed / In progress / Next / Active files / Notes.
+2. Update [docs/PROJECT_INDEX.md](docs/PROJECT_INDEX.md) only if files moved or were added.
+3. Update DECISIONS.md only if an architectural decision changed.
+4. User then runs `/clear` (free) — **not** `/compact` (re-reads the whole window, expensive).
+
+**Why:** every turn re-bills the whole context; `/compact` and post-limit
+resumes pay for the entire window at once. A small window + a state file is the
+fix. One feature per session; `/clear` between features.
+
+---
+
 ## 1. What this is
 
 **UPSCVidya** — a mobile-first PWA that prepares candidates for the **UPSC CAPF
@@ -162,8 +197,16 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    and [TerritoryCaptured.svelte](src/lib/components/TerritoryCaptured.svelte) =
    **4d conquest** (flag plants, score/accuracy/best-run stamps, sector bar,
    next-front unlock), shown on a passing topic quiz ahead of the score card.
-   ⏳ **Still to apply from the handoff: turn 3 (3a reader · 3b quiz · 3c drill
-   composer · 3d record empty · 3e briefing · 3f rank ladder · 3g decorations).**
+   **Turn 3 applied:** 3a reader (FIELD NOTE callouts) · **3b quiz** (olive
+   command band + ammo-belt dots, question sheet, recessed statements/verdict
+   notes, dossier results & review) · **3c drill composer** (mission-planning
+   board: olive battlefield chips, rust threat dial, brass size selector, dashed
+   briefing slip, `LAUNCH DRILL` key) · **3d empty record** (unstamped service
+   file: dashed NO-RECORD ring + ghost stat tiles) · **3e briefing** (brass
+   MONTHLY CA tab, olive-stamped date tabs, `DISPATCH NOT IN YET` sheet with the
+   07 dial). The admin validation queue was restyled too (outside turn 3).
+   ⏳ **Still to apply: 3f rank ladder · 3g decorations.** The handoff HTML is
+   the spec — grep it for `id="3f"`/`id="3g"` and read only that block.
 
 **🔒 Locked decisions (honour when the relevant prompt lands):**
 - **Open, completely-free beta** via a single global `beta_free_until` date checked in `entitle.entitled()` (self-expiring, no per-user writes), + `beta_founder` badge on signup → converts to the forever-50% price. **Build in Prompt 18.** Full spec: the 🔒 note after Prompt 18 in [docs/claude-code-build-book.md](docs/claude-code-build-book.md).
@@ -470,10 +513,13 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 - **Sync must stay idempotent** and must never downgrade `status` or hard-delete — attempt history depends on retired questions surviving.
 - **PB hook helpers must be inlined** per handler (JSVM isolation) — a helper that "works in one handler" will be `undefined` in the next.
 - **Free-tier content is server-trimmed**, not client-hidden — verify payloads in devtools when touching gating.
+- **`dossier.css` class names are global** — `.chev`, `.tab`, `.plate`, `.seg`, `.tag`, `.brass`, `.hex`. A local component class with the same name silently inherits the global rule (a `<span class="chev">▲</span>` in the admin composer picked up the global rotated-border triangle). Rename local ones. To override a global from a scoped block, qualify it (`.dossier-row .brassico`); root-level selectors need `:global([data-theme='dark']) .x` or svelte-check flags them unused.
+- **A dark olive header band needs its text colours reset.** Screens that share `.qtitle`/`.qsub`-style classes between a light card and the band will render cream-on-cream — move both headers onto the band (quiz did this for its review header).
 
 ---
 
-*Last synced after the FIELD DOSSIER redesign (Prompts 00–16 done + tour, motion,
+*Last synced after FIELD DOSSIER turn 3 (3b/3c/3d/3e; 3f/3g pending). Prompts
+00–16 done + tour, motion,
 profile-hub/native-gestures, CA manual-ingest + Monthly CA, gamified Test Centre
 + in-test guard, leaderboard rank + featured badges + modal polish, Base Camp v2,
 Field Dossier visual system; next = Prompt 17). When you finish a prompt or a
