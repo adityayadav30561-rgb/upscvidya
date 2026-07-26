@@ -43,6 +43,50 @@
 		haptic(18);
 		onclose();
 	}
+
+	/* the ceremony is a full-screen modal: lock the page behind it, otherwise the
+	   document scrollbar keeps a strip of canvas visible down the right edge. */
+	$effect(() => {
+		const prevOverflow = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = prevOverflow;
+		};
+	});
+
+	/* SHARE TO BATTALION — native share sheet, clipboard as the fallback. */
+	let shareState = $state<'idle' | 'copied' | 'failed'>('idle');
+	let shareTimer: ReturnType<typeof setTimeout> | undefined;
+
+	const shareLabel = $derived(
+		shareState === 'copied'
+			? 'COPIED TO CLIPBOARD'
+			: shareState === 'failed'
+				? 'SHARING UNAVAILABLE'
+				: 'SHARE TO BATTALION'
+	);
+
+	function flash(state: 'copied' | 'failed') {
+		shareState = state;
+		clearTimeout(shareTimer);
+		shareTimer = setTimeout(() => (shareState = 'idle'), 2400);
+	}
+
+	async function share() {
+		haptic(12);
+		const text = `Promoted to ${(rank?.label ?? to).toUpperCase()} — grade ${idx + 1} of ${RANKS.length} on UPSCVidya.`;
+		try {
+			if (navigator.share) {
+				await navigator.share({ title: 'Promotion', text });
+				return;
+			}
+			await navigator.clipboard.writeText(text);
+			flash('copied');
+		} catch (e) {
+			/* user dismissed the native sheet — not a failure worth reporting */
+			if ((e as DOMException)?.name !== 'AbortError') flash('failed');
+		}
+	}
 </script>
 
 <div class="ceremony" role="dialog" aria-modal="true" aria-label="promotion">
@@ -92,6 +136,7 @@
 		{/if}
 
 		<button class="accept" onclick={accept}>Accept the stripes</button>
+		<button class="share" onclick={share}>{shareLabel}</button>
 	</div>
 </div>
 
@@ -199,9 +244,11 @@
 		font-size: 10px;
 		font-weight: 600;
 		letter-spacing: 0.2em;
+		text-transform: uppercase;
 		color: #a8a98a;
 	}
 	.to {
+		text-transform: uppercase;
 		font-family: var(--font-display);
 		font-weight: 800;
 		font-size: 31px;
@@ -291,6 +338,23 @@
 		transform: translateY(3px);
 		box-shadow: 0 2px 0 var(--gold-edge);
 	}
+	.share {
+		display: block;
+		width: 100%;
+		margin-top: 11px;
+		padding: 4px 0;
+		border: none;
+		background: none;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: #8f9376;
+		cursor: pointer;
+	}
+	.share:active {
+		color: var(--gold-hi);
+	}
 
 	@media (prefers-reduced-motion: no-preference) {
 		.rays {
@@ -331,6 +395,9 @@
 		}
 		.accept {
 			animation: popIn 0.5s 0.65s both;
+		}
+		.share {
+			animation: rise 0.5s 0.75s both;
 		}
 	}
 </style>

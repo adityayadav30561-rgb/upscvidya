@@ -10,55 +10,56 @@ production-ready. **Prompt 17 (deploy/QA) is intentionally paused** — do not s
 
 ## Completed
 
-- Prompts 00–16 (see CLAUDE.md §2). FIELD DOSSIER turn 3 complete (3a–3g),
-  2a map, 4a base, Test Centre, Profile, admin queue.
-- **This session — 4b (in-quiz reward beat), built + verified live:**
-  on a correct answer the fired belt segment lights (`.dot.lit` + glow), a
-  raised olive **TARGET HIT** card pops in (✓ disc · correct-option line ·
-  brass `×N STREAK` stamp · dashed `WHY` note), `+N XP` flies off the top edge
-  (`xpFly`), three `+N` sparks rise behind a rust `NEXT QUESTION →` (`sparkUp`).
-  XP face value = `answerXp(tier)` from the client mirror (server anti-farm can
-  still zero it; the finish summary stays the truth). Streak = consecutive
-  correct run inside the attempt. All motion off under `prefers-reduced-motion`.
-- **4c insignia fix:** the promotion plate now mounts the real
-  `RankInsignia` for that grade (`width={86}`, `chevRise`) instead of a generic
-  chevron stack. Verified at Sr. Constable and Director General.
-- **`/dev/kitchen-sink`** gained a *Reward moments (4c / 4d)* section — four
-  promote buttons + territory-captured, so ceremonies replay without earning XP.
-- 4b/4c/4d all seen firing in a real quiz run. `pnpm check`: 522 files, 0/0.
+- Prompts 00–16 (see CLAUDE.md §2). FIELD DOSSIER turn 3 (3a–3g), 2a map,
+  4a base, 4b in-quiz reward beat, Test Centre, Profile, admin queue.
+- **This session — 4c / 4d spec pass, all six gaps closed:**
+  - **4c `RankUp.svelte`**: full-bleed fixed — the strip of canvas down the right
+    edge was the *document scrollbar* (a `fixed; inset:0` overlay covers the
+    client area only), so the ceremony now locks `document.body.style.overflow`
+    in an `$effect` and restores it on destroy. Rank names render stencil
+    UPPERCASE (`text-transform` on `.from`/`.to`; `RANKS[].label` untouched).
+    Added the `SHARE TO BATTALION` line under the button — a real button:
+    `navigator.share` if present, else clipboard, label flipping to
+    `COPIED TO CLIPBOARD` / `SHARING UNAVAILABLE` for 2.4s; `AbortError`
+    (user dismissed the sheet) is swallowed. `rise .5s .75s`.
+  - **4d**: the component already had the sector block, kicker and `.xp-fly` —
+    **the callers never passed `sector`**. Quiz results now derives it:
+    `sectorChapters` (chapters only — drills aren't territory), and
+    `loadSectorHeld()` counts held chapters *after* `finishQuiz` returns (so the
+    topic just taken counts), via the map loader's two reads trimmed with
+    `fields` (`id,id_code` / `topic,state`). Failure ⇒ `sectorHeld` stays null
+    and the bar just doesn't render — no invented numbers. Kitchen sink passes
+    the mockup's `{ name:'Foundations', held:1, total:14 }`.
+    Spec deltas: `.xp-fly` `top:-32px`, kicker `.28em`, `.taken` 36px.
+- `pnpm check`: 522 files, 0 errors, 0 warnings. Committed + pushed.
 
 ## In progress
 
-Nothing mid-edit. Working tree modified (4 files), uncommitted.
+Nothing. Working tree clean.
 
 ## Next (one per session, frugal — code only, no browser/test unless asked)
 
-**4c / 4d spec pass** — both fire correctly; gaps seen on screen:
+No queued design gap. Options, pick one:
 
-- **4c `RankUp.svelte`**: panel not full-bleed (canvas strip at the right edge);
-  rank names render title-case, mockup is stencil UPPERCASE; the
-  `SHARE TO BATTALION` line under the button is missing.
-- **4d `TerritoryCaptured.svelte`**: `SECTOR PROGRESS` track + `n / 14 HELD`
-  row missing from the stat card; the `+XP` chip collides with the `… TAKEN`
-  headline instead of floating above it (mockup `right:12px; top:-32px`);
-  eyebrow should read `<SECTOR> · FRONT LINE ADVANCED`.
-
-Handoff spec lines: `4c` L213 · `4d` L266 of the handoff HTML. Read only those.
+- **Live-verify 4c/4d** in a real quiz run (POL-19 is still unconquered) — the
+  spec pass was type-checked only, never seen on screen.
+- **Screens still un-restyled** to Field Dossier: revision stack, PYQ vault,
+  onboarding/path, checkout. Audit one, restyle it.
+- Or resume Prompt 17 when the user unpauses it.
 
 ## Active files
 
 - `src/lib/components/RankUp.svelte` (4c) · `TerritoryCaptured.svelte` (4d)
+- `src/routes/(app)/quiz/[code]/+page.svelte` (4b + sector wiring)
 - `src/routes/dev/kitchen-sink/+page.svelte` (ceremony replay harness)
 - `src/lib/styles/dossier.css` (shared keyframes, bottom)
-- Done: `src/routes/(app)/quiz/[code]/+page.svelte` (4b)
 - Handoff: `Army game app redesign directions/Force Prep - Gamified Directions.dc.html`
-  — grep `id="4c"`, read only that block. Never the whole file.
+  — grep `id="4c"` (L213) / `id="4d"` (L266), read only that block. Never the whole file.
 
-## Do NOT (this feature)
+## Do NOT
 
 - Start Prompt 17 / 18.
-- Modify PocketBase schema or hooks — ceremonies only *display* what the finish
-  endpoint returns.
+- Modify PocketBase schema or hooks — ceremonies only *display* server output.
 - Duplicate ceremony keyframes per component — they live in `dossier.css`.
 - Scan the repository — use PROJECT_INDEX.md.
 - Browser/test-verify unless the user asks.
@@ -68,14 +69,12 @@ Handoff spec lines: `4c` L213 · `4d` L266 of the handoff HTML. Read only those.
 
 - **Local class names collide with `dossier.css` globals** — `.chev`, `.tab`,
   `.plate`, `.seg`, `.tag`, `.brass`, `.hex`, `.track`/`.fill` — *and* with each
-  other inside one file: the belt dot's `.hit` picked up the `.hit` card styles
-  (renamed `.lit`), and RankUp's local `.chev` was inheriting the global one.
-- Dev data moved during the demo run: local user is **Sr. Constable, 1,200 XP**,
-  POL-05 + POL-10 conquered 12/12. **POL-19 is still unconquered** — use it to
-  replay 4b/4d live.
+  other inside one file (the belt dot's `.hit` picked up the `.hit` card styles;
+  renamed `.lit`).
+- Dev data: local user is **Sr. Constable, 1,200 XP**, POL-05 + POL-10 conquered
+  12/12. **POL-19 is still unconquered** — use it to replay 4b/4d live.
 - Browser-driving the quiz: the sticky `.qfoot` button sits *under* the fixed
-  bottom nav, so coordinate clicks land on the nav — click through the DOM
-  (`document.querySelector('.qfoot .btn').click()`) or scroll to the bottom.
+  bottom nav — click through the DOM (`document.querySelector('.qfoot .btn').click()`).
 - `BadgeIcon` has an `engraved` prop for empty medal sockets.
 - Svelte scoping: qualify to beat a global (`.dossier-row .brassico`); wrap
   root-level selectors as `:global([data-theme='dark']) .x`.

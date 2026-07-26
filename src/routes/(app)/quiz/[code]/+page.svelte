@@ -24,7 +24,9 @@
 		type AnswerResult
 	} from '$lib/quiz';
 	import { stashConquest } from '$lib/map';
-	import { UNITS } from '$lib/polity';
+	import { UNITS, REGIONS } from '$lib/polity';
+	import { pb } from '$lib/pb';
+	import type { TopicProgress, TopicPublic } from '$lib/types';
 	import { answerXp } from '$lib/xp';
 	import { showToast } from '$lib/toast.svelte';
 	import { capture } from '$lib/analytics';
@@ -190,6 +192,40 @@
 		const n = sectorUnits[unitIndex]; // unitIndex is 1-based → this is the next one
 		return n ? { label: n.label, index: unitIndex + 1, code: n.code } : null;
 	});
+	/** chapters only — drills are not territory, so they never count toward a sector */
+	const sectorChapters = $derived(sectorUnits.filter((u) => u.kind === 'chapter'));
+	/** held count for this sector, read back from the server AFTER the finish call
+	 *  so the topic just taken is included. Null until it lands (bar stays hidden). */
+	let sectorHeld = $state<number | null>(null);
+	const sectorProgress = $derived(
+		unit && sectorHeld !== null && sectorChapters.length > 0
+			? {
+					name: REGIONS.find((r) => r.code === unit.region)?.name ?? '',
+					held: sectorHeld,
+					total: sectorChapters.length
+				}
+			: null
+	);
+
+	/** Count this sector's held chapters. Mirrors the map loader's two reads,
+	 *  trimmed to the two fields we need. Failure just leaves the bar hidden. */
+	async function loadSectorHeld() {
+		if (!unit) return;
+		try {
+			const codes = new Set(sectorChapters.map((u) => u.code));
+			const [topics, progress] = await Promise.all([
+				pb.collection('topics_public').getFullList<TopicPublic>({ fields: 'id,id_code' }),
+				pb.collection('topic_progress').getFullList<TopicProgress>({ fields: 'topic,state' })
+			]);
+			const codeById = new Map(topics.map((t) => [t.id, t.id_code]));
+			sectorHeld = progress.filter((p) => {
+				const c = codeById.get(p.topic);
+				return c && codes.has(c) && (p.state === 'conquered' || p.state === 'gold');
+			}).length;
+		} catch {
+			sectorHeld = null;
+		}
+	}
 
 	async function finish() {
 		if (!session || submitting) return;
@@ -197,7 +233,10 @@
 		clearInterval(timer);
 		try {
 			summary = await finishQuiz(session.session_id);
-			if (summary.state === 'conquered' || summary.state === 'gold') stashConquest(summary.code);
+			if (summary.state === 'conquered' || summary.state === 'gold') {
+				stashConquest(summary.code);
+				loadSectorHeld(); // fills the conquest card's SECTOR PROGRESS bar; not awaited
+			}
 			// Prompt 15 analytics: topic quizzes only (drills are not the funnel)
 			if (summary.kind === 'topic_quiz') {
 				capture('first_quiz_completed', { code: summary.code, score_pct: summary.score_pct });
@@ -428,6 +467,7 @@
 					gold={s.gold}
 					bestRun={bestRun}
 					index={unitIndex}
+					sector={sectorProgress}
 					next={nextFront}
 					onAdvance={() => goto(nextFront ? `/topic/${nextFront.code}` : '/map')}
 					onReview={() => (phase = 'review')}

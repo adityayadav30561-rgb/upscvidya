@@ -43,6 +43,7 @@
 		gold={false}
 		bestRun={7}
 		index={1}
+		sector={{ name: 'Foundations', held: 1, total: 14 }}
 		next={{ label: 'Fundamental Rights', index: 2 }}
 		onAdvance={() => (conquest = false)}
 		onReview={() => (conquest = false)}

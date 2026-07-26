@@ -248,13 +248,13 @@
 	.kicker {
 		font-size: 10px;
 		font-weight: 700;
-		letter-spacing: 0.24em;
+		letter-spacing: 0.28em;
 		color: var(--ink-3);
 		text-transform: uppercase;
 	}
 	.taken {
 		margin: 7px 0 0;
-		font-size: 32px;
+		font-size: 36px;
 		line-height: 0.95;
 	}
 	.card {
@@ -265,7 +265,7 @@
 	.xp-fly {
 		position: absolute;
 		right: 12px;
-		top: -30px;
+		top: -32px;
 		font-family: var(--font-display);
 		font-weight: 800;
 		font-size: 20px;
