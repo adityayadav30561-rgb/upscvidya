@@ -19,6 +19,10 @@
 
 - **Never hard-delete content.** Sync retires (`status=retired`), never deletes —
   attempt history references questions. Sync never downgrades status, always idempotent.
+- Sync's "repo set" is **every valid unit**, not just id_code folders: PYQ papers
+  (`content/pyq/CAPF-20xx`) carry no `folderIdCode`, and dropping them made the
+  retire sweep retire every PYQ question. Because sync never downgrades status,
+  that damage does not self-heal — it needs a manual repair pass.
 - Everything ingested/AI-drafted starts as `draft`; goes live only via human
   admin validation. Lifecycle: draft → validated → live → retired.
 - Commercial-source questions are **rewritten** (concept kept, wording fresh);
@@ -66,6 +70,14 @@
   Consequence: weak facts are per-device and die on reinstall. Making them
   durable is a server change (a `users` JSON field), worth it only with real
   users.
+- The label is the **answer**, never the question: cloze → the missed line with
+  its blanks filled; predict/recall → the first sentence of the answer body
+  (prompt only as a fallback). Echoing the question back teaches nothing.
+  Built by `factLabel()`/`clipLabel()` in `markdown.ts` — pure and unit-tested,
+  not inside the component.
+- The pre-flight "already shown" stamp is keyed **per block id**, not one
+  timestamp per chapter: a chapter-wide stamp loses any miss written in the same
+  millisecond. Legacy numeric stamps are still read.
 - Malformed `:::` blocks fail `pnpm validate`, never a reader.
 
 ## Workflow

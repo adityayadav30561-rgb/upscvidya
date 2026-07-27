@@ -71,7 +71,12 @@ const changed = (existing, patch) =>
   Object.keys(patch).filter((k) => JSON.stringify(existing[k]) !== JSON.stringify(patch[k]));
 
 // ---------------------------------------------------------------- load + auth
-const units = loadContentTree().filter((u) => !u.errors.length && u.folderIdCode);
+// PYQ papers (content/pyq/CAPF-2023) have no folderIdCode — their questions name
+// their own syllabus topic. Keep them, or the retire sweep below would treat
+// every PYQ question as "removed from repo".
+const units = loadContentTree().filter(
+  (u) => !u.errors.length && (u.folderIdCode || u.subject === "pyq")
+);
 const auth = await api("/api/collections/_superusers/auth-with-password", {
   method: "POST",
   body: JSON.stringify({ identity: EMAIL, password: PASSWORD }),

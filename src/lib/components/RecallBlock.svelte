@@ -3,7 +3,7 @@
 	 *  Ungraded and offline-safe by design: it never calls the server, so it can
 	 *  never mint XP. Rendered by the topic reader between prose blocks —
 	 *  see renderBlocks() in $lib/markdown. */
-	import { isClozeCorrect, type ClozePart, type RecallPrompt } from '$lib/markdown';
+	import { factLabel, isClozeCorrect, type ClozePart, type RecallPrompt } from '$lib/markdown';
 	import {
 		loadRecall,
 		markRecall,
@@ -65,23 +65,14 @@
 		haptic();
 	}
 
-	const trim = (s: string, n = 72) => (s.length > n ? `${s.slice(0, n - 1).trimEnd()}…` : s);
-
 	/** The fact itself, not the block id — this is what the quiz pre-flight
-	 *  prints back ("Article 14 deals with the Right to Equality."). */
-	function factLabel(): string {
-		if (block.kind !== 'cloze') return trim(block.prompt);
-		const wrong = block.lines.find((l) =>
-			l.parts.some((p) => isBlank(p) && !isClozeCorrect(values[p.key] ?? '', p.blank))
-		);
-		const line = wrong ?? block.lines[0];
-		if (!line) return '';
-		return trim(line.parts.map((p) => (isBlank(p) ? p.blank[0] : p.text)).join('').trim());
-	}
+	 *  prints back ("Article 14 deals with the Right to Equality."). Built in
+	 *  $lib/markdown so it stays pure and unit-tested. */
+	const label = () => factLabel(block, values);
 
 	function check() {
 		checked = true;
-		setMark(allCorrect ? 'hit' : 'miss', factLabel());
+		setMark(allCorrect ? 'hit' : 'miss', label());
 	}
 
 	function blankState(b: Blank): '' | 'ok' | 'bad' {
@@ -180,8 +171,8 @@
 			{#if !mark}
 				<div class="selfmark">
 					<span class="sm-q">Did you have it?</span>
-					<button class="mk got" onclick={() => setMark('hit', factLabel())}>Got it</button>
-					<button class="mk missed" onclick={() => setMark('miss', factLabel())}>Missed</button>
+					<button class="mk got" onclick={() => setMark('hit', label())}>Got it</button>
+					<button class="mk missed" onclick={() => setMark('miss', label())}>Missed</button>
 				</div>
 			{/if}
 		{/if}

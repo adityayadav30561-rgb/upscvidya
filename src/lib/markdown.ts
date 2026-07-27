@@ -141,6 +141,75 @@ export function isClozeCorrect(input: string, answers: string[]): boolean {
 	return answers.some((a) => normalizeAnswer(a) === got);
 }
 
+/* ---------- weak-fact labels ----------
+ * A miss is stored with the FACT, because `cloze-2` prints nothing in the quiz
+ * pre-flight. Pure + exported so the store shape is unit-tested. */
+
+const LABEL_MAX = 88;
+
+/** A clip ending "…commenced on 26…" reads as a broken sentence: the last word
+ *  carries no fact on its own. Peel those back to the last word that does. */
+const DANGLING =
+	/[\s,;:.—–-]*\s(?:\d+|a|an|the|this|that|these|those|its|their|his|her|and|or|but|of|on|in|to|at|by|for|from|with|as|into|under|over|than|which|who|is|are|was|were|be|been)$/i;
+
+/** Clip on a word boundary — never mid-word, never a dangling word. */
+export function clipLabel(s: string, n = LABEL_MAX): string {
+	const t = s.replace(/\s+/g, ' ').trim();
+	if (t.length <= n) return t;
+	const cut = t.slice(0, n);
+	const sp = cut.lastIndexOf(' ');
+	let head = (sp > n * 0.5 ? cut.slice(0, sp) : cut).replace(/[\s,;:.—–-]+$/, '');
+	for (;;) {
+		const next = head.replace(DANGLING, '').replace(/[\s,;:.—–-]+$/, '');
+		if (next === head || !next) break; // never clip a label away entirely
+		head = next;
+	}
+	return `${head}…`;
+}
+
+/** Sanitised answer HTML → plain text. */
+function htmlToText(html: string): string {
+	return html
+		.replace(/<[^>]*>/g, ' ')
+		.replace(/&nbsp;/g, ' ')
+		.replace(/&amp;/g, '&')
+		.replace(/&lt;/g, '<')
+		.replace(/&gt;/g, '>')
+		.replace(/&quot;/g, '"')
+		.replace(/&#39;/g, "'")
+		.replace(/\s+/g, ' ')
+		// tags became spaces, so punctuation drifted off its word: "1976 ." → "1976."
+		.replace(/\s+([.,;:!?%)\]])/g, '$1')
+		.replace(/([([])\s+/g, '$1')
+		.trim();
+}
+
+/** First sentence, unless it is too short to carry the fact on its own. */
+function leadSentence(text: string): string {
+	const m = text.match(/^.*?[.!?](?=\s|$)/);
+	const s = m ? m[0].trim() : text;
+	return s.length >= 24 ? s : text;
+}
+
+/** What a miss should say back to the reader.
+ *  - cloze  → the sentence with its blanks filled in (the first missed line)
+ *  - others → the ANSWER, not the question: the prompt is what they failed to
+ *             answer, so echoing it back teaches nothing.
+ *  `values` are the reader's current cloze inputs (empty = nothing typed). */
+export function factLabel(block: RecallPrompt, values: Record<string, string> = {}): string {
+	if (block.kind === 'cloze') {
+		const filled = (line: ClozeLine) =>
+			line.parts.map((p) => ('blank' in p ? p.blank[0] : p.text)).join('');
+		const missed = block.lines.find((l) =>
+			l.parts.some((p) => 'blank' in p && !isClozeCorrect(values[p.key] ?? '', p.blank))
+		);
+		const line = missed ?? block.lines[0];
+		return line ? clipLabel(filled(line)) : '';
+	}
+	const answer = htmlToText(block.html);
+	return clipLabel(answer ? leadSentence(answer) : block.prompt);
+}
+
 /** Split notes markdown into prose blocks + retrieval prompts, in order.
  *  Ids are positional, so they stay stable across re-renders of one topic
  *  (they key the local attempt memory). */

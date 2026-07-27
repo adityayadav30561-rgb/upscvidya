@@ -148,17 +148,44 @@ export function weakFacts(code: string): WeakFact[] {
 		.sort((a, b) => b.at - a.at);
 }
 
+/** What the pre-flight has already shown, per block: `{ 'cloze-2': 17… }`.
+ *  Per-block rather than one chapter-wide timestamp, so a miss written in the
+ *  same millisecond as the stamp can't be swallowed by a clock tie.
+ *  Legacy value: a bare timestamp for the whole chapter. */
+function seenMap(code: string): Record<string, number> | number {
+	const raw = localStorage.getItem(`recall-brief-${code}`);
+	if (!raw) return {};
+	try {
+		const parsed: unknown = JSON.parse(raw);
+		if (typeof parsed === 'number') return parsed; // pre-map stamp
+		if (parsed && typeof parsed === 'object') {
+			const out: Record<string, number> = {};
+			for (const [k, v] of Object.entries(parsed as Record<string, unknown>)) {
+				if (typeof v === 'number') out[k] = v;
+			}
+			return out;
+		}
+	} catch {
+		/* fall through */
+	}
+	return Number(raw) || 0;
+}
+
 /** Misses the quiz pre-flight hasn't shown yet — so a chapter doesn't nag on
  *  every retake, but a fresh miss still gets surfaced. */
 export function unseenWeakFacts(code: string): WeakFact[] {
 	if (typeof localStorage === 'undefined') return [];
-	const since = Number(localStorage.getItem(`recall-brief-${code}`)) || 0;
-	return weakFacts(code).filter((f) => f.at > since);
+	const seen = seenMap(code);
+	if (typeof seen === 'number') return weakFacts(code).filter((f) => f.at > seen);
+	return weakFacts(code).filter((f) => !(f.id in seen) || f.at > seen[f.id]);
 }
 
 export function stampWeakFactsSeen(code: string) {
 	if (typeof localStorage === 'undefined') return;
-	localStorage.setItem(`recall-brief-${code}`, String(Date.now()));
+	const seen = seenMap(code);
+	const map: Record<string, number> = typeof seen === 'number' ? {} : seen;
+	for (const f of weakFacts(code)) map[f.id] = f.at;
+	localStorage.setItem(`recall-brief-${code}`, JSON.stringify(map));
 }
 
 export function clearRecall(code: string) {

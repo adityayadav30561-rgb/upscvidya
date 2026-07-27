@@ -15,7 +15,7 @@
 		"lint": "eslint .",
 		"format": "prettier --write .",
 		"validate": "node scripts/content/validate.js",
-		"sync": "node scripts/content/sync.js",
+		"sync": "node --env-file-if-exists=.env scripts/content/sync.js",
 		"ingest": "node scripts/ingest/ingest.js",
 		"pyq:snapshot": "node scripts/content/pyq-snapshot.js"
 	},

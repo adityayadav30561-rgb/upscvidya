@@ -1,5 +1,13 @@
 import { describe, it, expect } from 'vitest';
-import { renderBlocks, normalizeAnswer, isClozeCorrect, type NoteBlock } from '$lib/markdown';
+import {
+	renderBlocks,
+	normalizeAnswer,
+	isClozeCorrect,
+	clipLabel,
+	factLabel,
+	type NoteBlock,
+	type RecallPrompt
+} from '$lib/markdown';
 
 const kinds = (blocks: NoteBlock[]) => blocks.map((b) => b.kind);
 
@@ -66,5 +74,89 @@ describe('cloze answer matching', () => {
 		expect(isClozeCorrect('Jawaharlal  Nehru', ['Nehru', 'Jawaharlal Nehru'])).toBe(true);
 		expect(isClozeCorrect('', ['Nehru'])).toBe(false);
 		expect(isClozeCorrect('Ambedkar', ['Nehru'])).toBe(false);
+	});
+});
+
+describe('weak-fact labels', () => {
+	const only = (md: string): RecallPrompt => {
+		const b = renderBlocks(md).find((x): x is RecallPrompt => x.kind !== 'html');
+		if (!b) throw new Error('expected a prompt block');
+		return b;
+	};
+
+	it('clips on a word boundary, never mid-word', () => {
+		const s = 'The Preamble was adopted on 26 November 1949 by the Constituent Assembly of India today';
+		const out = clipLabel(s, 60);
+		expect(out.endsWith('…')).toBe(true);
+		expect(out.length).toBeLessThanOrEqual(61);
+		expect(s.startsWith(out.slice(0, -1))).toBe(true); // no invented characters
+		expect(out.slice(0, -1).endsWith(' ')).toBe(false);
+		// the cut lands between words: the kept text is a whole-word prefix
+		const kept = out.slice(0, -1);
+		expect(s[kept.length] === ' ' || s[kept.length] === undefined).toBe(true);
+	});
+
+	it('leaves a short label untouched and collapses whitespace', () => {
+		expect(clipLabel('  Article 14  is\nequality. ')).toBe('Article 14 is equality.');
+	});
+
+	it('drops a dangling comma before the ellipsis', () => {
+		expect(clipLabel('one two three, four five', 15)).toBe('one two three…');
+	});
+
+	it('peels back trailing words that carry no fact', () => {
+		const s = 'The Preamble was adopted on 26 November 1949, and the Constitution commenced on 26 January 1950.';
+		expect(clipLabel(s)).toBe('The Preamble was adopted on 26 November 1949, and the Constitution commenced…');
+		// a bare numeral, a preposition and an article all go
+		expect(clipLabel('Article 368 governs amendment of the 42nd', 38)).toBe('Article 368 governs amendment…');
+	});
+
+	it('never peels a label away to nothing', () => {
+		expect(clipLabel('the of on in', 8)).toBe('the…');
+	});
+
+	it('labels a predict prompt with the ANSWER, not the question', () => {
+		const b = only(
+			[
+				':::predict Which single amendment is the only one ever made to the Preamble?',
+				'The **42nd Constitutional Amendment Act, 1976**. It inserted socialist, secular and integrity.',
+				':::'
+			].join('\n')
+		);
+		const label = factLabel(b);
+		expect(label).toBe('The 42nd Constitutional Amendment Act, 1976.');
+		expect(label).not.toContain('Which single amendment');
+	});
+
+	it('keeps the whole answer when its first sentence is a stub', () => {
+		const b = only([':::recall Why does it matter?', 'It aids. Courts read it for intent.', ':::'].join('\n'));
+		expect(factLabel(b)).toBe('It aids. Courts read it for intent.');
+	});
+
+	it('falls back to the prompt when a block has no answer body', () => {
+		const b = only([':::predict Name the mover of the Objectives Resolution.', ':::'].join('\n'));
+		expect(factLabel(b)).toBe('Name the mover of the Objectives Resolution.');
+	});
+
+	it('labels a cloze with the missed line, blanks filled in', () => {
+		const b = only(
+			[
+				':::cloze',
+				'Adopted on {{26 November 1949}}.',
+				'Tested against the {{basic structure}} doctrine.',
+				':::'
+			].join('\n')
+		);
+		if (b.kind !== 'cloze') throw new Error('expected cloze');
+		const keyOf = (i: number) => {
+			const p = b.lines[i].parts.find((x) => 'blank' in x);
+			if (!p || !('blank' in p)) throw new Error('no blank');
+			return p.key;
+		};
+		// first line right, second wrong → the second is what needs review
+		const values = { [keyOf(0)]: '26 november 1949', [keyOf(1)]: 'harmonious construction' };
+		expect(factLabel(b, values)).toBe('Tested against the basic structure doctrine.');
+		// nothing typed → first line
+		expect(factLabel(b, {})).toBe('Adopted on 26 November 1949.');
 	});
 });
