@@ -105,6 +105,52 @@ for (const unit of units) {
     if (typeof fm.is_free !== "boolean" && fm.is_free !== undefined) err(topicRel, fmLine("is_free"), `"is_free" must be true/false`);
     if (fm.kind === "chapter" && !unit.topicFile.body) err(topicRel, 1, "chapter topic.md has an empty body (notes required for chapters)");
 
+    // ---- in-chapter retrieval prompts (`:::predict` / `:::cloze` / `:::recall`)
+    // Parsed client-side by renderBlocks() in src/lib/markdown.ts — a malformed
+    // block would silently swallow the rest of the chapter, so catch it here.
+    {
+      const lines = unit.topicFile.raw.split(/\r?\n/);
+      const KINDS_RECALL = ["predict", "cloze", "recall"];
+      let fenced = false;
+      let open = null; // { kind, line, head, body: [] }
+      lines.forEach((line, i) => {
+        const ln = i + 1;
+        if (/^\s*```/.test(line)) fenced = !fenced;
+        if (fenced) { if (open) open.body.push(line); return; }
+
+        if (open) {
+          if (/^:::\s*$/.test(line)) {
+            const body = open.body.join("\n").trim();
+            if (open.kind === "cloze") {
+              const src = open.head ? `${open.head}\n${body}` : body;
+              if (!src.trim()) err(topicRel, open.line, ":::cloze block is empty");
+              else if (!/\{\{[^}]+\}\}/.test(src)) err(topicRel, open.line, ":::cloze block has no {{blank}} — nothing to recall");
+              if (/\{\{\s*\}\}/.test(src)) err(topicRel, open.line, ":::cloze block has an empty {{}} blank");
+              const unclosed = (src.match(/\{\{/g) || []).length !== (src.match(/\}\}/g) || []).length;
+              if (unclosed) err(topicRel, open.line, ":::cloze block has an unbalanced {{ }} blank");
+            } else {
+              if (!open.head) err(topicRel, open.line, `:::${open.kind} needs its question on the opening line`);
+              if (!body) err(topicRel, open.line, `:::${open.kind} needs a body (the answer to reveal)`);
+            }
+            open = null;
+            return;
+          }
+          open.body.push(line);
+          return;
+        }
+
+        const m = line.match(/^:::(\w*)\s*(.*)$/);
+        if (!m) return;
+        if (!m[1]) { err(topicRel, ln, 'stray ":::" — closes a block that was never opened'); return; }
+        if (!KINDS_RECALL.includes(m[1].toLowerCase())) {
+          err(topicRel, ln, `unknown ::: block "${m[1]}" — use ${KINDS_RECALL.join(" | ")}`);
+          return;
+        }
+        open = { kind: m[1].toLowerCase(), line: ln, head: m[2].trim(), body: [] };
+      });
+      if (open) err(topicRel, open.line, `:::${open.kind} block is never closed with ":::"`);
+    }
+
     if (fm.id_code) {
       if (seenIdCodes.has(fm.id_code)) err(topicRel, fmLine("id_code"), `duplicate id_code "${fm.id_code}" (also in ${seenIdCodes.get(fm.id_code)})`);
       seenIdCodes.set(fm.id_code, topicRel);

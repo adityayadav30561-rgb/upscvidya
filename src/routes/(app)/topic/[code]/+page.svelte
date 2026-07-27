@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { renderNotes } from '$lib/markdown';
+	import { renderBlocks } from '$lib/markdown';
 	import { cacheNote, isCached } from '$lib/offline';
 	import {
 		reader,
@@ -19,6 +19,7 @@
 	import { UNITS } from '$lib/polity';
 	import type { ReaderData } from './+page';
 	import Sheet from '$lib/components/Sheet.svelte';
+	import RecallBlock from '$lib/components/RecallBlock.svelte';
 
 	let { data }: { data: ReaderData } = $props();
 
@@ -65,7 +66,10 @@
 		return null;
 	});
 
-	const html = $derived(view ? renderNotes(view.md) : '');
+	/* prose stays HTML; retrieval prompts become components — a Svelte
+	   component cannot be mounted inside {@html}, so the notes arrive as a
+	   block list instead of one string. */
+	const blocks = $derived(view ? renderBlocks(view.md) : []);
 	const regionName = (r?: string) =>
 		({
 			foundations: 'Foundations',
@@ -225,8 +229,14 @@
 				</div>
 
 				<div class="dossier-sheet">
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -- html is DOMPurify-sanitised in renderNotes() -->
-					<article class="notes">{@html html}</article>
+					{#each blocks as b (b.id)}
+						{#if b.kind === 'html'}
+							<!-- eslint-disable-next-line svelte/no-at-html-tags -- html is DOMPurify-sanitised in renderNotes() -->
+							<article class="notes">{@html b.html}</article>
+						{:else}
+							<RecallBlock block={b} code={data.code} />
+						{/if}
+					{/each}
 				</div>
 
 				{#if !view.teaser}

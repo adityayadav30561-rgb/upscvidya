@@ -52,6 +52,7 @@
 | Scrollable sector map | `RegionMap.svelte` |
 | Answer key row | `OptionRow.svelte` |
 | Bottom nav | `BottomNav.svelte` |
+| In-chapter retrieval prompt | `RecallBlock.svelte` |
 | Badge emblems (25) | `BadgeIcon.svelte` |
 | Rank insignia | `RankInsignia.svelte` |
 | Modal / Sheet / Toast | `Modal.svelte`, `Sheet.svelte`, `Toast.svelte` |
@@ -65,8 +66,10 @@
 | Typed PB singleton | `pb.ts` |
 | Collection types | `types.ts` |
 | XP / rank math (mirror of server) | `xp.ts`, `ranks.ts` |
-| Markdown + callouts | `markdown.ts` |
+| Markdown + callouts + `:::` retrieval blocks | `markdown.ts` |
 | Rune stores | `auth.svelte.ts`, `theme.svelte.ts`, `toast.svelte.ts`, `reader.svelte.ts` |
+| Recall marks / weak facts (device-local) | `reader.svelte.ts` |
+| Parser + store tests | `src/lib/__tests__/markdown-blocks.test.ts`, `recall-store.test.ts` |
 | Domain helpers | `map.ts`, `quiz.ts`, `sr.ts`, `test.ts`, `board.ts`, `ca.ts`, `pyq.ts`, `plan.ts` |
 | Money / push / analytics / haptics | `pay.ts`, `push.ts`, `analytics.ts`, `native.ts` |
 | Tour + fitness | `tour.svelte.ts`, `workout.svelte.ts`, `pt.ts` |

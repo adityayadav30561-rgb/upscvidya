@@ -54,6 +54,20 @@
   don't duplicate them per component.
 - `/dev/kitchen-sink` is the single component/animation showcase.
 
+## Retrieval practice (in-chapter)
+
+- Prompts (`:::predict` / `:::cloze` / `:::recall` in `topic.md`) are
+  **ungraded and client-only**: no endpoint, no XP, no SR card. A
+  client-reported recall would be a free XP farm, and XP has one authority.
+- Because a Svelte component cannot mount inside `{@html}`, notes render as a
+  **block list** (`renderBlocks()`), not one HTML string. The reader loops it.
+- Attempt marks live in `localStorage` per topic and store `{mark, label,
+  timestamp}` — the label is the fact itself, since a block id prints nothing.
+  Consequence: weak facts are per-device and die on reinstall. Making them
+  durable is a server change (a `users` JSON field), worth it only with real
+  users.
+- Malformed `:::` blocks fail `pnpm validate`, never a reader.
+
 ## Workflow
 
 - One feature per session. `/clear` between. Never `/compact`. Memory lives in

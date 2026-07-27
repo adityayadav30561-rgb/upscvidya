@@ -15,6 +15,8 @@
 	} from '$lib/components';
 	import RankUp from '$lib/components/RankUp.svelte';
 	import TerritoryCaptured from '$lib/components/TerritoryCaptured.svelte';
+	import RecallBlock from '$lib/components/RecallBlock.svelte';
+	import { renderBlocks, type RecallPrompt } from '$lib/markdown';
 	import { showToast } from '$lib/toast.svelte';
 	import { getTheme, toggleTheme } from '$lib/theme.svelte';
 	import { RANKS } from '$lib/ranks';
@@ -26,6 +28,23 @@
 	/* reward moments 4c / 4d — replayable without gaming XP on the server */
 	let rankUpTo = $state<RankCode | null>(null);
 	let conquest = $state(false);
+
+	/* in-chapter retrieval practice — one of each prompt type, parsed from the
+	   same markdown authors write in content/ */
+	const recallDemo = renderBlocks(
+		[
+			':::predict Which amendment is the only one ever made to the Preamble?',
+			'The **42nd Amendment (1976)** — it added socialist, secular and integrity.',
+			':::',
+			':::cloze',
+			'Article {{14}} deals with the Right to Equality.',
+			'The Objectives Resolution was moved by {{Nehru|Jawaharlal Nehru}}.',
+			':::',
+			':::recall Explain the basic structure doctrine in your own words.',
+			'Parliament may amend the Constitution under Article 368, but not so as to destroy its **basic structure** (Kesavananda Bharati, 1973).',
+			':::'
+		].join('\n')
+	).filter((b): b is RecallPrompt => b.kind !== 'html');
 </script>
 
 <svelte:head><title>Kitchen Sink — UPSCVidya</title></svelte:head>
@@ -65,6 +84,15 @@
 				</Button>
 			{/each}
 			<Button variant="primary" onclick={() => (conquest = true)}>Territory captured</Button>
+		</div>
+	</section>
+
+	<section>
+		<h2>Retrieval prompts (in-chapter)</h2>
+		<div class="recall-demo">
+			{#each recallDemo as b (b.id)}
+				<RecallBlock block={b} code="KITCHEN" />
+			{/each}
 		</div>
 	</section>
 

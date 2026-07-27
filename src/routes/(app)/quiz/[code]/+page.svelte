@@ -31,6 +31,7 @@
 	import { showToast } from '$lib/toast.svelte';
 	import { capture } from '$lib/analytics';
 	import { promptAfterFirstQuiz } from '$lib/push';
+	import { unseenWeakFacts, stampWeakFactsSeen, type WeakFact } from '$lib/reader.svelte';
 	import OptionRow from '$lib/components/OptionRow.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Chip from '$lib/components/Chip.svelte';
@@ -42,9 +43,13 @@
 	const code = $derived(page.params.code ?? '');
 	const unit = $derived(UNITS.find((u) => u.code === code));
 
-	type Phase = 'loading' | 'error' | 'playing' | 'results' | 'review';
+	type Phase = 'loading' | 'error' | 'brief' | 'playing' | 'results' | 'review';
 	let phase = $state<Phase>('loading');
 	let errorMsg = $state('');
+
+	/* facts this device missed while reading the chapter (in-chapter retrieval
+	   prompts, device-local and ungraded) — shown once, before a fresh run */
+	let weak = $state<WeakFact[]>([]);
 
 	let session = $state<QuizStart | null>(null);
 	let current = $state(0);
@@ -82,6 +87,13 @@
 			}
 			current = firstUnanswered(data.questions);
 			hydrateCurrent();
+			// pre-flight only on a fresh, unstarted run — never mid-resume, and
+			// never for a drill (its clock starts the moment the phase flips)
+			weak = sid || current > 0 ? [] : unseenWeakFacts(code).filter((f) => f.label);
+			if (weak.length > 0) {
+				phase = 'brief';
+				return;
+			}
 			phase = 'playing';
 			startTimerIfDrill();
 		} catch (err) {
@@ -115,6 +127,14 @@
 					}
 				: null;
 		qStart = Date.now();
+	}
+
+	/** Leaving the pre-flight marks these facts as surfaced, so a retake of the
+	 *  same chapter doesn't nag with them again. */
+	function beginRun() {
+		stampWeakFactsSeen(code);
+		phase = 'playing';
+		startTimerIfDrill();
 	}
 
 	function startTimerIfDrill() {
@@ -339,6 +359,32 @@
 			<h1>Hold position</h1>
 			<p>{errorMsg}</p>
 			<Button variant="secondary" onclick={() => goto('/map')}>← Back to map</Button>
+		</div>
+	{:else if phase === 'brief'}
+		<!-- pre-flight: facts this device missed while reading -->
+		<div class="brief">
+			<div class="brief-band">
+				<span class="bb-k">pre-flight</span>
+				<h1 class="bb-t">Before you begin</h1>
+			</div>
+			<div class="brief-card">
+				<span class="bc-k">you struggled with these while reading</span>
+				<ul class="facts">
+					{#each weak.slice(0, 4) as f (f.id)}
+						<li class="fact">{f.label}</li>
+					{/each}
+				</ul>
+				{#if weak.length > 4}
+					<span class="bc-more">+{weak.length - 4} more in the chapter</span>
+				{/if}
+				<div class="brief-cta">
+					<button class="btn3d bcta" onclick={beginRun}>Begin quiz →</button>
+					<button class="btn3d btn3d-quiet bcta" onclick={() => goto(`/topic/${code}`)}>
+						Re-read chapter
+					</button>
+				</div>
+			</div>
+			<p class="brief-foot">From your own reading practice · never scored</p>
 		</div>
 	{:else if phase === 'playing' && session && q}
 		<!-- header -->
@@ -1315,6 +1361,115 @@
 		padding: 4px 9px;
 		align-self: flex-start;
 	}
+	/* ── pre-flight brief (weak facts from the read) ─────────────── */
+	.brief {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		padding: 8px 0 20px;
+	}
+	.brief-band {
+		background: var(--grad-olive);
+		border-radius: var(--r-xl);
+		padding: 15px 16px 16px;
+		box-shadow:
+			0 4px 0 var(--green-edge),
+			0 12px 20px rgba(45, 38, 18, 0.28),
+			inset 0 1px 0 rgba(255, 255, 255, 0.22);
+	}
+	.bb-k {
+		font-size: 9.5px;
+		font-weight: 700;
+		letter-spacing: var(--track-label);
+		text-transform: uppercase;
+		color: var(--gold-hi);
+	}
+	.bb-t {
+		margin: 4px 0 0;
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 24px;
+		letter-spacing: var(--track-display);
+		text-transform: uppercase;
+		color: var(--ink-inverse);
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+	}
+	.brief-card {
+		border: var(--bw) solid var(--khaki);
+		border-radius: var(--r-xl);
+		background: var(--grad-plate);
+		box-shadow: 0 3px 0 var(--edge), 0 10px 18px rgba(60, 50, 25, 0.16), var(--emboss);
+		padding: 15px 16px 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	.bc-k {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: 10px;
+		letter-spacing: var(--track-label);
+		text-transform: uppercase;
+		color: var(--orange-deep);
+	}
+	.facts {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 7px;
+	}
+	/* each miss sits in a recessed slot with a rust tick mark */
+	.fact {
+		position: relative;
+		font-family: var(--font-read);
+		font-size: 13.5px;
+		line-height: 1.5;
+		color: var(--ink-1);
+		background: var(--bg-1);
+		border-radius: var(--r-md);
+		box-shadow: var(--recess-in);
+		padding: 9px 11px 9px 26px;
+	}
+	.fact::before {
+		content: '';
+		position: absolute;
+		left: 11px;
+		top: 15px;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--grad-rust);
+	}
+	.bc-more {
+		font-family: var(--font-cond);
+		font-weight: 700;
+		font-size: 11px;
+		letter-spacing: 0.06em;
+		color: var(--ink-3);
+	}
+	.brief-cta {
+		display: flex;
+		gap: 9px;
+		margin-top: 2px;
+	}
+	.bcta {
+		flex: 1;
+		font-size: 12.5px;
+		letter-spacing: 0.1em;
+		padding: 12px 10px;
+	}
+	.brief-foot {
+		margin: 0;
+		text-align: center;
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: var(--track-label);
+		text-transform: uppercase;
+		color: var(--ink-3);
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.confetti,
 		.clock.warn,

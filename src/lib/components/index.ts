@@ -16,3 +16,4 @@ export { default as InstallPrompt } from './InstallPrompt.svelte';
 export { default as OfflineNotes } from './OfflineNotes.svelte';
 export { default as BadgeIcon } from './BadgeIcon.svelte';
 export { default as EdgeSwipe } from './EdgeSwipe.svelte';
+export { default as RecallBlock } from './RecallBlock.svelte';
