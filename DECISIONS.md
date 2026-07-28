@@ -84,3 +84,9 @@
 
 - One feature per session. `/clear` between. Never `/compact`. Memory lives in
   `docs/CURRENT_STATE.md`, not chat history.
+- **Browser verification is Chrome DevTools MCP**, declared project-scoped in
+  `.mcp.json`. The desktop app's `preview_start` does not exist in the VS Code
+  extension, and a screenshot-only Playwright script cannot inspect network
+  payloads — which the gating rules (server-trimmed premium, no pre-answer
+  `answer_index`) have to be checked against. Playwright stays for behavioural
+  e2e in `e2e/`; the MCP is for looking at and driving a real page.

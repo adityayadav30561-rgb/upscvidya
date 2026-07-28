@@ -17,6 +17,7 @@
 | Free vs premium matrix | `ENTITLEMENTS.md` |
 | Design tokens / material CSS | `src/lib/styles/tokens.css`, `src/lib/styles/dossier.css` |
 | FIELD DOSSIER visual spec | `Army game app redesign directions/Force Prep - Gamified Directions.dc.html` |
+| Browser-verify MCP server (Chrome DevTools) | `.mcp.json` |
 
 ## Routes (SvelteKit `src/routes/`)
 

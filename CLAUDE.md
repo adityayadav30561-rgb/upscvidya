@@ -476,9 +476,15 @@ pnpm pyq:snapshot        # regenerate src/lib/pyq-snapshot.json
 **Local PocketBase (Windows dev):** run `pb/pocketbase.exe serve` from `pb/`
 (hooks in `pb_hooks/`, data in `pb_data/`). Admin UI at `http://127.0.0.1:8090/_/`.
 
-**Preview/verify UI changes:** use the in-app browser preview tooling
-(`preview_start` with the `upscvidya-dev` launch config) — do not ask the user
-to check manually.
+**Preview/verify UI changes:** drive a real browser via the **Chrome DevTools
+MCP** server (`mcp__chrome-devtools__*`, declared in [.mcp.json](.mcp.json)) —
+do not ask the user to check manually. Start PocketBase
+(`pb/pocketbase.exe serve --http=127.0.0.1:8090`) and `pnpm dev` (5173) first,
+and pass an `initScript` setting `localStorage['tour-seen']='1'` or the Ustad
+tour will navigate away from the route under test. The server runs `--isolated`
+(fresh Chrome profile), so `(app)` routes need a login each run. `resize_page`
+sizes the window, not the viewport — use `emulate` for true mobile metrics.
+(The desktop app's `preview_start` is not available in the VS Code extension.)
 
 ---
 
