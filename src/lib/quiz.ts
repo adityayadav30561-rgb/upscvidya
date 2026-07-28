@@ -110,6 +110,19 @@ export const finishQuiz = (session_id: string) => post<QuizSummary>('/api/quiz/f
 
 /* ---------- pure helpers (unit-tested) ---------- */
 
+/**
+ * How many questions a quiz serves = the topic's ENTIRE live pool. There is no
+ * cap and no floor: `/api/quiz/start` sets `N = pool.length`, so a chapter with
+ * 50 authored questions gives a 50-question quiz and one with 8 gives 8.
+ *
+ * The real count reaches the client as `live_questions` on the topics_public /
+ * topics_teaser views (computed in SQL — `questions` is not client-listable).
+ * Never display `mcq_floor` here: that is an authoring target (the minimum pool
+ * a chapter must eventually carry), not a count of what exists.
+ */
+export const quizCount = (t?: { live_questions?: number } | null): number =>
+	t?.live_questions ?? 0;
+
 export const TIER_LABELS: Record<number, string> = {
 	1: 'Tier 1 · core',
 	2: 'Tier 2 · std',

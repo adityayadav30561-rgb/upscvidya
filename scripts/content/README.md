@@ -47,7 +47,8 @@ pnpm ingest -- --topic POL-05 --source "external:X" --mode image-list --file ./p
 
 - Parses loosely structured text: numbered questions, options `a)`-`d)`/`A-D`/`1)`-`4)`,
   `Ans: b` lines, statement-based blocks, wrapped lines, messy spacing.
-- Groq (`llama-3.3-70b-versatile`, `GROQ_API_KEY` in `.env`): normalises to schema,
+- AI (`OPENROUTER_API_KEY` in `.env` → NVIDIA Nemotron 3 Ultra free; Groq is the
+  fallback): normalises to schema,
   classifies tier/format, drafts explanations covering every option, **rewrites
   stem+options for commercial external sources** (concept preserved, expression
   fresh); `pyq` sources stay verbatim. `--no-ai` falls back to heuristics.

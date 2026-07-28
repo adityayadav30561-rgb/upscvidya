@@ -8,6 +8,7 @@
 	import { rankProgress, istDate } from '$lib/xp';
 	import { RANKS } from '$lib/ranks';
 	import { fetchDue, type SrDue } from '$lib/sr';
+	import { quizCount } from '$lib/quiz';
 	import { fetchBoard, formatCountdown, type Board } from '$lib/board';
 	import { fetchBriefing, type Briefing } from '$lib/ca';
 	import { TOTAL_UNITS } from '$lib/polity';
@@ -125,7 +126,7 @@
 		{
 			key: 'quiz',
 			label: 'Conquer a territory',
-			sub: quizToday ? 'done today' : nextName ? `next: ${nextName}` : 'read + 12-question quiz',
+			sub: quizToday ? 'done today' : nextName ? `next: ${nextName}` : 'read + quiz',
 			done: quizToday,
 			cur: quizToday ? 1 : 0,
 			target: 1,
@@ -283,7 +284,7 @@
 					<div class="mb-k">NEXT MISSION</div>
 					<div class="mb-title stencil">Take the {nextName}</div>
 					<div class="mb-sub">
-						{nextTopic.topic?.est_read_minutes ?? 6} min read · {nextTopic.topic?.mcq_floor ?? 12} questions · pass ≥70%
+						{nextTopic.topic?.est_read_minutes ?? 6} min read · {quizCount(nextTopic.topic)} questions · pass ≥70%
 					</div>
 				</div>
 				<span class="mb-cta">Deploy</span>

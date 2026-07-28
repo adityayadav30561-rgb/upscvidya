@@ -77,8 +77,20 @@ the file — the reader's quiz CTA follows it on screen.
 | `:::cloze` | at the end of a section, after the facts it tests | 1 per ~300 words |
 | `:::recall` | last block in the file | exactly 1 |
 
-Target length: **500–700 words** of prose (prompts don't count).
-So most chapters land on **1 predict + 2 cloze + 1 recall**.
+**There is no word cap.** A chapter runs as long as teaching it properly takes.
+The old 500–700 target was written when the reader scrolled vertically and length
+felt like a cost; the reader now **paginates horizontally**, so a long chapter is
+just more pages, not a worse experience. Cutting a chapter to hit a number
+produced revision summaries that only work for someone who already knows the
+material.
+
+Write for a reader meeting the topic for the **first time**: explain *why* a
+provision exists and what problem it solved before listing what it says, and keep
+the detail an exam actually tests. Laxmikanth ch. 1 lands near **2,000 words**;
+a thin chapter may need 600. Let the material decide.
+
+Cloze count still follows density — **1 per ~300 words** — so a 2,000-word
+chapter carries ~6, plus exactly 1 predict and 1 recall.
 
 ### What makes each block work
 
@@ -130,7 +142,20 @@ An unmarked `>` blockquote stays a plain EXAM ANGLE block.
 - Case names, committee names and Acts in full on first use, with the year.
 - No current officeholders, no "as of today" claims — they rot.
 - Lists over paragraphs for anything enumerable; a table when there are ≥3
-  columns of comparison (tables scroll horizontally on their own).
+  columns of comparison. **Tables now wrap to fit the page and flow across page
+  breaks** — they no longer scroll sideways, because a horizontal scroll inside a
+  horizontally-paging reader fights the turn gesture. Keep columns few and cells
+  short; a 5-column table is unreadable at 412px whatever the CSS does.
+
+### No empty pages
+
+The reader paginates horizontally, so a block that cannot be split — a scroll
+wrapper, or anything with `break-inside: avoid` — jumps whole to the next page
+when it does not fit, stranding the heading above it on a blank one. The reader
+CSS handles the usual cases (tables fragment, headings stick to what follows),
+and in `pnpm dev` the reader **logs a warning** naming any page under 45% full.
+If you see that warning after authoring a chapter, the cause is almost always one
+very tall unbreakable block — split it into two, or shorten it.
 
 ---
 

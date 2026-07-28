@@ -24,7 +24,7 @@ Auth: send the PocketBase token as the `Authorization` header. "admin" =
 ### Quiz — `pb/pb_hooks/quiz.pb.js`
 | Method · Path | Body | Purpose |
 |---|---|---|
-| POST `/api/quiz/start` | `{code}` | Compose a 12-Q topic quiz / 15-Q drill (30-40-30 tier weighting, prefers least-attempted-by-this-user); reuses an active session so a refresh resumes. Returns options in a server-shuffled order — `answer_index` never leaves the server. |
+| POST `/api/quiz/start` | `{code}` | Compose a quiz from the topic's **entire live pool** — no cap, no floor (`N = pool.length`), so a 50-question chapter gives a 50-question quiz. Tier buckets still order the picks (30-40-30) and least-attempted-by-this-user comes first; reuses an active session so a refresh resumes. Returns options in a server-shuffled order — `answer_index` never leaves the server. |
 | POST `/api/quiz/state` | `{session_id}` | Resume payload; reveals the correct index only for already-answered questions. |
 | POST `/api/quiz/answer` | `{session_id, qid, choice, ms}` | Verify one answer, record an `attempts` row, bump question stats, return correct display index + explanation. |
 | POST `/api/quiz/flag` | `{session_id, qid, flagged}` | Persist a review flag. |
@@ -73,7 +73,7 @@ Auth: send the PocketBase token as the `Authorization` header. "admin" =
 ## 3. ADMIN — content & validation (`role=admin`)
 
 ### CA queue + content — `pb/pb_hooks/ca.pb.js` + `pb/pb_hooks/ca_extra.pb.js`
-| POST `/api/ca/compose` | `{date?, raw?, items?}` | **Manual ingestion.** Paste raw notes → with `GROQ_API_KEY` the model drafts briefs (60-90w) + 2-3 MCQs each, tagged to POL topics, inserted as `draft`. No key → `422 {need_key}`; or POST a structured `items` array to hand-author. Nothing skips approval. |
+| POST `/api/ca/compose` | `{date?, raw?, items?}` | **Manual ingestion.** Paste raw notes → with an AI key on the PB server (`OPENROUTER_API_KEY`, `GEMINI_API_KEY`, `MISTRAL_API_KEY`, `OPENCODE_API_KEY` or `GROQ_API_KEY`) the model drafts briefs (60-90w) + 2-3 MCQs each, tagged to POL topics, inserted as `draft`. No key → `422 {need_key}`; or POST a structured `items` array to hand-author. Nothing skips approval. |
 | POST `/api/ca/queue` | `{}` | Pending CA drafts (+ their draft MCQs) and standalone draft MCQs, with dupe flags. |
 | POST `/api/ca/approve` | `{id, with_quiz?, headline?, summary?, linked_topics?}` | Publish a CA item + its questions **atomically** (`runInTransaction`); stamps reviewer; schedules 07:00 next day if approved after 20:00 IST. |
 | POST `/api/ca/reject` | `{id}` or `{question_id}` | Reject a CA item / retire a draft MCQ. |

@@ -16,7 +16,7 @@
  *   4. Insert ca_items (status=draft) with their draft questions.
  *   5. Log the run to jobs_log; a non-zero exit is what alerting watches.
  *
- * NOTE ON THE MODEL STEP: with GROQ_API_KEY set, step 3 is a real LLM call.
+ * NOTE ON THE MODEL STEP: with an AI key set, step 3 is a real LLM call.
  * Without a key the job runs in HEURISTIC mode — keyword topic tagging and an
  * extractive summary — so the pipeline is still exercisable end to end (and a
  * dry run still produces schema-valid drafts). Heuristic drafts are marked
@@ -29,8 +29,64 @@ import { pathToFileURL } from "node:url";
 const PB_URL = process.env.PB_URL || "http://127.0.0.1:8090";
 const PB_ADMIN_EMAIL = process.env.PB_ADMIN_EMAIL;
 const PB_ADMIN_PASSWORD = process.env.PB_ADMIN_PASSWORD;
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+/**
+ * AI providers, resolved from env. All speak the OpenAI chat-completions shape,
+ * so only base URL + model + key differ. A call starts at the first configured
+ * one and FAILS OVER down the list on quota/auth/persistent errors, so a long
+ * run survives one provider's daily cap. AI_PROVIDER=openrouter|gemini|mistral|
+ * groq pins to exactly one (no failover). No key at all ⇒ heuristic mode.
+ */
+const AI_PROVIDERS = [
+  {
+    name: "openrouter",
+    keyVar: "OPENROUTER_API_KEY",
+    modelVar: "OPENROUTER_MODEL",
+    url: "https://openrouter.ai/api/v1/chat/completions",
+    model: "nvidia/nemotron-3-ultra-550b-a55b:free",
+    headers: { "HTTP-Referer": "https://upscvidya.app", "X-Title": "UPSCVidya" },
+  },
+  {
+    name: "gemini",
+    keyVar: "GEMINI_API_KEY",
+    modelVar: "GEMINI_MODEL",
+    url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+    model: "gemini-3.6-flash",
+    headers: {},
+  },
+  {
+    name: "mistral",
+    keyVar: "MISTRAL_API_KEY",
+    modelVar: "MISTRAL_MODEL",
+    url: "https://api.mistral.ai/v1/chat/completions",
+    model: "mistral-large-latest",
+    headers: {},
+  },
+  {
+    name: "opencode",
+    keyVar: "OPENCODE_API_KEY",
+    modelVar: "OPENCODE_MODEL",
+    url: "https://opencode.ai/zen/v1/chat/completions",
+    model: "deepseek-v4-flash-free",
+    headers: {},
+  },
+  {
+    name: "groq",
+    keyVar: "GROQ_API_KEY",
+    modelVar: "GROQ_MODEL",
+    url: "https://api.groq.com/openai/v1/chat/completions",
+    model: "llama-3.3-70b-versatile",
+    headers: {},
+  },
+];
+const AI_FORCED = (process.env.AI_PROVIDER || "").trim().toLowerCase();
+/** Every configured provider, in failover order. */
+const AI_CHAIN = (AI_FORCED ? AI_PROVIDERS.filter((p) => p.name === AI_FORCED) : AI_PROVIDERS)
+  .map((p) => ({ ...p, key: process.env[p.keyVar] || "", model: process.env[p.modelVar] || p.model }))
+  .filter((p) => p.key);
+const AI = AI_CHAIN[0] || { name: "none", key: "", url: "", model: "", headers: {} };
+const AI_KEY = AI.key;
+/** Providers knocked out for this run (bad key / missing model). */
+const AI_DEAD = new Set();
 
 const args = process.argv.slice(2);
 const DRY_RUN = args.includes("--dry-run");
@@ -156,33 +212,98 @@ const NOISE = /(tender|corrigendum|recruitment result|vacancy circular|obituary|
 
 /* ------------------------------------------------------- model / heuristic */
 
-async function groqJson(prompt, schemaHint) {
-  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${GROQ_API_KEY}`,
+/**
+ * Pull a JSON object out of a reply that may carry reasoning traces or fences —
+ * the default model is a reasoning model and `response_format` is not
+ * guaranteed to be honoured by the underlying provider. Brace-balanced.
+ */
+export function extractJson(raw) {
+  let s = String(raw ?? "");
+  s = s.replace(/<think>[\s\S]*?<\/think>/gi, " ");
+  const stray = s.lastIndexOf("</think>");
+  if (stray !== -1) s = s.slice(stray + "</think>".length);
+  s = s.replace(/```(?:json)?/gi, " ");
+
+  const start = s.indexOf("{");
+  if (start === -1) throw new Error(`no JSON object in model output: ${s.slice(0, 120)}`);
+  let depth = 0;
+  let inStr = false;
+  let esc = false;
+  for (let i = start; i < s.length; i++) {
+    const c = s[i];
+    if (esc) { esc = false; continue; }
+    if (c === "\\") { esc = true; continue; }
+    if (c === '"') { inStr = !inStr; continue; }
+    if (inStr) continue;
+    if (c === "{") depth++;
+    else if (c === "}" && --depth === 0) return JSON.parse(s.slice(start, i + 1));
+  }
+  throw new Error("unbalanced JSON in model output");
+}
+
+/**
+ * One JSON completion. Retries 429/5xx within a provider, then FAILS OVER to
+ * the next configured one — a 12-candidate run must not die because the first
+ * provider's daily cap ran out mid-way. Throws only when all are spent.
+ */
+async function aiJson(prompt, schemaHint, tries = 3) {
+  const messages = [
+    {
+      role: "system",
+      content:
+        "You prepare current-affairs material for CAPF Assistant Commandant aspirants. " +
+        "Reply with JSON only, matching the requested shape exactly. " +
+        "Summaries must be factual and in your own wording. " +
+        schemaHint,
     },
-    body: JSON.stringify({
-      model: GROQ_MODEL,
-      response_format: { type: "json_object" },
-      temperature: 0.2,
-      messages: [
-        {
-          role: "system",
-          content:
-            "You prepare current-affairs material for CAPF Assistant Commandant aspirants. " +
-            "Reply with JSON only, matching the requested shape exactly. " +
-            "Summaries must be factual and in your own wording. " +
-            schemaHint,
-        },
-        { role: "user", content: prompt },
-      ],
-    }),
-  });
-  if (!res.ok) throw new Error(`groq ${res.status}: ${(await res.text()).slice(0, 200)}`);
-  const data = await res.json();
-  return JSON.parse(data.choices[0].message.content);
+    { role: "user", content: prompt },
+  ];
+
+  const usable = AI_CHAIN.filter((p) => !AI_DEAD.has(p.name));
+  const pool = usable.length ? usable : AI_CHAIN;
+  const failures = [];
+
+  for (const [i, p] of pool.entries()) {
+    const body = JSON.stringify({ model: p.model, response_format: { type: "json_object" }, temperature: 0.2, messages });
+    let err = null;
+    for (let attempt = 1; attempt <= tries; attempt++) {
+      const backoff = 2000 * 2 ** (attempt - 1);
+      let res;
+      try {
+        res = await fetch(p.url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${p.key}`, ...p.headers },
+          body,
+        });
+      } catch (e) {
+        err = new Error(`${p.name}: ${e.message}`);
+        if (attempt === tries) break;
+        await new Promise((r) => setTimeout(r, backoff));
+        continue;
+      }
+      if (res.status === 429 || res.status >= 500) {
+        err = new Error(`${p.name} ${res.status}: ${(await res.text()).slice(0, 200)}`);
+        if (attempt === tries) break;
+        const retryAfter = Number(res.headers.get("retry-after")) * 1000;
+        const delay = Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter : backoff;
+        if (delay > 20000) break; // switch provider rather than stall the cron
+        await new Promise((r) => setTimeout(r, delay));
+        continue;
+      }
+      if (!res.ok) {
+        err = new Error(`${p.name} ${res.status}: ${(await res.text()).slice(0, 200)}`);
+        if ([401, 403, 404].includes(res.status)) AI_DEAD.add(p.name);
+        break;
+      }
+      const data = await res.json();
+      const msg = data?.choices?.[0]?.message ?? {};
+      return extractJson(msg.content || msg.reasoning || "");
+    }
+    failures.push(err ? err.message : `${p.name}: unknown failure`);
+    const next = pool[i + 1];
+    if (next) log(`  ↪ ${p.name} unavailable — falling over to ${next.name}`);
+  }
+  throw new Error(`all ${pool.length} AI provider(s) failed — ${failures.join(" | ")}`);
 }
 
 /** Trim a blurb to the 60-90 word window the design asks for. */
@@ -248,7 +369,7 @@ Return JSON:
       "answer": 0, "explanation": string, "tier": 1, "format": "single-factual" }
   ]
 }`;
-  const out = await groqJson(prompt, "Every MCQ needs exactly 4 options and a full explanation.");
+  const out = await aiJson(prompt, "Every MCQ needs exactly 4 options and a full explanation.");
   return { ...out, mode: "model" };
 }
 
@@ -356,10 +477,10 @@ async function main() {
   const drafts = [];
   for (const c of candidates) {
     try {
-      const d = GROQ_API_KEY ? await modelDraft(c, topics) : heuristicDraft(c, validCodes);
+      const d = AI_KEY ? await modelDraft(c, topics) : heuristicDraft(c, validCodes);
       if (!d.relevant || (d.confidence ?? 0) < MIN_CONFIDENCE) {
         report.skipped_low++;
-        if (!GROQ_API_KEY && d.relevant) {
+        if (!AI_KEY && d.relevant) {
           // heuristic mode floors at 0.5; keep them but flag clearly
         } else {
           continue;
@@ -468,7 +589,7 @@ async function main() {
   log(
     `done in ${Date.now() - started}ms — fetched ${report.fetched}, candidates ${report.candidates}, ` +
       `drafts ${drafts.length}, created ${report.created}, errors ${report.errors.length}` +
-      (GROQ_API_KEY ? "" : "  [HEURISTIC MODE — no GROQ_API_KEY]")
+      (AI_KEY ? `  [${AI.name} · ${AI.model}]` : "  [HEURISTIC MODE — no AI key]")
   );
   if (report.errors.length) {
     for (const e of report.errors) log("  error:", e);

@@ -27,7 +27,10 @@ routerAdd("POST", "/api/quiz/start", (e) => {
   if (!code) return e.json(400, { message: "code is required." });
 
   const isDrill = code.indexOf("APX") === 0;
-  const N = isDrill ? 15 : 12;
+  // Quiz length is NOT capped: a session serves the topic's entire live pool, so
+  // a chapter with 50 authored questions gives a 50-question quiz. (This used to
+  // be a fixed 12/15 sample.) N is finalised once the pool is loaded, below.
+  let N = 0;
 
   // resolve topic (chapters live in `topics`; drills have no topic row)
   let topic = null;
@@ -85,6 +88,8 @@ routerAdd("POST", "/api/quiz/start", (e) => {
   if (pool.length === 0) {
     return e.json(422, { message: "No live questions for this territory yet." });
   }
+  // serve every live question this territory has — no floor, no ceiling
+  N = pool.length;
 
   // per-user attempt counts → prefer least-attempted-by-this-user
   const attemptCount = {};

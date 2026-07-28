@@ -19,6 +19,8 @@ interface TeaserRow {
 	is_free: boolean;
 	notes_teaser: string;
 	teaser_truncated: boolean;
+	/** real count of live questions (SQL-computed on the view) */
+	live_questions: number;
 }
 
 export type ReaderMode = 'full' | 'cached' | 'teaser' | 'offline-miss' | 'missing';
@@ -30,6 +32,21 @@ export interface ReaderData {
 	cached?: CachedNote;
 	teaser?: TeaserRow;
 	progress: TopicProgress | null;
+	/** how many questions the quiz will actually serve (0 = unknown/offline) */
+	liveQuestions: number;
+}
+
+/** `questions` is not client-listable by design, so the count comes from the
+ *  public view's SQL-computed column rather than a count query. */
+async function loadQuestionCount(code: string): Promise<number> {
+	try {
+		const row = await pb
+			.collection('topics_public')
+			.getFirstListItem<{ live_questions: number }>(`id_code="${code}"`);
+		return row.live_questions ?? 0;
+	} catch {
+		return 0;
+	}
 }
 
 const online = () => typeof navigator === 'undefined' || navigator.onLine;
@@ -56,16 +73,21 @@ export async function load({ params }): Promise<ReaderData> {
 		if (!online()) networkFailed = true;
 	}
 	if (full) {
-		return { code, mode: 'full', topic: full, progress: await loadProgress(full.id) };
+		const [progress, liveQuestions] = await Promise.all([
+			loadProgress(full.id),
+			loadQuestionCount(code)
+		]);
+		return { code, mode: 'full', topic: full, progress, liveQuestions };
 	}
 
 	// 2. offline cache (previously-read topic opens fully in airplane mode)
 	const cached = await getCachedNote(code);
 	if (cached) {
-		return { code, mode: 'cached', cached, progress: null };
+		// offline: nothing to count against, so the CTA drops the number
+		return { code, mode: 'cached', cached, progress: null, liveQuestions: 0 };
 	}
 	if (networkFailed) {
-		return { code, mode: 'offline-miss', progress: null };
+		return { code, mode: 'offline-miss', progress: null, liveQuestions: 0 };
 	}
 
 	// 3. teaser (free user on a gated topic) — server-trimmed text only
@@ -74,11 +96,17 @@ export async function load({ params }): Promise<ReaderData> {
 			const teaser = await pb
 				.collection('topics_teaser')
 				.getFirstListItem<TeaserRow>(`id_code="${code}"`);
-			return { code, mode: 'teaser', teaser, progress: null };
+			return {
+				code,
+				mode: 'teaser',
+				teaser,
+				progress: null,
+				liveQuestions: teaser.live_questions ?? 0
+			};
 		} catch {
 			/* fall through */
 		}
 	}
 
-	return { code, mode: 'missing', progress: null };
+	return { code, mode: 'missing', progress: null, liveQuestions: 0 };
 }

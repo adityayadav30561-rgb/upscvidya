@@ -20,7 +20,7 @@ import { execFileSync } from "node:child_process";
 import { loadContentTree } from "../content/lib.js";
 import { parseLooseMcqText } from "./parse.js";
 import { findDupe } from "./dedupe.js";
-import { enhanceQuestion, guessFormat, hasGroqKey } from "./groq.js";
+import { enhanceQuestion, guessFormat, hasAiKey, aiLabel } from "./ai.js";
 
 // ---- load .env (repo root) without a dependency
 const envPath = join(process.cwd(), ".env");
@@ -109,10 +109,12 @@ let nextNum = Math.max(0, ...usedNums);
 const nextQid = () => `${topicCode}-Q${String(++nextNum).padStart(3, "0")}`;
 
 // ---- enhance + dedup
-const useAi = !noAi && hasGroqKey();
-if (!useAi) {
-  console.log(noAi ? "--no-ai: heuristic classification, explanations untouched" : "GROQ_API_KEY not set: falling back to heuristic classification (re-run with the key for tier/format/explanations/rewrites)");
-  if (rewrite) console.warn("  ⚠ external commercial source WITHOUT AI rewrite — wording is copied; re-run with GROQ_API_KEY before publishing");
+const useAi = !noAi && hasAiKey();
+if (useAi) {
+  console.log(`AI: ${aiLabel()}`);
+} else {
+  console.log(noAi ? "--no-ai: heuristic classification, explanations untouched" : "no AI key set: falling back to heuristic classification (set OPENROUTER_API_KEY for tier/format/explanations/rewrites)");
+  if (rewrite) console.warn("  ⚠ external commercial source WITHOUT AI rewrite — wording is copied; re-run with an AI key before publishing");
 }
 
 const today = new Date().toISOString().slice(0, 10);
@@ -125,7 +127,7 @@ for (const [i, q] of parsed.entries()) {
     try {
       enhanced = await enhanceQuestion(q, { topicTitle: unit.topicFile?.frontmatter?.title ?? topicCode, rewrite });
     } catch (err) {
-      console.warn(`  ⚠ question ${i + 1}: Groq failed (${err.message}) — heuristic fallback`);
+      console.warn(`  ⚠ question ${i + 1}: AI call failed (${err.message}) — heuristic fallback`);
     }
   }
   enhanced ??= {

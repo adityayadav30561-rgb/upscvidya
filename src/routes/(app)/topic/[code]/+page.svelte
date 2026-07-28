@@ -82,14 +82,24 @@
 			courtroom: 'The Courtroom'
 		})[r ?? ''] ?? '';
 
-	/* scroll progress + top-bar auto-hide + mark-read + resume */
-	let scrollEl = $state<HTMLElement | null>(null);
+	/* horizontal page-turn + mark-read + resume
+	   Pagination is CSS multi-column: the content box is exactly one page wide and
+	   `column-width` equal to it, so the flow spills into further columns to the
+	   right. We then translate by whole pages. This reflows arbitrary HTML — tables,
+	   callouts, RecallBlock — without measuring or splitting nodes by hand. */
+	let pagerEl = $state<HTMLElement | null>(null);
+	let pagesEl = $state<HTMLElement | null>(null);
 	let bodyEl = $state<HTMLElement | null>(null);
-	let progress = $state(0); // 0..1
-	let barHidden = $state(false);
+	let page = $state(0);
+	let pageCount = $state(1);
+	let pageW = $state(0);
+	let dragDX = $state(0);
+	let dragging = $state(false);
+	let measured = $state(false);
+	const GAP = 36;
+	const progress = $derived(pageCount > 1 ? page / (pageCount - 1) : 1);
 	let ctaPulsed = $state(false);
 	let cached = $state(false);
-	let lastY = 0;
 	let markedRead = false;
 	let saveTimer: ReturnType<typeof setTimeout> | undefined;
 
@@ -118,24 +128,146 @@
 		}
 	}
 
-	function onScroll() {
-		const el = scrollEl;
+	/** Recount pages. Cheap, so it runs on resize and on any font-size change. */
+	function measure() {
+		const el = pagesEl;
 		if (!el) return;
-		const max = el.scrollHeight - el.clientHeight;
-		const ratio = max > 0 ? el.scrollTop / max : 1;
-		progress = Math.min(1, Math.max(0, ratio));
+		const w = el.clientWidth;
+		if (w <= 0) return;
+		const total = Math.max(1, Math.round((el.scrollWidth + GAP) / (w + GAP)));
+		pageCount = total;
+		if (page > total - 1) page = total - 1;
+		measured = true;
+		if (import.meta.env.DEV) warnSparsePages(el, w, total);
+	}
 
-		// top bar hides on scroll-down, returns on scroll-up
-		const y = el.scrollTop;
-		if (y > lastY + 6 && y > 60) barHidden = true;
-		else if (y < lastY - 6) barHidden = false;
-		lastY = y;
+	/**
+	 * Dev-only guard: a page must not come out (near-)empty.
+	 *
+	 * It happens when a MONOLITHIC block — one that cannot be fragmented, e.g. an
+	 * `overflow: auto` wrapper or anything with `break-inside: avoid` — is taller
+	 * than the space left, so it jumps to the next page as a unit and strands
+	 * whatever preceded it (a heading, typically) on a nearly blank page.
+	 * Authoring a new chapter surfaces the problem immediately instead of after
+	 * someone notices it in the app.
+	 */
+	function warnSparsePages(el: HTMLElement, w: number, total: number) {
+		const base = el.getBoundingClientRect();
+		const h = el.clientHeight;
+		if (h <= 0) return;
+		const extent: Record<number, { top: number; bot: number }> = {};
+		const walk = (node: Element) => {
+			for (const c of node.children) {
+				if (c.children.length && !['TABLE', 'UL', 'OL'].includes(c.tagName)) {
+					walk(c);
+					continue;
+				}
+				for (const r of c.getClientRects()) {
+					if (r.height < 1) continue;
+					const i = Math.round((r.left - base.left) / (w + GAP));
+					const top = r.top - base.top;
+					const e = (extent[i] ??= { top: Infinity, bot: -Infinity });
+					e.top = Math.min(e.top, top);
+					e.bot = Math.max(e.bot, top + r.height);
+				}
+			}
+		};
+		if (bodyEl) walk(bodyEl);
+		const sparse: string[] = [];
+		for (let i = 0; i < total - 1; i++) {
+			// the final page is legitimately short — it is the end of the chapter
+			const e = extent[i];
+			const pct = e ? Math.round(((e.bot - e.top) / h) * 100) : 0;
+			if (pct < 45) sparse.push(`page ${i + 1} (${pct}% full)`);
+		}
+		if (sparse.length) {
+			console.warn(
+				`[reader] ${data.code}: near-empty page(s) — ${sparse.join(', ')}. ` +
+					`Usually a tall un-fragmentable block (overflow wrapper or break-inside:avoid) ` +
+					`pushed to the next page, stranding the heading above it.`
+			);
+		}
+	}
 
+	function afterTurn() {
 		if (progress >= 0.99) ctaPulsed = true;
 		if (progress >= 0.8 && !view?.teaser) markRead();
-
 		clearTimeout(saveTimer);
 		saveTimer = setTimeout(() => saveResume(data.code, progress), 250);
+	}
+
+	function goTo(i: number) {
+		page = Math.min(pageCount - 1, Math.max(0, i));
+		afterTurn();
+	}
+	const nextPage = () => goTo(page + 1);
+	const prevPage = () => goTo(page - 1);
+
+	/* ---- drag / swipe: finger or mouse, horizontal only ---- */
+	let startX = 0;
+	let startY = 0;
+	let axis: 'x' | 'y' | null = null;
+	let pid = -1;
+
+	function onDown(e: PointerEvent) {
+		if (e.pointerType === 'mouse' && e.button !== 0) return;
+		// never hijack a gesture that starts on something interactive
+		const t = e.target as HTMLElement | null;
+		if (t?.closest('input, textarea, select, button, a, .table-scroll')) return;
+		pid = e.pointerId;
+		startX = e.clientX;
+		startY = e.clientY;
+		axis = null;
+		dragging = true;
+		dragDX = 0;
+	}
+
+	function onMove(e: PointerEvent) {
+		if (!dragging || e.pointerId !== pid) return;
+		const dx = e.clientX - startX;
+		const dy = e.clientY - startY;
+		if (!axis) {
+			if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+			axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+			if (axis === 'y') {
+				dragging = false; // let a vertical gesture belong to the page/app
+				dragDX = 0;
+				return;
+			}
+		}
+		let d = dx;
+		// rubber-band past the first/last page so the edges feel like paper, not a wall
+		if ((page === 0 && d > 0) || (page === pageCount - 1 && d < 0)) d *= 0.35;
+		dragDX = d;
+	}
+
+	function onUp(e: PointerEvent) {
+		if (!dragging || e.pointerId !== pid) return;
+		dragging = false;
+		const threshold = Math.min(90, Math.max(40, pageW * 0.2));
+		if (dragDX <= -threshold) nextPage();
+		else if (dragDX >= threshold) prevPage();
+		dragDX = 0;
+	}
+
+	/* trackpad / wheel — both axes turn pages, since there is nothing to scroll */
+	let wheelLock = false;
+	function onWheel(e: WheelEvent) {
+		const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+		if (Math.abs(d) < 12) return;
+		e.preventDefault();
+		if (wheelLock) return;
+		wheelLock = true;
+		setTimeout(() => (wheelLock = false), 380);
+		if (d > 0) nextPage();
+		else prevPage();
+	}
+
+	function onKey(e: KeyboardEvent) {
+		const t = e.target as HTMLElement | null;
+		if (t?.closest('input, textarea')) return;
+		if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); nextPage(); }
+		else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevPage(); }
 	}
 
 	/* Aa controls sheet */
@@ -163,16 +295,38 @@
 		}
 		isCached(data.code).then((c) => (cached = cached || c));
 
-		// resume position
+		// paginate, then restore the reader to the page they left on
 		const resume = loadResume(data.code);
-		if (resume > 0) {
-			tick().then(() => {
-				const el = scrollEl;
-				if (!el) return;
-				el.scrollTop = (el.scrollHeight - el.clientHeight) * resume;
+		tick().then(() => {
+			measure();
+			if (resume > 0 && pageCount > 1) {
+				page = Math.round(resume * (pageCount - 1));
 				showToast('Resumed where you left off', 'info');
-			});
+			}
+		});
+
+		// fonts land after first paint and change how much text fits per page
+		if (typeof document !== 'undefined' && 'fonts' in document) {
+			(document as Document & { fonts: FontFaceSet }).fonts.ready.then(() => measure());
 		}
+
+		const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => measure()) : null;
+		if (ro && pagesEl) ro.observe(pagesEl);
+		window.addEventListener('resize', measure);
+		window.addEventListener('keydown', onKey);
+		return () => {
+			ro?.disconnect();
+			window.removeEventListener('resize', measure);
+			window.removeEventListener('keydown', onKey);
+			clearTimeout(saveTimer);
+		};
+	});
+
+	// font-size / theme changes reflow the columns, so page count must be recounted
+	$effect(() => {
+		void reader.fontSize;
+		if (!pagesEl) return;
+		requestAnimationFrame(() => measure());
 	});
 
 	function attemptQuiz() {
@@ -200,7 +354,8 @@
 {:else}
 	<div class="reader reader-{reader.theme}" class:serif={reader.serif}>
 		<!-- top bar -->
-		<div class="topbar" class:hidden={barHidden}>
+		<!-- the bar no longer auto-hides: with paging there is no scroll-down to hide on -->
+		<div class="topbar">
 			<div class="topbar-row">
 				<button class="icon-btn" aria-label="back to map" onclick={() => goto('/map')}>
 					<svg width="13" height="13" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
@@ -220,8 +375,28 @@
 			<div class="progress-track"><div class="progress-fill" style:width="{progress * 100}%"></div></div>
 		</div>
 
-		<!-- scrolling body -->
-		<div class="scroll" bind:this={scrollEl} onscroll={onScroll}>
+		<!-- paged body: turns left/right like a page, never scrolls vertically -->
+		<div
+			class="pager"
+			role="region"
+			aria-roledescription="paged reader"
+			aria-label="{view.title} — page {page + 1} of {pageCount}"
+			bind:this={pagerEl}
+			onpointerdown={onDown}
+			onpointermove={onMove}
+			onpointerup={onUp}
+			onpointercancel={onUp}
+			onwheel={onWheel}
+		>
+			<div
+				class="pages"
+				class:animate={!dragging}
+				class:ready={measured}
+				bind:this={pagesEl}
+				bind:clientWidth={pageW}
+				style:column-width="{pageW}px"
+				style:transform="translate3d({-page * (pageW + GAP) + dragDX}px, 0, 0)"
+			>
 			<div class="col" bind:this={bodyEl} style:--reader-fs="{reader.fontSize}px">
 				<div class="chips">
 					{#if view.bookRef}<span class="rchip khaki">{view.bookRef}</span>{/if}
@@ -265,13 +440,33 @@
 					<div class="endcap">— end of briefing —</div>
 				{/if}
 			</div>
+			</div>
+
+			<!-- page controls: arrows + folio -->
+			<div class="turn">
+				<button
+					class="turn-btn"
+					aria-label="previous page"
+					disabled={page === 0}
+					onclick={prevPage}>‹</button
+				>
+				<div class="folio">{page + 1} <span class="folio-sep">/</span> {pageCount}</div>
+				<button
+					class="turn-btn"
+					aria-label="next page"
+					disabled={page >= pageCount - 1}
+					onclick={nextPage}>›</button
+				>
+			</div>
 		</div>
 
 		<!-- sticky quiz CTA (hidden in teaser mode) -->
 		{#if !view.teaser}
 			<div class="cta-wrap">
 				<button class="cta" class:pulse={ctaPulsed} data-tour="reader-cta" onclick={attemptQuiz}>
-					Attempt quiz · {view.quizN} questions →
+					{data.liveQuestions > 0
+						? `Attempt quiz · ${data.liveQuestions} questions`
+						: 'Attempt quiz'} →
 				</button>
 			</div>
 		{/if}
@@ -447,16 +642,139 @@
 		transition: width 80ms linear;
 	}
 
-	.scroll {
+	/* ---- paged reader ---- */
+	.pager {
 		flex: 1;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
+		position: relative;
+		overflow: hidden;
+		padding: 18px 22px 0;
+		/* claim the horizontal axis for page turns, leave the vertical one to the app */
+		touch-action: pan-y;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+	.pages {
+		height: calc(100% - 46px);
+		column-gap: 36px;
+		column-fill: auto;
+		will-change: transform;
+		opacity: 0;
+	}
+	.pages.ready {
+		opacity: 1;
+	}
+	.pages.animate {
+		transition:
+			transform 340ms cubic-bezier(0.22, 0.61, 0.36, 1),
+			opacity 160ms linear;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.pages.animate {
+			transition: none;
+		}
 	}
 	.col {
-		padding: 20px 22px 120px;
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
+	}
+	/* Keep SHORT self-contained blocks whole. Deliberately excludes tables and
+	   long lists: an unbreakable block that is taller than the space left jumps
+	   to the next page as a unit, and if a heading precedes it the heading is
+	   stranded on a near-empty page. Tall content must be allowed to flow. */
+	.col :global(.callout),
+	.col :global(blockquote),
+	.col :global(pre),
+	.col :global(.slip),
+	.col :global(.intro),
+	.stat-tiles,
+	.stile,
+	.pcard,
+	.chips {
+		break-inside: avoid;
+	}
+	/* The markdown renderer wraps tables in .table-scroll (overflow-x: auto) for the
+	   old vertical reader. A scroll container is MONOLITHIC — it cannot be split
+	   across columns, so it jumped to the next page whole and stranded the heading
+	   above it on a near-empty page. Paged mode drops the scroll container and
+	   makes the table fit the page instead; a horizontal scroll inside a
+	   horizontally-paging reader fights the turn gesture anyway. */
+	/* must out-specify the `.notes :global(.table-scroll)` rule further down */
+	.pager .col :global(.notes .table-scroll) {
+		overflow: visible;
+		max-width: 100%;
+	}
+	.col :global(table) {
+		break-inside: auto;
+		width: 100%;
+		table-layout: fixed;
+	}
+	.col :global(th),
+	.col :global(td) {
+		overflow-wrap: anywhere;
+	}
+	.col :global(thead) {
+		display: table-header-group;
+	}
+	.col :global(tr),
+	.col :global(li) {
+		break-inside: avoid;
+	}
+	/* a heading must never be the last thing in a column */
+	.col :global(h1),
+	.col :global(h2),
+	.col :global(h3),
+	.col :global(h4) {
+		break-after: avoid;
+		break-inside: avoid;
+	}
+	/* the sheet is a wrapper, not a page frame — let its children flow between columns */
+	.dossier-sheet {
+		display: contents;
+	}
+
+	.turn {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 46px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 18px;
+	}
+	.turn-btn {
+		width: 34px;
+		height: 34px;
+		border-radius: 50%;
+		border: 1px solid rgba(92, 85, 55, 0.35);
+		background: linear-gradient(180deg, #f6efd8, #e6dcbb);
+		box-shadow:
+			0 2px 0 #c3b894,
+			0 2px 6px rgba(60, 50, 20, 0.18);
+		color: #5c5537;
+		font-size: 20px;
+		line-height: 1;
+		cursor: pointer;
+	}
+	.turn-btn:disabled {
+		opacity: 0.32;
+		cursor: default;
+	}
+	.turn-btn:active:not(:disabled) {
+		transform: translateY(1px);
+	}
+	.folio {
+		font-family: 'Barlow Condensed', sans-serif;
+		font-size: 13px;
+		letter-spacing: 0.12em;
+		color: #6b6444;
+		min-width: 56px;
+		text-align: center;
+	}
+	.folio-sep {
+		opacity: 0.45;
 	}
 	.chips {
 		display: flex;

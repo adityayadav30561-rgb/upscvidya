@@ -27,7 +27,7 @@
 |---|---|
 | Base / dashboard | `(app)/+page.svelte` |
 | Territory map | `(app)/map/+page.svelte` |
-| Topic reader (3a) | `(app)/topic/[code]/+page.svelte` |
+| Topic reader (3a) — **horizontal page-turn**, no vertical scroll | `(app)/topic/[code]/+page.svelte`, `+page.ts` |
 | Quiz player (3b) | `(app)/quiz/[code]/+page.svelte` |
 | Revision stack (SR) | `(app)/revision/+page.svelte` |
 | Test centre — mock cards + drill composer (3c) + empty record (3d) | `(app)/tests/+page.svelte` |
@@ -92,13 +92,16 @@
 | Users / referral / cron | `pb_hooks/users.pb.js`, `referral.pb.js`, `cron.pb.js` |
 | Shared modules (require at call time) | `pb_hooks/lib/xp.js`, `lib/entitle.js`, `lib/notify.js` |
 | Schema migrations | `pb_migrations/*.js` |
+| `live_questions` count on the public views | `pb_migrations/1754100000_topic_question_count.js`, `1754200000_teaser_question_count.js` |
 
 ## Content + scripts
 
 | Thing | Path |
 |---|---|
 | Source content (synced to PB) | `content/polity/`, `content/pyq/` |
+| Authored chapters | `POL-01` (50 MCQs), `POL-05`, `POL-10`, `POL-19` |
 | Validate / sync / snapshot | `scripts/content/validate.js`, `sync.js`, `pyq-snapshot.js` |
 | One-off PYQ status repair | `scripts/content/repair-pyq-status.js` (`pnpm repair:pyq`) |
-| MCQ ingestion (Groq/OCR) | `scripts/ingest/ingest.js`, `parse.js`, `groq.js` |
+| MCQ ingestion (OCR + AI) | `scripts/ingest/ingest.js`, `parse.js`, `ai.js` |
+| AI failover chain (OpenRouter → Gemini → Mistral → OpenCode → Groq; `AI_PROVIDER` pins one) | `scripts/ingest/ai.js`, `infra/jobs/ca-pipeline/index.js`, `pb/pb_hooks/ca_extra.pb.js` |
 | VPS infra | `infra/setup.sh`, `Caddyfile`, `infra/backup/`, `infra/jobs/ca-pipeline/` |

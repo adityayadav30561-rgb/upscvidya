@@ -52,7 +52,7 @@ export const STEPS: TourStep[] = [
 		route: '/topic/POL-05',
 		target: 'reader-cta',
 		title: 'Read, then assault',
-		body: 'Read the briefing first. When you are ready, THIS launches your 12-question quiz.'
+		body: 'Read the briefing first. When you are ready, THIS launches the quiz for this chapter.'
 	},
 	{
 		id: 'quiz',

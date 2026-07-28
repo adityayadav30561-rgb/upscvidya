@@ -10,7 +10,7 @@
 |---|---|---|
 | 1 | Google login | ⬅️ **in progress** |
 | 2 | PocketHost deploy | ⬜ |
-| 3 | API keys — Groq · PostHog · OneSignal | ⬜ |
+| 3 | API keys — AI ✅ (5 providers) · PostHog · OneSignal | 🟡 AI done |
 | 4 | Notifications verified | ⬜ |
 | 5 | Beta-free system (`beta_free_until` + founder badge + banner) | ⬜ |
 | 6 | Content | ⬜ |
@@ -105,12 +105,24 @@ Outline, for when step 1 is green:
 
 | Key | For | Free tier |
 |---|---|---|
-| `GROQ_API_KEY` | `pnpm ingest` — notes → draft MCQs; CA pipeline drafting | console.groq.com |
+| `OPENROUTER_API_KEY` ✅ set | primary AI: `pnpm ingest` — notes → draft MCQs; CA pipeline drafting. Model `nvidia/nemotron-3-ultra-550b-a55b:free` | openrouter.ai — **50 req/day** while the account has <10 credits, ~25s/question |
+| `GEMINI_API_KEY` ✅ set | AI, 2nd in order. `gemini-3.6-flash` (1M ctx, native JSON mode) | Google Antigravity key (`AQ.*`) — ~5s/question; Pro models 429 |
+| `MISTRAL_API_KEY` ✅ set | AI, 3rd in order. `mistral-large-latest` (262k ctx) | console.mistral.ai — **50 req/min**, 50k tokens/min, no daily cap in headers |
+| `OPENCODE_API_KEY` ✅ set | AI, 4th in order. `deepseek-v4-flash-free` (~2s) | OpenCode Zen — every model free; no rate-limit headers |
+| `GROQ_API_KEY` ✅ set | AI, 5th in order. `llama-3.3-70b-versatile` | console.groq.com — **1000 req/day**, 12k tokens/min, ~1s/question |
 | `PUBLIC_POSTHOG_KEY` / `_HOST` | funnel analytics (already wired) | posthog.com |
 | `PUBLIC_ONESIGNAL_APP_ID` + `ONESIGNAL_APP_ID` / `ONESIGNAL_REST_KEY` | web push | onesignal.com |
 
-Server-only keys (`ONESIGNAL_REST_KEY`, Groq for the CA hook) go in the
-**PocketBase** environment, not the client bundle. All unset ⇒ no-op, so the app
-runs fine without them.
+Chain is OpenRouter → Gemini → Mistral → OpenCode Zen → Groq. A call starts at
+the first and **falls over** to the next when it's out of quota or rejects the
+key, so a long ingest run keeps going after OpenRouter's 50/day is spent.
+`AI_PROVIDER=mistral` (etc.) pins to one and disables failover — use it to spend
+a chosen quota. For bulk MCQ drafting, pinning to Groq (1000/day, ~1s) or
+Mistral (50/min) is far faster than letting the chain start on OpenRouter's
+50/day at ~25s each.
+
+Server-only keys (`ONESIGNAL_REST_KEY` + whichever AI key you want the CA hook
+to use) go in the **PocketBase** environment, not the client bundle. All unset ⇒
+no-op, so the app runs fine without them.
 
 Razorpay stays **unset** for the whole beta — beta is free.

@@ -21,6 +21,6 @@ Server timezone is Asia/Kolkata, so cron expressions are IST.
 
 ## ca-pipeline deploy notes
 - Copy `infra/jobs/ca-pipeline/` to `/opt/jobs/ca-pipeline/`
-- `.env`: PB_URL, PB_ADMIN_EMAIL, PB_ADMIN_PASSWORD, GROQ_API_KEY (optional — heuristic mode without it)
+- `.env`: PB_URL, PB_ADMIN_EMAIL, PB_ADMIN_PASSWORD, OPENROUTER_API_KEY / GEMINI_API_KEY / MISTRAL_API_KEY / OPENCODE_API_KEY / GROQ_API_KEY (any one; optional — heuristic mode without any)
 - Cron: `30 5,17 * * * appadmin cd /opt/jobs/ca-pipeline && node index.js >> /var/log/jobs/ca-pipeline.log 2>&1`
 - Dry run anywhere: `node index.js --dry-run --print --limit 5`

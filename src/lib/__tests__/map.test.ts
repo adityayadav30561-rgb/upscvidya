@@ -16,6 +16,7 @@ const topic = (id_code: string, over: Partial<TopicPublic> = {}): TopicPublic =>
 		kind: unit.kind === 'appendix' ? 'appendix' : 'chapter',
 		book_ref: '',
 		mcq_floor: unit.floor,
+		live_questions: unit.floor,
 		tags: [],
 		guided_order: unit.order,
 		est_read_minutes: 6,

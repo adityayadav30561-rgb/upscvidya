@@ -5,6 +5,7 @@
 	import { REGIONS } from '$lib/polity';
 	import type { Region } from '$lib/types';
 	import { startRestore } from '$lib/sr';
+	import { quizCount } from '$lib/quiz';
 	import { showToast } from '$lib/toast.svelte';
 	import RegionMap from '$lib/components/RegionMap.svelte';
 	import Sheet from '$lib/components/Sheet.svelte';
@@ -86,7 +87,7 @@
 	};
 
 	const quizCta = (n: MapNodeData): string => {
-		const q = n.topic?.mcq_floor ?? n.unit.floor;
+		const q = quizCount(n.topic);
 		switch (n.visual) {
 			case 'conquered':
 				return 'Retake for gold';
@@ -243,7 +244,7 @@
 				<div class="cap">READ</div>
 			</div>
 			<div class="stat">
-				<div class="big">{n.topic?.mcq_floor ?? n.unit.floor}<span class="unit-sm">Q</span></div>
+				<div class="big">{quizCount(n.topic)}<span class="unit-sm">Q</span></div>
 				<div class="cap">QUIZ · PASS ≥70%</div>
 			</div>
 			<div class="stat">

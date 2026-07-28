@@ -37,6 +37,54 @@
 - Commercial-source questions are **rewritten** (concept kept, wording fresh);
   PYQs kept **verbatim**. Every question carries a `source` provenance block.
 
+## Quiz length (changed 2026-07)
+
+- **A quiz serves the topic's ENTIRE live pool.** `/api/quiz/start` sets
+  `N = pool.length` — no cap, no floor. Previously a fixed 12 (topic) / 15
+  (drill) sample. A 50-question chapter gives a 50-question quiz.
+  Tier buckets (30/40/30) now order the presentation rather than truncate it.
+- **`mcq_floor` is an authoring target, never a count.** It is the minimum pool a
+  chapter must eventually carry (from the master doc). Displaying it told users a
+  12-question quiz had 35 questions. The UI must use **`live_questions`**.
+- `live_questions` is computed in SQL on `topics_public` / `topics_teaser`
+  (migrations 1754100000 / 1754200000) because `questions` is deliberately not
+  client-listable — the client cannot count them itself. Counting exposes a
+  number, never a stem or an `answer_index`, so it is safe on a public view.
+
+## Reader (changed 2026-07)
+
+- The topic reader **paginates horizontally** — swipe, mouse drag, wheel or
+  arrow keys turn a page. It does **not** scroll vertically.
+- Pagination is **CSS multi-column**, not manual node measuring: the content box
+  is one page wide with `column-width` equal to it, so the flow spills into
+  columns and we translate by whole pages. This reflows arbitrary HTML — tables,
+  callouts, the interactive RecallBlock — with no splitting logic to maintain.
+- **A monolithic block breaks pagination.** Anything that cannot be fragmented
+  (`overflow: auto` wrappers, `break-inside: avoid`) jumps whole to the next page
+  when it does not fit and strands the heading above it on a blank one. Hence:
+  tables fragment and fit the column instead of scrolling sideways (a horizontal
+  scroll inside a horizontally-paging reader fights the turn gesture), and a
+  dev-only warning names any page under 45% full.
+- **No word cap on chapters.** The 500–700 target existed because vertical
+  scrolling made length feel expensive; pagination removes that. Chapters are as
+  long as teaching them properly takes and are written for a first-time reader.
+
+## AI providers (decided 2026-07)
+
+- **Five interchangeable providers in a failover chain**: OpenRouter (Nemotron 3
+  Ultra) → Gemini → Mistral → OpenCode Zen → Groq. All speak the OpenAI
+  chat-completions shape, so only base URL, model and key differ.
+- It is a real **failover**, not a preference order: a call moves down the chain
+  on 429 / 401 / 403 / 404 or persistent errors and throws only when all are
+  spent, so a long ingest run survives one provider's daily cap (they differ by
+  orders of magnitude — 50/day vs 50/min). `AI_PROVIDER=<name>` pins one.
+- Model output is parsed with a **brace-balanced extractor** that strips `<think>`
+  blocks and code fences: the default model reasons, and `response_format` is not
+  guaranteed to be honoured by whichever provider is serving.
+- The chain is duplicated in three places (`scripts/ingest/ai.js`, the CA
+  pipeline, `ca_extra.pb.js`) because they cannot share code — separate deploy
+  unit and PB's JSVM isolation. Change all three together.
+
 ## Entitlements
 
 - **Premium gating is server-trimmed, not CSS-hidden.** Free user's payload for a

@@ -6,8 +6,10 @@
  *   POST /api/ca/monthly-index  {}                      months with CA MCQs
  *   POST /api/ca/monthly-start  {month}                 compile month's MCQs → test
  *
- * MANUAL INGEST: the admin pastes a day's raw current-affairs notes. With
- * GROQ_API_KEY set, the model turns the text into briefs (60-90w) + 2-3 MCQs
+ * MANUAL INGEST: the admin pastes a day's raw current-affairs notes. With an AI
+ * key set (OPENROUTER_API_KEY, else GROQ_API_KEY — both OpenAI-compatible, so
+ * only base URL + model + key differ), the model turns the text into briefs
+ * (60-90w) + 2-3 MCQs
  * each, tagged to POL topics — same shape the RSS pipeline produces, dropped
  * straight into the existing admin queue as `draft`. Without a key, the admin
  * can post a pre-structured `items` array instead (hand-authored). NOTHING goes
@@ -51,12 +53,54 @@ routerAdd("POST", "/api/ca/compose", (e) => {
 
   let items = manualItems;
 
-  // --- AI path: turn raw notes into structured items via Groq ---
+  // --- AI path: turn raw notes into structured items via the LLM ---
   if (!items) {
-    const key = typeof $os !== "undefined" && $os.getenv ? $os.getenv("GROQ_API_KEY") : "";
-    if (!key) {
+    const env = (n) => (typeof $os !== "undefined" && $os.getenv ? $os.getenv(n) : "");
+    // All three speak the OpenAI chat-completions shape — only base URL, model
+    // and key differ. First with a key wins; AI_PROVIDER forces one.
+    const candidates = [
+      {
+        name: "openrouter",
+        key: env("OPENROUTER_API_KEY"),
+        url: "https://openrouter.ai/api/v1/chat/completions",
+        model: env("OPENROUTER_MODEL") || "nvidia/nemotron-3-ultra-550b-a55b:free",
+        extraHeaders: { "http-referer": "https://upscvidya.app", "x-title": "UPSCVidya" },
+      },
+      {
+        name: "gemini",
+        key: env("GEMINI_API_KEY"),
+        url: "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        model: env("GEMINI_MODEL") || "gemini-3.6-flash",
+        extraHeaders: {},
+      },
+      {
+        name: "mistral",
+        key: env("MISTRAL_API_KEY"),
+        url: "https://api.mistral.ai/v1/chat/completions",
+        model: env("MISTRAL_MODEL") || "mistral-large-latest",
+        extraHeaders: {},
+      },
+      {
+        name: "opencode",
+        key: env("OPENCODE_API_KEY"),
+        url: "https://opencode.ai/zen/v1/chat/completions",
+        model: env("OPENCODE_MODEL") || "deepseek-v4-flash-free",
+        extraHeaders: {},
+      },
+      {
+        name: "groq",
+        key: env("GROQ_API_KEY"),
+        url: "https://api.groq.com/openai/v1/chat/completions",
+        model: env("GROQ_MODEL") || "llama-3.3-70b-versatile",
+        extraHeaders: {},
+      },
+    ];
+    const forced = String(env("AI_PROVIDER") || "").trim().toLowerCase();
+    // Failover chain: every configured provider, in order (AI_PROVIDER pins one).
+    const chain = candidates.filter((c) => c.key && (!forced || c.name === forced));
+    if (!chain.length) {
       return e.json(422, {
-        message: "No GROQ_API_KEY on the server. Set it to auto-draft, or POST a structured `items` array.",
+        message: "No AI key on the server (OPENROUTER_API_KEY, GEMINI_API_KEY, MISTRAL_API_KEY or GROQ_API_KEY). Set one to auto-draft, or POST a structured `items` array.",
         need_key: true,
       });
     }
@@ -78,31 +122,68 @@ ${rawText.slice(0, 8000)}
 
 Return JSON: { "items": [ ... ] }`;
 
-    let parsed;
-    try {
-      const res = $http.send({
-        url: "https://api.groq.com/openai/v1/chat/completions",
-        method: "POST",
-        headers: { "content-type": "application/json", authorization: "Bearer " + key },
-        body: JSON.stringify({
-          model: $os.getenv("GROQ_MODEL") || "llama-3.3-70b-versatile",
-          response_format: { type: "json_object" },
-          temperature: 0.2,
-          messages: [
-            { role: "system", content: "Reply with JSON only. Summaries factual and original." },
-            { role: "user", content: prompt },
-          ],
-        }),
-        timeout: 60,
-      });
-      if (res.statusCode < 200 || res.statusCode >= 300) {
-        return e.json(502, { message: "Model request failed (" + res.statusCode + ")." });
+    // Inlined (JSVM isolation): pull a JSON object out of a reply that may carry
+    // reasoning traces or fences — the default model reasons, and the provider
+    // is not guaranteed to honour response_format. Brace-balanced.
+    const extractJson = (raw) => {
+      let s = String(raw == null ? "" : raw);
+      s = s.replace(/<think>[\s\S]*?<\/think>/gi, " ");
+      const stray = s.lastIndexOf("</think>");
+      if (stray !== -1) s = s.slice(stray + 8);
+      s = s.replace(/```(?:json)?/gi, " ");
+      const start = s.indexOf("{");
+      if (start === -1) throw new Error("no JSON object in model output");
+      let depth = 0, inStr = false, esc = false;
+      for (let i = start; i < s.length; i++) {
+        const c = s[i];
+        if (esc) { esc = false; continue; }
+        if (c === "\\") { esc = true; continue; }
+        if (c === '"') { inStr = !inStr; continue; }
+        if (inStr) continue;
+        if (c === "{") depth++;
+        else if (c === "}" && --depth === 0) return JSON.parse(s.slice(start, i + 1));
       }
-      const data = JSON.parse(String(res.body));
-      const content = data.choices[0].message.content;
-      parsed = JSON.parse(content);
-    } catch (err) {
-      return e.json(502, { message: "Could not parse the model output: " + String(err).slice(0, 120) });
+      throw new Error("unbalanced JSON in model output");
+    };
+
+    // Try each configured provider in turn — an admin paste must not fail just
+    // because the first provider's daily quota is gone.
+    let parsed = null;
+    const failures = [];
+    for (const cand of chain) {
+      const headers = { "content-type": "application/json", authorization: "Bearer " + cand.key };
+      for (const h in cand.extraHeaders) headers[h] = cand.extraHeaders[h];
+      try {
+        const res = $http.send({
+          url: cand.url,
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({
+            model: cand.model,
+            response_format: { type: "json_object" },
+            temperature: 0.2,
+            messages: [
+              { role: "system", content: "Reply with JSON only. Summaries factual and original." },
+              { role: "user", content: prompt },
+            ],
+          }),
+          // a reasoning model on a free endpoint is slow — do not lower this
+          timeout: 180,
+        });
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          failures.push(cand.name + " HTTP " + res.statusCode);
+          continue;
+        }
+        const data = JSON.parse(String(res.body));
+        const msg = data.choices[0].message || {};
+        parsed = extractJson(msg.content || msg.reasoning || "");
+        break;
+      } catch (err) {
+        failures.push(cand.name + ": " + String(err).slice(0, 80));
+      }
+    }
+    if (!parsed) {
+      return e.json(502, { message: "Every AI provider failed — " + failures.join(" | ").slice(0, 300) });
     }
     items = Array.isArray(parsed.items) ? parsed.items : [];
   }

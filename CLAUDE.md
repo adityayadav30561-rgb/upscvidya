@@ -127,7 +127,7 @@ Extra design screens not yet built (see screen-map): **21 Community / Mess Hall*
    (`/api/ca/compose`, [ca_extra.pb.js](pb/pb_hooks/ca_extra.pb.js)); a
    [briefing/monthly](src/routes/(app)/briefing/monthly/+page.svelte) view
    compiles every day's CA MCQs into a monthly practice set through the test
-   engine. Needs `GROQ_API_KEY` on the PB server for the AI path (heuristic/
+   engine. Needs an AI key on the PB server for the AI path (heuristic/
    manual `items` array otherwise). Fixed a shared bug: the test engine coerced
    a legit `0` negative-marking to `0.667` (`cfg.negative || 0.667`) — now
    nullish-guarded.
@@ -294,7 +294,7 @@ search "PROMPT 17" in [docs/claude-code-build-book.md](docs/claude-code-build-bo
 | Styling | **Plain CSS + design tokens + material utilities** | `src/lib/styles/tokens.css` (v4 "Field Dossier") + `src/lib/styles/dossier.css` (global material classes). **No Tailwind, no UI library.** Light default; `data-theme="dark"` night variant. See §4.1. |
 | Backend | **PocketBase** (single Go binary + SQLite) | Runs on an Oracle Always-Free ARM VPS behind Caddy. Custom logic in `pb_hooks` (JS VM). |
 | Markdown | `marked` + `dompurify` | Notes render markdown → sanitised HTML. |
-| AI | **Groq** (`llama-3.3-70b`) | Ingestion CLI + CA pipeline drafting. Key in `GROQ_API_KEY`. |
+| AI | **5-provider failover chain**: OpenRouter (Nemotron 3 Ultra) → Gemini → Mistral → OpenCode Zen → Groq | Ingestion CLI + CA pipeline drafting. All five speak the OpenAI chat-completions shape, so only base URL/model/key differ. A call starts at the first configured provider and **falls over** to the next on 429/401/403/404 or persistent errors, throwing only when all are spent — so a batch survives one provider's daily cap. `AI_PROVIDER=openrouter\|gemini\|mistral\|opencode\|groq` **pins** the chain to one (no failover). Quotas differ by orders of magnitude (50/day vs 50/min). |
 | Payments | **Razorpay** (Prompt 14) | Standard one-time checkout, not subscriptions. |
 | Push / Analytics | OneSignal / PostHog (Prompt 15) | |
 | Package manager | **pnpm** | Workspace repo (`pnpm-workspace.yaml`). |
@@ -379,7 +379,7 @@ upscvidya/
 │  └─ pyq/CAPF-2023/  CAPF-2024/  {mcqs.json}
 ├─ scripts/
 │  ├─ content/  validate.js  sync.js  pyq-snapshot.js  lib.js
-│  ├─ ingest/   ingest.js  parse.js  groq.js  dedupe.js
+│  ├─ ingest/   ingest.js  parse.js  ai.js  dedupe.js
 │  └─ gen-icons.mjs
 ├─ pb/                       ← PocketBase working dir (local dev)
 │  ├─ pocketbase.exe         ← local binary (Windows dev)
@@ -429,6 +429,7 @@ badge storage.
 - `questions` are never bulk-listable by clients. Quiz delivery is via custom endpoints that strip `answer_index`.
 - `attempts`, `sr_cards`, `topic_progress`, `test_attempts`, `pet_logs`: own records only (`user = @request.auth.id`).
 - `topics.notes_md` hidden unless `is_free` OR `is_premium` OR `role=admin`; free users get the server-trimmed `topics_public` teaser.
+- **Quiz length is uncapped**: `/api/quiz/start` serves the topic's whole live pool. The UI must show the real count from `live_questions` (SQL-computed on `topics_public`/`topics_teaser`, migrations 1754100000/1754200000) — **never `mcq_floor`**, which is only an authoring target.
 - `ca_items`: public read for `status=published` only.
 - `payments`: no client writes — server hooks only.
 - `role="admin"` bypasses.
@@ -497,7 +498,12 @@ sizes the window, not the viewport — use `emulate` for true mobile metrics.
 |-----|---------|
 | `PUBLIC_PB_URL` | PocketBase URL the client talks to. Dev `http://127.0.0.1:8090`; prod `https://api.<domain>`. |
 | `PUBLIC_DEV_BYPASS_AUTH` | Was `true` before Prompt 04; **now `false`** (auth ships). Keep false. |
-| `GROQ_API_KEY` | Groq key for ingestion CLI + CA pipeline. |
+| `OPENROUTER_API_KEY` / `OPENROUTER_MODEL` | AI for the ingestion CLI + CA pipeline. Model defaults to `nvidia/nemotron-3-ultra-550b-a55b:free`. Also needed as **PB server env** for `/api/ca/compose`. |
+| `GEMINI_API_KEY` / `GEMINI_MODEL` | Google via its OpenAI-compat shim. `gemini-3.6-flash`, 1M ctx, ~5s/question. The stored key is an **Antigravity** (`AQ.*`) key, not AI Studio (`AIza*`) — Pro models 429 on it, Flash is fine. |
+| `GROQ_API_KEY` / `GROQ_MODEL` | `llama-3.3-70b-versatile`, free tier 1000 req/day + 12k tok/min, ~1s/question (vs ~25s on Nemotron). |
+| `MISTRAL_API_KEY` / `MISTRAL_MODEL` | `mistral-large-latest`, 262k ctx. Free tier 50 req/min + 50k tok/min — the **token** cap binds first at our prompt size (~33 calls/min), hence the 1800ms client spacing. |
+| `OPENCODE_API_KEY` / `OPENCODE_MODEL` | OpenCode Zen gateway (`opencode.ai/zen/v1`), every model free tier. `deepseek-v4-flash-free` (~2s). No rate-limit headers; `ling-3.0-flash-free` 400s upstream and `laguna-s-2.1-free` 429s — don't pick those. |
+| `AI_PROVIDER` | Pin to `openrouter` \| `gemini` \| `mistral` \| `opencode` \| `groq` — disables failover, spends only that quota. Unknown value throws. |
 | `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` / `RAZORPAY_WEBHOOK_SECRET` | Payments (Prompt 14). **PocketBase server env only** — read by `pay.pb.js` via `$os.getenv`, never in the client bundle. |
 | `PAY_SIMULATE` | Set `1` (with no Razorpay keys) to run the payment flow offline for dev/e2e. Ignored/unsafe-free in prod (keys present ⇒ simulation unreachable). |
 | `PUBLIC_ONESIGNAL_APP_ID` | OneSignal web push app id (client SDK). Must exist (even empty) for `$env/static/public` to resolve; empty ⇒ push no-op. |

@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "POL-01-Q001",
+    "topic": "POL-01",
+    "stem": "The East India Company obtained its original charter of exclusive trading rights in India from which of the following?",
+    "options": [
+      "King James I in 1608",
+      "Queen Elizabeth I in 1600",
+      "The Mughal Emperor Jahangir in 1615",
+      "The British Parliament in 1773"
+    ],
+    "answer": 1,
+    "explanation": "Queen Elizabeth I granted the charter in 1600; the Company physically arrived in India only in 1608, which is why 'King James I in 1608' confuses the arrival date with the charter date. Jahangir's 1615 permission concerned trading factories, not the Company's constitution. The British Parliament first intervened in Company affairs in 1773 through the Regulating Act — 173 years after the charter.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q002",
+    "topic": "POL-01",
+    "stem": "The 'diwani' of Bengal, Bihar and Orissa was granted to the East India Company in 1765 by",
+    "options": [
+      "Mir Jafar, the Nawab of Bengal",
+      "The Treaty of Paris",
+      "Siraj-ud-Daulah",
+      "The Mughal Emperor Shah Alam II"
+    ],
+    "answer": 3,
+    "explanation": "The Mughal Emperor Shah Alam II granted the diwani in 1765, following the Company's victory at the Battle of Buxar (1764). Mir Jafar was the puppet Nawab installed after Plassey but had no authority to grant diwani rights, which were an imperial prerogative. Siraj-ud-Daulah was defeated at Plassey in 1757 and killed the same year. The Treaty of Paris (1763) settled the Seven Years' War in Europe and did not concern Indian revenue rights.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q003",
+    "topic": "POL-01",
+    "stem": "The grant of 'diwani' conferred on the East India Company the rights over",
+    "options": [
+      "Coinage and currency alone",
+      "Criminal justice and policing",
+      "Defence and external affairs",
+      "Revenue and civil justice"
+    ],
+    "answer": 3,
+    "explanation": "Diwani meant revenue collection together with civil justice — precisely the combination that turned a trading body into a territorial power. Criminal justice (nizamat) remained formally with the Nawab, which is what makes that option the intended distractor. Defence and external affairs were never part of the diwani grant, and coinage alone understates a right that covered the entire revenue administration of three provinces.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q004",
+    "topic": "POL-01",
+    "stem": "Who was the first Governor-General of Bengal?",
+    "options": [
+      "Lord Cornwallis",
+      "Lord William Bentinck",
+      "Lord Warren Hastings",
+      "Lord Canning"
+    ],
+    "answer": 2,
+    "explanation": "The Regulating Act of 1773 designated the Governor of Bengal as Governor-General of Bengal, and Warren Hastings was the first to hold it. Cornwallis became Governor-General in 1786 and secured the override power over his council. Bentinck was the first Governor-General of *India* (Charter Act, 1833) — the most common confusion in this chapter. Canning was the last Governor-General and first Viceroy (1858).",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q005",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Regulating Act of 1773:\n1. It made the Governors of Bombay and Madras subordinate to the Governor-General of Bengal.\n2. It provided for the establishment of a Supreme Court at Calcutta consisting of one chief justice and three other judges.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. Before 1773 the three presidencies were independent of one another; the Act subordinated Bombay and Madras to Bengal, laying the foundation of central administration. It also provided for a Supreme Court at Calcutta, established in 1774 with one chief justice and three other judges. Because both statements are accurate, the single-statement options and the 'neither' option are all wrong.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q006",
+    "topic": "POL-01",
+    "stem": "The Supreme Court at Calcutta was established in the year",
+    "options": [
+      "1773",
+      "1774",
+      "1781",
+      "1784"
+    ],
+    "answer": 1,
+    "explanation": "The Regulating Act of 1773 *provided* for the court; it was actually established in 1774 — a one-year gap examiners exploit constantly. 1781 is the Amending Act (Act of Settlement), which restricted that court's jurisdiction. 1784 is Pitt's India Act, which created the Board of Control and had nothing to do with establishing the court.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q007",
+    "topic": "POL-01",
+    "stem": "The Amending Act of 1781 is also known as the",
+    "options": [
+      "Act of Settlement",
+      "Act for the Good Government of India",
+      "Pitt's India Act",
+      "Act of Union"
+    ],
+    "answer": 0,
+    "explanation": "The Amending Act of 1781 is known as the Act of Settlement, passed to cure defects in the Regulating Act of 1773 — chiefly the Supreme Court's sweeping jurisdiction over Company officials and revenue matters. 'Act for the Good Government of India' is the alternative name of the Government of India Act, 1858. Pitt's India Act is the separate statute of 1784 that created the Board of Control. 'Act of Union' belongs to British domestic history, not Indian constitutional development.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q008",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Amending Act of 1781:\n1. It exempted the Governor-General and Council from the jurisdiction of the Supreme Court for acts done in their official capacity.\n2. It provided that appeals from the Provincial Courts would lie to the Supreme Court.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 0,
+    "explanation": "Statement 1 is correct — the Act shielded the Governor-General, the Council and Company servants from the Supreme Court for official acts, and also removed revenue matters from its jurisdiction. Statement 2 inverts the actual provision: appeals from the Provincial Courts were directed to the Governor-General-in-Council, precisely *not* to the Supreme Court. The whole thrust of the Act was to curtail the Supreme Court, so any option enlarging its role is wrong.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q009",
+    "topic": "POL-01",
+    "stem": "The system of 'double government' in British India was introduced by",
+    "options": [
+      "The Regulating Act of 1773",
+      "The Government of India Act of 1858",
+      "The Charter Act of 1833",
+      "Pitt's India Act of 1784"
+    ],
+    "answer": 3,
+    "explanation": "Pitt's India Act of 1784 created the Board of Control for political affairs while leaving commerce with the Court of Directors — two bodies governing one territory, hence 'double government'. The Regulating Act of 1773 began parliamentary control but created no such duality. The Charter Act of 1833 centralised power in the Governor-General of India rather than dividing it. The Government of India Act of 1858 *abolished* double government by scrapping both the Board of Control and the Court of Directors.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q010",
+    "topic": "POL-01",
+    "stem": "The Company's territories in India were for the first time called the 'British possessions in India' by",
+    "options": [
+      "The Regulating Act of 1773",
+      "Pitt's India Act of 1784",
+      "The Charter Act of 1813",
+      "The Charter Act of 1833"
+    ],
+    "answer": 1,
+    "explanation": "Pitt's India Act of 1784 first used the expression 'British possessions in India', a significant shift in language from trade to territory. The Regulating Act of 1773 recognised the Company's political functions but did not use this phrase. The Charter Act of 1813 went further and asserted the *sovereignty of the British Crown* over those territories — a different milestone often confused with this one. The Charter Act of 1833 declared the territories held 'in trust for His Majesty'.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q011",
+    "topic": "POL-01",
+    "stem": "The Act of 1786 was enacted primarily to",
+    "options": [
+      "Abolish the trade monopoly of the Company",
+      "Meet the conditions laid down by Lord Cornwallis for accepting the office of Governor-General",
+      "Establish the Board of Control",
+      "Separate the legislative and executive functions of the Council"
+    ],
+    "answer": 1,
+    "explanation": "Lord Cornwallis agreed to become Governor-General only on two conditions — power to override his council in special cases, and appointment as Commander-in-Chief — and the Act of 1786 was passed to grant both. The trade monopoly in India was abolished much later, by the Charter Act of 1813. The Board of Control was created two years earlier by Pitt's India Act of 1784. Separation of legislative and executive functions came only with the Charter Act of 1853.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q012",
+    "topic": "POL-01",
+    "stem": "The Charter Act of 1813 abolished the trade monopoly of the East India Company in India, but retained its monopoly over trade in",
+    "options": [
+      "Cotton and indigo",
+      "Salt and opium",
+      "Spices and silk",
+      "Tea and trade with China"
+    ],
+    "answer": 3,
+    "explanation": "The 1813 Act threw Indian trade open to all British merchants but expressly preserved the Company's monopoly over the tea trade and trade with China — the two most lucrative branches. Cotton and indigo were plantation and export commodities never protected in this form. Salt and opium were revenue monopolies of the government rather than chartered trade monopolies retained by this Act. Spices and silk belong to an earlier era of European trading rivalry.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q013",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Charter Act of 1813:\n1. It asserted the sovereignty of the British Crown over the Company's territories in India.\n2. It permitted Christian missionaries to come to India and provided for the spread of western education.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both statements are correct. The 1813 Act asserted Crown sovereignty over Company territories, and it also opened India to Christian missionaries while providing for the spread of western education among the inhabitants of British territories — the first legislative provision for education in India. It additionally authorised local governments to impose and enforce taxes. Since both are accurate, the single-statement and 'neither' options fail.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q014",
+    "topic": "POL-01",
+    "stem": "Who was the first Governor-General of India?",
+    "options": [
+      "Lord Warren Hastings",
+      "Lord Dalhousie",
+      "Lord Cornwallis",
+      "Lord William Bentinck"
+    ],
+    "answer": 3,
+    "explanation": "The Charter Act of 1833 converted the Governor-General of Bengal into the Governor-General of India, and Lord William Bentinck was the first to hold the upgraded office. Warren Hastings was the first Governor-General of *Bengal* under the Regulating Act of 1773 — the standard trap here. Cornwallis held the Bengal office from 1786 with override powers. Dalhousie is associated with the Doctrine of Lapse, not with the creation of this post.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q015",
+    "topic": "POL-01",
+    "stem": "Under which Act did laws made by the Government come to be called 'Acts' instead of 'Regulations'?",
+    "options": [
+      "The Charter Act of 1793",
+      "The Charter Act of 1813",
+      "The Charter Act of 1833",
+      "The Charter Act of 1853"
+    ],
+    "answer": 2,
+    "explanation": "The Charter Act of 1833 vested exclusive legislative power for all of British India in the Governor-General of India, and laws made under it were styled 'Acts', whereas those made under earlier statutes were 'Regulations'. The 1793 Act extended the override power and paid Board of Control salaries from Indian revenues. The 1813 Act dealt with trade monopoly, missionaries and education. The 1853 Act separated legislative from executive functions but did not introduce this change of nomenclature.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q016",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about open competition for the civil services:\n1. The Charter Act of 1833 attempted to introduce open competition, but the provision was negated after opposition from the Court of Directors.\n2. The Charter Act of 1853 actually introduced open competition and was followed by the appointment of the Macaulay Committee in 1854.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and together they form the single most examined contrast in this chapter. The 1833 Act attempted open competition and stated Indians should not be debarred from office, but the Court of Directors forced the provision's withdrawal. The 1853 Act genuinely introduced open competitive selection, throwing the covenanted civil service open to Indians, and the Macaulay Committee on the Indian Civil Service was appointed in 1854. Choosing either statement alone misses the attempted-versus-introduced distinction.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q017",
+    "topic": "POL-01",
+    "stem": "The legislative and executive functions of the Governor-General's Council were separated for the first time by the",
+    "options": [
+      "Charter Act of 1833",
+      "Charter Act of 1853",
+      "Indian Councils Act of 1861",
+      "Indian Councils Act of 1892"
+    ],
+    "answer": 1,
+    "explanation": "The Charter Act of 1853 separated the two functions for the first time, adding six legislative councillors and creating what became the Indian (Central) Legislative Council, which functioned as a mini-Parliament. The 1833 Act concentrated legislative power in the Governor-General but did not separate it from executive work. The 1861 Act associated Indians with law-making and began decentralisation. The 1892 Act enlarged councils and gave them budget and questioning powers — all later developments.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q018",
+    "topic": "POL-01",
+    "stem": "Under the Charter Act of 1853, four of the six new legislative members of the Governor-General's Council were appointed by the local governments of",
+    "options": [
+      "Madras, Bombay, Bengal and Agra",
+      "Madras, Bombay, Bengal and Punjab",
+      "Bengal, Punjab, Assam and Agra",
+      "Bombay, Bengal, Awadh and Madras"
+    ],
+    "answer": 0,
+    "explanation": "The 1853 Act introduced local representation for the first time by having four of the six new legislative members appointed by the provincial governments of Madras, Bombay, Bengal and Agra. Punjab was annexed only in 1849 and did not receive a legislative council until 1897, so options naming it are anachronistic. Assam's council came still later, and Awadh was annexed in 1856 — three years after this Act.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q019",
+    "topic": "POL-01",
+    "stem": "Arrange the following in correct chronological order:\n1. Pitt's India Act\n2. Regulating Act\n3. Charter Act abolishing the Company's Indian trade monopoly\n4. Charter Act creating the Governor-General of India",
+    "options": [
+      "2 – 1 – 3 – 4",
+      "1 – 2 – 3 – 4",
+      "2 – 1 – 4 – 3",
+      "2 – 3 – 1 – 4"
+    ],
+    "answer": 0,
+    "explanation": "The order is Regulating Act (1773) → Pitt's India Act (1784) → Charter Act of 1813, which abolished the Indian trade monopoly → Charter Act of 1833, which created the Governor-General of India. Option 2 wrongly puts Pitt's Act before the Regulating Act. Option 3 reverses 1813 and 1833. Option 4 places the 1813 Act before Pitt's Act of 1784.",
+    "tier": 3,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q020",
+    "topic": "POL-01",
+    "stem": "Who was the first Viceroy of India?",
+    "options": [
+      "Lord Dalhousie",
+      "Lord Canning",
+      "Lord Minto",
+      "Lord Mountbatten"
+    ],
+    "answer": 1,
+    "explanation": "The Government of India Act of 1858 changed the designation of Governor-General of India to Viceroy, and Lord Canning — who held office during the Revolt of 1857 — became the first Viceroy. Dalhousie's tenure ended in 1856, before the office existed. Minto was Viceroy at the time of the 1909 reforms. Mountbatten was the last Viceroy and then the first Governor-General of independent India.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q021",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Government of India Act of 1858:\n1. It abolished both the Board of Control and the Court of Directors.\n2. It created the office of Secretary of State for India, who was a member of the British Cabinet.\n3. It substantially altered the system of government that prevailed in India.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 0,
+    "explanation": "Statements 1 and 2 are correct: the Act ended double government by abolishing the Board of Control and the Court of Directors, and created the Secretary of State for India, a British Cabinet member answerable to Parliament, assisted by a 15-member Council of India. Statement 3 is the standard trap — the Act is expressly noted as having altered in no substantial way the system of government in India, confining itself to improving the machinery of superintendence and control in England. It changed who governed, not how.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q022",
+    "topic": "POL-01",
+    "stem": "The Council of India established to assist the Secretary of State for India under the Act of 1858 consisted of how many members?",
+    "options": [
+      "10",
+      "12",
+      "15",
+      "20"
+    ],
+    "answer": 2,
+    "explanation": "The Act of 1858 established a 15-member Council of India as an advisory body, with the Secretary of State as its chairman; the Secretary of State-in-Council was constituted a body corporate capable of suing and being sued. The other figures are plausible-looking distractors with no basis in the Act. This Council of India was later abolished by the Government of India Act of 1935.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q023",
+    "topic": "POL-01",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Indian nominated to the Viceroy's Legislative Council in 1862)\nA. Raja of Benaras\nB. Maharaja of Patiala\nC. Sir Dinkar Rao\nList II (Nominating authority / context)\n1. Nominated by Lord Canning under the Indian Councils Act of 1861\n2. Nominated by Lord Minto under the Act of 1909\n3. Nominated by Lord Chelmsford under the Act of 1919",
+    "options": [
+      "A-1, B-1, C-1",
+      "A-2, B-2, C-2",
+      "A-1, B-2, C-3",
+      "A-3, B-3, C-3"
+    ],
+    "answer": 0,
+    "explanation": "All three — the Raja of Benaras, the Maharaja of Patiala and Sir Dinkar Rao — were nominated by Lord Canning in 1862 as non-official members under the Indian Councils Act of 1861, marking the beginning of representative institutions in India. Minto's association with Indians in 1909 concerned the *Executive* Council and Satyendra Prasad Sinha. Chelmsford's 1919 reforms required three of six Executive Council members to be Indian, a separate development entirely.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q024",
+    "topic": "POL-01",
+    "stem": "The 'portfolio system', under which a member of the Viceroy's council was placed in charge of one or more departments, was introduced by Lord Canning in 1859 and given statutory recognition by the",
+    "options": [
+      "Government of India Act of 1858",
+      "Indian Councils Act of 1861",
+      "Indian Councils Act of 1892",
+      "Indian Councils Act of 1909"
+    ],
+    "answer": 1,
+    "explanation": "Canning introduced the portfolio system in 1859 and the Indian Councils Act of 1861 recognised it, while also empowering the Viceroy to make rules for the convenient transaction of business. The 1858 Act preceded Canning's innovation by a year and dealt with the transfer of power to the Crown. The 1892 Act concerned budget discussion and indirect election, and the 1909 Act dealt with council size and separate electorates.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q025",
+    "topic": "POL-01",
+    "stem": "Under the Indian Councils Act of 1861, an ordinance issued by the Viceroy during an emergency remained in force for",
+    "options": [
+      "Six weeks",
+      "Three months",
+      "Six months",
+      "One year"
+    ],
+    "answer": 2,
+    "explanation": "The 1861 Act empowered the Viceroy to issue ordinances without the concurrence of the legislative council during an emergency, and the life of such an ordinance was six months. Six weeks is the period associated with the modern constitutional requirement for an ordinance to be laid before Parliament after reassembly, which is why it tempts. Three months and one year have no basis in this Act.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q026",
+    "topic": "POL-01",
+    "stem": "The Indian Councils Act of 1861 is significant because it",
+    "options": [
+      "Abolished the office of Secretary of State for India",
+      "Introduced direct elections to the legislative councils",
+      "Established provincial autonomy in British India",
+      "Initiated decentralisation by restoring legislative powers to the Bombay and Madras Presidencies"
+    ],
+    "answer": 3,
+    "explanation": "The 1861 Act reversed the centralising trend that began with the Regulating Act of 1773 and peaked under the Charter Act of 1833, by restoring legislative powers to Bombay and Madras — a devolution that eventually led to near-complete provincial autonomy in 1937. Direct elections came only with the Government of India Act of 1919. Provincial autonomy was established by the 1935 Act. The Secretary of State's office was abolished by the Indian Independence Act of 1947.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q027",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Indian Councils Act of 1892:\n1. It gave the legislative councils the power to discuss the budget and to address questions to the executive.\n2. It made a limited and indirect provision for election, though the word 'election' was not used in the Act.\n3. It abolished the official majority in the Central Legislative Council.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 0,
+    "explanation": "Statements 1 and 2 are correct: the Act enlarged the councils' functions to include budget discussion and questioning the executive, and it introduced election indirectly through nomination on the recommendation of bodies such as district boards, municipalities, universities and chambers — without ever using the word 'election'. Statement 3 is wrong: the official majority was expressly *maintained*. Non-official majority came only at the provincial level, and only in 1909.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q028",
+    "topic": "POL-01",
+    "stem": "Under the Indian Councils Act of 1909, the number of members in the Central Legislative Council was raised from 16 to",
+    "options": [
+      "30",
+      "50",
+      "60",
+      "104"
+    ],
+    "answer": 2,
+    "explanation": "The Morley–Minto reforms of 1909 raised the Central Legislative Council's strength from 16 to 60 members, while the size of provincial councils was left non-uniform. The Act retained an official majority at the Centre but permitted a non-official majority in the provinces. The other figures are distractors drawn from unrelated council strengths in later reforms.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q029",
+    "topic": "POL-01",
+    "stem": "Who was the first Indian to be appointed to the Viceroy's Executive Council, and in which capacity?",
+    "options": [
+      "Sir Dinkar Rao, as Revenue Member",
+      "Satyendra Prasad Sinha, as Law Member",
+      "Raja of Benaras, as Finance Member",
+      "Sir S. P. Sinha, as Home Member"
+    ],
+    "answer": 1,
+    "explanation": "The Act of 1909 provided for the first time for the association of Indians with the executive councils of the Viceroy and Governors, and Satyendra Prasad Sinha was appointed as Law Member. Sir Dinkar Rao and the Raja of Benaras were nominated in 1862 to the *legislative* council, not the executive council, under the 1861 Act. The fourth option names the right person but the wrong portfolio — he was Law Member, not Home Member.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q030",
+    "topic": "POL-01",
+    "stem": "Lord Minto came to be known as the 'Father of Communal Electorate' because the Act of 1909",
+    "options": [
+      "Extended separate electorates to the depressed classes",
+      "Created a separate province on religious lines",
+      "Reserved seats for Muslims in the Viceroy's Executive Council",
+      "Introduced a system of communal representation for Muslims through separate electorates"
+    ],
+    "answer": 3,
+    "explanation": "The 1909 Act legalised communalism by accepting the concept of a separate electorate under which Muslim members were elected only by Muslim voters, earning Minto that title. Separate electorates were extended to the depressed classes much later, by the Communal Award of 1932 — and then withdrawn by the Poona Pact. No seats were reserved for Muslims in the Executive Council. Partition of provinces on religious lines refers to the 1905 Bengal partition, a separate episode.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q031",
+    "topic": "POL-01",
+    "stem": "Which one of the following was NOT a 'transferred' subject under the dyarchy introduced by the Government of India Act of 1919?",
+    "options": [
+      "Education",
+      "Public health",
+      "Police",
+      "Agriculture"
+    ],
+    "answer": 2,
+    "explanation": "Police was a *reserved* subject, administered by the Governor and his executive council without responsibility to the legislative council — along with administration of justice, prisons, land revenue and finance. Education, public health and agriculture were transferred subjects, administered by the Governor with the aid of ministers answerable to the legislature. The pattern is consistent: anything touching coercive power or money stayed reserved.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q032",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Government of India Act of 1919:\n1. It introduced bicameralism and direct elections in India for the first time.\n2. It introduced dyarchy at the Centre.\n3. It separated provincial budgets from the Central budget.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 1,
+    "explanation": "Statements 1 and 3 are correct: the 1919 Act replaced the Indian legislative council with a bicameral legislature — Council of State and Legislative Assembly — with most members directly elected, and it separated provincial budgets from the Central budget for the first time. Statement 2 is the classic inversion: dyarchy in 1919 was introduced in the *provinces*. Dyarchy at the Centre was proposed by the 1935 Act and never came into operation at all.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q033",
+    "topic": "POL-01",
+    "stem": "The Chamber of Princes (Narendra Mandal), proposed by the Government of India Act of 1919 and inaugurated in 1921, consisted of",
+    "options": [
+      "108 members, all princes of states",
+      "120 members — 108 princes of states and 12 representatives of other states",
+      "120 members, all nominated by the Secretary of State",
+      "132 members — 120 princes and 12 British officials"
+    ],
+    "answer": 1,
+    "explanation": "The Chamber of Princes had 120 members: the princes of 108 states in their own right, plus 12 representatives of other states, and it was headed by the Viceroy. It was a consultative forum on matters of common interest, with no legislative power. The option naming only 108 omits the 12 representatives, and the remaining options invent both a nominating authority and a membership figure the Act never provided.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q034",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Simon Commission:\n1. It was appointed in 1927, two years ahead of the schedule laid down by the Government of India Act of 1919.\n2. All seven of its members were British, and it was boycotted by all Indian parties.\n3. It recommended the retention of dyarchy in the provinces.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 0,
+    "explanation": "Statements 1 and 2 are correct: the 1919 Act provided for a statutory commission after ten years, but the seven-member commission under Sir John Simon was announced in November 1927, and its wholly British composition provoked a boycott by all parties. Statement 3 reverses its recommendation — the Commission, reporting in 1930, recommended the *abolition* of dyarchy, extension of responsible government in the provinces, a federation of British India and the princely states, and continuation of communal electorates.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q035",
+    "topic": "POL-01",
+    "stem": "The Poona Pact of 1932 resulted in",
+    "options": [
+      "Separate electorates being granted to the depressed classes",
+      "The retention of a joint Hindu electorate with reserved seats for the depressed classes",
+      "The abolition of separate electorates for Muslims",
+      "The abandonment of the Communal Award in its entirety"
+    ],
+    "answer": 1,
+    "explanation": "Gandhi's fast unto death in Yerawada Jail against the extension of separate electorates to the depressed classes led to an agreement with Dr B. R. Ambedkar: the joint Hindu electorate was retained and the depressed classes were given reserved seats instead. The Communal Award had *proposed* separate electorates for them; the Pact removed that. Separate electorates for Muslims, Sikhs, Indian Christians, Anglo-Indians and Europeans continued untouched, so the Award was modified only in respect of the depressed classes, not abandoned.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q036",
+    "topic": "POL-01",
+    "stem": "The Government of India Act of 1935 divided powers between the Centre and the units through three lists. The number of items in the Federal, Provincial and Concurrent Lists respectively was",
+    "options": [
+      "59, 54 and 36",
+      "54, 59 and 36",
+      "61, 52 and 37",
+      "97, 66 and 47"
+    ],
+    "answer": 0,
+    "explanation": "The 1935 Act provided a Federal List of 59 items, a Provincial List of 54 items and a Concurrent List of 36 items, with residuary powers vested in the Viceroy. The second option simply swaps the Federal and Provincial figures. The last option gives the original figures of the three lists under the *Constitution of India* (Union 97, State 66, Concurrent 47), a favourite trap that tests whether the candidate can keep the 1935 Act distinct from the Constitution it inspired.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q037",
+    "topic": "POL-01",
+    "stem": "Assertion (A): The All-India Federation envisaged by the Government of India Act of 1935 never came into being.\nReason (R): The princely states did not join the proposed federation.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both statements are true and the reason directly explains the assertion. The 1935 Act provided for a federation of provinces and princely states as units, but accession of the princely states was voluntary and they declined, so the federation never materialised. Since the states' refusal is precisely why the federation failed, R is the correct explanation of A, ruling out the second option; and as both statements are factually accurate, the third and fourth options are wrong.",
+    "tier": 3,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q038",
+    "topic": "POL-01",
+    "stem": "Under the Government of India Act of 1935, residuary powers were vested in",
+    "options": [
+      "The Federal Legislature",
+      "The Provincial Legislatures",
+      "The Federal Court",
+      "The Viceroy (Governor-General)"
+    ],
+    "answer": 3,
+    "explanation": "The 1935 Act left residuary powers with the Viceroy, who could decide to which list an unenumerated subject belonged — a deliberately unfederal arrangement reflecting British distrust of both Indian legislatures. Neither the Federal nor the Provincial Legislature received them, and the Federal Court, set up in 1937, was an adjudicating body with no legislative competence. Under the Constitution of India, by contrast, residuary powers rest with Parliament.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q039",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Government of India Act of 1935:\n1. It abolished dyarchy in the provinces and introduced provincial autonomy.\n2. It introduced bicameralism in six out of eleven provinces.\n3. It abolished the Council of India established by the Government of India Act of 1858.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 3,
+    "explanation": "All three are correct. The Act ended provincial dyarchy and replaced it with provincial autonomy, under which the Governor acted on the advice of ministers responsible to the provincial legislature — operative from 1937 until 1939. It made the legislatures of Bengal, Bombay, Madras, Bihar, Assam and the United Provinces bicameral, six of the eleven provinces. And it abolished the Council of India that had assisted the Secretary of State since 1858, replacing it with a team of advisors.",
+    "tier": 5,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q040",
+    "topic": "POL-01",
+    "stem": "Which of the following institutions was NOT provided for by the Government of India Act of 1935?",
+    "options": [
+      "The Reserve Bank of India",
+      "The Federal Court",
+      "The Federal Railway Authority",
+      "The Central Public Service Commission"
+    ],
+    "answer": 3,
+    "explanation": "The Central Public Service Commission was set up in 1926 under the Government of India Act of 1919, on the recommendation of the Lee Commission — before the 1935 Act. The 1935 Act did provide for a Federal, a Provincial and a Joint Public Service Commission, which is what makes this option tempting. The Reserve Bank of India, the Federal Court (established 1937) and the Federal Railway Authority were all creations of the 1935 Act.",
+    "tier": 5,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q041",
+    "topic": "POL-01",
+    "stem": "The Government of India Act of 1935 extended the franchise to about ______ per cent of the total population.",
+    "options": [
+      "3",
+      "10",
+      "14",
+      "27"
+    ],
+    "answer": 2,
+    "explanation": "The 1935 Act extended the vote to roughly 14 per cent of the total population — a significant widening on the property-and-tax based franchise of the 1919 Act, yet still leaving the overwhelming majority disenfranchised until universal adult suffrage arrived with the Constitution. The other figures are distractors; about 3 per cent approximates the far narrower electorate under the earlier arrangement.",
+    "tier": 3,
+    "format": "fill-appropriate",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q042",
+    "topic": "POL-01",
+    "stem": "The Government of India Act of 1935 separated ______ from India and created the two new provinces of ______.",
+    "options": [
+      "Ceylon; Orissa and Assam",
+      "Burma; Orissa and Sind",
+      "Burma; Assam and Sind",
+      "Aden; Orissa and Bihar"
+    ],
+    "answer": 1,
+    "explanation": "The 1935 Act separated Burma (now Myanmar) from India and created Orissa and Sind as new provinces. Ceylon was administered as a separate Crown colony and was never part of British India, so it could not be 'separated' by this Act. Assam already existed as a province and was one of the six given bicameral legislatures. Bihar had been separated from Bengal much earlier and was not created by this Act.",
+    "tier": 3,
+    "format": "fill-appropriate",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q043",
+    "topic": "POL-01",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Act)\nA. Government of India Act, 1858\nB. Indian Councils Act, 1909\nC. Government of India Act, 1919\nD. Government of India Act, 1935\nList II (Feature)\n1. Provincial autonomy\n2. Office of Viceroy created\n3. Dyarchy in the provinces\n4. Separate electorate for Muslims",
+    "options": [
+      "A-2, B-4, C-3, D-1",
+      "A-2, B-3, C-4, D-1",
+      "A-1, B-4, C-3, D-2",
+      "A-2, B-4, C-1, D-3"
+    ],
+    "answer": 0,
+    "explanation": "The 1858 Act created the office of Viceroy (Canning first); the 1909 Morley–Minto reforms introduced separate electorates for Muslims; the 1919 Montagu–Chelmsford reforms introduced dyarchy in the provinces; and the 1935 Act abolished that dyarchy and introduced provincial autonomy. The other options swap dyarchy with separate electorates, or place provincial autonomy in 1919 — both reversals the chapter's chronology rules out.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q044",
+    "topic": "POL-01",
+    "stem": "Assertion (A): The Indian Independence Act of 1947 provided that both dominions would be governed under the Government of India Act of 1935 until their new constitutions were framed.\nReason (R): The Constituent Assemblies of the two dominions were empowered to repeal any Act of the British Parliament, including the Indian Independence Act itself.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 1,
+    "explanation": "Both statements are factually true — the 1947 Act continued the 1935 Act as the interim governing instrument (with permitted modifications) and separately empowered the Constituent Assemblies to repeal any British statute, including the Independence Act itself. But they are independent provisions: the power of repeal does not explain why the 1935 Act was retained in the interim. That retention was a practical necessity, since a governing framework was needed immediately while constitutions were still being drafted.",
+    "tier": 5,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q045",
+    "topic": "POL-01",
+    "stem": "Consider the following statements about the Indian Independence Act of 1947:\n1. It abolished the office of the Secretary of State for India.\n2. It proclaimed the lapse of British paramountcy over the Indian princely states.\n3. It designated the Governor-General and the provincial governors as constitutional heads acting on ministerial advice.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 3,
+    "explanation": "All three are correct. The Act abolished the office of Secretary of State for India and transferred his functions to the Secretary of State for Commonwealth Affairs; it declared the lapse of British paramountcy over the princely states and of treaty relations with tribal areas from 15 August 1947, leaving the states free to join India, join Pakistan or remain independent; and it made the Governor-General and provincial governors nominal heads bound by the advice of their councils of ministers.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q046",
+    "topic": "POL-01",
+    "stem": "Arrange the following events in correct chronological order:\n1. Communal Award\n2. Simon Commission appointed\n3. Poona Pact\n4. Government of India Act, 1935",
+    "options": [
+      "2 – 1 – 3 – 4",
+      "1 – 2 – 3 – 4",
+      "2 – 3 – 1 – 4",
+      "1 – 3 – 2 – 4"
+    ],
+    "answer": 0,
+    "explanation": "The Simon Commission was appointed in November 1927; the Communal Award was announced by Ramsay MacDonald in August 1932; the Poona Pact followed later in 1932 as the response to that Award; and the Government of India Act was passed in 1935, incorporating the modified Award. The key ordering point is that the Poona Pact came *after* the Communal Award — it was a reaction to it — which eliminates the options placing the Pact first.",
+    "tier": 3,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q047",
+    "topic": "POL-01",
+    "stem": "Arrange the following 'firsts' in correct chronological order:\n1. Introduction of bicameralism at the Centre\n2. Beginning of representative institutions by associating Indians with law-making\n3. Introduction of separate electorates for Muslims\n4. Separation of legislative and executive functions of the Governor-General's Council",
+    "options": [
+      "4 – 2 – 3 – 1",
+      "2 – 4 – 3 – 1",
+      "4 – 2 – 1 – 3",
+      "2 – 3 – 4 – 1"
+    ],
+    "answer": 0,
+    "explanation": "The correct sequence is the Charter Act of 1853 (separation of legislative and executive functions) → the Indian Councils Act of 1861 (Indians associated with law-making) → the Indian Councils Act of 1909 (separate electorates for Muslims) → the Government of India Act of 1919 (bicameralism at the Centre). The frequent error is placing 1861 before 1853; the other options either invert that pair or push separate electorates after bicameralism.",
+    "tier": 4,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q048",
+    "topic": "POL-01",
+    "stem": "Which one of the following pairs is correctly matched?",
+    "options": [
+      "Charter Act, 1833 — Introduced open competition for the civil services",
+      "Indian Councils Act, 1892 — Introduced direct elections",
+      "Government of India Act, 1858 — Abolished the Board of Control and the Court of Directors",
+      "Charter Act, 1813 — Ended the Company's monopoly over trade with China"
+    ],
+    "answer": 2,
+    "explanation": "Only the third pair is correct: the 1858 Act ended double government by abolishing both the Board of Control and the Court of Directors. The 1833 Act only *attempted* open competition, which the Court of Directors defeated — it was introduced in 1853. The 1892 Act introduced election indirectly and never used the word; direct elections came in 1919. The 1813 Act ended the Indian trade monopoly but expressly *retained* the monopoly over tea and the China trade.",
+    "tier": 5,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q049",
+    "topic": "POL-01",
+    "stem": "Under the Government of India Act of 1919, how many of the six members of the Viceroy's Executive Council (other than the Commander-in-Chief) were required to be Indian?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "The 1919 Act required three of the six members of the Viceroy's Executive Council, excluding the Commander-in-Chief, to be Indian — a substantial advance on 1909, when the association of Indians with the executive council began with a single appointee, Satyendra Prasad Sinha. The remaining figures have no basis in the Act; the number to fix is three of six.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  },
+  {
+    "id": "POL-01-Q050",
+    "topic": "POL-01",
+    "stem": "The British Prime Minister who declared on 20 February 1947 that British rule in India would end, and the Viceroy who put forth the partition plan on 3 June 1947, were respectively",
+    "options": [
+      "Winston Churchill and Lord Wavell",
+      "Clement Attlee and Lord Wavell",
+      "Ramsay MacDonald and Lord Linlithgow",
+      "Clement Attlee and Lord Mountbatten"
+    ],
+    "answer": 3,
+    "explanation": "Clement Attlee announced on 20 February 1947 that British rule would end by 30 June 1948, and Lord Mountbatten, as Viceroy, presented the partition plan on 3 June 1947 — accepted by both the Congress and the Muslim League and given effect by the Indian Independence Act. Churchill had left office in 1945 and Wavell was the preceding Viceroy. Ramsay MacDonald is associated with the Communal Award of 1932 and Linlithgow with the wartime period.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-29"
+  }
+]

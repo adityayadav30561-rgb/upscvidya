@@ -74,8 +74,13 @@ export interface Topic extends BaseRecord {
 	is_free: boolean;
 }
 
-/** topics_public view — everything except notes_md, live only. */
-export type TopicPublic = Omit<Topic, 'notes_md' | 'created' | 'updated'>;
+/** topics_public view — everything except notes_md, live only.
+ *  `live_questions` is computed in SQL (see pb_migrations/1754100000): the real
+ *  count of `status='live'` questions, i.e. exactly how many a quiz will serve.
+ *  Not to be confused with `mcq_floor`, which is only an authoring target. */
+export type TopicPublic = Omit<Topic, 'notes_md' | 'created' | 'updated'> & {
+	live_questions: number;
+};
 
 export interface Question extends BaseRecord {
 	qid: string;

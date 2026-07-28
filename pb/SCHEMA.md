@@ -44,8 +44,10 @@ READ their own sessions (resume); only the hooks write.
 Migration: [pb_migrations/1753100000_quiz_sessions.js](pb_migrations/1753100000_quiz_sessions.js).
 
 Endpoints (superuser context, [pb_hooks/quiz.pb.js](pb_hooks/quiz.pb.js)):
-`POST /api/quiz/start` composes 12 (topic) / 15 (drill) questions weighted
-30/40/30 across tiers, preferring least-attempted-by-this-user; reuses an
+`POST /api/quiz/start` composes the topic's **entire live pool** — `N =
+pool.length`, no cap and no floor, so a chapter with 50 authored questions
+serves all 50. Tier buckets (30/40/30) still order the picks, preferring
+least-attempted-by-this-user; reuses an
 active session so a refresh resumes. `/answer` verifies + records an attempt +
 bumps question stats. `/state` resumes (reveals correct index only for answered
 questions). `/finish` scores, upserts `topic_progress` (≥70% conquered, ≥90%
@@ -181,7 +183,7 @@ only — never the questions.
 The pipeline job lives at [../infra/jobs/ca-pipeline/index.js](../infra/jobs/ca-pipeline/index.js)
 (cron 05:30 + 17:30 IST on the VPS): fetches every enabled `sources` feed,
 filters noise, dedups by URL + Jaccard title similarity against 14 days of
-`ca_items`, then drafts per candidate — with `GROQ_API_KEY` a real model call
+`ca_items`, then drafts per candidate — with an AI key a real model call
 (summary, topic tags, 2-3 draft MCQs); without a key it runs in HEURISTIC mode
 (keyword tags, extractive summary, NO fabricated MCQs) at `confidence 0.5`,
 which keeps every heuristic draft below the 0.92 batch-approve bar so a human
@@ -298,8 +300,10 @@ notification type (Prompt-15 infra; Saturday 09:00 IST cron).
 ## CA manual ingest + Monthly CA (post-Prompt-13)
 
 [pb_hooks/ca_extra.pb.js](pb_hooks/ca_extra.pb.js) adds:
-- `POST /api/ca/compose` (admin) — paste a day's raw notes → with `GROQ_API_KEY`
-  set (server env, `$os.getenv`, called via `$http.send`) the model drafts
+- `POST /api/ca/compose` (admin) — paste a day's raw notes → with an AI key
+  (`OPENROUTER_API_KEY` → `GEMINI_API_KEY` → `MISTRAL_API_KEY` → `OPENCODE_API_KEY` → `GROQ_API_KEY`, or whichever
+  `AI_PROVIDER` names) set (server env, `$os.getenv`,
+  called via `$http.send`, 180s timeout) the model drafts
   briefs (60-90w) + 2-3 MCQs each, tagged to POL topics, inserted as `draft`
   ca_items + `draft` questions for the existing queue. Without a key it returns
   `422 { need_key }`, or the admin can POST a pre-structured `items` array to
