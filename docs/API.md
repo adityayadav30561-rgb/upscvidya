@@ -147,6 +147,7 @@ after submit / past the timer).
 - `pnpm sync -- --env dev` — upsert `content/` → PocketBase (idempotent; retires, never deletes).
 - `pnpm ingest -- --topic POL-08 --source "external:<name>" --file input.txt` — MCQ ingestion CLI (Groq).
 - `pnpm pyq:snapshot` — regenerate `src/lib/pyq-snapshot.json` for the prerendered PYQ landings.
+- `pnpm repair:pyq -- --env prod [--apply]` — one-off repair for the old sync unit-filter bug that retired every `source_type="pyq"` question. Dry run unless `--apply`. Only un-retires PYQ questions that still exist in `content/pyq/`, restoring the status the repo declares; a PYQ retired in PB with no repo counterpart is reported and left alone. Sync never downgrades status, so this damage cannot self-heal.
 - **CA RSS job** — `infra/jobs/ca-pipeline/index.js`, cron 05:30 + 17:30 IST on the VPS (PIB + national feeds → dedup → Groq/heuristic draft → `draft` ca_items). Same output as the in-app `/api/ca/compose`.
 
 ---

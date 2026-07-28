@@ -11,6 +11,8 @@
 | Session memory (what's next) | `docs/CURRENT_STATE.md` |
 | Build plan (18 prompts) | `docs/claude-code-build-book.md` |
 | Content model + MCQ schema | `docs/polity-mvp-master.md` |
+| topic.md authoring template (fixed shape) | `docs/CONTENT_AUTHORING.md` |
+| Beta readiness checklist (hosting, OAuth, keys) | `docs/BETA_SETUP.md` |
 | Screen → prompt map | `docs/screen-map.md` |
 | Every API endpoint/cron/CLI | `docs/API.md` |
 | DB schema (collections, rules) | `pb/SCHEMA.md` |
@@ -97,5 +99,6 @@
 |---|---|
 | Source content (synced to PB) | `content/polity/`, `content/pyq/` |
 | Validate / sync / snapshot | `scripts/content/validate.js`, `sync.js`, `pyq-snapshot.js` |
+| One-off PYQ status repair | `scripts/content/repair-pyq-status.js` (`pnpm repair:pyq`) |
 | MCQ ingestion (Groq/OCR) | `scripts/ingest/ingest.js`, `parse.js`, `groq.js` |
 | VPS infra | `infra/setup.sh`, `Caddyfile`, `infra/backup/`, `infra/jobs/ca-pipeline/` |

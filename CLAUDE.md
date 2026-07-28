@@ -471,6 +471,7 @@ pnpm validate            # validate content/ against schema (exit non-zero on er
 pnpm sync -- --env dev   # upsert content → PocketBase (idempotent; retires, never deletes)
 pnpm ingest -- --topic POL-08 --source "external:<name>" --file input.txt
 pnpm pyq:snapshot        # regenerate src/lib/pyq-snapshot.json
+pnpm repair:pyq -- --env prod [--apply]   # one-off: un-retire PYQs killed by the old sync bug (dry run by default)
 ```
 
 **Local PocketBase (Windows dev):** run `pb/pocketbase.exe serve` from `pb/`

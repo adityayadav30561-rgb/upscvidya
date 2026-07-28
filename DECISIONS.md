@@ -22,7 +22,16 @@
 - Sync's "repo set" is **every valid unit**, not just id_code folders: PYQ papers
   (`content/pyq/CAPF-20xx`) carry no `folderIdCode`, and dropping them made the
   retire sweep retire every PYQ question. Because sync never downgrades status,
-  that damage does not self-heal — it needs a manual repair pass.
+  that damage does not self-heal — it needs a manual repair pass. That pass is
+  `scripts/content/repair-pyq-status.js` (`pnpm repair:pyq`): dry run by
+  default, un-retires only PYQ qids still present in `content/pyq/`, restores
+  the repo's declared status, and never touches a retired PYQ with no repo
+  counterpart (that one may have been retired deliberately).
+
+- **Chapter notes carry retrieval prompts by rule, not by taste:** 1 `:::predict`
+  after the intro, 1 `:::cloze` per ~300 words, 1 `:::recall` before the quiz
+  CTA. The predict block asks something the intro has *not* answered yet — a
+  prediction the reader must commit to before the text resolves it.
 - Everything ingested/AI-drafted starts as `draft`; goes live only via human
   admin validation. Lifecycle: draft → validated → live → retired.
 - Commercial-source questions are **rewritten** (concept kept, wording fresh);
@@ -79,6 +88,54 @@
   timestamp per chapter: a chapter-wide stamp loses any miss written in the same
   millisecond. Legacy numeric stamps are still read.
 - Malformed `:::` blocks fail `pnpm validate`, never a reader.
+
+## Distribution & hosting (decided 2026-07)
+
+- **Ship as a PWA, not an app store build.** Beta is handed out as a **URL + a
+  one-page install guide** (Add to Home Screen). `static/manifest.webmanifest`
+  is already install-ready (`display: standalone`, maskable icon).
+- **App updates are automatic** — `src/service-worker.ts` keys its cache on
+  `version`, calls `skipWaiting()` + `clients.claim()`, and drops stale caches on
+  activate. Deploy → user reloads → new version. No download, no store review.
+  An already-open tab keeps old JS until it reloads (a "new version" toast is
+  still to build).
+- **APK comes later as a TWA**, downloaded from our own site — **not** Play
+  Store (avoids the $25 fee and the 12-testers-for-14-days closed-test rule for
+  new personal accounts). A TWA wraps the live URL, so auto-update is unchanged.
+- **iOS is the onboarding risk:** install is Safari-only via Share → Add to Home
+  Screen, with no prompt, and web push only works once installed. The install
+  guide must cover it with screenshots.
+- **Hosting, two phases:**
+  - **Beta → PocketHost** (hosted PocketBase, free, `*.pockethost.io` with TLS)
+    + **Cloudflare Pages** (`*.pages.dev`) for the static app. **No domain, ₹0.**
+    Runs without the dev machine on — that was the deciding factor.
+  - **Launch → Oracle Always Free ARM VPS** (already scripted in `infra/`) +
+    a purchased domain: apex → Pages, `api.` → the VPS, Caddy takes the cert.
+  - Migration between them = copy `pb_data/` + swap `PUBLIC_PB_URL` + append the
+    new redirect URI to the *same* Google OAuth client.
+- **PocketBase is the backend AND the database** (one Go binary + SQLite on
+  disk). That is why persistent disk is non-negotiable, and why free tiers
+  without it (Render free, Vercel, Railway) are disqualified — not a preference.
+- **HTTPS is mandatory, not cosmetic:** service workers, PWA install and Google
+  OAuth all require a secure origin, and an HTTPS frontend cannot call an HTTP
+  backend. A raw VPS IP is therefore unusable — hence the domain at launch.
+- **Payments stay off for the whole beta.** Razorpay keys unset; the paywall
+  routes to the beta banner. Beta is free and open via `beta_free_until`
+  (see the 🔒 note after Prompt 18 in the build book).
+
+## Auth (Google)
+
+- Client side is done: `loginWithGoogle()` → `authWithOAuth2({provider:'google'})`.
+  Everything else is **config**, in two places: Google Cloud Console + the PB
+  `users` collection Options. No app code changes.
+- The **client secret lives in PocketBase's own database**, never in `.env` and
+  never in git. PB config does not travel with the code, so each host (local,
+  PocketHost, Oracle) is configured separately.
+- Consent screen: **External**, default non-sensitive scopes (`email`,
+  `profile`, `openid`) ⇒ **no Google verification review**. "Testing" mode caps
+  at 100 users; publishing to Production needs a privacy-policy URL.
+- Copy the redirect URL **from the PB admin panel** — it is version-specific,
+  never guess it.
 
 ## Workflow
 
