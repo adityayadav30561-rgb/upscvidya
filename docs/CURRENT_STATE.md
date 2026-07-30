@@ -5,9 +5,11 @@
 
 ## Current goal
 
-**Get to a handable beta.** Prompts 00–16 are built; the gap is config, hosting
-and content. Checklist + step order: **[BETA_SETUP.md](BETA_SETUP.md)**.
-**Prompt 17 (deploy/QA) stays paused** — there is no production to harden.
+**Make the app installable on a phone.** Content authoring is **paused** until a
+stranger can open a URL, tap *Add to Home Screen*, and log in. Checklist and step
+order: **[BETA_SETUP.md](BETA_SETUP.md)** — critical path is 1 → 2 → 2b → 5 → 7 → 9.
+**Prompt 17 (deploy/QA) stays paused** — that hardens a production that does not
+exist yet; this goal creates it.
 
 ## Completed
 
@@ -15,54 +17,53 @@ and content. Checklist + step order: **[BETA_SETUP.md](BETA_SETUP.md)**.
 - **8 of 103 units authored**: POL-01…POL-06, POL-10, POL-19. Each is a full
   teaching chapter + MCQ bank, `draft` in the repo, synced and promoted to
   **live in dev only**.
-- **POL-06 Union and Its Territory (this session)** — ~2,400 words, 28 reader
-  pages (no near-empty-page warning), 5 tables ≤3 columns, 8 clozes + 1 predict
-  + 1 recall, **100 MCQs**. Laxmikanth's Tables 6.1–6.4 were condensed to what
-  UPSC asks (counts, the 8 UTs, the 12 named Acts), not reproduced whole.
-  Verified in-browser at 412px: reader, quiz CTA reads `100 QUESTIONS` (from
-  `live_questions`), `/quiz/POL-06` starts 1/100 with shuffled options.
-- **Tier calibration is now a written rule.** POL-06 first landed at
-  13/37/34/15/1 vs the house shape ~5/20/40/25/7 and was re-tiered (55 changes).
-  Target table + audit one-liner: `docs/CONTENT_AUTHORING.md` §6; the reasoning
-  is in DECISIONS.md → Content.
-- **Authoring is Opus 5, not the API chain** (DECISIONS.md → "Who authors
-  chapters"). The chain serves **current affairs + `pnpm ingest` only**.
+- **POL-06 Union and Its Territory (last session)** — ~2,400 words, 28 reader
+  pages, 5 tables ≤3 columns, 8 clozes + 1 predict + 1 recall, **100 MCQs**.
+  Browser-verified at 412px. Committed and pushed (`30b29e6`).
+- **Tier calibration is now a written rule** — target ~5/20/40/25/7, audit the
+  bank not just each question. `docs/CONTENT_AUTHORING.md` §6; reasoning in
+  DECISIONS.md → Content.
+- **BETA_SETUP.md restructured** — a missing **step 2b (Cloudflare Pages
+  frontend deploy)** was added; without an HTTPS origin there is no service
+  worker, no install prompt and no Google OAuth, so nothing was installable.
 
 ## In progress
 
-Nothing half-done.
+Nothing half-done in code. Step 1 (Google OAuth config) is **blocked on the
+user** — it is console work in Google Cloud + the PB admin panel, no app code.
 
 ## Next
 
-1. **Chapter POL-07 (Citizenship, mcq_floor 30) onwards** — the bottleneck.
-   Paste the raw chapter, author to CONTENT_AUTHORING.md, then
-   `pnpm validate && pnpm sync -- --env dev`, promote, verify in the browser.
-2. **Make `mcq_floor` enforced** — validate.js only checks it is a number.
-3. BETA_SETUP step 1 (Google OAuth, blocked on user), then steps 2/5/7/9.
+1. **Step 1** — Google Cloud OAuth client + PB `users` OAuth2 config.
+2. **Step 2** — PocketHost instance; upload `pb_migrations/` + `pb_hooks/`,
+   re-do the Google config there, `pnpm sync -- --env prod`.
+3. **Step 2b** — Cloudflare Pages; set every `PUBLIC_*` var or the build fails.
+4. **Step 5 / 7 / 9** — beta-free system, privacy + terms pages, install guide.
+5. Only then **POL-07 (Citizenship, `mcq_floor` 30)** and the rest of the 103.
 
 ## Active files
 
-- `content/polity/POL-06-union-and-its-territory/` (new, 100 MCQs)
-- `docs/CONTENT_AUTHORING.md` (new §6 — tier + answer-position audit)
+- `docs/BETA_SETUP.md` (new step 2b, critical path marked)
+- `content/polity/POL-06-union-and-its-territory/` (shipped last session)
 
 ## Do NOT
 
+- Author chapters until the app is installable. Explicit user call.
 - Use the AI API chain to write notes or MCQs. Decided and recorded.
 - Ship an MCQ bank without auditing tier + answer-position spread (§6).
+- Put a server secret in a `PUBLIC_*` var — that bundle is public.
 - Display `mcq_floor` as a question count — use `live_questions`.
-- Re-cap quiz length. `N = pool.length` is deliberate.
-- Assume prod exists. Everything is localhost (PB 8090 + dev 5173/5174).
 - Commit `.env` — it holds 5 live API keys.
 - Scan the repo (use PROJECT_INDEX.md).
 
 ## Notes / gotchas
 
+- Pushing to `main` fires a CI action that syncs content to **prod**. No prod
+  exists yet, so that step fails/no-ops — expected until step 2 lands.
+- **No "new version" toast** exists; an open tab keeps stale JS after a deploy.
+- `pnpm build` has never run against a real `PUBLIC_PB_URL` — try it locally
+  before trusting the Pages build.
 - Dev login `reader-test@local.dev` / `Testpass123!` — delete before beta.
-- Promoting a chapter to live in dev has **no script** — it is a throwaway PB
-  superuser PATCH on `topics.status` + each question's `status`. Sync never
-  downgrades status, so re-syncing an edit keeps them live.
+- Promoting a chapter to live in dev has **no script** — throwaway PB superuser
+  PATCH on `topics.status` + each question's `status`.
 - PB must be **restarted** to load changed `pb_hooks` or new migrations.
-- **Keep `:::cloze` blocks to 2–3 short lines.** A tall one jumps to the next
-  page and strands a blank one; `pnpm dev` warns for any page under 45% full.
-- Statement-based and assertion-reason MCQs have a **fixed option order** —
-  never reorder those when balancing answer positions.

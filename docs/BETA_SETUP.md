@@ -6,17 +6,23 @@
 > Distribution = **URL + install guide** (PWA). APK (TWA, self-hosted download,
 > not Play Store) comes later.
 
+**Current objective: make the app installable on a phone.** Content authoring
+(POL-07 onward) is paused until a stranger can open a URL, tap *Add to Home
+Screen*, and log in. Steps 1 → 2 → 2b → 5 → 7 → 9 are the **critical path** to
+that; 3, 4, 6, 8 can land after the first install works.
+
 | # | Step | State |
 |---|---|---|
-| 1 | Google login | ⬅️ **in progress** |
-| 2 | PocketHost deploy | ⬜ |
+| 1 | Google login (Cloud Console + PB `users` OAuth2) | ⬅️ **in progress** — blocked on user |
+| 2 | PocketHost deploy (backend) | ⬜ *critical path* |
+| 2b | **Cloudflare Pages deploy (frontend) + HTTPS origin** | ⬜ *critical path* |
 | 3 | API keys — AI ✅ (5 providers) · PostHog · OneSignal | 🟡 AI done |
 | 4 | Notifications verified | ⬜ |
-| 5 | Beta-free system (`beta_free_until` + founder badge + banner) | ⬜ |
-| 6 | Content | ⬜ |
-| 7 | Privacy policy + terms pages | ⬜ |
+| 5 | Beta-free system (`beta_free_until` + founder badge + banner) | ⬜ *critical path* |
+| 6 | Content | 🟡 8 of 103 units |
+| 7 | Privacy policy + terms pages | ⬜ *critical path* (also unblocks Google "Production") |
 | 8 | Feedback sheet + beta ribbon + remote config | ⬜ |
-| 9 | Install guide (Android + iOS) | ⬜ |
+| 9 | Install guide (Android + iOS) | ⬜ *critical path* |
 
 ---
 
@@ -98,6 +104,39 @@ Outline, for when step 1 is green:
    `pnpm validate && pnpm sync -- --env prod`.
 6. Point the deployed frontend at it via `PUBLIC_PB_URL`.
 7. Lock CORS to the Pages origin.
+
+---
+
+## Step 2b — Cloudflare Pages deploy (not started)
+
+**This is the step that makes the app installable.** A PWA needs a secure
+origin: without HTTPS there is no service worker, no *Add to Home Screen*, and
+no Google OAuth. `adapter-static` already emits a pure static SPA, and
+`static/manifest.webmanifest` is already install-ready (`display: standalone`,
+maskable icon), so this is deploy config, not app code.
+
+1. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**
+   → the repo, branch `main`.
+2. Build settings: build command `pnpm build`, output directory `build`.
+3. **Environment variables** — every `PUBLIC_*` the code imports from
+   `$env/static/public` must exist or the build fails, empty is fine:
+   `PUBLIC_PB_URL=https://<name>.pockethost.io`, `PUBLIC_DEV_BYPASS_AUTH=false`,
+   `PUBLIC_POSTHOG_KEY`, `PUBLIC_POSTHOG_HOST`, `PUBLIC_ONESIGNAL_APP_ID`.
+   No server secrets here — this bundle is public.
+4. Deploy → `https://<project>.pages.dev`. No domain, ₹0.
+5. Add that origin to the Google OAuth client (**JavaScript origins**) and lock
+   PB CORS to it (step 2.7).
+6. Verify on a real phone: Chrome Android shows an install prompt; iOS is
+   Safari-only via Share → *Add to Home Screen* with **no** prompt — that is the
+   onboarding risk step 9 has to cover with screenshots.
+
+### Known gaps to close here
+
+- **No "new version" toast.** `src/service-worker.ts` calls `skipWaiting()` +
+  `clients.claim()`, so a reload picks up a deploy — but an already-open tab
+  keeps the old JS silently. Worth a toast before handing the link out.
+- **`pnpm build` has never run against a real `PUBLIC_PB_URL`.** Run it locally
+  with the PocketHost URL set before trusting the Pages build.
 
 ---
 
