@@ -1,7 +1,40 @@
 # UPSCVidya — Server Operations
 
-VPS: Ubuntu 24.04 ARM (Oracle Always Free). Timezone: Asia/Kolkata (all crons IST).
+VPS: Ubuntu 24.04 ARM (Oracle Always Free resources on a **Pay As You Go**
+tenancy — see below). Timezone: Asia/Kolkata (all crons IST).
 Stack: Caddy (TLS + reverse proxy) → PocketBase (127.0.0.1:8090, systemd).
+
+## Oracle account posture — READ BEFORE PROVISIONING ANYTHING
+
+**The tenancy is Pay As You Go; the resources are Always Free.** Those are two
+different things. Rationale is in `DECISIONS.md` → "Oracle tenancy"; the short
+version: an Always-Free-*tier* account gets its idle instance **reclaimed** after
+~7 days of low CPU/network, and cannot reliably provision ARM capacity in Indian
+regions. PAYG fixes both. Always Free allowances remain free on a PAYG tenancy.
+
+### ⚠️ A budget does not cap spend
+
+An OCI budget **only sends alerts**. It does not block provisioning and does not
+stop charges. There is no hard spending limit on OCI. Set one anyway (₹100,
+alert at 1% of forecast) — but treat it as a smoke alarm, never as a guarantee.
+
+### Stay-free checklist (apply at every create-resource step)
+
+- Only pick shapes the console tags **"Always Free eligible"**.
+- Compute: `VM.Standard.A1.Flex`, **≤4 OCPU and ≤24 GB RAM across ALL instances
+  combined** (not per instance). The 5th OCPU bills.
+- Block storage: **≤200 GB total across all volumes**, boot volumes included.
+- Egress: 10 TB/month free. Only a runaway backup loop or an open proxy could
+  approach it; R2 snapshots are megabytes.
+- Never provision: a second Load Balancer, extra reserved public IPs, Object
+  Storage past 20 GB, a 3rd Autonomous DB, or any x86/AMD shape by accident.
+- Card gets a ~₹100 verification hold on upgrade; it is refunded.
+
+### Watch it
+
+- **Billing → Cost Analysis** weekly for the first month, then monthly.
+- Anything non-zero means a resource slipped outside the free allowances —
+  find it in Cost Analysis by service and terminate it, don't wait for the alert.
 
 ## First-time setup
 

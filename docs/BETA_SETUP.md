@@ -26,6 +26,39 @@ that; 3, 4, 6, 8 can land after the first install works.
 
 ---
 
+## What this costs
+
+**Beta: ₹0 total.** Not "cheap" — zero. Nothing in the beta stack has a paid line.
+
+| Thing | Beta plan | Cost |
+|---|---|---|
+| Backend + DB | PocketHost free instance (`*.pockethost.io`, TLS) | ₹0 |
+| Frontend | Cloudflare Pages (`*.pages.dev`, TLS) | ₹0 |
+| Domain | none — free subdomains from both hosts | ₹0 |
+| AI (CA pipeline, `pnpm ingest`) | 5 free tiers in a failover chain | ₹0 |
+| PostHog / OneSignal | free tiers; unset ⇒ no-op anyway | ₹0 |
+| Payments | Razorpay keys **unset** all beta; paywall → beta banner | ₹0 |
+| Distribution | URL + install guide (PWA). TWA later, self-hosted, not Play Store | ₹0 |
+
+Users pay ₹0 too — `beta_free_until` (step 5) makes everyone premium for the window.
+
+**Launch: the domain, and essentially nothing else.**
+
+- **Domain ~₹700–1,500/yr** — the only guaranteed recurring spend. Compare
+  *renewal* prices, not first-year promos.
+- **Oracle ARM VPS ₹0**, but only on a **Pay As You Go tenancy** staying inside
+  the Always Free allowances. An Always-Free-*tier* account gets its idle
+  instance reclaimed and can rarely provision ARM capacity in Indian regions.
+  A budget alert is **not** a spending cap. Full rules:
+  `infra/SERVER.md` → "Oracle account posture"; rationale: `DECISIONS.md`.
+- **Razorpay** ~2% + GST per transaction, once payments switch on. Out of
+  revenue, no setup or monthly fee.
+- **Cloudflare Pages + R2 backups** stay free on a custom domain.
+- Free-tier ceilings that only bite at real volume: PostHog events, OneSignal
+  subscribers, AI request caps (the 5-provider chain exists for exactly this).
+
+---
+
 ## Step 1 — Google login
 
 App code is **already done** — `loginWithGoogle()` in `src/lib/auth.svelte.ts`

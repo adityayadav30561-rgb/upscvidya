@@ -188,6 +188,7 @@
     Runs without the dev machine on — that was the deciding factor.
   - **Launch → Oracle Always Free ARM VPS** (already scripted in `infra/`) +
     a purchased domain: apex → Pages, `api.` → the VPS, Caddy takes the cert.
+    The Oracle tenancy is **upgraded to Pay As You Go** — see below.
   - Migration between them = copy `pb_data/` + swap `PUBLIC_PB_URL` + append the
     new redirect URI to the *same* Google OAuth client.
 - **PocketBase is the backend AND the database** (one Go binary + SQLite on
@@ -199,6 +200,34 @@
 - **Payments stay off for the whole beta.** Razorpay keys unset; the paywall
   routes to the beta banner. Beta is free and open via `beta_free_until`
   (see the 🔒 note after Prompt 18 in the build book).
+
+## Oracle tenancy: Pay As You Go, not Always Free (decided 2026-07)
+
+- **The Oracle account is upgraded to Pay As You Go before launch, and we live
+  strictly inside the Always Free allowances.** PAYG is the *account tier*, not a
+  spending commitment: Always Free resources stay free on a PAYG tenancy.
+- **Two problems, one fix.** An Always-Free-tier account (a) has its idle compute
+  **reclaimed** (Oracle measures low CPU/network over a rolling 7-day window and
+  takes the instance back) and (b) constantly hits *"Out of host capacity"* when
+  provisioning `VM.Standard.A1.Flex` ARM in Indian regions. A PAYG tenancy is
+  exempt from idle reclamation and gets provisioning priority. Our API server is
+  low-traffic by definition during beta and early launch — i.e. exactly the
+  profile reclamation targets — so this is not optional.
+- **⚠️ An OCI budget is an ALERT, not a cap.** Setting a budget to ₹0/₹100 emails
+  you when forecast or actual spend crosses a threshold; it does **not** block
+  provisioning and does **not** stop charges. OCI has no hard spending limit. Do
+  not treat "budget set" as "cannot be billed" — that misreading is the whole
+  reason this is written down.
+- **The real protection is provisioning discipline**, enforced at create time.
+  The checklist (Always-Free-eligible shapes only, 4 OCPU / 24 GB ARM total,
+  200 GB block storage total, what never to provision) lives in
+  `infra/SERVER.md` → "Oracle account posture". Follow it and the bill is ₹0.
+- **Cost picture:** beta = **₹0 total** (PocketHost + Cloudflare Pages + free
+  subdomains + free-tier AI/PostHog/OneSignal + Razorpay off). Launch = the
+  **domain only**, ~₹700–1,500/yr, plus per-transaction Razorpay fees once
+  payments are switched on (~2% + GST, out of revenue). If Oracle ever becomes
+  unworkable, the fallback is a ₹300–500/mo small VPS — `infra/setup.sh` is
+  provider-agnostic Ubuntu, so that migration is a re-run, not a rewrite.
 
 ## Auth (Google)
 
