@@ -173,3 +173,33 @@ validator, never a reader.
 
 MCQs live beside the notes in `mcqs.json` — separate schema, see
 `docs/polity-mvp-master.md` §MCQ and the `source` provenance block.
+
+---
+
+## 6. MCQ tiers — check the distribution, not just each question
+
+`tier` is 1–5 and the server buckets it (1–2 / 3 / 4+) for XP multipliers and for
+the gold grade, which needs **all three buckets present** in a quiz. Tagging each
+question sensibly still lets the *bank* drift easy, because a fact-listy chapter
+tempts you to call every named-fact recall tier 2.
+
+Target shape, matching POL-01…POL-05:
+
+| Tier | Share | What lands here |
+|---|---|---|
+| 1 | ~5% | bedrock one-liners only — the 4-6 facts nobody may miss |
+| 2 | ~20% | single named-fact recall |
+| 3 | ~40% | **the default** — two facts held together, a contrast, a count pair |
+| 4 | ~25% | fine detail, obscure Acts, precise membership/dates |
+| 5 | ~7% | synthesis traps, assertion-reason, multi-step chronology |
+
+Check the whole bank after authoring, not question by question:
+
+```bash
+node -e "const q=require('./content/polity/<DIR>/mcqs.json');const t={};q.forEach(x=>t[x.tier]=(t[x.tier]||0)+1);console.log(q.length,t)"
+```
+
+Also check **answer position balance** the same way (`x.answer`) — aim for ~25%
+each. When rebalancing, never reorder options in `statement-based` or
+`assertion-reason` questions (fixed option text), nor where the options form a
+natural sequence (years, amendment numbers, counts).

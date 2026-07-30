@@ -1,0 +1,2676 @@
+[
+  {
+    "id": "POL-06-Q001",
+    "topic": "POL-06",
+    "stem": "The Union and its territory are dealt with under which Part of the Constitution?",
+    "options": [
+      "Part I",
+      "Part II",
+      "Part III",
+      "Part IV"
+    ],
+    "answer": 0,
+    "explanation": "Articles 1 to 4, which deal with the Union and its territory, fall under Part I. Part II is Citizenship (Articles 5-11), Part III is Fundamental Rights (Articles 12-35) and Part IV is the Directive Principles (Articles 36-51). The sequence Part I to Part IV is a standard opening trap because all four sit at the front of the Constitution.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q002",
+    "topic": "POL-06",
+    "stem": "Article 1 of the Constitution describes India as",
+    "options": [
+      "a Federation of States",
+      "a Confederation of States",
+      "a Union of States",
+      "a Federal Republic of States"
+    ],
+    "answer": 2,
+    "explanation": "Article 1 reads 'India, that is, Bharat, shall be a Union of States'. The Constitution is federal in structure but the word 'Federation' was deliberately avoided. 'Confederation' is wrong on the law as well as the text, since a confederation implies a right to secede, which Indian states do not have.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q003",
+    "topic": "POL-06",
+    "stem": "Article 1 deals with which two matters?",
+    "options": [
+      "The name of the country and the type of polity",
+      "The name of the country and the citizenship of its people",
+      "The type of polity and the powers of Parliament to admit new states",
+      "The territory of India and the procedure to alter state boundaries"
+    ],
+    "answer": 0,
+    "explanation": "Article 1 settles two things: the name ('India, that is, Bharat') and the type of polity ('Union of States'). Citizenship is Part II. Admission of new states is Article 2, and alteration of boundaries is Article 3, so both of those belong to later Articles even though Article 1 does classify the territory.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q004",
+    "topic": "POL-06",
+    "stem": "Why did the Constituent Assembly adopt the name 'India, that is, Bharat'?",
+    "options": [
+      "The Drafting Committee was directed to use both names by the Objectives Resolution",
+      "There was no unanimity in the Assembly, so a mix of the traditional and the modern name was adopted",
+      "The name 'Bharat' was required by the Government of India Act, 1935",
+      "The Supreme Court advised the Assembly to retain both names"
+    ],
+    "answer": 1,
+    "explanation": "Members were divided between the traditional name Bharat and the modern name India, and with no unanimity the Assembly adopted a mix of both. The Objectives Resolution set out aims, not the name. The 1935 Act had no such requirement, and the Supreme Court did not exist while the Assembly was drafting.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q005",
+    "topic": "POL-06",
+    "stem": "Consider the following statements about Dr. B.R. Ambedkar's reasons for preferring 'Union of States' to 'Federation of States':\n1. The Indian Federation is not the result of an agreement among the states.\n2. The states have no right to secede from the federation.\n3. The states were created only after the Constitution came into force.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "1 and 2 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 1,
+    "explanation": "Ambedkar gave exactly two reasons: the Indian federation is not the outcome of an agreement among states, unlike the American federation, and the states have no right to secede. Statement 3 is invented; the units existed as provinces and princely states well before 1950. The federation is a Union because it is indestructible.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q006",
+    "topic": "POL-06",
+    "stem": "According to Article 1, the territory of India is classified into how many categories?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "Five"
+    ],
+    "answer": 1,
+    "explanation": "Three: territories of the states, union territories, and territories that may be acquired by the Government of India at any time. Four is the count of the original 1950 classification of states and territories into Parts A, B, C and D, which is a different scheme and the usual source of confusion here.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q007",
+    "topic": "POL-06",
+    "stem": "The names of the states and union territories and their territorial extent are mentioned in which Schedule?",
+    "options": [
+      "The Fourth Schedule",
+      "The Second Schedule",
+      "The Seventh Schedule",
+      "The First Schedule"
+    ],
+    "answer": 3,
+    "explanation": "The First Schedule lists the states and union territories with their territorial extent, which is why every reorganisation Act amends it. The Fourth Schedule allocates Rajya Sabha seats, the Second deals with emoluments of office-holders, and the Seventh contains the three legislative lists.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q008",
+    "topic": "POL-06",
+    "stem": "Which of the following statements correctly distinguishes the 'Territory of India' from the 'Union of India'?",
+    "options": [
+      "The Union of India is wider, as it includes acquired territories",
+      "The Territory of India is wider, as it includes states, union territories and acquired territories",
+      "The two expressions are used interchangeably in Part I",
+      "The Territory of India includes only the states that share powers with the Centre"
+    ],
+    "answer": 1,
+    "explanation": "The Territory of India is the wider expression. The Union of India covers only the states, which are members of the federal system and share a distribution of powers with the Centre. The Territory of India adds union territories and acquired territories, both directly administered by the Central government.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q009",
+    "topic": "POL-06",
+    "stem": "The special provisions applicable to certain states, which override the general provisions relating to states as a class, are contained in which Part of the Constitution?",
+    "options": [
+      "Part XVIII",
+      "Part XIX",
+      "Part XXI",
+      "Part XXII"
+    ],
+    "answer": 2,
+    "explanation": "Part XXI carries the temporary, transitional and special provisions, including Articles 371 to 371-J for Maharashtra, Gujarat, Nagaland, Assam, Manipur, Andhra Pradesh, Telangana, Sikkim, Mizoram, Arunachal Pradesh, Goa and Karnataka. Part XVIII is Emergency provisions, Part XIX Miscellaneous and Part XXII covers the short title and commencement.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q010",
+    "topic": "POL-06",
+    "stem": "Separate provisions for the administration of scheduled areas and tribal areas within the states are contained in",
+    "options": [
+      "the Fifth and Sixth Schedules",
+      "the Fourth and Fifth Schedules",
+      "the Sixth and Seventh Schedules",
+      "Part XXI alone"
+    ],
+    "answer": 0,
+    "explanation": "The Fifth Schedule governs scheduled areas and scheduled tribes in states generally, and the Sixth Schedule governs tribal areas in Assam, Meghalaya, Tripura and Mizoram. The Fourth Schedule is Rajya Sabha seat allocation and the Seventh is the legislative lists, so neither has anything to do with tribal administration.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q011",
+    "topic": "POL-06",
+    "stem": "Which of the following is NOT a mode recognised by international law by which India may acquire foreign territory?",
+    "options": [
+      "Cession following a treaty, purchase, gift, lease or plebiscite",
+      "Occupation of territory hitherto unoccupied by a recognised ruler",
+      "Conquest or subjugation",
+      "A resolution of the state legislature adjoining the territory"
+    ],
+    "answer": 3,
+    "explanation": "Cession, occupation, and conquest or subjugation are the recognised modes. A state legislature has no role at all in acquiring foreign territory; acquisition is an act of the sovereign state through the Union. India acquired Dadra and Nagar Haveli, Goa, Daman and Diu, Puducherry and Sikkim by these modes after the Constitution commenced.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q012",
+    "topic": "POL-06",
+    "stem": "Article 2 of the Constitution empowers Parliament to",
+    "options": [
+      "alter the boundaries and names of existing states",
+      "create autonomous councils within a state",
+      "cede Indian territory to a foreign country by a simple majority",
+      "admit into the Union of India, or establish, new states on such terms and conditions as it thinks fit"
+    ],
+    "answer": 3,
+    "explanation": "Article 2 grants two powers over territories outside the Union: admitting states that already exist and establishing states that did not exist before. Alteration of boundaries and names of existing states is Article 3. Cession to a foreign country needs an Article 368 amendment, as Berubari (1960) held.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q013",
+    "topic": "POL-06",
+    "stem": "Consider the following statements:\n1. Article 2 relates to the admission or establishment of new states that are not part of the Union of India.\n2. Article 3 relates to the formation of, or changes in, the existing states of the Union of India.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct and together give the cleanest way to separate the two Articles. Article 2 looks outward, at territory not yet in the Union; Article 3 looks inward, at the internal re-adjustment inter se of the territories of the constituent states of the Union.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q014",
+    "topic": "POL-06",
+    "stem": "Which of the following powers is NOT conferred on Parliament by Article 3?",
+    "options": [
+      "To increase the area of any state",
+      "To diminish the area of any state",
+      "To alter the name of any state",
+      "To alter the name of the Union itself"
+    ],
+    "answer": 3,
+    "explanation": "Article 3 lets Parliament form a new state, increase or diminish the area of a state, and alter the boundaries or the name of a state. Renaming the country is not among these powers; the name in Article 1 could only be changed by a constitutional amendment under Article 368.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q015",
+    "topic": "POL-06",
+    "stem": "Consider the following statements about a Bill under Article 3:\n1. It can be introduced in Parliament only with the prior recommendation of the President.\n2. The President must refer the Bill to the legislature of the state concerned for its views within a specified period.\n3. Parliament is bound to act in accordance with the views expressed by the state legislature.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 0,
+    "explanation": "The two conditions are the President's prior recommendation and a reference to the state legislature for its views within a specified period. Statement 3 is where the safeguard collapses: the President and Parliament may accept or reject those views, even when received in time, so the reference is consultative only.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q016",
+    "topic": "POL-06",
+    "stem": "If an amendment to a Bill under Article 3 is moved and accepted in Parliament, what happens to the reference made to the state legislature?",
+    "options": [
+      "A fresh reference must be made to the state legislature for every amendment",
+      "It is not necessary to make a fresh reference to the state legislature",
+      "The Bill lapses and must be reintroduced with a new Presidential recommendation",
+      "The amendment must be ratified by half the state legislatures"
+    ],
+    "answer": 1,
+    "explanation": "No fresh reference is needed each time an amendment is moved and accepted. Ratification by half the states belongs to the Article 368 amendment procedure for federal provisions, not to an Article 3 law, which is passed by a simple majority as an ordinary law under Article 4.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q017",
+    "topic": "POL-06",
+    "stem": "In the case of a union territory, what reference is required before Parliament alters its area or boundaries?",
+    "options": [
+      "A reference to its legislature, whose views bind Parliament",
+      "A reference to its legislature for views, which do not bind Parliament",
+      "No reference need be made; Parliament can itself take any action as it deems fit",
+      "A reference to the Supreme Court for an advisory opinion"
+    ],
+    "answer": 2,
+    "explanation": "For a union territory, no reference is made to the concerned legislature at all and Parliament can act as it deems fit. The consultative reference under Article 3 applies to states. An advisory reference to the Supreme Court under Article 143 is a separate and discretionary Presidential power.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q018",
+    "topic": "POL-06",
+    "stem": "Article 4 declares that laws made under Articles 2 and 3",
+    "options": [
+      "are not to be considered as amendments of the Constitution under Article 368",
+      "require ratification by not less than one-half of the state legislatures",
+      "must be passed by a special majority in both Houses",
+      "come into force only on a date notified by the Supreme Court"
+    ],
+    "answer": 0,
+    "explanation": "Article 4 expressly declares such laws not to be amendments under Article 368, even though they alter the First and Fourth Schedules. The consequence is that they pass by a simple majority through the ordinary legislative process, needing neither a special majority nor state ratification.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q019",
+    "topic": "POL-06",
+    "stem": "A law reorganising states under Article 3 is passed by",
+    "options": [
+      "a special majority of Parliament plus ratification by half the states",
+      "a special majority of both Houses of Parliament",
+      "a simple majority and the ordinary legislative process",
+      "a resolution of the Rajya Sabha supported by two-thirds of members present and voting"
+    ],
+    "answer": 2,
+    "explanation": "Because Article 4 takes such laws out of Article 368, they need only a simple majority and the ordinary legislative process. That is precisely why the political map of India has changed so often. The special-majority-plus-ratification route applies to amendments affecting the federal structure.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q020",
+    "topic": "POL-06",
+    "stem": "India is described as 'an indestructible Union of destructible states' because",
+    "options": [
+      "the states can dissolve themselves by a resolution of their legislature",
+      "the states were created by Parliament and are therefore its delegates",
+      "the Union can be dissolved only by a constitutional amendment",
+      "the Constitution does not guarantee the territorial integrity or continued existence of any state"
+    ],
+    "answer": 3,
+    "explanation": "Parliament can form new states or alter areas, boundaries and names without the consent of the states concerned, so no state's territorial integrity or continued existence is guaranteed. The states cannot dissolve themselves and are not mere delegates of Parliament; they hold constitutionally distributed powers while they exist.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q021",
+    "topic": "POL-06",
+    "stem": "The USA is described as 'an indestructible Union of indestructible states' because",
+    "options": [
+      "American states retain the right to secede from the Union",
+      "the American Congress can alter state boundaries only by a two-thirds majority",
+      "the American Constitution has no provision for admitting new states",
+      "the American federal government cannot form new states or alter existing borders without the consent of the states concerned"
+    ],
+    "answer": 3,
+    "explanation": "The territorial integrity and continued existence of an American state are constitutionally guaranteed, so the federal government cannot form new states or redraw borders without the consent of the states concerned. The right of secession was settled against the states by the Civil War, and the US Constitution does provide for admitting new states.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q022",
+    "topic": "POL-06",
+    "stem": "The Presidential reference to the Supreme Court in 1960 arose out of the proposed cession of which territory?",
+    "options": [
+      "The Berubari Union in West Bengal",
+      "The Rann of Kutch in Gujarat",
+      "The Chandernagore enclave in West Bengal",
+      "The Naga Hills-Tuensang area of Assam"
+    ],
+    "answer": 0,
+    "explanation": "The decision to cede part of the Berubari Union in West Bengal to Pakistan caused agitation and led to the 1960 reference. Chandernagore was a French enclave merged into West Bengal in 1954, the Naga Hills-Tuensang area became Nagaland, and the Rann of Kutch dispute was a separate India-Pakistan arbitration.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q023",
+    "topic": "POL-06",
+    "stem": "In the Berubari Union case (1960), the Supreme Court held that",
+    "options": [
+      "Parliament may cede Indian territory to a foreign country under Article 3",
+      "the power of Parliament to diminish the area of a state does not cover cession of Indian territory to a foreign country",
+      "cession of territory requires the prior consent of the state legislature concerned",
+      "cession of territory can be effected only by a treaty ratified by the Rajya Sabha"
+    ],
+    "answer": 1,
+    "explanation": "The Court held that diminishing the area of a state under Article 3 does not extend to ceding territory to a foreign country; that requires an amendment under Article 368. Consequently the 9th Amendment Act, 1960 was enacted. State consent and Rajya Sabha ratification play no part in the ruling.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q024",
+    "topic": "POL-06",
+    "stem": "Which Constitutional Amendment Act was enacted to give effect to the transfer of the Berubari territory to Pakistan?",
+    "options": [
+      "The 7th Amendment Act, 1956",
+      "The 9th Amendment Act, 1960",
+      "The 10th Amendment Act, 1961",
+      "The 12th Amendment Act, 1962"
+    ],
+    "answer": 1,
+    "explanation": "The 9th Amendment Act, 1960 followed directly from the Berubari opinion, since cession needed an Article 368 amendment. The 7th (1956) implemented states reorganisation, the 10th (1961) made Dadra and Nagar Haveli a union territory, and the 12th (1962) did the same for Goa, Daman and Diu.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q025",
+    "topic": "POL-06",
+    "stem": "In 1969 the Supreme Court ruled that the settlement of a boundary dispute between India and another country",
+    "options": [
+      "requires a constitutional amendment under Article 368",
+      "requires a law passed under Article 3",
+      "can be done by executive action, as it does not involve cession of Indian territory",
+      "requires the prior consent of the affected state legislature"
+    ],
+    "answer": 2,
+    "explanation": "Settling a boundary dispute merely identifies an existing line and transfers no Indian territory, so executive action suffices. The 1960 Berubari opinion is the contrast: an actual cession of territory does transfer land and therefore needs an Article 368 amendment. The examinable point is the difference between the two situations.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q026",
+    "topic": "POL-06",
+    "stem": "The exchange of enclaves between India and Bangladesh was given effect by which Constitutional Amendment Act?",
+    "options": [
+      "The 91st Amendment Act, 2003",
+      "The 97th Amendment Act, 2011",
+      "The 100th Amendment Act, 2015",
+      "The 101st Amendment Act, 2016"
+    ],
+    "answer": 2,
+    "explanation": "The 100th Amendment Act, 2015 implemented the Land Boundary Agreement with Bangladesh. The 91st capped the size of councils of ministers, the 97th dealt with co-operative societies and the 101st introduced the Goods and Services Tax, so none of them touches territory.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q027",
+    "topic": "POL-06",
+    "stem": "Under the India-Bangladesh land boundary deal implemented in 2015, the enclaves exchanged were",
+    "options": [
+      "111 transferred by India to Bangladesh and 51 transferred by Bangladesh to India",
+      "51 transferred by India to Bangladesh and 111 transferred by Bangladesh to India",
+      "111 transferred by each country to the other",
+      "51 transferred by each country to the other"
+    ],
+    "answer": 0,
+    "explanation": "India transferred 111 enclaves to Bangladesh and received 51 in return. The numbers are frequently reversed in options, so anchor the larger number to the larger country. The deal also covered adverse possessions and the demarcation of a 6.1 km undemarcated stretch.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q028",
+    "topic": "POL-06",
+    "stem": "The 100th Constitutional Amendment Act modified the First Schedule entries relating to which set of states?",
+    "options": [
+      "Assam, West Bengal, Bihar and Tripura",
+      "Assam, Meghalaya, Manipur and Mizoram",
+      "West Bengal, Meghalaya, Mizoram and Tripura",
+      "Assam, West Bengal, Meghalaya and Tripura"
+    ],
+    "answer": 3,
+    "explanation": "The four states on the Bangladesh border affected by the exchange were Assam, West Bengal, Meghalaya and Tripura, and the Protocol of 2011 was prepared with the concurrence of exactly these four governments. Bihar does not border Bangladesh, and Manipur and Mizoram border Myanmar rather than the affected stretch.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q029",
+    "topic": "POL-06",
+    "stem": "Arrange the following in correct chronological order:\n1. Radcliffe Award\n2. Nehru-Noon Agreement\n3. Bagge Award\n4. Protocol to the Land Boundary Agreement",
+    "options": [
+      "1 - 3 - 2 - 4",
+      "1 - 2 - 3 - 4",
+      "3 - 1 - 2 - 4",
+      "1 - 3 - 4 - 2"
+    ],
+    "answer": 0,
+    "explanation": "The Radcliffe Award of 1947 fixed the India-East Pakistan line, the Bagge Award of 1950 tried to resolve disputes arising from it, the Nehru-Noon Agreement followed in 1958, and the Protocol forming part of the 1974 Land Boundary Agreement was signed on 6 September 2011. The Berubari litigation arose out of the 1958 agreement.",
+    "tier": 5,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q030",
+    "topic": "POL-06",
+    "stem": "Why was the Land Boundary Agreement signed with Bangladesh on 16 May 1974 not ratified at that time?",
+    "options": [
+      "Bangladesh withdrew from the agreement",
+      "It involved transfer of territory, which required a constitutional amendment",
+      "The Supreme Court stayed its operation",
+      "The four affected state governments refused their concurrence"
+    ],
+    "answer": 1,
+    "explanation": "The 1974 Agreement involved transfer of territory, which under the Berubari principle requires an Article 368 amendment, and the precise area to be transferred still had to be identified on the ground. The four state governments in fact concurred in the 2011 Protocol, and there was no stay or withdrawal.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q031",
+    "topic": "POL-06",
+    "stem": "At the time of independence, how many princely states situated within the geographical boundaries of India joined the Indian Union?",
+    "options": [
+      "552 out of 562",
+      "545 out of 549",
+      "562 out of 565",
+      "549 out of 552"
+    ],
+    "answer": 3,
+    "explanation": "Of the 552 princely states inside India's geographical boundaries, 549 joined India and three refused: Hyderabad, Junagarh and Kashmir. The other figures are variants of the total number of princely states across the subcontinent and are the standard distractors for this question.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q032",
+    "topic": "POL-06",
+    "stem": "Match the princely state with the manner of its integration into India:\n1. Hyderabad — a. Referendum\n2. Junagarh — b. Instrument of Accession\n3. Kashmir — c. Police action",
+    "options": [
+      "1-a, 2-b, 3-c",
+      "1-b, 2-c, 3-a",
+      "1-c, 2-a, 3-b",
+      "1-c, 2-b, 3-a"
+    ],
+    "answer": 2,
+    "explanation": "Hyderabad was integrated by police action, Junagarh by referendum and Kashmir by the Instrument of Accession. These are the three states that refused to join at first; all 549 others acceded before independence took effect. The pairing is reversed in almost every wrong option, so learn it as a fixed triad.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q033",
+    "topic": "POL-06",
+    "stem": "The Indian Independence Act (1947) gave the princely states how many options?",
+    "options": [
+      "Two — joining India or joining Pakistan",
+      "Three — joining India, joining Pakistan, or remaining independent",
+      "Three — joining India, remaining independent, or reverting to Crown paramountcy",
+      "Four — including becoming a United Nations trust territory"
+    ],
+    "answer": 1,
+    "explanation": "The Act created the two dominions and offered the princely states three choices: accede to India, accede to Pakistan, or remain independent. Crown paramountcy lapsed rather than continuing, which is exactly why the choice arose, and no trusteeship option existed.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q034",
+    "topic": "POL-06",
+    "stem": "Under the original Constitution of 1950, the states and territories of the Indian Union were classified into",
+    "options": [
+      "three categories, numbering 27 in all",
+      "three categories, numbering 29 in all",
+      "four categories, numbering 27 in all",
+      "four categories, numbering 29 in all"
+    ],
+    "answer": 3,
+    "explanation": "The 1950 scheme was four-fold — Part A, Part B and Part C states plus Part D territories — and they numbered 29 in all: 9 Part A, 9 Part B, 10 Part C and 1 Part D. The number 3 belongs to Article 1's classification of territory, which is a different scheme.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q035",
+    "topic": "POL-06",
+    "stem": "In the 1950 classification, the Part B states consisted of",
+    "options": [
+      "the erstwhile governor's provinces of British India",
+      "the erstwhile chief commissioner's provinces of British India",
+      "nine erstwhile princely states with legislatures",
+      "the centrally administered territories"
+    ],
+    "answer": 2,
+    "explanation": "Part B comprised nine erstwhile princely states that had legislatures. Part A was the nine erstwhile governor's provinces of British India, and Part C was the chief commissioner's provinces together with some princely states, all centrally administered. Part D was the solitary Andaman and Nicobar Islands.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q036",
+    "topic": "POL-06",
+    "stem": "Which territory was the solitary Part D territory under the original Constitution?",
+    "options": [
+      "Delhi",
+      "The Andaman and Nicobar Islands",
+      "Coorg",
+      "The Laccadive, Minicoy and Amindivi Islands"
+    ],
+    "answer": 1,
+    "explanation": "The Andaman and Nicobar Islands alone formed Part D. Delhi and Coorg were Part C states in 1950. The Laccadive, Minicoy and Amindivi Islands did not exist as a separate unit then; that union territory was created only in 1956 out of territory detached from Madras.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q037",
+    "topic": "POL-06",
+    "stem": "The Linguistic Provinces Commission appointed in June 1948 was headed by",
+    "options": [
+      "Fazl Ali",
+      "H.N. Kunzru",
+      "K.M. Panikkar",
+      "S.K. Dhar"
+    ],
+    "answer": 3,
+    "explanation": "S.K. Dhar chaired the Linguistic Provinces Commission, known as the Dhar Commission. Fazl Ali chaired the later States Reorganisation Commission of 1953, on which K.M. Panikkar and H.N. Kunzru were the other two members, so all three names belong to the 1953 body, not the 1948 one.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q038",
+    "topic": "POL-06",
+    "stem": "The Dhar Commission recommended the reorganisation of states on the basis of",
+    "options": [
+      "administrative convenience rather than linguistic factors",
+      "language, but rejecting the theory of one language-one state",
+      "the boundaries of the erstwhile princely states",
+      "cultural and religious homogeneity"
+    ],
+    "answer": 0,
+    "explanation": "The Dhar Commission reported in December 1948 in favour of administrative convenience, not language, and the recommendation caused much resentment. Accepting language while rejecting 'one language-one state' was the Fazl Ali Commission's position in 1955, which is the standard swap in this question.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q039",
+    "topic": "POL-06",
+    "stem": "The JVP Committee, appointed in December 1948, consisted of",
+    "options": [
+      "Jawaharlal Nehru, Vallabhbhai Patel and Pattabhi Sitaramayya",
+      "Jawaharlal Nehru, Vallabhbhai Patel and Jayaprakash Narayan",
+      "Jawaharlal Nehru, Rajendra Prasad and Pattabhi Sitaramayya",
+      "Vallabhbhai Patel, Pattabhi Sitaramayya and B.R. Ambedkar"
+    ],
+    "answer": 0,
+    "explanation": "The initials JVP come from Jawaharlal Nehru, Vallabhbhai Patel and Pattabhi Sitaramayya. Jayaprakash Narayan is a tempting fit for the letters but was not a member, and neither Rajendra Prasad nor Ambedkar sat on the committee. It notably had no chairman or convenor.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q040",
+    "topic": "POL-06",
+    "stem": "Consider the following statements about the JVP Committee:\n1. It was appointed by the Congress, not by the Government of India.\n2. It had no chairman or convenor.\n3. It formally accepted language as the basis for the reorganisation of states.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 0,
+    "explanation": "The Congress appointed the committee in December 1948 and it functioned without a chairman or convenor. Statement 3 inverts its finding: reporting in April 1949, it formally rejected language as the basis of reorganisation, just as the Dhar Commission had done a few months earlier.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q041",
+    "topic": "POL-06",
+    "stem": "The first linguistic state of India was created in 1953 by separating the Telugu-speaking areas from which state?",
+    "options": [
+      "Hyderabad",
+      "Bombay",
+      "Mysore",
+      "Madras"
+    ],
+    "answer": 3,
+    "explanation": "The state of Andhra was carved out of Madras under the Andhra State Act, 1953. The Telugu-speaking areas of Hyderabad state were merged in only later, by the States Reorganisation Act of 1956, to create the enlarged Andhra Pradesh, which is the distinction the question tests.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q042",
+    "topic": "POL-06",
+    "stem": "The creation of Andhra state in 1953 followed a prolonged agitation and the death of",
+    "options": [
+      "Pattabhi Sitaramayya after a public fast",
+      "N.G. Ranga during the Telugu agitation",
+      "Master Tara Singh during the Punjabi Subha movement",
+      "Potti Sriramulu after a 56-day hunger strike"
+    ],
+    "answer": 3,
+    "explanation": "Potti Sriramulu, a Congress person of standing, died after a 56-day hunger strike for the cause, and the Government of India was forced to concede the demand in October 1953. Master Tara Singh led the Akali Dal's separate Punjabi Subha demand, which produced Haryana in 1966, not Andhra.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q043",
+    "topic": "POL-06",
+    "stem": "Under the Andhra State Act (1953), the capital of Andhra state and the seat of its high court were respectively",
+    "options": [
+      "Guntur and Kurnool",
+      "Hyderabad and Guntur",
+      "Kurnool and Guntur",
+      "Kurnool and Hyderabad"
+    ],
+    "answer": 2,
+    "explanation": "Kurnool was the capital and the high court was established at Guntur. The capital moved to Hyderabad only in 1956, when the Telugu-speaking areas of Hyderabad state were merged in to form Andhra Pradesh. Reversing Kurnool and Guntur is the intended trap.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q044",
+    "topic": "POL-06",
+    "stem": "The States Reorganisation Commission appointed in December 1953 consisted of",
+    "options": [
+      "Fazl Ali, K.M. Panikkar and H.N. Kunzru",
+      "Fazl Ali, S.K. Dhar and K.M. Panikkar",
+      "Fazl Ali, H.N. Kunzru and Pattabhi Sitaramayya",
+      "S.K. Dhar, K.M. Panikkar and H.N. Kunzru"
+    ],
+    "answer": 0,
+    "explanation": "It was a three-member commission chaired by Fazl Ali with K.M. Panikkar and H.N. Kunzru. S.K. Dhar belongs to the 1948 Linguistic Provinces Commission and Pattabhi Sitaramayya to the JVP Committee, so options mixing the three bodies are the standard confusion here.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q045",
+    "topic": "POL-06",
+    "stem": "Consider the following statements about the Fazl Ali Commission:\n1. It broadly accepted language as the basis of the reorganisation of states.\n2. It accepted the theory of 'one language-one state'.\n3. It held that the unity of India should be the primary consideration in any redrawing of political units.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "1 and 3 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 1,
+    "explanation": "The Commission accepted language broadly but expressly rejected 'one language-one state', holding that the unity of India must remain the primary consideration. That rejection is why several languages are spoken across more than one state and why some states are multilingual.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q046",
+    "topic": "POL-06",
+    "stem": "Which of the following was NOT among the four factors identified by the Fazl Ali Commission for the reorganisation of states?",
+    "options": [
+      "Preservation and strengthening of the unity and security of the country",
+      "Linguistic and cultural homogeneity",
+      "Financial, economic and administrative considerations",
+      "Equality in the population and area of every state"
+    ],
+    "answer": 3,
+    "explanation": "The fourth factor was the planning and promotion of the welfare of the people in each state as well as of the nation as a whole. Equality of population and area was never a criterion, which is evident from the wide disparity between Uttar Pradesh and Goa or Sikkim.",
+    "tier": 4,
+    "format": "odd-one-out",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q047",
+    "topic": "POL-06",
+    "stem": "The Fazl Ali Commission recommended the creation of",
+    "options": [
+      "14 states and 6 centrally administered territories",
+      "16 states and 3 centrally administered territories",
+      "16 states and 6 centrally administered territories",
+      "14 states and 3 centrally administered territories"
+    ],
+    "answer": 1,
+    "explanation": "The Commission recommended 16 states and 3 centrally administered territories. The government accepted with minor modifications, and what actually came into being on 1 November 1956 under the States Reorganisation Act was 14 states and 6 union territories. The recommended and enacted figures are asked against each other.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q048",
+    "topic": "POL-06",
+    "stem": "The States Reorganisation Act (1956), read with the 7th Constitutional Amendment Act (1956),",
+    "options": [
+      "abolished the distinction between Part A and Part B states and abolished Part C states",
+      "abolished Part A states and converted all Part B states into union territories",
+      "retained the four-fold classification but renamed the categories",
+      "created Part E states for the newly acquired territories"
+    ],
+    "answer": 0,
+    "explanation": "The distinction between Part A and Part B states was done away with and Part C states were abolished, some merged into adjacent states and others designated union territories. The four-fold classification was scrapped entirely rather than renamed, and no Part E category was ever created.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q049",
+    "topic": "POL-06",
+    "stem": "As a result of the States Reorganisation Act, how many states and union territories came into being on 1 November 1956?",
+    "options": [
+      "16 states and 3 union territories",
+      "14 states and 3 union territories",
+      "15 states and 9 union territories",
+      "14 states and 6 union territories"
+    ],
+    "answer": 3,
+    "explanation": "14 states and 6 union territories were created on 1 November 1956. The six union territories were the Andaman and Nicobar Islands, Delhi, Himachal Pradesh, the Laccadive-Minicoy-Amindivi Islands, Manipur and Tripura. The 16-and-3 figure was the Fazl Ali Commission's recommendation, not the outcome.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q050",
+    "topic": "POL-06",
+    "stem": "Which of the following was NOT one of the six union territories created in 1956?",
+    "options": [
+      "Himachal Pradesh",
+      "Manipur",
+      "Tripura",
+      "Chandigarh"
+    ],
+    "answer": 3,
+    "explanation": "Chandigarh was created only in 1966, by the Punjab Reorganisation Act, as a union territory and the common capital of Punjab and Haryana. The 1956 six were the Andaman and Nicobar Islands, Delhi, Himachal Pradesh, the Laccadive-Minicoy-Amindivi Islands, Manipur and Tripura.",
+    "tier": 4,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q051",
+    "topic": "POL-06",
+    "stem": "The state of Kerala was created by the States Reorganisation Act (1956) by merging",
+    "options": [
+      "the Travancore-Cochin state with the Malabar district of Madras and Kasargode of South Canara",
+      "the Travancore-Cochin state with the whole of South Canara",
+      "the Travancore state with the Coorg state",
+      "the Travancore-Cochin state with the Malabar district of Mysore"
+    ],
+    "answer": 0,
+    "explanation": "Kerala was formed from the Travancore-Cochin state, the Malabar district of Madras state and Kasargode of South Canara. Coorg was merged into Mysore, not Travancore, and Malabar belonged to Madras rather than Mysore, so the other combinations misplace the donor states.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q052",
+    "topic": "POL-06",
+    "stem": "Match the erstwhile unit with the state into which the States Reorganisation Act (1956) merged it:\n1. Coorg — a. Punjab\n2. PEPSU — b. Rajasthan\n3. Ajmer — c. Mysore",
+    "options": [
+      "1-a, 2-b, 3-c",
+      "1-c, 2-a, 3-b",
+      "1-b, 2-c, 3-a",
+      "1-c, 2-b, 3-a"
+    ],
+    "answer": 1,
+    "explanation": "Coorg went into Mysore, the Patiala and East Punjab States Union went into Punjab, and Ajmer went into Rajasthan. In the same exercise Madhya Bharat, Vindhya Pradesh and Bhopal were folded into Madhya Pradesh, and Saurashtra and Kutch into Bombay.",
+    "tier": 4,
+    "format": "match-pairs",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q053",
+    "topic": "POL-06",
+    "stem": "The union territory of the Laccadive, Minicoy and Amindivi Islands was created in 1956 out of territory detached from",
+    "options": [
+      "Mysore",
+      "Travancore-Cochin",
+      "Madras",
+      "Bombay"
+    ],
+    "answer": 2,
+    "explanation": "It was created from territory detached from Madras state. The islands lie off the Kerala coast, which makes Travancore-Cochin the intuitive but wrong answer. The territory was renamed Lakshadweep in 1973.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q054",
+    "topic": "POL-06",
+    "stem": "Gujarat became the 15th state of the Indian Union in 1960 as a result of",
+    "options": [
+      "the bifurcation of the bilingual state of Bombay",
+      "the merger of Saurashtra and Kutch into a new state",
+      "the separation of Gujarati-speaking areas from Rajasthan",
+      "the elevation of a union territory to statehood"
+    ],
+    "answer": 0,
+    "explanation": "The Bombay Reorganisation Act, 1960 divided the bilingual Bombay state into Maharashtra for Marathi speakers and Gujarat for Gujarati speakers. Saurashtra and Kutch had already been merged into Bombay in 1956, so they were part of the state being divided rather than a separate merger.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q055",
+    "topic": "POL-06",
+    "stem": "Nagaland was formed as the 16th state of the Indian Union by taking which area out of Assam?",
+    "options": [
+      "The Mikir Hills and North Cachar Hills",
+      "The Naga Hills and Tuensang area",
+      "The North-East Frontier Agency",
+      "The Garo and Khasi Hills"
+    ],
+    "answer": 1,
+    "explanation": "Nagaland was formed in 1963 from the Naga Hills and Tuensang area, a tribal area of Assam specified in the Sixth Schedule, to satisfy the movement of the hostile Nagas. NEFA became Arunachal Pradesh, and the Garo and Khasi Hills went to Meghalaya.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q056",
+    "topic": "POL-06",
+    "stem": "Before being given statehood, Nagaland was placed under the control of the",
+    "options": [
+      "Governor of Assam in 1961",
+      "President of India in 1960",
+      "Chief Commissioner of NEFA in 1962",
+      "Governor of Manipur in 1961"
+    ],
+    "answer": 0,
+    "explanation": "Nagaland was placed under the control of the Governor of Assam in 1961, before the State of Nagaland Act, 1962 gave it statehood in 1963. Manipur was itself only a union territory until 1972, so it had no Governor to place anything under.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q057",
+    "topic": "POL-06",
+    "stem": "On whose recommendation was the state of Punjab trifurcated in 1966?",
+    "options": [
+      "The Fazl Ali Commission",
+      "The Dhar Commission",
+      "The Shah Commission",
+      "The Sarkaria Commission"
+    ],
+    "answer": 2,
+    "explanation": "The Shah Commission of 1966 recommended constituting the Punjabi-speaking areas into Punjab, the Hindi-speaking areas into Haryana, and merging the hill areas with the union territory of Himachal Pradesh. The Sarkaria Commission, much later, examined Centre-state relations, not state boundaries.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q058",
+    "topic": "POL-06",
+    "stem": "The demand for a separate 'Sikh Homeland' or Punjabi Subha, which led to the creation of Haryana, was raised by the Akali Dal under the leadership of",
+    "options": [
+      "Master Tara Singh",
+      "Potti Sriramulu",
+      "Laldenga",
+      "Chogyal"
+    ],
+    "answer": 0,
+    "explanation": "Master Tara Singh led the Akali Dal's Punjabi Subha demand. Potti Sriramulu's fast produced Andhra in 1953, Laldenga led the Mizo National Front whose 1986 accord produced Mizoram's statehood, and Chogyal was the title of Sikkim's ruler rather than a person's name.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q059",
+    "topic": "POL-06",
+    "stem": "The Punjab Reorganisation Act, 1966 made Chandigarh",
+    "options": [
+      "the capital of Haryana alone",
+      "a union territory with its own legislature",
+      "a part of Himachal Pradesh",
+      "a new union territory and the common capital of both Punjab and Haryana"
+    ],
+    "answer": 3,
+    "explanation": "Chandigarh was created as a union territory serving as the common capital of Punjab and Haryana. It has no legislature of its own. The hill areas of the old Punjab, not Chandigarh, were merged with the union territory of Himachal Pradesh.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q060",
+    "topic": "POL-06",
+    "stem": "Himachal Pradesh was elevated from a union territory to the status of a state, becoming the",
+    "options": [
+      "16th state, in 1963",
+      "17th state, in 1966",
+      "18th state, in 1971",
+      "19th state, in 1972"
+    ],
+    "answer": 2,
+    "explanation": "The State of Himachal Pradesh Act, 1970 elevated the union territory, and it became the 18th state in 1971. Nagaland was the 16th in 1963, Haryana the 17th in 1966, and Manipur the 19th in 1972, so the ordinal chain runs continuously through this period.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q061",
+    "topic": "POL-06",
+    "stem": "The North-Eastern Areas (Reorganisation) Act, 1971 did all of the following EXCEPT",
+    "options": [
+      "elevate Manipur and Tripura to statehood",
+      "confer full statehood on Meghalaya",
+      "form the union territories of Mizoram and Arunachal Pradesh",
+      "create the state of Nagaland out of Assam"
+    ],
+    "answer": 3,
+    "explanation": "Nagaland was created earlier, by the State of Nagaland Act, 1962, and became a state in 1963. The 1971 Act elevated Manipur (19th) and Tripura (20th), conferred full statehood on the sub-state of Meghalaya (21st), and carved the union territories of Mizoram and Arunachal Pradesh out of Assam.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q062",
+    "topic": "POL-06",
+    "stem": "Meghalaya was first created as an 'autonomous state' or 'sub-state' within Assam by which Constitutional Amendment Act?",
+    "options": [
+      "The 10th Amendment Act, 1961",
+      "The 22nd Amendment Act, 1969",
+      "The 35th Amendment Act, 1974",
+      "The 36th Amendment Act, 1975"
+    ],
+    "answer": 1,
+    "explanation": "The 22nd Amendment Act, 1969 created Meghalaya as an autonomous sub-state within Assam, with its own legislature and council of ministers. This did not satisfy its people and full statehood followed in 1972. The 35th and 36th Amendments concern Sikkim, and the 10th concerns Dadra and Nagar Haveli.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q063",
+    "topic": "POL-06",
+    "stem": "Arunachal Pradesh was originally known as",
+    "options": [
+      "the Naga Hills-Tuensang Area",
+      "the Tuensang Frontier Division",
+      "the Lushai Hills District",
+      "the North-East Frontier Agency"
+    ],
+    "answer": 3,
+    "explanation": "Arunachal Pradesh was formerly the North-East Frontier Agency, or NEFA, and became a union territory in 1972 and a state in 1987. The Naga Hills-Tuensang area became Nagaland, and the Lushai Hills correspond to the Mizoram region.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q064",
+    "topic": "POL-06",
+    "stem": "Before 1947, Sikkim was an Indian princely state ruled by the",
+    "options": [
+      "Nizam",
+      "Maharaja",
+      "Chogyal",
+      "Rana"
+    ],
+    "answer": 2,
+    "explanation": "Sikkim's ruler bore the title Chogyal. After the lapse of British paramountcy in 1947 it became a protectorate of India, with India responsible for its defence, external affairs and communications. The referendum of 1975 abolished the institution of Chogyal.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q065",
+    "topic": "POL-06",
+    "stem": "As a protectorate of India after 1947, Sikkim's which subjects were the responsibility of the Indian Government?",
+    "options": [
+      "Defence, external affairs and communications",
+      "Defence, currency and taxation",
+      "External affairs, education and communications",
+      "Defence, external affairs and internal police"
+    ],
+    "answer": 0,
+    "explanation": "India assumed responsibility for Sikkim's defence, external affairs and communications, the classic protectorate package. Internal administration, including police, remained with the Chogyal, which is why 1974 and 1975 were needed to bring Sikkim fully into the Union.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q066",
+    "topic": "POL-06",
+    "stem": "The 35th Constitutional Amendment Act (1974) conferred on Sikkim the status of",
+    "options": [
+      "a full-fledged state of the Indian Union",
+      "a union territory with a legislature",
+      "an 'associate state' of the Indian Union",
+      "an autonomous sub-state within West Bengal"
+    ],
+    "answer": 2,
+    "explanation": "The 35th Amendment created an entirely new class of statehood, the 'associate state', inserting Article 2-A and a new 10th Schedule containing the terms of association. Full statehood came only with the 36th Amendment Act, 1975, which repealed both Article 2-A and that 10th Schedule.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q067",
+    "topic": "POL-06",
+    "stem": "Consider the following statements about Sikkim's admission to the Indian Union:\n1. The 35th Amendment Act, 1974 inserted a new Article 2-A and a new 10th Schedule.\n2. The 36th Amendment Act, 1975 made Sikkim the 22nd state and added Article 371-F.\n3. The 36th Amendment retained Article 2-A and the 10th Schedule.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 0,
+    "explanation": "The 35th Amendment inserted Article 2-A and the 10th Schedule for the associate-state experiment, and the 36th Amendment made Sikkim the 22nd state, amended the First and Fourth Schedules and added Article 371-F. Statement 3 is wrong: the 36th Amendment repealed Article 2-A and the 10th Schedule.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q068",
+    "topic": "POL-06",
+    "stem": "The statehood of Mizoram in 1987 followed the signing of a memorandum of settlement in 1986 between the Central government and the",
+    "options": [
+      "Mizo Union",
+      "Mizo National Front",
+      "Akali Dal",
+      "Naga National Council"
+    ],
+    "answer": 1,
+    "explanation": "The Mizoram Peace Accord of 1986 was signed with the Mizo National Front, ending a two-decade-old insurgency, and Mizoram became the 23rd state in 1987. The Akali Dal's demand produced Haryana in 1966, and the Naga movement had produced Nagaland in 1963.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q069",
+    "topic": "POL-06",
+    "stem": "Which three states came into being in 1987 as the 23rd, 24th and 25th states of the Indian Union?",
+    "options": [
+      "Sikkim, Mizoram and Arunachal Pradesh",
+      "Meghalaya, Mizoram and Goa",
+      "Arunachal Pradesh, Goa and Chhattisgarh",
+      "Mizoram, Arunachal Pradesh and Goa"
+    ],
+    "answer": 3,
+    "explanation": "Mizoram (23rd), Arunachal Pradesh (24th) and Goa (25th) all attained statehood in 1987. Sikkim was the 22nd, in 1975, and Meghalaya the 21st, in 1972. Chhattisgarh belongs to the 2000 batch as the 26th state.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q070",
+    "topic": "POL-06",
+    "stem": "The state of Goa was created in 1987 by separating the territory of Goa from",
+    "options": [
+      "the state of Maharashtra",
+      "the union territory of Dadra and Nagar Haveli",
+      "the union territory of Goa, Daman and Diu",
+      "the state of Karnataka"
+    ],
+    "answer": 2,
+    "explanation": "Goa was separated from the union territory of Goa, Daman and Diu, which had been formed in 1962. Daman and Diu was consequently left as a separate union territory, and it merged with Dadra and Nagar Haveli only in 2020.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q071",
+    "topic": "POL-06",
+    "stem": "Match the state created in 2000 with the state out of whose territory it was carved:\n1. Chhattisgarh — a. Bihar\n2. Uttaranchal — b. Madhya Pradesh\n3. Jharkhand — c. Uttar Pradesh",
+    "options": [
+      "1-b, 2-c, 3-a",
+      "1-a, 2-b, 3-c",
+      "1-c, 2-a, 3-b",
+      "1-b, 2-a, 3-c"
+    ],
+    "answer": 0,
+    "explanation": "Chhattisgarh came out of Madhya Pradesh, Uttaranchal out of Uttar Pradesh and Jharkhand out of Bihar, becoming the 26th, 27th and 28th states respectively. Uttaranchal was renamed Uttarakhand in 2006, so both names appear in questions for the same state.",
+    "tier": 2,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q072",
+    "topic": "POL-06",
+    "stem": "Telangana came into existence in 2014 as the",
+    "options": [
+      "28th state, carved out of Andhra Pradesh",
+      "29th state, carved out of Andhra Pradesh",
+      "29th state, carved out of Karnataka and Andhra Pradesh",
+      "28th state, carved out of the erstwhile Hyderabad state"
+    ],
+    "answer": 1,
+    "explanation": "The Andhra Pradesh Reorganisation Act, 2014 bifurcated Andhra Pradesh into a residuary Andhra Pradesh and Telangana, the 29th state. Jharkhand was the 28th, in 2000. Hyderabad state had ceased to exist in 1956, so nothing could be carved out of it in 2014.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q073",
+    "topic": "POL-06",
+    "stem": "Dadra and Nagar Haveli was made a union territory of India by which Constitutional Amendment Act?",
+    "options": [
+      "The 9th Amendment Act, 1960",
+      "The 10th Amendment Act, 1961",
+      "The 12th Amendment Act, 1962",
+      "The 14th Amendment Act, 1962"
+    ],
+    "answer": 1,
+    "explanation": "The 10th Amendment Act, 1961 converted it into a union territory. It had been ruled by the Portuguese until its liberation in 1954 and was then administered until 1961 by an administrator chosen by the people themselves. The 12th covers Goa, Daman and Diu, and the 14th covers Puducherry.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q074",
+    "topic": "POL-06",
+    "stem": "Goa, Daman and Diu were acquired by India from the Portuguese in 1961 by means of",
+    "options": [
+      "a treaty of cession",
+      "a plebiscite",
+      "police action",
+      "a lease agreement"
+    ],
+    "answer": 2,
+    "explanation": "India acquired the three territories by police action in 1961, and they were constituted a union territory by the 12th Amendment Act, 1962. Dadra and Nagar Haveli had been liberated earlier, in 1954, and Puducherry was handed over by the French, so each territory came in by a different route.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q075",
+    "topic": "POL-06",
+    "stem": "The territory of Puducherry comprises the former French establishments of",
+    "options": [
+      "Puducherry, Karaikal, Mahe and Yanam",
+      "Puducherry, Chandernagore, Mahe and Yanam",
+      "Puducherry, Karaikal, Daman and Yanam",
+      "Puducherry, Karaikal, Mahe and Diu"
+    ],
+    "answer": 0,
+    "explanation": "The four French establishments are Puducherry, Karaikal, Mahe and Yanam. Chandernagore, also French, was merged into West Bengal by a separate Act in 1954. Daman and Diu were Portuguese, not French, which is the trap in the last two options.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q076",
+    "topic": "POL-06",
+    "stem": "Puducherry, handed over by the French in 1954, was administered as an 'acquired territory' until it was made a union territory in 1962 by the",
+    "options": [
+      "10th Amendment Act",
+      "12th Amendment Act",
+      "14th Amendment Act",
+      "36th Amendment Act"
+    ],
+    "answer": 2,
+    "explanation": "The 14th Amendment Act, 1962 made Puducherry a union territory after eight years as an acquired territory. The 10th (1961) dealt with Dadra and Nagar Haveli, the 12th (1962) with Goa, Daman and Diu, and the 36th (1975) with Sikkim's statehood.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q077",
+    "topic": "POL-06",
+    "stem": "The union territories of Dadra and Nagar Haveli and of Daman and Diu were merged into a single union territory in",
+    "options": [
+      "2019, by a constitutional amendment",
+      "2020, by an Act of Parliament passed in 2019",
+      "2014, by the Andhra Pradesh Reorganisation Act",
+      "2015, by the 100th Amendment Act"
+    ],
+    "answer": 1,
+    "explanation": "The merger took effect in 2020 under the Dadra and Nagar Haveli and Daman and Diu (Merger of Union Territories) Act, 2019, an ordinary law rather than a constitutional amendment, since Article 4 exempts such laws from Article 368. The 2014 and 2015 measures concern Telangana and Bangladesh respectively.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q078",
+    "topic": "POL-06",
+    "stem": "The special status of the erstwhile State of Jammu and Kashmir was abolished in 2019 by",
+    "options": [
+      "a presidential order that superseded the 1954 order",
+      "the 100th Constitutional Amendment Act",
+      "a judgment of the Supreme Court",
+      "a resolution of the Jammu and Kashmir legislature"
+    ],
+    "answer": 0,
+    "explanation": "The Constitution (Application to Jammu and Kashmir) Order, 2019 superseded the 1954 order and extended all provisions of the Constitution of India to Jammu and Kashmir. The bifurcation into two union territories was then done by a separate ordinary law, the Jammu and Kashmir Reorganisation Act, 2019.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q079",
+    "topic": "POL-06",
+    "stem": "The union territory of Ladakh, created in 2019, comprises which districts of the erstwhile State of Jammu and Kashmir?",
+    "options": [
+      "Kargil and Srinagar",
+      "Leh and Jammu",
+      "Kargil and Leh",
+      "Leh, Kargil and Doda"
+    ],
+    "answer": 2,
+    "explanation": "Ladakh comprises the Kargil and Leh districts; every other district of the erstwhile state went to the union territory of Jammu and Kashmir. Srinagar, Jammu and Doda all remain in the union territory of Jammu and Kashmir.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q080",
+    "topic": "POL-06",
+    "stem": "The present number of states and union territories in India is",
+    "options": [
+      "29 states and 7 union territories",
+      "28 states and 9 union territories",
+      "28 states and 8 union territories",
+      "29 states and 8 union territories"
+    ],
+    "answer": 2,
+    "explanation": "India has 28 states and 8 union territories, up from 14 and 6 in 1956. Telangana was the 29th state by ordinal count, but Jammu and Kashmir ceased to be a state in 2019, bringing the total back to 28 while the union territories rose to 8.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q081",
+    "topic": "POL-06",
+    "stem": "Which of the following is NOT a union territory at present?",
+    "options": [
+      "Chandigarh",
+      "Lakshadweep",
+      "Puducherry",
+      "Sikkim"
+    ],
+    "answer": 3,
+    "explanation": "Sikkim has been a full state since the 36th Amendment Act, 1975. The eight union territories are the Andaman and Nicobar Islands, Chandigarh, Dadra and Nagar Haveli and Daman and Diu, Delhi, Jammu and Kashmir, Ladakh, Lakshadweep and Puducherry.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q082",
+    "topic": "POL-06",
+    "stem": "Which was the first state to be given a new name after the commencement of the Constitution?",
+    "options": [
+      "Madras, renamed Tamil Nadu",
+      "Orissa, renamed Odisha",
+      "Mysore, renamed Karnataka",
+      "United Provinces, renamed Uttar Pradesh"
+    ],
+    "answer": 3,
+    "explanation": "The United Provinces was renamed Uttar Pradesh in 1950, the earliest of the name changes. Madras became Tamil Nadu in 1969, Mysore became Karnataka in 1973, and Orissa became Odisha only in 2011, making it the most recent of the four.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q083",
+    "topic": "POL-06",
+    "stem": "Arrange the following renamings in correct chronological order:\n1. Mysore to Karnataka\n2. Madras to Tamil Nadu\n3. Orissa to Odisha\n4. Uttaranchal to Uttarakhand",
+    "options": [
+      "2 - 1 - 4 - 3",
+      "1 - 2 - 3 - 4",
+      "2 - 1 - 3 - 4",
+      "1 - 2 - 4 - 3"
+    ],
+    "answer": 0,
+    "explanation": "Madras became Tamil Nadu in 1969, Mysore became Karnataka in 1973, Uttaranchal became Uttarakhand in 2006 and Orissa became Odisha in 2011. Pondicherry was also renamed Puducherry in 2006, and Lakshadweep received its name in 1973 alongside Karnataka.",
+    "tier": 3,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q084",
+    "topic": "POL-06",
+    "stem": "The union territory of Delhi was redesignated as the National Capital Territory of Delhi by which Constitutional Amendment Act?",
+    "options": [
+      "The 61st Amendment Act, 1988",
+      "The 69th Amendment Act, 1991",
+      "The 73rd Amendment Act, 1992",
+      "The 74th Amendment Act, 1992"
+    ],
+    "answer": 1,
+    "explanation": "The 69th Amendment Act, 1991 redesignated Delhi as the National Capital Territory in 1992, without conferring the status of a full-fledged state. The 61st lowered the voting age, and the 73rd and 74th created panchayats and municipalities, which is why they cluster near the same years.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q085",
+    "topic": "POL-06",
+    "stem": "The Laccadive, Minicoy and Amindivi Islands were renamed Lakshadweep in",
+    "options": [
+      "1956",
+      "1969",
+      "1973",
+      "2006"
+    ],
+    "answer": 2,
+    "explanation": "The renaming took place in 1973, the same year Mysore became Karnataka. The territory itself was created in 1956 out of land detached from Madras, so 1956 is its year of creation rather than of renaming.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q086",
+    "topic": "POL-06",
+    "stem": "The Assam (Alteration of Boundaries) Act, 1951 altered the boundaries of Assam by ceding a strip of territory to",
+    "options": [
+      "Bhutan",
+      "Nepal",
+      "Myanmar",
+      "East Pakistan"
+    ],
+    "answer": 0,
+    "explanation": "A strip of Assam was ceded to Bhutan under the 1951 Act. Cession to East Pakistan is the Berubari story, which arose later and required the 9th Amendment Act, 1960 after the Supreme Court held that Article 3 alone could not do it.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q087",
+    "topic": "POL-06",
+    "stem": "The Acquired Territories (Merger) Act, 1960 merged territories acquired from Pakistan into which states?",
+    "options": [
+      "Assam, Bihar and West Bengal",
+      "West Bengal, Bihar and Odisha",
+      "Punjab, Rajasthan and Gujarat",
+      "Assam, Punjab and West Bengal"
+    ],
+    "answer": 3,
+    "explanation": "The Act merged territories acquired under the 1958 and 1959 India-Pakistan agreements into Assam, Punjab and West Bengal. These are precisely the states that then bordered Pakistan or East Pakistan, which makes Bihar and Odisha impossible answers.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q088",
+    "topic": "POL-06",
+    "stem": "The Chandernagore (Merger) Act, 1954 merged a former enclave of French India into which state?",
+    "options": [
+      "Tamil Nadu",
+      "Odisha",
+      "West Bengal",
+      "Bihar"
+    ],
+    "answer": 2,
+    "explanation": "Chandernagore was merged into West Bengal in 1954. It was French, like Puducherry, Karaikal, Mahe and Yanam, but was dealt with separately and never became part of the union territory of Puducherry.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q089",
+    "topic": "POL-06",
+    "stem": "Assertion (A): Parliament can alter the boundaries of a state without its consent.\nReason (R): Article 4 provides that a law made under Article 3 shall not be deemed to be an amendment of the Constitution under Article 368.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 1,
+    "explanation": "Both statements are true, but they answer different questions. A is true because the state legislature's views under Article 3 are merely consultative and not binding. R explains only the majority needed to pass such a law, namely a simple majority, not why consent is unnecessary. So R is true but is not the explanation of A.",
+    "tier": 5,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q090",
+    "topic": "POL-06",
+    "stem": "Assertion (A): India is called an 'indestructible Union of destructible states'.\nReason (R): The Constitution does not guarantee the territorial integrity or continued existence of any state.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R is exactly why A is said. Parliament may form, merge, shrink or rename states without their consent under Article 3, so no state's existence is constitutionally secure, while the Union itself cannot be dissolved and no state may secede.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q091",
+    "topic": "POL-06",
+    "stem": "Consider the following statements:\n1. The Union of India includes union territories and acquired territories.\n2. Union territories and acquired territories are directly administered by the Central government.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 1,
+    "explanation": "Statement 1 is wrong: the Union of India comprises only the states, which share a distribution of powers with the Centre; it is the wider 'Territory of India' that takes in union territories and acquired territories. Statement 2 is correct, since both are administered directly by the Centre.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q092",
+    "topic": "POL-06",
+    "stem": "Arrange the following states in the order in which they attained statehood:\n1. Nagaland\n2. Gujarat\n3. Haryana\n4. Himachal Pradesh",
+    "options": [
+      "1 - 2 - 3 - 4",
+      "2 - 1 - 3 - 4",
+      "2 - 3 - 1 - 4",
+      "2 - 1 - 4 - 3"
+    ],
+    "answer": 1,
+    "explanation": "Gujarat came first in 1960 as the 15th state, Nagaland in 1963 as the 16th, Haryana in 1966 as the 17th and Himachal Pradesh in 1971 as the 18th. The ordinal numbers and the years move together through this stretch, so either one fixes the sequence.",
+    "tier": 3,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q093",
+    "topic": "POL-06",
+    "stem": "Which of the following statements about the power of Parliament to form new states is correct?",
+    "options": [
+      "It can form a new state only by separating territory from an existing state",
+      "It includes the power to form a new state or union territory by uniting a part of any state or union territory to any other state or union territory",
+      "It cannot unite two or more existing states into one",
+      "It requires the consent of at least half the state legislatures"
+    ],
+    "answer": 1,
+    "explanation": "Article 3 covers separation, the uniting of two or more states or parts of states, and the uniting of any territory to a part of a state, and the power extends to forming a new state or union territory by uniting parts of states or union territories. No state consent, let alone ratification by half the states, is needed.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q094",
+    "topic": "POL-06",
+    "stem": "Laws made under Articles 2 and 3 may provide for the amendment of which Schedules?",
+    "options": [
+      "The First and the Fourth Schedules",
+      "The First and the Second Schedules",
+      "The Fourth and the Seventh Schedules",
+      "The First and the Seventh Schedules"
+    ],
+    "answer": 0,
+    "explanation": "Article 4 allows such laws to amend the First Schedule, which lists the states and union territories, and the Fourth Schedule, which allocates Rajya Sabha seats, along with supplemental and consequential matters. Neither the Second Schedule nor the Seventh is affected by a change in the map.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q095",
+    "topic": "POL-06",
+    "stem": "Match the Article with its subject matter:\n1. Article 1 — a. Formation of new states and alteration of areas, boundaries or names of existing states\n2. Article 2 — b. Name and territory of the Union\n3. Article 3 — c. Admission or establishment of new states",
+    "options": [
+      "1-a, 2-b, 3-c",
+      "1-b, 2-a, 3-c",
+      "1-b, 2-c, 3-a",
+      "1-c, 2-b, 3-a"
+    ],
+    "answer": 2,
+    "explanation": "Article 1 is the name and territory of the Union, Article 2 is admission or establishment of new states, and Article 3 is formation of new states and alteration of areas, boundaries or names. Article 2-A, which associated Sikkim with the Union, was repealed by the 36th Amendment in 1975.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q096",
+    "topic": "POL-06",
+    "stem": "Article 2-A of the Constitution, now repealed, dealt with",
+    "options": [
+      "the admission of Goa into the Union",
+      "the creation of autonomous sub-states",
+      "the administration of acquired territories",
+      "the association of Sikkim with the Union"
+    ],
+    "answer": 3,
+    "explanation": "Article 2-A, inserted by the 35th Amendment Act, 1974, associated Sikkim with the Union as an 'associate state' and was repealed by the 36th Amendment Act, 1975 when Sikkim became a full state. The autonomous sub-state device was used for Meghalaya under the 22nd Amendment, not Article 2-A.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q097",
+    "topic": "POL-06",
+    "stem": "Consider the following statements about the creation of Andhra Pradesh:\n1. The Andhra State Act, 1953 created the first linguistic state out of Madras.\n2. The States Reorganisation Act, 1956 merged the Telugu-speaking areas of Hyderabad state with Andhra.\n3. The Andhra Pradesh Reorganisation Act, 2014 bifurcated the state into Andhra Pradesh and Telangana.\nWhich of the statements given above are correct?",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "answer": 3,
+    "explanation": "All three are correct and together give the full arc: Andhra state in 1953 with Kurnool as capital, the enlarged Andhra Pradesh in 1956 with the capital shifted to Hyderabad, and the bifurcation into a residuary Andhra Pradesh and Telangana in 2014.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q098",
+    "topic": "POL-06",
+    "stem": "The India-Bangladesh land boundary is approximately",
+    "options": [
+      "3,323 km",
+      "4,096.7 km",
+      "2,912 km",
+      "5,100 km"
+    ],
+    "answer": 1,
+    "explanation": "The common land boundary with Bangladesh runs about 4,096.7 km, the longest India shares with any neighbour. The figure near 3,323 km is the India-Pakistan boundary, which is the usual distractor when border lengths are asked together.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q099",
+    "topic": "POL-06",
+    "stem": "Which of the following did the India-Bangladesh deal implemented in 2015 NOT cover?",
+    "options": [
+      "The exchange of enclaves",
+      "The transfer of territories in adverse possession",
+      "The demarcation of a 6.1 km undemarcated border stretch",
+      "The transfer of the Berubari Union to Bangladesh"
+    ],
+    "answer": 3,
+    "explanation": "Berubari belongs to an earlier chapter: the 9th Amendment Act, 1960 was passed after the Supreme Court's opinion, though it could not be notified for the territories in former East Pakistan. The 2015 deal covered enclaves, adverse possessions and the 6.1 km undemarcated stretch.",
+    "tier": 5,
+    "format": "odd-one-out",
+    "exams": [
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-06-Q100",
+    "topic": "POL-06",
+    "stem": "Which of the following pairs is correctly matched?",
+    "options": [
+      "10th Amendment Act — Goa, Daman and Diu made a union territory",
+      "12th Amendment Act — Puducherry made a union territory",
+      "14th Amendment Act — Puducherry made a union territory",
+      "9th Amendment Act — Dadra and Nagar Haveli made a union territory"
+    ],
+    "answer": 2,
+    "explanation": "The 14th Amendment Act, 1962 made Puducherry a union territory. The 10th (1961) covered Dadra and Nagar Haveli, the 12th (1962) covered Goa, Daman and Diu, and the 9th (1960) transferred Berubari to Pakistan, so every other pairing is displaced by one.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  }
+]

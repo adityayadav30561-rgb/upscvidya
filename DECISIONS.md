@@ -37,6 +37,14 @@
 - Commercial-source questions are **rewritten** (concept kept, wording fresh);
   PYQs kept **verbatim**. Every question carries a `source` provenance block.
 
+- **MCQ tier is judged per question but audited per bank.** Sensible per-question
+  tagging still drifts easy on a fact-listy chapter (POL-06 first landed at
+  13/37/34/15/1 against the 5/20/40/25/7 house shape). The server buckets tiers
+  1-2 / 3 / 4+ for XP multipliers and for the gold grade, which needs all three
+  present — so a skewed bank quietly changes reward, not just difficulty. Run the
+  tier and answer-position counts after authoring; the target table and the
+  one-liner are in `docs/CONTENT_AUTHORING.md` §6.
+
 ## Quiz length (changed 2026-07)
 
 - **A quiz serves the topic's ENTIRE live pool.** `/api/quiz/start` sets
