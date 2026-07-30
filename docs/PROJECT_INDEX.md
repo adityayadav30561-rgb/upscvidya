@@ -99,7 +99,8 @@
 | Thing | Path |
 |---|---|
 | Source content (synced to PB) | `content/polity/`, `content/pyq/` |
-| Authored chapters | `POL-01` (50 MCQs), `POL-05`, `POL-10`, `POL-19` |
+| Authored chapters | `POL-01` (50 MCQs), `POL-02` (70), `POL-03` (45), `POL-04` (70), `POL-05` (50), `POL-10` (13), `POL-19` (14) |
+| Chapter authoring rule (Opus 5, not the AI chain) | `DECISIONS.md` → "Who authors chapters" |
 | Validate / sync / snapshot | `scripts/content/validate.js`, `sync.js`, `pyq-snapshot.js` |
 | One-off PYQ status repair | `scripts/content/repair-pyq-status.js` (`pnpm repair:pyq`) |
 | MCQ ingestion (OCR + AI) | `scripts/ingest/ingest.js`, `parse.js`, `ai.js` |

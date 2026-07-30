@@ -12,56 +12,56 @@ and content. Checklist + step order: **[BETA_SETUP.md](BETA_SETUP.md)**.
 ## Completed
 
 - Prompts 00–16 + FIELD DOSSIER + retrieval practice. See CLAUDE.md §2.
-- **AI is solved — 5-provider failover chain** (OpenRouter → Gemini → Mistral →
-  OpenCode Zen → Groq). All keys live in `.env` (gitignored). Same chain in
-  `scripts/ingest/ai.js` (replaces `groq.js`), the CA pipeline and `ca_extra.pb.js`.
-  `AI_PROVIDER=<name>` pins one. Failover proven live by breaking keys.
-- **POL-01 Historical Background authored** — 2,571-word teaching chapter
-  (1 predict / 5 cloze / 1 recall) + **50 MCQs** (floor is 35). Synced and
-  promoted to live in **dev only**; repo still says `draft`.
-- **Quiz length uncapped** — `/api/quiz/start` serves the whole live pool
-  (was a fixed 12). UI shows the real count via `live_questions`.
-- **Reader paginates horizontally** (page-turn, swipe/mouse/keys). No vertical
-  scroll. Verified in Chrome DevTools MCP at 412×915.
+- **Chapters POL-02, POL-03, POL-04 authored; POL-05 rewritten** (was a
+  721-word stub). Each: full teaching chapter + MCQ bank, `draft` in the repo,
+  synced and promoted to **live in dev only**.
+- **Authoring is Opus 5, not the API chain** — a `draft-chapter` CLI was built,
+  run on POL-05 and **deleted**. Its MCQs passed; its notes failed (broken
+  tables, triple-taught topics, half the required clozes). Full reasoning in
+  DECISIONS.md → "Who authors chapters". `scripts/ingest/ai.js` reverted; the
+  chain now serves **current affairs + `pnpm ingest` only**.
+- Fixed 2 reader pagination bugs found in-browser (POL-03 p8, POL-05 p21): a
+  cloze card cannot fragment, so an over-long one strands a half-empty page.
+- Retired 7 dev-seed rows (`CAPF-2023-Q001`, `CA-TEST-1`, …) mislinked to the
+  POL-05 topic — they were being served inside Preamble quizzes.
 
 ## In progress
 
-Nothing half-done. Next chapter is the natural continuation.
+Nothing half-done.
 
 ## Next
 
-1. **Chapter 2+ content** — the real bottleneck: 4 of 103 units authored.
-   Author to CONTENT_AUTHORING.md, then `pnpm validate && pnpm sync -- --env dev`.
-2. **Build a `draft-mcqs` CLI** (notes → draft MCQs). `pnpm ingest` only parses
-   MCQ text you already have; there is no notes→MCQ path. Biggest lever.
-3. **Make `mcq_floor` enforced** — validate.js only checks it is a number, never
-   compares it to the actual count.
-4. BETA_SETUP step 1 (Google OAuth, blocked on user), then steps 2/5/7/9.
+1. **Chapter POL-06 onwards** — the bottleneck: 7 of 103 units authored.
+   Paste the raw chapter, author to CONTENT_AUTHORING.md, then
+   `pnpm validate && pnpm sync -- --env dev`, promote, verify in the browser.
+2. **Make `mcq_floor` enforced** — validate.js only checks it is a number.
+3. BETA_SETUP step 1 (Google OAuth, blocked on user), then steps 2/5/7/9.
 
 ## Active files
 
-- `content/polity/POL-01-historical-background/` (new)
-- `scripts/ingest/ai.js` (new, replaces `groq.js`)
-- `pb/pb_migrations/1754100000_*.js`, `1754200000_*.js` (new — `live_questions`)
-- `src/routes/(app)/topic/[code]/+page.svelte` + `+page.ts` (paged reader)
-- `pb/pb_hooks/quiz.pb.js` (uncapped N), `src/lib/quiz.ts` (`quizCount`)
+- `content/polity/POL-02-making-of-the-constitution/` (new, 70 MCQs)
+- `content/polity/POL-03-concept-of-the-constitution/` (new, 45)
+- `content/polity/POL-04-salient-features/` (new, 70)
+- `content/polity/POL-05-preamble/` (rewritten, 50)
 
 ## Do NOT
 
-- Display `mcq_floor` as a question count — it is an authoring target. Use
-  `live_questions`.
+- Use the AI API chain to write notes or MCQs. Decided and recorded.
+- Display `mcq_floor` as a question count — use `live_questions`.
 - Re-cap quiz length. `N = pool.length` is deliberate.
 - Assume prod exists. Everything is localhost (PB 8090 + dev 5173).
 - Commit `.env` — it holds 5 live API keys.
-- Give retrieval prompts XP or a server endpoint.
 - Scan the repo (use PROJECT_INDEX.md).
 
 ## Notes / gotchas
 
 - Dev login `reader-test@local.dev` / `Testpass123!` — delete before beta.
 - PB must be **restarted** to load changed `pb_hooks` or new migrations.
-- In the paged reader a monolithic block (`overflow:auto`, `break-inside:avoid`)
-  can strand a heading on a blank page. A dev-only console warning flags any
-  page <45% full.
-- Scoped styles: a later same-specificity rule wins. Verify the **computed**
-  style, not the source.
+- **Keep `:::cloze` blocks to 2–3 short lines.** They render as one
+  unbreakable card; a tall one jumps to the next page and strands a blank one.
+  `pnpm dev` warns in the console for any page under 45% full — check it after
+  every chapter.
+- Balance MCQ answer positions after authoring (statement-based and
+  assertion-reason have a fixed option order — never reorder those).
+- Piping a long background command through `tail` buffers the log; you see
+  nothing until it exits.

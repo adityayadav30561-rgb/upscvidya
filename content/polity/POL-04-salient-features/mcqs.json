@@ -1,0 +1,1892 @@
+[
+  {
+    "id": "POL-04-Q001",
+    "topic": "POL-04",
+    "stem": "The Constitution of India as originally adopted consisted of",
+    "options": [
+      "395 Articles, 22 Parts and 8 Schedules",
+      "395 Articles, 25 Parts and 12 Schedules",
+      "470 Articles, 22 Parts and 8 Schedules",
+      "448 Articles, 25 Parts and 12 Schedules"
+    ],
+    "answer": 0,
+    "explanation": "As adopted it had 395 Articles in 22 Parts with 8 Schedules. The figures of about 470 Articles, 25 Parts and 12 Schedules describe the Constitution today, after roughly 20 Articles and one Part were deleted and about 95 Articles, four Parts and four Schedules were added. Every question on this topic turns on keeping the 'originally' and 'presently' columns apart.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q002",
+    "topic": "POL-04",
+    "stem": "Which of the following Parts were added to the Constitution after its commencement?",
+    "options": [
+      "Parts III, IV, IX and XII",
+      "Parts IV-A, IX-A, IX-B and XIV-A",
+      "Parts I, II, VII and VIII",
+      "Parts V, VI, XX and XXII"
+    ],
+    "answer": 1,
+    "explanation": "The four added Parts are IV-A (Fundamental Duties) and XIV-A (Tribunals), both by the 42nd Amendment of 1976, IX-A (Municipalities) by the 74th Amendment of 1992, and IX-B (Co-operative Societies) by the 97th Amendment of 2011. Part VII, on the other hand, was deleted by the 7th Amendment of 1956 — it is the one Part that has gone, not come.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q003",
+    "topic": "POL-04",
+    "stem": "Part VII of the original Constitution was deleted by the",
+    "options": [
+      "1st Amendment Act, 1951",
+      "42nd Amendment Act, 1976",
+      "7th Amendment Act, 1956",
+      "44th Amendment Act, 1978"
+    ],
+    "answer": 2,
+    "explanation": "The 7th Amendment Act of 1956 deleted Part VII, which dealt with the states in Part B of the First Schedule, as part of the reorganisation of states. The 1st Amendment added the Ninth Schedule, the 42nd added Parts IV-A and XIV-A, and the 44th removed the Right to Property from the Fundamental Rights.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q004",
+    "topic": "POL-04",
+    "stem": "Which of the following is NOT among the reasons usually given for the elephantine size of the Indian Constitution?",
+    "options": [
+      "Geographical vastness and diversity of the country",
+      "Historical influence of the Government of India Act, 1935",
+      "Dominance of legal luminaries in the Constituent Assembly",
+      "A separate constitution for each state in addition to the Union"
+    ],
+    "answer": 3,
+    "explanation": "The reason is exactly the opposite: India has a single constitution for both the Centre and the states, so all of it had to go into one document, whereas in the USA each state frames its own. The other three — geographical diversity, the influence of the bulky 1935 Act and the dominance of legal experts in the Assembly — are the standard reasons.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q005",
+    "topic": "POL-04",
+    "stem": "The special status of Jammu and Kashmir, under which it had its own constitution, was provided by",
+    "options": [
+      "Article 370",
+      "Article 368",
+      "Article 356",
+      "Article 371"
+    ],
+    "answer": 0,
+    "explanation": "Article 370 carried the special status of Jammu and Kashmir until 2019, when the Constitution (Application to Jammu and Kashmir) Order, 2019 superseded the 1954 Order and extended the whole Constitution to the state. Article 356 concerns President's Rule and Article 368 the amendment power; Article 371 carries special provisions for several other states but not the separate-constitution arrangement.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q006",
+    "topic": "POL-04",
+    "stem": "The Jammu and Kashmir Reorganisation Act, 2019 bifurcated the state into",
+    "options": [
+      "Two states — Jammu and Kashmir, and Ladakh",
+      "Two union territories — Jammu & Kashmir, and Ladakh",
+      "A state of Jammu & Kashmir and a union territory of Ladakh",
+      "Three union territories — Jammu, Kashmir and Ladakh"
+    ],
+    "answer": 1,
+    "explanation": "The Act created two union territories, Jammu & Kashmir and Ladakh. Neither remained a state, which rules out the first and third options, and Jammu and Kashmir were not separated from each other, which rules out the fourth.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q007",
+    "topic": "POL-04",
+    "stem": "The observation that the Constitution was framed after 'ransacking all the known Constitutions of the World' was made by",
+    "options": [
+      "Jawaharlal Nehru",
+      "Dr. B.R. Ambedkar",
+      "Granville Austin",
+      "Ivor Jennings"
+    ],
+    "answer": 1,
+    "explanation": "Ambedkar made the remark, and it is his own acknowledgement of the borrowing that critics later attacked as producing a 'bag of borrowings'. His defence was that at this late stage in constitutional history nobody holds patent rights over fundamental ideas. Jennings was among the critics rather than the framers, and Austin was a later scholar of Indian federalism.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q008",
+    "topic": "POL-04",
+    "stem": "The structural part of the Indian Constitution is derived largely from",
+    "options": [
+      "The American Constitution",
+      "The British Constitution",
+      "The Government of India Act, 1935",
+      "The Irish Constitution"
+    ],
+    "answer": 2,
+    "explanation": "More than half the provisions of the Constitution resemble the Government of India Act, 1935, which supplied the federal scheme, the judiciary, the Governors, the emergency powers and the public service commissions. The philosophical part came from America and Ireland and the political part from Britain — the three-layer split is the point of the question.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q009",
+    "topic": "POL-04",
+    "stem": "Consider the following statements:\n1. The Fundamental Rights were drawn from the American Constitution.\n2. The Directive Principles of State Policy were drawn from the Irish Constitution.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and together they make up the philosophical part of the Constitution. Ireland had itself taken the idea of directive principles from the Spanish Constitution, but for examination purposes the source cited is Ireland. The political part — cabinet government and executive–legislature relations — came from Britain.",
+    "tier": 2,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q010",
+    "topic": "POL-04",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Source)\nA. Canadian Constitution\nB. Australian Constitution\nC. Japanese Constitution\nList II (Feature borrowed)\n1. Concurrent List and joint sitting of the two Houses\n2. Procedure established by law\n3. Federation with a strong Centre and residuary powers with the Centre",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-3, C-2",
+      "A-3, B-2, C-1",
+      "A-3, B-1, C-2"
+    ],
+    "answer": 3,
+    "explanation": "Canada gave the strong-Centre federation with residuary powers at the Centre and the appointment of Governors, Australia gave the Concurrent List, freedom of trade and commerce and the joint sitting, and Japan gave the phrase 'procedure established by law' in Article 21. Confusing Canada with Australia is the usual error, since both are federations of the Commonwealth type.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q011",
+    "topic": "POL-04",
+    "stem": "The Fundamental Duties and the ideal of justice in the Preamble were borrowed from the",
+    "options": [
+      "Soviet Constitution",
+      "French Constitution",
+      "Weimar Constitution of Germany",
+      "South African Constitution"
+    ],
+    "answer": 0,
+    "explanation": "Both came from the Soviet Constitution. France supplied the republic and the ideals of liberty, equality and fraternity, Germany's Weimar Constitution the suspension of Fundamental Rights during an emergency, and South Africa the amendment procedure and the election of Rajya Sabha members. All four are Preamble- or emergency-adjacent, which is why they are grouped as distractors.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q012",
+    "topic": "POL-04",
+    "stem": "The nomination of members to the Rajya Sabha and the method of election of the President were borrowed from the",
+    "options": [
+      "South African Constitution",
+      "Irish Constitution",
+      "British Constitution",
+      "Canadian Constitution"
+    ],
+    "answer": 1,
+    "explanation": "Both come from Ireland, along with the Directive Principles. South Africa is the trap: it gave the *election* of Rajya Sabha members and the amendment procedure, while Ireland gave the *nomination* of members. Holding that one distinction apart answers most questions on this pair.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q013",
+    "topic": "POL-04",
+    "stem": "Which of the following was NOT borrowed from the British Constitution?",
+    "options": [
+      "Rule of law",
+      "Single citizenship",
+      "Judicial review",
+      "Prerogative writs"
+    ],
+    "answer": 2,
+    "explanation": "Judicial review came from the American Constitution, along with the Fundamental Rights, the independence of the judiciary, the impeachment of the President, the removal of Supreme Court and High Court judges, and the post of Vice-President. Rule of law, single citizenship and the prerogative writs are all British, as are the parliamentary system, the cabinet, bicameralism and parliamentary privileges.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q014",
+    "topic": "POL-04",
+    "stem": "The post of Vice-President and the impeachment of the President were borrowed from the",
+    "options": [
+      "British Constitution",
+      "Irish Constitution",
+      "Canadian Constitution",
+      "American Constitution"
+    ],
+    "answer": 3,
+    "explanation": "Both come from the United States. Ireland is the near miss, since it supplied the *method of election* of the President, but not the impeachment procedure or the office of Vice-President. Britain has neither a President nor a Vice-President, and Canada's contribution is confined to the federal design.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q015",
+    "topic": "POL-04",
+    "stem": "Under Article 368, an amendment to the Constitution may be passed by a special majority of Parliament, which means",
+    "options": [
+      "Two-thirds of the members present and voting, plus a majority of the total membership of each House",
+      "A simple majority of the members present and voting",
+      "Three-fourths of the total membership of each House",
+      "Two-thirds of the total membership of each House, plus ratification by all the states"
+    ],
+    "answer": 0,
+    "explanation": "A special majority means two-thirds of the members present and voting together with a majority of the total membership of that House — the two conditions must both be satisfied. Ratification is required only for the second category of amendments, and then by half the states, not all. A simple majority suffices for certain provisions, but those changes fall outside Article 368 altogether.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q016",
+    "topic": "POL-04",
+    "stem": "Consider the following statements about the amendment of the Constitution:\n1. Certain provisions can be amended by a simple majority of Parliament in the ordinary legislative process.\n2. Such amendments are made under Article 368.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 0,
+    "explanation": "The first is correct but the second is not. Simple-majority changes are made outside Article 368 and are not deemed amendments of the Constitution for its purposes — that is precisely why the Indian Constitution is called a synthesis of rigidity and flexibility rather than simply rigid. Article 368 covers only the special-majority route and the special-majority-plus-ratification route.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q017",
+    "topic": "POL-04",
+    "stem": "Which of the following is a unitary rather than a federal feature of the Indian Constitution?",
+    "options": [
+      "Bicameralism",
+      "Single citizenship",
+      "Division of powers",
+      "Independent judiciary"
+    ],
+    "answer": 1,
+    "explanation": "Single citizenship is a unitary feature, along with the strong Centre, a single constitution, the integrated judiciary, Centre-appointed Governors, All-India Services and the emergency provisions. Bicameralism, division of powers, supremacy and rigidity of the constitution and an independent judiciary are the federal features. The chapter is built on holding these two columns apart.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q018",
+    "topic": "POL-04",
+    "stem": "The Constitution describes India as a 'Union of States' in",
+    "options": [
+      "The Preamble",
+      "Article 3",
+      "Article 1",
+      "Article 368"
+    ],
+    "answer": 2,
+    "explanation": "Article 1 uses the expression, and the word 'Federation' appears nowhere in the Constitution. The phrase was chosen to convey two things: that the Indian federation is not the result of an agreement among the states, and that no state has the right to secede. Article 3 deals with the formation of new states and the alteration of boundaries.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q019",
+    "topic": "POL-04",
+    "stem": "The expression 'Union of States' was preferred by the framers because it conveys that",
+    "options": [
+      "The states are sovereign within their own spheres",
+      "The federation is not the result of an agreement among the states and no state may secede",
+      "The Union may be dissolved by agreement among the states",
+      "The states existed before the Union and created it"
+    ],
+    "answer": 1,
+    "explanation": "Ambedkar explained the choice in exactly these terms — the Indian federation was not created by a compact among pre-existing states, and consequently no unit has a right of secession. The remaining options all assert the compact theory of federation, which the phrase was chosen to deny.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q020",
+    "topic": "POL-04",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Description of Indian federalism)\nA. Quasi-federal\nB. Bargaining federalism\nC. Co-operative federalism\nList II (Author)\n1. Morris-Jones\n2. Granville Austin\n3. K.C. Wheare",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-3, C-2",
+      "A-3, B-2, C-1",
+      "A-3, B-1, C-2"
+    ],
+    "answer": 3,
+    "explanation": "Wheare called it quasi-federal, Morris-Jones bargaining federalism and Granville Austin co-operative federalism. The fourth label in this group is Ivor Jennings's 'federation with a centralising tendency'. Since all four say much the same thing, the marks lie entirely in attaching the phrase to the right author.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q021",
+    "topic": "POL-04",
+    "stem": "Who described the Indian Constitution as establishing a 'federation with a centralising tendency'?",
+    "options": [
+      "Ivor Jennings",
+      "K.C. Wheare",
+      "Granville Austin",
+      "Morris-Jones"
+    ],
+    "answer": 0,
+    "explanation": "The phrase is Ivor Jennings's. Wheare's term was quasi-federal, Austin's co-operative federalism and Morris-Jones's bargaining federalism. Jennings is worth remembering as a recurring name in this chapter — he also called the Constitution a carbon copy of the 1935 Act and a 'lawyer's paradise'.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q022",
+    "topic": "POL-04",
+    "stem": "The essential difference between the parliamentary and the presidential systems is that the parliamentary system is based on",
+    "options": [
+      "Separation of powers between the legislature and the executive",
+      "Co-operation between the legislature and the executive",
+      "The supremacy of the judiciary over both organs",
+      "The direct election of the head of government"
+    ],
+    "answer": 1,
+    "explanation": "The parliamentary system rests on co-operation and interdependence between the legislature and the executive, the presidential system on their separation. The framers preferred the British model precisely for that reason, and adopted it both at the Centre and in the states. Separation appears in the Indian Constitution only as between the judiciary and the executive, under Article 50.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q023",
+    "topic": "POL-04",
+    "stem": "Which of the following is NOT a feature of the parliamentary system as adopted in India?",
+    "options": [
+      "Presence of nominal and real executives",
+      "Collective responsibility of the executive to the legislature",
+      "Fixed tenure of the lower House that cannot be cut short",
+      "Membership of the ministers in the legislature"
+    ],
+    "answer": 2,
+    "explanation": "The possibility of dissolving the lower House before its term expires is itself a feature of the parliamentary system, so a tenure that cannot be cut short is the opposite of the truth. Nominal and real executives, majority party rule, collective responsibility, ministers drawn from the legislature and the leadership of the Prime Minister are the recognised features.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q024",
+    "topic": "POL-04",
+    "stem": "Consider the following statements about the differences between the Indian and the British parliamentary systems:\n1. The Indian Parliament is not a sovereign body in the sense that the British Parliament is.\n2. India has an elected head of state whereas Britain has a hereditary one.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct and both are standard. The Indian Parliament is limited by a written constitution, federalism, fundamental rights and judicial review, while the British Parliament is sovereign; and India is a republic with an elected head of state where Britain is a monarchy. These are the two differences invariably cited despite the shared Westminster design.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q025",
+    "topic": "POL-04",
+    "stem": "India's system of judicial review is narrower than that of the United States because the Indian Constitution uses the expression",
+    "options": [
+      "'Due process of law' in Article 21",
+      "'Reasonable restrictions' in Article 19",
+      "'Equality before the law' in Article 14",
+      "'Procedure established by law' in Article 21"
+    ],
+    "answer": 3,
+    "explanation": "Article 21 uses 'procedure established by law', borrowed from the Japanese Constitution, whereas the American Constitution uses 'due process of law'. The American phrase lets courts test the reasonableness of a law and not merely its existence, which makes American judicial review wider. Articles 14 and 19 are not the source of the distinction.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q026",
+    "topic": "POL-04",
+    "stem": "The Indian judicial system is described as 'integrated' because",
+    "options": [
+      "A single hierarchy of courts enforces both central and state laws",
+      "The Supreme Court and the High Courts have identical jurisdiction",
+      "All judges are appointed by the President",
+      "There is no distinction between civil and criminal courts"
+    ],
+    "answer": 0,
+    "explanation": "Integration means one hierarchy — Supreme Court, then High Courts, then district and subordinate courts — enforcing both central and state laws, unlike the USA where a federal judiciary and state judiciaries run in parallel. Identical jurisdiction, the appointing authority and the civil–criminal distinction have nothing to do with the term.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q027",
+    "topic": "POL-04",
+    "stem": "Which of the following is NOT among the devices used to secure the independence of the judiciary?",
+    "options": [
+      "Expenses charged on the Consolidated Fund of India",
+      "Annual review of judges' conduct by a parliamentary committee",
+      "Prohibition on practice after retirement",
+      "Power to punish for its own contempt"
+    ],
+    "answer": 1,
+    "explanation": "The Constitution goes the other way — the conduct of judges may not even be discussed in the legislature, so a parliamentary review would defeat the very purpose. Security of tenure, service conditions that cannot be varied to a judge's disadvantage, expenses charged on the Consolidated Fund, the bar on practice after retirement, the contempt power and separation from the executive are the recognised devices.",
+    "tier": 4,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q028",
+    "topic": "POL-04",
+    "stem": "The Right to Freedom of Religion is guaranteed by which group of Articles?",
+    "options": [
+      "Articles 19–22",
+      "Articles 23–24",
+      "Articles 25–28",
+      "Articles 29–30"
+    ],
+    "answer": 2,
+    "explanation": "Articles 25 to 28 carry the Right to Freedom of Religion. Articles 19 to 22 are the Right to Freedom, 23 and 24 the Right against Exploitation, and 29 and 30 the Cultural and Educational Rights. The blocks run consecutively, so misplacing one shifts every answer after it.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q029",
+    "topic": "POL-04",
+    "stem": "The Right to Property ceased to be a Fundamental Right by virtue of the",
+    "options": [
+      "42nd Amendment Act, 1976",
+      "86th Amendment Act, 2002",
+      "1st Amendment Act, 1951",
+      "44th Amendment Act, 1978"
+    ],
+    "answer": 3,
+    "explanation": "The 44th Amendment Act of 1978 deleted the Right to Property from Part III, leaving it as a legal right under Article 300-A in Part XII. The 42nd Amendment added the Fundamental Duties and the word 'secular', the 1st added the Ninth Schedule, and the 86th added the eleventh Fundamental Duty — all nearby amendments used as distractors.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q030",
+    "topic": "POL-04",
+    "stem": "The Right to Property is now available as a legal right under",
+    "options": [
+      "Article 300-A in Part XII",
+      "Article 31 in Part III",
+      "Article 19 in Part III",
+      "Article 43-B in Part IV"
+    ],
+    "answer": 0,
+    "explanation": "It survives as Article 300-A in Part XII, which deals with finance, property, contracts and suits. Article 31 in Part III was the original Fundamental Right and stands deleted. Article 43-B is the Directive Principle on co-operative societies inserted by the 97th Amendment, and Article 19 no longer includes property.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q031",
+    "topic": "POL-04",
+    "stem": "During a National Emergency, the Fundamental Rights may be suspended except those conferred by",
+    "options": [
+      "Articles 14 and 19",
+      "Articles 20 and 21",
+      "Articles 19 and 21",
+      "Articles 21 and 22"
+    ],
+    "answer": 1,
+    "explanation": "Articles 20 and 21 — protection in respect of conviction for offences, and protection of life and personal liberty — can never be suspended. Article 19 is the classic example of a right that *is* suspended in an emergency, which makes any option containing it wrong, and the frequent half-remembered answer of 'Article 21 alone' is incomplete.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q032",
+    "topic": "POL-04",
+    "stem": "Which of the following is NOT one of the writs that the Supreme Court may issue for the enforcement of Fundamental Rights?",
+    "options": [
+      "Habeas corpus",
+      "Quo warranto",
+      "Injunction",
+      "Certiorari"
+    ],
+    "answer": 2,
+    "explanation": "An injunction is an ordinary civil remedy, not a constitutional writ. The five writs are habeas corpus, mandamus, prohibition, certiorari and quo warranto, all inherited from the English prerogative writs and issued by the Supreme Court under Article 32 and by the High Courts under Article 226.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q033",
+    "topic": "POL-04",
+    "stem": "Consider the following statements about the Fundamental Rights:\n1. They are not absolute and are subject to reasonable restrictions.\n2. Parliament can curtail or repeal them by a constitutional amendment.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. The rights carry reasonable restrictions on their face, and Parliament may amend them — subject, since Kesavananda Bharati (1973), to the limitation that the basic structure of the Constitution cannot be destroyed. It is the combination of enforceability and amendability that makes the Indian scheme a synthesis rather than a copy of the American one.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q034",
+    "topic": "POL-04",
+    "stem": "Who described the Directive Principles of State Policy as a 'novel feature' of the Indian Constitution?",
+    "options": [
+      "Sir Ivor Jennings",
+      "Granville Austin",
+      "Jawaharlal Nehru",
+      "Dr. B.R. Ambedkar"
+    ],
+    "answer": 3,
+    "explanation": "Ambedkar used the phrase 'novel feature' for the Directive Principles. Austin's contributions to this chapter are 'co-operative federalism' and his remarks on the Constituent Assembly, and Jennings appears only among the critics. The Directive Principles themselves came from the Irish Constitution.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q035",
+    "topic": "POL-04",
+    "stem": "The Directive Principles of State Policy are classified into which three categories?",
+    "options": [
+      "Socialistic, Gandhian and liberal-intellectual",
+      "Political, economic and cultural",
+      "Justiciable, non-justiciable and directory",
+      "Fundamental, subsidiary and residuary"
+    ],
+    "answer": 0,
+    "explanation": "The three recognised categories are socialistic, Gandhian and liberal-intellectual. The Directive Principles as a whole are non-justiciable, so a classification into justiciable and non-justiciable is meaningless, and the other groupings are invented.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q036",
+    "topic": "POL-04",
+    "stem": "In which case did the Supreme Court hold that the Constitution is founded on the balance between the Fundamental Rights and the Directive Principles?",
+    "options": [
+      "Kesavananda Bharati case (1973)",
+      "Minerva Mills case (1980)",
+      "Golaknath case (1967)",
+      "Berubari Union case (1960)"
+    ],
+    "answer": 1,
+    "explanation": "The Minerva Mills case of 1980 laid down that the Constitution rests on the balance between Parts III and IV, so neither may be given absolute primacy. Kesavananda Bharati (1973) is the basic-structure case, Golaknath (1967) held that Parliament could not abridge Fundamental Rights, and Berubari (1960) concerned the Preamble and cession of territory.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q037",
+    "topic": "POL-04",
+    "stem": "The real sanction behind the Directive Principles of State Policy is",
+    "options": [
+      "Enforcement by the Supreme Court under Article 32",
+      "Financial, through the Consolidated Fund",
+      "Political, in the form of public opinion",
+      "Administrative, through the All-India Services"
+    ],
+    "answer": 2,
+    "explanation": "The Directive Principles are non-justiciable, so no court can compel their enforcement; the Constitution nonetheless declares them fundamental in the governance of the country, and their real sanction is political — public opinion at the next election. Article 32 is available only for the Fundamental Rights.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q038",
+    "topic": "POL-04",
+    "stem": "The Fundamental Duties were added to the Constitution on the recommendation of the",
+    "options": [
+      "Sarkaria Commission",
+      "Ashok Mehta Committee",
+      "Balwant Rai Mehta Committee",
+      "Swaran Singh Committee"
+    ],
+    "answer": 3,
+    "explanation": "The Swaran Singh Committee recommended the Fundamental Duties, which were inserted by the 42nd Amendment Act of 1976 during the Emergency. The Sarkaria Commission examined Centre–state relations, while the Balwant Rai Mehta and Ashok Mehta Committees dealt with panchayati raj — all of them constitutional-reform bodies, which is why they cluster as distractors.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q039",
+    "topic": "POL-04",
+    "stem": "The number of Fundamental Duties in the Constitution at present is",
+    "options": [
+      "Eleven",
+      "Ten",
+      "Twelve",
+      "Nine"
+    ],
+    "answer": 0,
+    "explanation": "There are eleven. Ten were inserted by the 42nd Amendment Act of 1976 and an eleventh was added by the 86th Amendment Act of 2002 — the amendment better known for making elementary education a Fundamental Right under Article 21-A. 'Ten' is the answer to the original count, not the present one.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q040",
+    "topic": "POL-04",
+    "stem": "The Fundamental Duties are contained in",
+    "options": [
+      "Part IV, Article 51",
+      "Part IV-A, Article 51-A",
+      "Part III, Article 35",
+      "Part IX-B, Article 243-ZH"
+    ],
+    "answer": 1,
+    "explanation": "They sit in Part IV-A as Article 51-A. Article 51 in Part IV is the Directive Principle on the promotion of international peace and security — a one-letter difference that is the whole trap. Part IX-B is the Co-operative Societies Part added in 2011.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q041",
+    "topic": "POL-04",
+    "stem": "The word 'secular' was inserted into the Preamble of the Constitution by the",
+    "options": [
+      "1st Amendment Act, 1951",
+      "44th Amendment Act, 1978",
+      "42nd Amendment Act, 1976",
+      "61st Amendment Act, 1988"
+    ],
+    "answer": 2,
+    "explanation": "The 42nd Amendment Act of 1976 added 'secular' — along with 'socialist' and 'integrity' — to the Preamble. The same amendment inserted the Fundamental Duties and Parts IV-A and XIV-A, which is why it is called the Mini Constitution. The 61st Amendment reduced the voting age and the 44th removed the Right to Property from Part III.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q042",
+    "topic": "POL-04",
+    "stem": "Which Article provides that no person shall be compelled to pay taxes for the promotion of any particular religion?",
+    "options": [
+      "Article 25",
+      "Article 26",
+      "Article 28",
+      "Article 27"
+    ],
+    "answer": 3,
+    "explanation": "Article 27 bars compulsory taxation for the promotion of a religion. Article 25 gives freedom of conscience and the right to profess, practise and propagate religion, Article 26 lets religious denominations manage their own affairs, and Article 28 bars religious instruction in wholly state-funded institutions. The four run in sequence and are constantly interchanged.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q043",
+    "topic": "POL-04",
+    "stem": "Indian secularism is described as 'positive secularism' because it",
+    "options": [
+      "Gives equal respect to all religions rather than erecting a wall between religion and the state",
+      "Recognises one religion as the official religion of the state",
+      "Prohibits all religious practice in public life",
+      "Permits communal representation in the legislatures"
+    ],
+    "answer": 0,
+    "explanation": "The Indian model gives equal respect to all religions, as against the Western negative or separationist model that separates religion and the state. India has no official religion, does not prohibit religious practice, and abolished communal representation altogether — retaining only the temporary reservation of seats for the Scheduled Castes and Scheduled Tribes.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q044",
+    "topic": "POL-04",
+    "stem": "The voting age was reduced from 21 years to 18 years by the",
+    "options": [
+      "42nd Amendment Act, 1976",
+      "61st Amendment Act, 1988",
+      "52nd Amendment Act, 1985",
+      "73rd Amendment Act, 1992"
+    ],
+    "answer": 1,
+    "explanation": "The 61st Amendment Act of 1988 reduced the voting age to 18, with effect from 1989. The 52nd Amendment of 1985 introduced the anti-defection provisions in the Tenth Schedule and the 73rd of 1992 gave constitutional status to the panchayats — both nearby amendments used as distractors.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q045",
+    "topic": "POL-04",
+    "stem": "Consider the following statements about citizenship in India:\n1. The Constitution provides for a dual polity but single citizenship.\n2. In the USA, a person is a citizen both of the nation and of the state in which he resides.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and the contrast between them is the point. India has two levels of government but only Indian citizenship, so every citizen carries the same political and civil rights everywhere in the country. Single citizenship is a unitary feature and was borrowed from the British Constitution.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q046",
+    "topic": "POL-04",
+    "stem": "Which of the following is described as the 'guardian of the public purse'?",
+    "options": [
+      "The Finance Commission",
+      "The Union Public Service Commission",
+      "The Comptroller and Auditor-General of India",
+      "The Election Commission"
+    ],
+    "answer": 2,
+    "explanation": "The Comptroller and Auditor-General audits the accounts of both the Centre and the states and is called the guardian of the public purse. The Election Commission conducts elections, the UPSC recruits to the higher services, and the Finance Commission — though a constitutional body — recommends the distribution of revenues rather than auditing their use.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q047",
+    "topic": "POL-04",
+    "stem": "The independence of bodies such as the Election Commission, the CAG and the Public Service Commissions is secured, among other things, by",
+    "options": [
+      "Making their expenses charged on the Consolidated Fund of India",
+      "Requiring annual parliamentary approval of their budgets",
+      "Placing their members under the control of the Council of Ministers",
+      "Allowing them to practise privately after retirement"
+    ],
+    "answer": 0,
+    "explanation": "Charging their expenses on the Consolidated Fund of India means those expenses are not subject to the annual vote of Parliament, which removes the most obvious lever of pressure. The same device, together with security of tenure and service conditions that cannot be varied to their disadvantage, protects the judiciary. Each of the other options describes a form of dependence.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q048",
+    "topic": "POL-04",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Type of Emergency)\nA. National Emergency\nB. President's Rule\nC. Financial Emergency\nList II (Article)\n1. Article 356\n2. Article 360\n3. Article 352",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-3, C-2",
+      "A-3, B-2, C-1",
+      "A-3, B-1, C-2"
+    ],
+    "answer": 3,
+    "explanation": "National Emergency is Article 352, President's Rule Article 356, and Financial Emergency Article 360. Article 365 supplies a second route to President's Rule, where a state fails to comply with directions of the Union. The three main numbers are close together and are the most-swapped trio in the chapter.",
+    "tier": 2,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q049",
+    "topic": "POL-04",
+    "stem": "A National Emergency under Article 352 may be proclaimed on the ground of",
+    "options": [
+      "War, external aggression or armed rebellion",
+      "Failure of the constitutional machinery in a state",
+      "Threat to the financial stability or credit of India",
+      "Failure of a state to comply with directions of the Union"
+    ],
+    "answer": 0,
+    "explanation": "Article 352 rests on war, external aggression or armed rebellion. Failure of the constitutional machinery in a state is the ground under Article 356, non-compliance with Union directions the ground under Article 365, and a threat to financial stability or credit the ground under Article 360. Matching each ground to its Article is the whole question.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q050",
+    "topic": "POL-04",
+    "stem": "Assertion (A): During an emergency, the federal structure of the Indian Constitution is converted into a unitary one.\nReason (R): The emergency provisions are themselves contained in the Constitution, so no formal amendment is required for the conversion.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. Because the unitary provisions already sit inside the federal document, their operation changes how the Constitution works without changing a word of its text — which is exactly why this automatic transformation is described as a unique feature of the Indian Constitution and why India is called quasi-federal.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q051",
+    "topic": "POL-04",
+    "stem": "Constitutional status was given to the Panchayats and the Municipalities respectively by the",
+    "options": [
+      "74th and 73rd Amendment Acts, 1992",
+      "73rd and 74th Amendment Acts, 1992",
+      "73rd and 74th Amendment Acts, 1993",
+      "42nd and 44th Amendment Acts, 1976 and 1978"
+    ],
+    "answer": 1,
+    "explanation": "The 73rd Amendment of 1992 covered the Panchayats and the 74th the Municipalities — rural first, urban second. Reversing the pair is the standard error. Both were enacted in 1992, and both added a new Part and a new Schedule: Part IX with the Eleventh Schedule, and Part IX-A with the Twelfth.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q052",
+    "topic": "POL-04",
+    "stem": "The three types of urban local bodies provided for by the 74th Amendment Act are",
+    "options": [
+      "Village panchayat, panchayat samiti and zila parishad",
+      "Nagar panchayat, municipal council and municipal corporation",
+      "Town area committee, notified area committee and cantonment board",
+      "Gram sabha, nagar sabha and mahanagar sabha"
+    ],
+    "answer": 1,
+    "explanation": "The three constitutional urban bodies are the nagar panchayat for a transitional area, the municipal council for a smaller urban area and the municipal corporation for a larger one. The first option lists the three rural tiers under the 73rd Amendment, and the third lists statutory bodies that exist outside the constitutional scheme.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q053",
+    "topic": "POL-04",
+    "stem": "Consider the following statements about the 97th Amendment Act, 2011:\n1. It made the right to form co-operative societies a Fundamental Right.\n2. It added a new Part IX-B to the Constitution.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and there was a third change as well — a new Directive Principle in Article 43-B on the promotion of co-operative societies. The Fundamental Right was added within Article 19, and the new Part IX-B, 'The Co-operative Societies', runs from Article 243-ZH to Article 243-ZT.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q054",
+    "topic": "POL-04",
+    "stem": "The new Directive Principle on the promotion of co-operative societies inserted by the 97th Amendment is",
+    "options": [
+      "Article 43-A",
+      "Article 51-A",
+      "Article 43-B",
+      "Article 300-A"
+    ],
+    "answer": 2,
+    "explanation": "Article 43-B carries the directive on co-operative societies. Article 43-A, on the participation of workers in the management of industries, was inserted by the 42nd Amendment. Article 51-A is the Fundamental Duties provision and Article 300-A the right to property — all late-lettered Articles that are easily confused.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q055",
+    "topic": "POL-04",
+    "stem": "The 42nd Amendment Act, 1976 is popularly known as",
+    "options": [
+      "The Right to Education Amendment",
+      "The Anti-Defection Amendment",
+      "The Panchayati Raj Amendment",
+      "The Mini Constitution"
+    ],
+    "answer": 3,
+    "explanation": "The 42nd Amendment is called the Mini Constitution because it effected the largest number of changes at one time — the Fundamental Duties, Parts IV-A and XIV-A, and the words 'socialist', 'secular' and 'integrity' in the Preamble. The anti-defection provisions came with the 52nd Amendment, panchayati raj with the 73rd, and the right to education with the 86th.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q056",
+    "topic": "POL-04",
+    "stem": "In which case did the Supreme Court hold that the constituent power of Parliament under Article 368 does not enable it to alter the 'basic structure' of the Constitution?",
+    "options": [
+      "Kesavananda Bharati case (1973)",
+      "Golaknath case (1967)",
+      "Minerva Mills case (1980)",
+      "Maneka Gandhi case (1978)"
+    ],
+    "answer": 0,
+    "explanation": "The basic structure doctrine was laid down in Kesavananda Bharati in 1973. Golaknath (1967) had gone further and held that Fundamental Rights could not be abridged at all, Minerva Mills (1980) applied the doctrine to the balance between Parts III and IV, and Maneka Gandhi (1978) expanded the meaning of personal liberty under Article 21.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q057",
+    "topic": "POL-04",
+    "stem": "Who said that the Indian Constitution is 'the Government of India Act, 1935, with adult franchise added'?",
+    "options": [
+      "Ivor Jennings",
+      "P.R. Deshmukh",
+      "N. Srinivasan",
+      "K. Hanumanthaiya"
+    ],
+    "answer": 1,
+    "explanation": "The remark is P.R. Deshmukh's, made in support of the 'carbon copy' criticism. N. Srinivasan and Ivor Jennings pressed the same charge in other words, calling the Constitution a near-textual reproduction of the 1935 Act. Hanumanthaiya's criticisms were that the Constitution was un-Indian and un-Gandhian.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q058",
+    "topic": "POL-04",
+    "stem": "The criticism that the Constituent Assembly produced 'the music of an English band' rather than that of the veena or the sitar was made by",
+    "options": [
+      "H.V. Kamath",
+      "Lokanath Misra",
+      "Lakshminarayan Sahu",
+      "K. Hanumanthaiya"
+    ],
+    "answer": 3,
+    "explanation": "K. Hanumanthaiya made the veena-and-sitar remark as part of the charge that the Constitution was un-Indian. Lokanath Misra and Lakshminarayan Sahu pressed the same criticism in different terms, and H.V. Kamath's jibe was a different one — that the Assembly's elephant emblem suited the elephantine size of the document.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q059",
+    "topic": "POL-04",
+    "stem": "The description of the Indian Constitution as a 'lawyer's paradise' was given by",
+    "options": [
+      "Ivor Jennings",
+      "P.R. Deshmukh",
+      "H.K. Maheswari",
+      "T. Prakasam"
+    ],
+    "answer": 0,
+    "explanation": "Ivor Jennings called it a lawyer's paradise, attacking its legalism and complexity. H.K. Maheswari and P.R. Deshmukh supported the same criticism, objecting that a document meant to be vibrating and pulsating had been buried in verbiage. T. Prakasam belongs to the un-Gandhian criticism along with Hanumanthaiya.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q060",
+    "topic": "POL-04",
+    "stem": "Ambedkar's defence against the charge that the Constitution was a 'bag of borrowings' was that",
+    "options": [
+      "The borrowed provisions had all been substantially rewritten",
+      "At this late stage in constitutional history all constitutions are alike in fundamentals, and only the variations can be new",
+      "The Constituent Assembly had no time to draft original provisions",
+      "The borrowings were confined to the Preamble alone"
+    ],
+    "answer": 1,
+    "explanation": "Ambedkar argued that the main provisions of any constitution are bound to look alike so late in constitutional history, so the only thing that can claim novelty is the variations introduced to remove faults and suit a country's needs. He separately said that nobody holds patent rights over the fundamental ideas of a constitution, and regretted only that what was borrowed was mostly administrative detail.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q061",
+    "topic": "POL-04",
+    "stem": "Which Schedule of the Constitution contains the anti-defection provisions?",
+    "options": [
+      "Eighth Schedule",
+      "Ninth Schedule",
+      "Eleventh Schedule",
+      "Tenth Schedule"
+    ],
+    "answer": 3,
+    "explanation": "The Tenth Schedule, added by the 52nd Amendment Act of 1985, carries the anti-defection provisions for members of Parliament and of the state legislatures. The Eighth Schedule lists the recognised languages, the Ninth shields certain Acts from judicial review, and the Eleventh lists the subjects devolved to the panchayats.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q062",
+    "topic": "POL-04",
+    "stem": "The Ninth Schedule was added to the Constitution by the",
+    "options": [
+      "1st Amendment Act, 1951",
+      "7th Amendment Act, 1956",
+      "42nd Amendment Act, 1976",
+      "52nd Amendment Act, 1985"
+    ],
+    "answer": 0,
+    "explanation": "The Ninth Schedule was inserted by the very first amendment, in 1951, to protect land reform legislation from challenge on the ground of violating Fundamental Rights. It originally contained 13 Acts and now runs past 280, and the Supreme Court has held that laws placed in it after 24 April 1973 remain open to judicial review.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q063",
+    "topic": "POL-04",
+    "stem": "Laws placed in the Ninth Schedule are open to judicial review if they were added after",
+    "options": [
+      "26 January 1950",
+      "24 April 1973",
+      "25 June 1975",
+      "1 April 1978"
+    ],
+    "answer": 1,
+    "explanation": "The cut-off is 24 April 1973, the date of the Kesavananda Bharati judgment which laid down the basic structure doctrine — laws added to the Schedule after that date can be tested against it. The other dates belong to the commencement of the Constitution, the proclamation of the Emergency and the period of the 44th Amendment.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q064",
+    "topic": "POL-04",
+    "stem": "The number of languages recognised in the Eighth Schedule at present, and the number originally included, are respectively",
+    "options": [
+      "24 and 18",
+      "18 and 14",
+      "22 and 15",
+      "22 and 14"
+    ],
+    "answer": 3,
+    "explanation": "The Eighth Schedule began with 14 languages and now recognises 22. Sindhi was added by the 21st Amendment in 1967; Konkani, Manipuri and Nepali by the 71st in 1992; and Bodo, Dogri, Maithili and Santhali by the 92nd in 2003. The 96th Amendment of 2011 renamed 'Oriya' as 'Odia' without changing the count.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q065",
+    "topic": "POL-04",
+    "stem": "Bodo, Dogri, Maithili and Santhali were added to the Eighth Schedule by the",
+    "options": [
+      "21st Amendment Act, 1967",
+      "92nd Amendment Act, 2003",
+      "71st Amendment Act, 1992",
+      "96th Amendment Act, 2011"
+    ],
+    "answer": 1,
+    "explanation": "These four came in together through the 92nd Amendment of 2003, taking the total to 22. The 21st Amendment added Sindhi in 1967, the 71st added Konkani, Manipuri and Nepali in 1992, and the 96th merely renamed Oriya as Odia in 2011.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q066",
+    "topic": "POL-04",
+    "stem": "The Eleventh and Twelfth Schedules contain respectively",
+    "options": [
+      "22 matters for the Panchayats and 12 matters for the Municipalities",
+      "18 matters for the Panchayats and 29 matters for the Municipalities",
+      "29 matters for the Municipalities and 18 matters for the Panchayats",
+      "29 matters for the Panchayats and 18 matters for the Municipalities"
+    ],
+    "answer": 3,
+    "explanation": "The Eleventh Schedule, added by the 73rd Amendment, lists 29 matters for the panchayats; the Twelfth, added by the 74th, lists 18 for the municipalities. Rural comes first in both the schedule order and the amendment order, so 29 attaches to the panchayats and 18 to the municipalities.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q067",
+    "topic": "POL-04",
+    "stem": "Consider the following statements about the Seventh Schedule:\n1. The Union List originally had 97 subjects and now has 98.\n2. The State List originally had 66 subjects and now has 59.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. The Union List has grown from 97 to 98 and the Concurrent List from 47 to 52, while the State List has shrunk from 66 to 59 — the direction of movement is itself the point, since subjects have travelled from the states towards the Centre and the Concurrent List.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q068",
+    "topic": "POL-04",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Part of the Constitution)\nA. Part IX\nB. Part IX-A\nC. Part IX-B\nList II (Subject)\n1. The Municipalities\n2. The Co-operative Societies\n3. The Panchayats",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-3, C-2",
+      "A-3, B-2, C-1",
+      "A-3, B-1, C-2"
+    ],
+    "answer": 3,
+    "explanation": "Part IX covers the Panchayats, Part IX-A the Municipalities and Part IX-B the Co-operative Societies, added respectively by the 73rd (1992), 74th (1992) and 97th (2011) Amendments. The lettered Parts were inserted in chronological order, which makes the sequence easy to reconstruct if the amendment years are known.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q069",
+    "topic": "POL-04",
+    "stem": "Which Part of the Constitution deals with the amendment of the Constitution?",
+    "options": [
+      "Part XVIII",
+      "Part XIX",
+      "Part XXII",
+      "Part XX"
+    ],
+    "answer": 3,
+    "explanation": "Part XX contains Article 368, the amendment provision. Part XVIII carries the emergency provisions in Articles 352 to 360, Part XIX is 'Miscellaneous', and Part XXII holds the four closing Articles on the short title, commencement, the authoritative Hindi text and the repeals.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-04-Q070",
+    "topic": "POL-04",
+    "stem": "Assertion (A): The Indian Constitution is described as federal in form but unitary in spirit.\nReason (R): It contains a division of powers between two levels of government while simultaneously providing for a single constitution, single citizenship, an integrated judiciary and Centre-appointed Governors.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. The federal form comes from the division of powers, the written and supreme constitution, bicameralism and an independent judiciary; the unitary spirit comes from the strong Centre, single constitution and citizenship, integrated judiciary, Centre-appointed Governors, All-India Services and emergency provisions. Because the second list explains the description, R is the correct explanation.",
+    "tier": 3,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  }
+]

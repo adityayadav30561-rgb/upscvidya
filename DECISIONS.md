@@ -69,6 +69,27 @@
   scrolling made length feel expensive; pagination removes that. Chapters are as
   long as teaching them properly takes and are written for a first-time reader.
 
+## Who authors chapters (decided 2026-07)
+
+- **Chapter notes and MCQs are authored by Claude Opus 5 in-session, never by the
+  API failover chain.** A full `draft-chapter` CLI was built and run end-to-end on
+  POL-05 to test the alternative. Its **MCQs passed** (45 questions, median 62-word
+  explanations addressing every distractor, real confusables, 0 positional refs);
+  its **notes failed** — broken table rows, 4+ column tables at 412px, number-trails
+  applied mechanically to non-counts ("originally 0 amendments → 1 enacted → 1
+  today"), Berubari→Kesavananda taught three times, and 6 clozes where the density
+  rule wanted 10.
+- The cause was **architectural, not model quality**: each section was a stateless
+  call that saw only its siblings' *headings*, never their text, so it could not
+  know what had already been taught or count words for cloze density. Fixable, but
+  the fix costs more than authoring in-session is worth.
+- **The CLI was therefore deleted**, along with its `pnpm draft:chapter` script.
+  `scripts/ingest/ai.js` was reverted to its pre-experiment state. If this is ever
+  revisited, feed each section call the *text* already written, not the outline.
+- **The AI chain's scope is now: current affairs (`ca.pb.js`, `ca_extra.pb.js`,
+  `infra/jobs/ca-pipeline/`) and MCQ *ingestion* (`pnpm ingest`, which normalises
+  and classifies MCQs that already exist).** It does not author content.
+
 ## AI providers (decided 2026-07)
 
 - **Five interchangeable providers in a failover chain**: OpenRouter (Nemotron 3

@@ -2,15 +2,15 @@
   {
     "id": "POL-05-Q001",
     "topic": "POL-05",
-    "stem": "The Preamble to the Constitution of India is based on which of the following?",
+    "stem": "Which country's constitution was the first to begin with a preamble?",
     "options": [
-      "The Nehru Report, 1928",
-      "The Objectives Resolution moved by Jawaharlal Nehru",
-      "The Cabinet Mission Plan, 1946",
-      "The Government of India Act, 1935"
+      "The United States of America",
+      "France",
+      "The United Kingdom",
+      "Ireland"
     ],
-    "answer": 1,
-    "explanation": "The Preamble is based on the Objectives Resolution moved by Jawaharlal Nehru in the Constituent Assembly on 13 December 1946 and adopted on 22 January 1947. The Nehru Report was an earlier constitutional draft (1928), the Cabinet Mission Plan created the Constituent Assembly itself, and the 1935 Act supplied administrative detail to the Constitution — none of them is the basis of the Preamble.",
+    "answer": 0,
+    "explanation": "The American Constitution was the first to open with a preamble, and India followed the practice along with many other countries. The United Kingdom has no single written constitution to preface at all, France and Ireland both came later, and Ireland's contribution to the Indian Constitution lies in the Directive Principles rather than in the idea of a preamble.",
     "tier": 1,
     "format": "single-factual",
     "exams": [
@@ -19,26 +19,26 @@
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
     "id": "POL-05-Q002",
     "topic": "POL-05",
-    "stem": "Which of the following words were added to the Preamble by the 42nd Constitutional Amendment Act, 1976?",
+    "stem": "Who described the Preamble as the 'identity card of the Constitution'?",
     "options": [
-      "Sovereign, Socialist, Secular",
-      "Socialist, Secular, Integrity",
-      "Democratic, Republic, Integrity",
-      "Justice, Liberty, Fraternity"
+      "K.M. Munshi",
+      "N.A. Palkhivala",
+      "Sir Ernest Barker",
+      "M. Hidayatullah"
     ],
     "answer": 1,
-    "explanation": "The 42nd Amendment (1976) added exactly three words to the Preamble: 'socialist', 'secular' and 'integrity' (in the phrase 'unity and integrity of the Nation'). 'Sovereign', 'democratic', 'republic', 'justice', 'liberty' and 'fraternity' were all part of the original 1949 text.",
-    "tier": 1,
+    "explanation": "The phrase is N.A. Palkhivala's. Munshi called the Preamble the horoscope of our sovereign democratic republic, Barker called it the key-note to the Constitution, and Hidayatullah said it resembles the American Declaration of Independence but is more than a declaration. All four are tributes to the same passage, so the marks lie entirely in matching the phrase to its author.",
+    "tier": 2,
     "format": "single-factual",
     "exams": [
       "capf",
@@ -46,52 +46,52 @@
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
     "id": "POL-05-Q003",
     "topic": "POL-05",
-    "stem": "With reference to the Preamble, consider the following statements:\n1. The Preamble is a part of the Constitution of India.\n2. The provisions of the Preamble are enforceable in a court of law.\nWhich of the statements given above is/are correct?",
+    "stem": "The Preamble of the Indian Constitution is based on",
     "options": [
-      "1 only",
-      "2 only",
-      "Both 1 and 2",
-      "Neither 1 nor 2"
+      "The Karachi Resolution of 1931",
+      "The Cabinet Mission Plan of 1946",
+      "The Objectives Resolution moved by Jawaharlal Nehru",
+      "The report of the Drafting Committee"
     ],
-    "answer": 0,
-    "explanation": "Statement 1 is correct: in Kesavananda Bharati (1973) the Supreme Court held the Preamble is a part of the Constitution, overruling Berubari (1960). Statement 2 is incorrect: the Preamble is non-justiciable — its provisions cannot be enforced in any court.",
-    "tier": 3,
-    "format": "statement-based",
+    "answer": 2,
+    "explanation": "The Preamble is a modified version of the Objectives Resolution, which Nehru moved on 13 December 1946 and the Constituent Assembly adopted on 22 January 1947. The Cabinet Mission Plan created the Assembly but supplied no statement of aims, and the Drafting Committee prepared the body of the Constitution rather than the philosophy behind it.",
+    "tier": 2,
+    "format": "single-factual",
     "exams": [
       "capf",
       "cse"
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
     "id": "POL-05-Q004",
     "topic": "POL-05",
-    "stem": "The date '26th November 1949' mentioned in the Preamble refers to which event?",
+    "stem": "The date mentioned in the Preamble of the Constitution is",
     "options": [
-      "Commencement of the Constitution",
-      "Adoption of the Constitution by the Constituent Assembly",
-      "First sitting of the Constituent Assembly",
-      "Adoption of the Objectives Resolution"
+      "22 January 1947",
+      "15 August 1947",
+      "26 January 1950",
+      "26 November 1949"
     ],
-    "answer": 1,
-    "explanation": "26 November 1949 is the date the Constituent Assembly adopted, enacted and gave the Constitution to the people — the date stated in the Preamble. The Constitution commenced on 26 January 1950; the Assembly first sat on 9 December 1946; the Objectives Resolution was adopted on 22 January 1947.",
+    "answer": 3,
+    "explanation": "The Preamble records 'this twenty-sixth day of November, 1949' — the date the Constitution was adopted. 26 January 1950 is the date of commencement and appears nowhere in the Preamble, 22 January 1947 is when the Objectives Resolution was adopted, and 15 August 1947 is independence. A question quoting the Preamble always wants the adoption date.",
     "tier": 2,
     "format": "single-factual",
     "exams": [
@@ -100,51 +100,52 @@
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
     "id": "POL-05-Q005",
     "topic": "POL-05",
-    "stem": "In the Preamble, the term 'Republic' signifies that:",
+    "stem": "Which of the following is NOT one of the four ingredients revealed by the Preamble?",
     "options": [
-      "The head of the state is elected, directly or indirectly, for a fixed term",
-      "Ultimate sovereignty rests with the Parliament",
-      "India has no hereditary institutions of any kind",
-      "The state has a parliamentary form of government"
+      "The procedure for amending the Constitution",
+      "The nature of the Indian State",
+      "The source of authority of the Constitution",
+      "The date of adoption of the Constitution"
     ],
     "answer": 0,
-    "explanation": "'Republic' means the head of state (the President) is an elected functionary holding office for a fixed term, not a hereditary monarch. Sovereignty rests with the people, not Parliament. Parliamentary government flows from 'democratic' read with the Constitution's scheme, not from 'republic'.",
-    "tier": 1,
-    "format": "single-factual",
+    "explanation": "The amendment procedure is laid down in Article 368 and finds no place in the Preamble. The four ingredients are the source of authority (the people of India), the nature of the Indian State, the objectives of the Constitution, and the date of adoption. The objectives are the fourth item that this question leaves out.",
+    "tier": 3,
+    "format": "odd-one-out",
     "exams": [
-      "capf"
+      "capf",
+      "cse"
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
     "id": "POL-05-Q006",
     "topic": "POL-05",
-    "stem": "The Preamble secures 'Justice' to all citizens in which of the following order?",
+    "stem": "According to the Preamble, the Constitution of India derives its authority from",
     "options": [
-      "Political, social, economic",
-      "Economic, political, social",
-      "Social, economic, political",
-      "Social, political, economic"
+      "The Constituent Assembly",
+      "The people of India",
+      "The British Crown through the Indian Independence Act",
+      "The Parliament of India"
     ],
-    "answer": 2,
-    "explanation": "The Preamble reads 'JUSTICE, social, economic and political' — in that exact order. Exam setters routinely test this sequence; note that Liberty's sequence is 'thought, expression, belief, faith and worship'.",
+    "answer": 1,
+    "explanation": "The opening words 'We, the People of India' place the source of authority in the people. The Constituent Assembly framed and enacted the document but did so in the name of the people, Parliament did not exist when the Constitution was adopted, and the whole point of the phrase is to deny that the authority flows from the Crown.",
     "tier": 2,
     "format": "single-factual",
     "exams": [
@@ -153,25 +154,79 @@
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
     "id": "POL-05-Q007",
     "topic": "POL-05",
-    "stem": "In which case did the Supreme Court FIRST hold that the Preamble is NOT a part of the Constitution?",
+    "stem": "The 42nd Constitutional Amendment Act, 1976 added which three words to the Preamble?",
     "options": [
-      "Kesavananda Bharati case, 1973",
-      "Berubari Union case, 1960",
-      "LIC of India case, 1995",
-      "Golaknath case, 1967"
+      "Sovereign, Socialist and Secular",
+      "Socialist, Secular and Fraternity",
+      "Socialist, Secular and Integrity",
+      "Secular, Integrity and Unity"
     ],
-    "answer": 1,
-    "explanation": "In the Berubari Union reference (1960) the Supreme Court held the Preamble is not a part of the Constitution. Kesavananda Bharati (1973) overruled this and held it IS a part, a position reaffirmed in the LIC case (1995). Golaknath concerned amendability of Fundamental Rights, not the Preamble.",
+    "answer": 2,
+    "explanation": "The three words are Socialist, Secular and Integrity. Sovereign, fraternity and unity were all in the original Preamble of 1949, which is what makes them attractive wrong answers — the amendment added to an existing vocabulary rather than introducing an entirely new one.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q008",
+    "topic": "POL-05",
+    "stem": "Of the three words added to the Preamble by the 42nd Amendment, the word 'integrity' was inserted into",
+    "options": [
+      "The description of India as a Sovereign Socialist Secular Democratic Republic",
+      "The clause on liberty of thought, expression, belief, faith and worship",
+      "The clause on justice, social, economic and political",
+      "The fraternity clause, which assures the dignity of the individual and the unity and integrity of the Nation"
+    ],
+    "answer": 3,
+    "explanation": "Only 'socialist' and 'secular' joined the description of the state; 'integrity' went into the fraternity clause, which now assures the dignity of the individual and the unity and integrity of the Nation. So the description of India gained two words, not three — a distinction that separates a careful candidate from one who has merely memorised the list of three.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q009",
+    "topic": "POL-05",
+    "stem": "The term 'sovereign' in the Preamble implies that India",
+    "options": [
+      "Is neither a dependency nor a dominion of any other nation and has no authority above it",
+      "Has a written constitution superior to ordinary law",
+      "Is a member of the Commonwealth of Nations",
+      "Cannot enter into treaties limiting its freedom of action"
+    ],
+    "answer": 0,
+    "explanation": "Sovereignty means no external authority stands above the Indian state and that it is free to conduct its own internal and external affairs. Commonwealth membership is an extra-constitutional declaration that leaves sovereignty untouched, the supremacy of the constitution is a separate feature altogether, and a sovereign state is precisely one that may bind itself by treaty — treaty-making is an exercise of sovereignty, not a limit on it.",
     "tier": 3,
     "format": "single-factual",
     "exams": [
@@ -180,51 +235,25 @@
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
-    "id": "POL-05-Q008",
+    "id": "POL-05-Q010",
     "topic": "POL-05",
-    "stem": "Which one of the following is NOT among the five freedoms of 'Liberty' mentioned in the Preamble?",
-    "options": [
-      "Liberty of thought",
-      "Liberty of expression",
-      "Liberty of movement",
-      "Liberty of worship"
-    ],
-    "answer": 2,
-    "explanation": "The Preamble lists liberty of thought, expression, belief, faith and worship. Freedom of movement is a Fundamental Right under Article 19(1)(d), not a Preamble liberty — a classic confusion the exam exploits.",
-    "tier": 2,
-    "format": "odd-one-out",
-    "exams": [
-      "capf"
-    ],
-    "source": {
-      "type": "ai",
-      "model": "fixture-draft",
-      "validated_by": null,
-      "validated_on": null
-    },
-    "status": "draft",
-    "added": "2026-07-19"
-  },
-  {
-    "id": "POL-05-Q009",
-    "topic": "POL-05",
-    "stem": "With reference to the amendability of the Preamble, consider the following statements:\n1. The Preamble has been amended only once so far.\n2. The Preamble can be amended without any limitation whatsoever.\nWhich of the statements given above is/are correct?",
+    "stem": "Consider the following statements:\n1. India's membership of the Commonwealth of Nations limits her sovereignty.\n2. India's membership of the United Nations Organisation limits her sovereignty.\nWhich of the statements given above is/are correct?",
     "options": [
       "1 only",
       "2 only",
       "Both 1 and 2",
       "Neither 1 nor 2"
     ],
-    "answer": 0,
-    "explanation": "Statement 1 is correct: the 42nd Amendment (1976) is the only amendment to the Preamble. Statement 2 is incorrect: per Kesavananda Bharati, the Preamble can be amended under Article 368 but subject to the basic structure doctrine — its core cannot be destroyed.",
+    "answer": 3,
+    "explanation": "Neither is correct. The 1949 declaration continuing full membership of the Commonwealth and accepting the British Crown as its Head is an extra-constitutional declaration that does not affect sovereignty in any manner, and membership of the UNO, which India joined in 1945, is likewise no limitation. Nehru's formulation was that it is an agreement by free will, to be terminated by free will.",
     "tier": 3,
     "format": "statement-based",
     "exams": [
@@ -233,25 +262,160 @@
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
   },
   {
-    "id": "POL-05-Q010",
+    "id": "POL-05-Q011",
     "topic": "POL-05",
-    "stem": "The ideals of Liberty, Equality and Fraternity in the Preamble were inspired by:",
+    "stem": "India's political status between 15 August 1947 and 26 January 1950 was that of",
     "options": [
-      "The American Revolution",
-      "The French Revolution",
-      "The Russian Revolution",
-      "The Irish Constitution"
+      "A colony of the British Empire",
+      "A dominion in the British Commonwealth of Nations",
+      "A sovereign republic",
+      "A protectorate of the United Kingdom"
     ],
     "answer": 1,
-    "explanation": "Liberty, Equality, Fraternity is the motto of the French Revolution (1789-99), the acknowledged inspiration. The Russian Revolution inspired the ideal of justice (social, economic, political); the Irish Constitution inspired the Directive Principles, not the Preamble's trio.",
+    "explanation": "India was a dominion for those two and a half years, having ceased to be a dependency with the Indian Independence Act, 1947 and becoming a sovereign republic only on 26 January 1950. The colony description applies to the period before 1947 and the republic description to the period after 1950, so the question is simply whether the three phases are held in order.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q012",
+    "topic": "POL-05",
+    "stem": "Pakistan continued to be a British dominion until",
+    "options": [
+      "1950",
+      "1952",
+      "1956",
+      "1971"
+    ],
+    "answer": 2,
+    "explanation": "Pakistan remained a dominion until 1956, six years after India became a republic on 26 January 1950 — the 1950/1956 pair is the intended contrast. The other years correspond to nothing in this comparison and are supplied only as plausible near-misses.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q013",
+    "topic": "POL-05",
+    "stem": "Being a sovereign state, India possesses the power to",
+    "options": [
+      "Neither acquire nor cede territory, both being barred by the Preamble",
+      "Acquire foreign territory but never cede any of its own",
+      "Cede territory only with the approval of the Commonwealth",
+      "Acquire foreign territory as well as cede a part of its territory to a foreign state"
+    ],
+    "answer": 3,
+    "explanation": "Sovereignty carries both powers — acquisition of foreign territory and cession of Indian territory to a foreign state. A power to acquire without a power to cede would be an incomplete sovereignty, the Commonwealth has no say in the matter since its headship is purely symbolic, and the Preamble creates no such prohibition.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q014",
+    "topic": "POL-05",
+    "stem": "Even before the word 'socialist' was added in 1976, the socialist content of the Constitution was present in the form of",
+    "options": [
+      "The Directive Principles of State Policy",
+      "The Fundamental Rights",
+      "The Fundamental Duties",
+      "The emergency provisions"
+    ],
+    "answer": 0,
+    "explanation": "The Directive Principles carried the socialist direction from the beginning, so the 42nd Amendment made explicit what was already implicit. The Fundamental Duties did not exist before that same amendment of 1976, the Fundamental Rights protect the individual against the state rather than commit it to a socialist programme, and the emergency provisions have no bearing on economic philosophy.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q015",
+    "topic": "POL-05",
+    "stem": "The Congress adopted a resolution to establish a 'socialistic pattern of society' at its session held in",
+    "options": [
+      "Lahore, 1929",
+      "Avadi, 1955",
+      "Karachi, 1931",
+      "Nagpur, 1959"
+    ],
+    "answer": 1,
+    "explanation": "The Avadi session of 1955 adopted the socialistic pattern of society resolution, two decades before the word entered the Preamble. The Lahore session of 1929 resolved on Purna Swaraj, and the Karachi session of 1931 adopted the resolution on fundamental rights and economic policy — both are genuine Congress milestones, which is what makes them usable distractors.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q016",
+    "topic": "POL-05",
+    "stem": "The Indian brand of socialism is best described as",
+    "options": [
+      "Communistic socialism, involving nationalisation of all means of production",
+      "State socialism, involving the abolition of private property",
+      "Democratic socialism, resting on a mixed economy",
+      "Market socialism, in which the state owns no enterprise at all"
+    ],
+    "answer": 2,
+    "explanation": "India follows democratic socialism, which keeps faith in a mixed economy where the public and private sectors coexist. Communistic socialism, also called state socialism, is the model that nationalises all means of production and distribution and abolishes private property — precisely what India did not adopt. A state owning no enterprise would not be socialist in any sense.",
     "tier": 2,
     "format": "single-factual",
     "exams": [
@@ -260,11 +424,929 @@
     ],
     "source": {
       "type": "ai",
-      "model": "fixture-draft",
+      "model": "claude-opus-5",
       "validated_by": null,
       "validated_on": null
     },
     "status": "draft",
-    "added": "2026-07-19"
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q017",
+    "topic": "POL-05",
+    "stem": "In which case did the Supreme Court observe that Indian socialism is 'a blend of Marxism and Gandhism, leaning heavily towards Gandhian socialism'?",
+    "options": [
+      "Berubari Union case (1960)",
+      "G.B. Pant University case (2000)",
+      "Kesavananda Bharati case (1973)",
+      "Nakara v. Union of India (1982)"
+    ],
+    "answer": 3,
+    "explanation": "The blend-of-Marxism-and-Gandhism description comes from Nakara v. Union of India (1982). The G.B. Pant University case of 2000 is the other socialism judgment, where the Court said democratic socialism aims to end poverty, ignorance, disease and inequality of opportunity. Kesavananda and Berubari concern the status and amendability of the Preamble, not its economic philosophy.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q018",
+    "topic": "POL-05",
+    "stem": "The socialist credentials of the Indian State are said to have been diluted by",
+    "options": [
+      "The New Economic Policy of 1991",
+      "The 42nd Amendment Act of 1976",
+      "The Avadi session resolution of 1955",
+      "The 44th Amendment Act of 1978"
+    ],
+    "answer": 0,
+    "explanation": "The New Economic Policy of 1991, with its liberalisation, privatisation and globalisation, is what diluted those credentials. The 42nd Amendment of 1976 did the opposite by inserting the word 'socialist', and the Avadi resolution of 1955 committed the Congress to a socialistic pattern of society. The 44th Amendment removed the Right to Property from Part III, which is a related but distinct change.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q019",
+    "topic": "POL-05",
+    "stem": "Although the word 'secular' was inserted in 1976, the Supreme Court had already held that the Constitution-makers intended a secular state in",
+    "options": [
+      "1960",
+      "1974",
+      "1973",
+      "1980"
+    ],
+    "answer": 1,
+    "explanation": "The Court said so in 1974, two years before the word appeared in the text, pointing to Articles 25 to 28 as proof of the framers' intention. 1960 and 1973 are the Berubari and Kesavananda years on a different question, and 1980 is Minerva Mills. The sequence to remember is that the guarantee came first and the label second.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q020",
+    "topic": "POL-05",
+    "stem": "The fundamental right to freedom of religion, which demonstrates the secular intent of the Constitution, is guaranteed by",
+    "options": [
+      "Articles 14 to 18",
+      "Articles 19 to 22",
+      "Articles 25 to 28",
+      "Articles 29 to 30"
+    ],
+    "answer": 2,
+    "explanation": "Articles 25 to 28 carry the Right to Freedom of Religion, and the Supreme Court relied on them in 1974 to hold that a secular state was always intended. Articles 14 to 18 are the Right to Equality, 19 to 22 the Right to Freedom, and 29 and 30 the Cultural and Educational Rights — the last of which protects minorities but is not the freedom of religion itself.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q021",
+    "topic": "POL-05",
+    "stem": "A state which declares one particular religion as the state religion is described as",
+    "options": [
+      "An atheistic state",
+      "A positive state",
+      "A secular state",
+      "A theocratic state"
+    ],
+    "answer": 3,
+    "explanation": "A theocratic state is pro-religion and upholds one faith as the state religion — Pakistan, Bangladesh and Sri Lanka are the usual examples. An atheistic state is anti-religion and condemns all faiths, while a secular state such as India or the USA is neutral and upholds none. 'Positive' describes India's variety of secularism, not a separate type of state.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q022",
+    "topic": "POL-05",
+    "stem": "The Indian Constitution is said to embody the 'positive' concept of secularism because",
+    "options": [
+      "All religions, irrespective of their strength, enjoy the same status and support from the state",
+      "The state maintains a strict wall of separation between itself and all religions",
+      "The state actively discourages religious practice in public life",
+      "The state recognises the religion of the majority while tolerating others"
+    ],
+    "answer": 0,
+    "explanation": "Positive secularism means equal status and equal support for every religion regardless of its numerical strength. The strict wall of separation describes the Western negative or separationist model, discouraging religion would make the state atheistic, and recognising a majority religion would make it theocratic — each wrong answer names a different model that India deliberately did not adopt.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q023",
+    "topic": "POL-05",
+    "stem": "The definition of Indian secularism as a state that 'is not irreligious or anti-religious; it gives equal freedom to all religions' was given by",
+    "options": [
+      "H.R. Gokhale",
+      "P.B. Gajendragadkar",
+      "N.A. Palkhivala",
+      "K.M. Munshi"
+    ],
+    "answer": 1,
+    "explanation": "That formulation belongs to P.B. Gajendragadkar, a former Chief Justice of India. H.R. Gokhale, then Union Law Minister, gave the companion definition that the state will have nothing to do with any religion except to treat every religion equally. Palkhivala and Munshi are associated with tributes to the Preamble rather than with definitions of secularism.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q024",
+    "topic": "POL-05",
+    "stem": "The term 'democracy' is derived from two Greek words meaning",
+    "options": [
+      "Citizen and city",
+      "Assembly and law",
+      "People and rule",
+      "Many and power"
+    ],
+    "answer": 2,
+    "explanation": "Demos means people and kratia means rule, which is why democracy rests on the doctrine of popular sovereignty — supreme power held by the people. The other pairings describe ideas associated with Greek political life but are not the roots of this particular word.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q025",
+    "topic": "POL-05",
+    "stem": "Which of the following is NOT a device of direct democracy?",
+    "options": [
+      "Referendum",
+      "Initiative",
+      "Recall",
+      "Collective responsibility"
+    ],
+    "answer": 3,
+    "explanation": "Collective responsibility is a feature of the parliamentary system, which is a form of indirect democracy — the executive answering to the legislature is the opposite of the people deciding for themselves. The four devices of direct democracy are referendum, initiative, recall and plebiscite, and Switzerland is the standard example of a country using them.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q026",
+    "topic": "POL-05",
+    "stem": "The device by which the people can propose a bill to the legislature for enactment is called",
+    "options": [
+      "Initiative",
+      "Referendum",
+      "Plebiscite",
+      "Recall"
+    ],
+    "answer": 0,
+    "explanation": "Initiative is the device by which the people themselves put a proposal before the legislature. A referendum works the other way round — a proposed law is referred to the electorate for their direct vote. Recall removes a representative before his term ends, and a plebiscite obtains opinion on a question of public importance, most often a territorial dispute.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q027",
+    "topic": "POL-05",
+    "stem": "A method of obtaining the opinion of the people on an issue of public importance, generally used to settle territorial disputes, is known as",
+    "options": [
+      "Initiative",
+      "Plebiscite",
+      "Recall",
+      "Referendum"
+    ],
+    "answer": 1,
+    "explanation": "A plebiscite is used to take the people's opinion on a matter of public importance and is the device typically employed in territorial disputes. A referendum concerns a proposed piece of legislation rather than a general question, initiative lets the people propose a bill, and recall is directed at removing an individual representative.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q028",
+    "topic": "POL-05",
+    "stem": "Consider the following statements:\n1. The term 'democratic' in the Preamble refers only to political democracy.\n2. India has adopted representative parliamentary democracy, in which the executive is responsible to the legislature.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 1,
+    "explanation": "Only the second is correct. The word 'democratic' is used in the Preamble in the broader sense, embracing social and economic democracy as well as political democracy — the point Ambedkar pressed in his concluding speech of 25 November 1949. The second statement accurately describes the Indian choice of representative parliamentary democracy with executive responsibility to the legislature.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q029",
+    "topic": "POL-05",
+    "stem": "In his concluding speech to the Constituent Assembly on 25 November 1949, Dr. Ambedkar described liberty, equality and fraternity as",
+    "options": [
+      "Three separate items of a trinity, each independently achievable",
+      "Ideals borrowed wholly from the Russian Revolution",
+      "A union of trinity, so that divorcing one from the others defeats the purpose of democracy",
+      "Goals subordinate to political democracy"
+    ],
+    "answer": 2,
+    "explanation": "Ambedkar insisted the three are not separate items in a trinity but a union of trinity — without equality, liberty produces the supremacy of the few over the many, and equality without liberty kills individual initiative. He was arguing that political democracy cannot last without social democracy, which is the reverse of treating these ideals as subordinate. The three came from the French Revolution; the Russian Revolution supplied justice.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q030",
+    "topic": "POL-05",
+    "stem": "The term 'republic' in the Preamble signifies that",
+    "options": [
+      "The head of the state holds office by hereditary succession",
+      "There is no head of state distinct from the head of government",
+      "The head of the state is elected directly by the people for a fixed period",
+      "The head of the state is elected, directly or indirectly, for a fixed period"
+    ],
+    "answer": 3,
+    "explanation": "A republic requires an elected head of state serving for a fixed period, and the election may be direct or indirect — India's President is elected indirectly for five years, so an answer demanding direct election is wrong for India even though it describes some republics. Hereditary succession describes a monarchy such as Britain, and every parliamentary republic keeps the head of state distinct from the head of government.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q031",
+    "topic": "POL-05",
+    "stem": "Consider the following statements about a republic:\n1. Political sovereignty vests in the people rather than in a single individual.\n2. There is an absence of any privileged class, and all public offices are open to every citizen without discrimination.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. Beyond the elected head of state, 'republic' carries these two further meanings — the vesting of political sovereignty in the people instead of a king, and the absence of a privileged class, so that every public office is open to every citizen. They are asked as often as the elected-head point itself.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q032",
+    "topic": "POL-05",
+    "stem": "The ideal of justice — social, economic and political — enshrined in the Preamble has been taken from",
+    "options": [
+      "The Russian Revolution",
+      "The French Revolution",
+      "The American Declaration of Independence",
+      "The Irish Constitution"
+    ],
+    "answer": 0,
+    "explanation": "Justice came from the Russian Revolution of 1917. The French Revolution supplied liberty, equality and fraternity — the pairing that examiners most often swap with this one. The American Declaration of Independence is invoked by Hidayatullah as a comparison for the Preamble as a whole, and Ireland's contribution to the Constitution is the Directive Principles.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q033",
+    "topic": "POL-05",
+    "stem": "A combination of social justice and economic justice denotes what is known as",
+    "options": [
+      "Procedural justice",
+      "Distributive justice",
+      "Retributive justice",
+      "Natural justice"
+    ],
+    "answer": 1,
+    "explanation": "Social justice together with economic justice is called distributive justice. Natural justice refers to the procedural fairness principles applied by courts and tribunals, retributive justice concerns punishment, and procedural justice concerns the fairness of process — none of them is the combination the Preamble contemplates.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q034",
+    "topic": "POL-05",
+    "stem": "The Preamble secures to all citizens liberty of",
+    "options": [
+      "Status and of opportunity",
+      "Speech, assembly, association, movement and residence",
+      "Thought, expression, belief, faith and worship",
+      "Conscience, profession, practice and propagation"
+    ],
+    "answer": 2,
+    "explanation": "The Preamble's liberty clause covers thought, expression, belief, faith and worship. Speech, assembly, association, movement and residence are the freedoms of Article 19; status and opportunity belong to the equality clause of the Preamble, not the liberty clause; and conscience, profession, practice and propagation are the words of Article 25.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q035",
+    "topic": "POL-05",
+    "stem": "Assertion (A): The liberty conceived by the Preamble is not absolute.\nReason (R): Liberty must be enjoyed within the limitations mentioned in the Constitution itself, and does not amount to a licence to do as one likes.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. The liberty of the Preamble is delivered through the Fundamental Rights, which themselves carry reasonable restrictions, so it is qualified rather than absolute; and the reason given — that liberty is not licence and must be exercised within constitutional limits — is precisely why it is qualified.",
+    "tier": 3,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q036",
+    "topic": "POL-05",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Dimension of equality)\nA. Civic equality\nB. Political equality\nC. Economic equality\nList II (Constitutional provision)\n1. Articles 325 and 326\n2. Article 39\n3. Articles 14 to 18",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-3, C-2",
+      "A-3, B-2, C-1",
+      "A-3, B-1, C-2"
+    ],
+    "answer": 3,
+    "explanation": "Civic equality rests on Articles 14 to 18, political equality on Articles 325 and 326, and economic equality on Article 39, which is a Directive Principle rather than a Fundamental Right. That last point is the discriminating one: the economic dimension of the Preamble's equality is delivered through Part IV, not Part III.",
+    "tier": 4,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q037",
+    "topic": "POL-05",
+    "stem": "Which Article provides that no person shall be declared ineligible for inclusion in the electoral rolls on grounds of religion, race, caste or sex?",
+    "options": [
+      "Article 325",
+      "Article 16",
+      "Article 15",
+      "Article 326"
+    ],
+    "answer": 0,
+    "explanation": "Article 325 bars ineligibility for the electoral rolls on those grounds and is one of the two provisions securing political equality. Article 326 is the other, providing for elections on the basis of adult suffrage. Articles 15 and 16 prohibit discrimination generally and guarantee equal opportunity in public employment, both of which belong to civic rather than political equality.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q038",
+    "topic": "POL-05",
+    "stem": "The equal right of men and women to an adequate means of livelihood, and equal pay for equal work, are secured by",
+    "options": [
+      "Article 14 in Part III",
+      "Article 39 in Part IV",
+      "Article 16 in Part III",
+      "Article 51-A in Part IV-A"
+    ],
+    "answer": 1,
+    "explanation": "Article 39 is a Directive Principle in Part IV and carries both guarantees, which is why the economic dimension of equality is non-justiciable while the civic dimension is not. Articles 14 and 16 are Fundamental Rights concerned with equality before the law and public employment, and Article 51-A contains the Fundamental Duties.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q039",
+    "topic": "POL-05",
+    "stem": "The feeling of fraternity is promoted by the Constitution chiefly through",
+    "options": [
+      "The division of powers between the Centre and the states",
+      "The system of dual citizenship",
+      "The system of single citizenship",
+      "The provision for a national language"
+    ],
+    "answer": 2,
+    "explanation": "Single citizenship is the device the Constitution uses to promote fraternity, reinforced by the Fundamental Duty in Article 51-A to promote harmony and the spirit of common brotherhood. Dual citizenship is the American arrangement and would work against a common identity, while the division of powers and questions of language have no bearing on the fraternity clause.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q040",
+    "topic": "POL-05",
+    "stem": "According to the Preamble, fraternity has to assure",
+    "options": [
+      "Justice, liberty and equality",
+      "The sovereignty of Parliament and the supremacy of the Constitution",
+      "Social, economic and political democracy",
+      "The dignity of the individual and the unity and integrity of the Nation"
+    ],
+    "answer": 3,
+    "explanation": "The Preamble makes fraternity assure exactly two things — the dignity of the individual, and the unity and integrity of the Nation. Justice, liberty and equality are the other three objectives standing alongside fraternity rather than assured by it, and neither the forms of democracy nor parliamentary sovereignty appear in that clause.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q041",
+    "topic": "POL-05",
+    "stem": "The view that the phrase 'dignity of the individual' signifies that the personality of every individual is sacred was expressed by",
+    "options": [
+      "K.M. Munshi",
+      "Alladi Krishnaswami Ayyar",
+      "Thakur Das Bhargava",
+      "Ernest Barker"
+    ],
+    "answer": 0,
+    "explanation": "K.M. Munshi, a member of the Drafting Committee, explained the phrase in those terms — that the Constitution ensures material betterment and a democratic set-up but also recognises the sacredness of every personality. Alladi Krishnaswami Ayyar said the Preamble expresses what the framers had thought or dreamt so long, Bhargava called it the soul of the Constitution, and Barker called it the key-note.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q042",
+    "topic": "POL-05",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Author)\nA. K.M. Munshi\nB. Sir Ernest Barker\nC. N.A. Palkhivala\nList II (Description of the Preamble)\n1. Key-note to the Constitution\n2. Identity card of the Constitution\n3. Horoscope of our sovereign democratic republic",
+    "options": [
+      "A-1, B-3, C-2",
+      "A-3, B-1, C-2",
+      "A-2, B-1, C-3",
+      "A-3, B-2, C-1"
+    ],
+    "answer": 1,
+    "explanation": "Munshi gave the horoscope description, Barker the key-note, and Palkhivala the identity card. The remaining tributes belong to Thakur Das Bhargava, who called the Preamble the soul of the Constitution and a jewel set in it, and to Hidayatullah, who compared it to the American Declaration of Independence.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q043",
+    "topic": "POL-05",
+    "stem": "Who observed that the Preamble 'resembles the Declaration of Independence of the United States of America, but is more than a declaration… a solemn resolve, which nothing but a revolution can alter'?",
+    "options": [
+      "Sir Alladi Krishnaswami Ayyar",
+      "P.B. Gajendragadkar",
+      "M. Hidayatullah",
+      "N.A. Palkhivala"
+    ],
+    "answer": 2,
+    "explanation": "The observation is M. Hidayatullah's, a former Chief Justice of India. Gajendragadkar, also a former Chief Justice, is quoted in this chapter on secularism rather than on the Preamble's status. Alladi Krishnaswami Ayyar said the Preamble expresses what the framers had dreamt, and Palkhivala called it the identity card of the Constitution.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q044",
+    "topic": "POL-05",
+    "stem": "In the Berubari Union case (1960), the Supreme Court held that the Preamble",
+    "options": [
+      "Is a part of the Constitution and can be amended",
+      "Is enforceable in a court of law like any Fundamental Right",
+      "Is a part of the Constitution but cannot be amended",
+      "Is not a part of the Constitution, though it is a key to the minds of the makers"
+    ],
+    "answer": 3,
+    "explanation": "Berubari recognised the Preamble as showing the general purposes behind the Constitution and as a key to the minds of its makers, useful where an Article is ambiguous — and then held that it is not a part of the Constitution. The holding that it is a part came thirteen years later in Kesavananda Bharati, and the Preamble has never been enforceable in court in its own right.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q045",
+    "topic": "POL-05",
+    "stem": "The Berubari Union case (1960) came before the Supreme Court as",
+    "options": [
+      "A Presidential reference under Article 143",
+      "An appeal under Article 136",
+      "A writ petition under Article 32",
+      "A suit between two states under Article 131"
+    ],
+    "answer": 0,
+    "explanation": "It was a Presidential reference under Article 143, made on the implementation of the Indo-Pakistan agreement of 1958 concerning the Berubari union and the exchange of enclaves. A writ petition under Article 32 is how Kesavananda Bharati reached the Court, and Articles 136 and 131 govern appeals by special leave and original inter-state disputes respectively.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q046",
+    "topic": "POL-05",
+    "stem": "Arrange the following in correct chronological order:\n1. The Supreme Court holds that the Preamble is not a part of the Constitution\n2. The Preamble is amended for the first and only time\n3. The Supreme Court holds that the Preamble is a part of the Constitution\n4. The Supreme Court reaffirms that the Preamble is an integral part of the Constitution",
+    "options": [
+      "1 – 2 – 3 – 4",
+      "1 – 3 – 2 – 4",
+      "3 – 1 – 2 – 4",
+      "1 – 3 – 4 – 2"
+    ],
+    "answer": 1,
+    "explanation": "Berubari Union came in 1960, Kesavananda Bharati in 1973, the 42nd Amendment in 1976 and the LIC of India case in 1995. The order matters because Kesavananda decided that the Preamble was part of the Constitution three years before the only amendment to it was actually made — so the amendment was passed against a settled position, not an open one.",
+    "tier": 4,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q047",
+    "topic": "POL-05",
+    "stem": "Consider the following statements about the Preamble:\n1. It is neither a source of power to the legislature nor a prohibition upon the powers of the legislature.\n2. It is non-justiciable, that is, its provisions are not enforceable in courts of law.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and both survive the holding that the Preamble is part of the Constitution. Being part of the document settles its status for interpretation and for amendment, but confers no power, imposes no prohibition, and creates nothing a litigant can enforce on its own — which is why 'part of the Constitution' and 'justiciable' must not be collapsed into one another.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q048",
+    "topic": "POL-05",
+    "stem": "The question whether the Preamble can be amended under Article 368 arose for the first time in",
+    "options": [
+      "The Berubari Union case (1960)",
+      "The Golaknath case (1967)",
+      "The LIC of India case (1995)",
+      "The Kesavananda Bharati case (1973)"
+    ],
+    "answer": 3,
+    "explanation": "The amendability question was raised for the first time in Kesavananda Bharati (1973), where the Court held that the Preamble is part of the Constitution and can be amended, but not so as to alter the basic features. Berubari had addressed only whether the Preamble was part of the Constitution, Golaknath concerned the amendability of the Fundamental Rights, and LIC of India merely reaffirmed the Kesavananda position.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q049",
+    "topic": "POL-05",
+    "stem": "The present position regarding the amendability of the Preamble is that it",
+    "options": [
+      "Cannot be amended at all, being a mere preface",
+      "Can be amended under Article 368, provided the basic features are not altered",
+      "Can be amended without any limitation, like any other part of the Constitution",
+      "Can be amended only by a fresh Constituent Assembly"
+    ],
+    "answer": 1,
+    "explanation": "Kesavananda Bharati settled that the Preamble is amendable under Article 368 subject to the basic features remaining intact — the Court's reasoning being that the edifice of the Constitution rests on the basic elements mentioned in the Preamble, and removing one would leave a document unable to maintain its identity. It is therefore neither unamendable nor freely amendable, and no fresh Constituent Assembly is required.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-05-Q050",
+    "topic": "POL-05",
+    "stem": "Assertion (A): The Preamble was enacted by the Constituent Assembly after the rest of the Constitution had already been enacted.\nReason (R): The framers wanted to ensure that the Preamble was in conformity with the Constitution as adopted by the Assembly.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. The Preamble was deliberately taken up last so that it would state exactly what the settled document contained, and when the President of the Assembly put it to the vote the motion read 'The question is that Preamble stands part of the Constitution'. That sequence is also the historical support for the current judicial view that the Preamble is a part of the Constitution.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
   }
 ]

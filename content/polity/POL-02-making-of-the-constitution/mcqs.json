@@ -1,0 +1,1892 @@
+[
+  {
+    "id": "POL-02-Q001",
+    "topic": "POL-02",
+    "stem": "The idea of a Constituent Assembly for India was put forward for the first time in 1934 by",
+    "options": [
+      "M.N. Roy",
+      "Jawaharlal Nehru",
+      "Mahatma Gandhi",
+      "Dr. B.R. Ambedkar"
+    ],
+    "answer": 0,
+    "explanation": "M.N. Roy, a pioneer of the communist movement in India, first proposed the idea in 1934 — note that it originated outside the Congress. Nehru only articulated the demand on behalf of the Congress in 1938, four years later. Gandhi was never even a member of the Assembly. Ambedkar's central role came in 1947 as chairman of the Drafting Committee, not in raising the demand.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q002",
+    "topic": "POL-02",
+    "stem": "In which year did the Indian National Congress officially demand a Constituent Assembly to frame the Constitution of India?",
+    "options": [
+      "1934",
+      "1935",
+      "1938",
+      "1940"
+    ],
+    "answer": 1,
+    "explanation": "The Congress made the demand official in 1935, a year after M.N. Roy first floated the idea in 1934. In 1938 Nehru gave the demand its classic formulation — a Constituent Assembly elected on adult franchise without outside interference — but the party's official demand predates that statement. 1940 is the year the British accepted the demand in principle through the August Offer, not the year it was raised.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q003",
+    "topic": "POL-02",
+    "stem": "The demand for a Constituent Assembly was accepted in principle by the British Government for the first time through the",
+    "options": [
+      "Cripps Proposals of 1942",
+      "Cabinet Mission Plan of 1946",
+      "August Offer of 1940",
+      "Government of India Act, 1935"
+    ],
+    "answer": 2,
+    "explanation": "The August Offer of 1940 was the first acceptance in principle. The Cripps Proposals of 1942 carried the idea forward with a concrete scheme but came two years later, and the Cabinet Mission Plan of 1946 actually constituted the Assembly — acceptance and execution are six years apart, which is exactly what this question tests. The Act of 1935 contained no such concession at all.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q004",
+    "topic": "POL-02",
+    "stem": "The Cripps Proposals of 1942 were rejected by the Muslim League primarily because the League demanded",
+    "options": [
+      "Immediate dominion status for India",
+      "Reservation of half the seats for Muslims in a single Constituent Assembly",
+      "Direct election of the Constituent Assembly on adult franchise",
+      "Division of India into two autonomous states with two separate Constituent Assemblies"
+    ],
+    "answer": 3,
+    "explanation": "The League insisted that India be divided into two autonomous states, each with its own Constituent Assembly — a demand the Cabinet Mission later rejected outright. Adult franchise was the Congress position (Nehru, 1938), not the League's. Dominion status and a fixed 50 per cent seat reservation were never the stated ground of the League's rejection of Cripps.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q005",
+    "topic": "POL-02",
+    "stem": "The Constituent Assembly of India was constituted in November 1946 under the scheme formulated by the",
+    "options": [
+      "Cabinet Mission",
+      "Wavell Plan",
+      "Mountbatten Plan",
+      "Simon Commission"
+    ],
+    "answer": 0,
+    "explanation": "The Assembly was constituted under the Cabinet Mission Plan of 1946, which rejected the two-assemblies idea but produced a scheme acceptable to the Muslim League to a certain extent. The Mountbatten Plan of June 1947 dealt with Partition and only altered the Assembly's composition later. The Wavell Plan (1945) concerned the reconstitution of the Executive Council, and the Simon Commission (1927) predates the Assembly entirely.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q006",
+    "topic": "POL-02",
+    "stem": "The total strength of the Constituent Assembly as fixed under the Cabinet Mission Plan was",
+    "options": [
+      "296",
+      "389",
+      "299",
+      "292"
+    ],
+    "answer": 1,
+    "explanation": "The original strength was 389 — 296 seats for British India plus 93 for the princely states. 296 is only the British India share (292 provincial + 4 Chief Commissioners' provinces) and is the figure contested in the 1946 elections. 299 is the post-Partition strength after the Pakistan-area members withdrew. 292 is just the eleven Governors' Provinces.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q007",
+    "topic": "POL-02",
+    "stem": "Of the 296 seats allotted to British India in the Constituent Assembly, the seats given to the four Chief Commissioners' Provinces numbered",
+    "options": [
+      "9",
+      "6",
+      "4",
+      "11"
+    ],
+    "answer": 2,
+    "explanation": "The 296 British India seats were split as 292 for the eleven Governors' Provinces and exactly 4 for the four Chief Commissioners' Provinces — one each. 11 is the number of Governors' Provinces, not of seats, and is the intended confusion here. 6 and 9 correspond to nothing in the allocation scheme.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q008",
+    "topic": "POL-02",
+    "stem": "How many seats in the Constituent Assembly were allotted to the princely states?",
+    "options": [
+      "70",
+      "89",
+      "104",
+      "93"
+    ],
+    "answer": 3,
+    "explanation": "93 seats were allotted to the princely states, and they remained vacant in the beginning because the states stayed away from the Assembly. 70 is the post-Partition figure for the states, after the strength fell from 389 to 299 — a favourite swap in options. 89 and 104 are invented numbers.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q009",
+    "topic": "POL-02",
+    "stem": "Under the Cabinet Mission Plan, seats in the Constituent Assembly were allotted to each British province and princely state roughly in the ratio of one seat for every",
+    "options": [
+      "One million of population",
+      "Five lakh of population",
+      "One lakh of population",
+      "Ten million of population"
+    ],
+    "answer": 0,
+    "explanation": "Seats were distributed in proportion to population at approximately one seat per million people — a proportionality rule, not a democratic one. One lakh or five lakh would have produced an unmanageably large house, and ten million would have produced a body far smaller than 389. The population ratio is what made the allocation mechanical rather than negotiated.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q010",
+    "topic": "POL-02",
+    "stem": "The seats allotted to each British province in the Constituent Assembly were divided among which of the following three communities?",
+    "options": [
+      "Hindus, Muslims and Sikhs",
+      "Muslims, Sikhs and General",
+      "Hindus, Muslims and Scheduled Castes",
+      "Muslims, Christians and General"
+    ],
+    "answer": 1,
+    "explanation": "Provincial seats were divided among Muslims, Sikhs and General in proportion to their populations — 'General' absorbed everyone who was not a Muslim or a Sikh, including Hindus, Scheduled Castes, Christians, Parsees and Anglo-Indians. That is precisely why 'Hindus' does not appear as a separate category in the allocation, even though 163 of the 296 members were Hindus in the final community-wise count.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q011",
+    "topic": "POL-02",
+    "stem": "The representatives of the British Indian provinces in the Constituent Assembly were chosen by",
+    "options": [
+      "Direct election by the people on universal adult franchise",
+      "Nomination by the provincial Governors",
+      "Election by the members of the provincial legislative assemblies through proportional representation by single transferable vote",
+      "Election by the members of the Central Legislative Assembly"
+    ],
+    "answer": 2,
+    "explanation": "Provincial representatives were indirectly elected by the members of the provincial legislative assemblies, using proportional representation with a single transferable vote. The absence of direct election on adult franchise is exactly the ground of the 'not a representative body' criticism. Nomination applied only to the princely-state representatives, who were nominated by the rulers, and the Central Legislative Assembly had no role at all.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q012",
+    "topic": "POL-02",
+    "stem": "Consider the following statements about the composition of the Constituent Assembly:\n1. It was a partly elected and partly nominated body.\n2. Even the elected members were elected indirectly.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct and together form the standard description of the Assembly. It was partly nominated because princely-state representatives were nominated by their rulers, and partly elected because provincial representatives were chosen by provincial legislators — but that election was indirect, being by legislators rather than by the people. The two features are usually asked together because each alone is an incomplete description.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q013",
+    "topic": "POL-02",
+    "stem": "In the elections held in July–August 1946 for the 296 seats of British India in the Constituent Assembly, the Indian National Congress won",
+    "options": [
+      "173 seats",
+      "284 seats",
+      "229 seats",
+      "208 seats"
+    ],
+    "answer": 3,
+    "explanation": "The Congress won 208 of the 296 seats, the Muslim League 73, and the remaining 15 went to small groups and independents. 229 is the post-Partition provincial strength of the Assembly, and 284 is the number of members who signed the Constitution on 26 November 1949 — both are numbers from other contexts planted here as distractors.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q014",
+    "topic": "POL-02",
+    "stem": "In the 1946 elections to the Constituent Assembly, the Muslim League and the remaining small parties and independents together won",
+    "options": [
+      "73 and 15 seats respectively",
+      "80 and 8 seats respectively",
+      "93 and 15 seats respectively",
+      "70 and 18 seats respectively"
+    ],
+    "answer": 0,
+    "explanation": "The Muslim League won 73 seats and 15 went to others, which with the Congress's 208 completes the 296 British India seats. 80 is the number of Muslim members by community in the Assembly, not the League's seat count, and 93 is the princely-state allocation — both are pulled in from neighbouring tables to test whether the numbers are learnt as a sum or as loose figures.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q015",
+    "topic": "POL-02",
+    "stem": "Which of the following is correct about the 93 seats allotted to the princely states at the time of the 1946 elections?",
+    "options": [
+      "They were filled by nominees of the rulers immediately",
+      "They remained unfilled because the princely states stayed away from the Constituent Assembly",
+      "They were filled by direct election in the states",
+      "They were merged with the British India seats"
+    ],
+    "answer": 1,
+    "explanation": "The princely states initially declined to participate, so their 93 seats stayed vacant when the Assembly first met. Nomination by the rulers was indeed the prescribed method, but it was exercised only gradually — six states joined by 28 April 1947 and most of the rest after the Mountbatten Plan. Direct election in the states was never contemplated, and the seats were never merged with the British India quota.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q016",
+    "topic": "POL-02",
+    "stem": "Which one of the following prominent national leaders was NOT a member of the Constituent Assembly?",
+    "options": [
+      "Sardar Vallabhbhai Patel",
+      "Dr. B.R. Ambedkar",
+      "Mahatma Gandhi",
+      "Sarojini Naidu"
+    ],
+    "answer": 2,
+    "explanation": "Mahatma Gandhi is the famous absentee — he was never a member of the Constituent Assembly, even though it otherwise contained representatives of every significant section of Indian society. Patel chaired two major committees, Ambedkar chaired the Drafting Committee, and Sarojini Naidu was among the fifteen women members.",
+    "tier": 2,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q017",
+    "topic": "POL-02",
+    "stem": "In the community-wise composition of the 296 elected members of the Constituent Assembly, the number of Hindus and Muslims respectively was",
+    "options": [
+      "163 and 31",
+      "173 and 73",
+      "208 and 73",
+      "163 and 80"
+    ],
+    "answer": 3,
+    "explanation": "By community the House had 163 Hindus and 80 Muslims, along with 31 Scheduled Castes, 6 Indian Christians, 6 Backward Tribes, 4 Sikhs, 3 Anglo-Indians and 3 Parsees. The figure 73 is the Muslim League's party strength, not the Muslim community count — party and community tables are deliberately confused in options. 31 is the Scheduled Castes count.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q018",
+    "topic": "POL-02",
+    "stem": "The number of women members in the Constituent Assembly was",
+    "options": [
+      "15",
+      "12",
+      "9",
+      "21"
+    ],
+    "answer": 0,
+    "explanation": "Fifteen women were members, among them Ammu Swaminathan, Sarojini Naidu, Hansa Mehta, Sucheta Kripalani and Vijayalakshmi Pandit. The other figures do not correspond to any count in the Assembly's records and are supplied only as plausible near-misses.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q019",
+    "topic": "POL-02",
+    "stem": "The Constituent Assembly held its first meeting on",
+    "options": [
+      "11 December 1946",
+      "9 December 1946",
+      "13 December 1946",
+      "22 January 1947"
+    ],
+    "answer": 1,
+    "explanation": "The first meeting was on 9 December 1946. The other three dates are the immediate sequels and are the standard distractors: Rajendra Prasad was elected permanent President on 11 December 1946, the Objectives Resolution was moved on 13 December 1946, and it was adopted on 22 January 1947.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q020",
+    "topic": "POL-02",
+    "stem": "Consider the following statements about the first meeting of the Constituent Assembly:\n1. The Muslim League boycotted the meeting and demanded a separate state of Pakistan.\n2. Only 207 members attended the meeting.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. The Muslim League boycotted the meeting of 9 December 1946 while insisting on a separate Pakistan, and as a result attendance was only 207 out of the members then available. The two facts are causally linked, which is why they are usually presented as a pair.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q021",
+    "topic": "POL-02",
+    "stem": "Who was elected the temporary Chairman of the Constituent Assembly, following the French practice of choosing the oldest member?",
+    "options": [
+      "Dr. Rajendra Prasad",
+      "H.C. Mukherjee",
+      "Dr. Sachchidananda Sinha",
+      "G.V. Mavalankar"
+    ],
+    "answer": 2,
+    "explanation": "Dr. Sachchidananda Sinha, the oldest member, was elected temporary Chairman in accordance with the French practice. Dr. Rajendra Prasad became the permanent President two days later, on 11 December 1946. H.C. Mukherjee was a Vice-President, and Mavalankar presided only over the Assembly's legislative sittings from November 1947.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q022",
+    "topic": "POL-02",
+    "stem": "Dr. Rajendra Prasad was elected the permanent President of the Constituent Assembly on",
+    "options": [
+      "9 December 1946",
+      "17 November 1947",
+      "25 January 1947",
+      "11 December 1946"
+    ],
+    "answer": 3,
+    "explanation": "He was elected on 11 December 1946, two days after the Assembly first met on 9 December. 25 January 1947 is the date H.C. Mukherjee was elected Vice-President, and 17 November 1947 is the date G.V. Mavalankar was elected Speaker of the Assembly in its legislative capacity — both belong to different offices.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q023",
+    "topic": "POL-02",
+    "stem": "Who among the following served as Vice-Presidents of the Constituent Assembly?",
+    "options": [
+      "H.C. Mukherjee and V.T. Krishnamachari",
+      "Sachchidananda Sinha and G.V. Mavalankar",
+      "B.N. Rau and H.V.R. Iyengar",
+      "J.B. Kripalani and K.M. Munshi"
+    ],
+    "answer": 0,
+    "explanation": "H.C. Mukherjee was elected Vice-President on 25 January 1947 and V.T. Krishnamachari as a second Vice-President on 16 July 1947. Sinha was only the temporary Chairman and Mavalankar the Speaker of the legislative sittings. B.N. Rau was the constitutional adviser and Iyengar the Secretary — officials, not office-bearers of the House.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q024",
+    "topic": "POL-02",
+    "stem": "The Objectives Resolution was moved in the Constituent Assembly by",
+    "options": [
+      "Dr. B.R. Ambedkar on 4 November 1948",
+      "Jawaharlal Nehru on 13 December 1946",
+      "Dr. Rajendra Prasad on 11 December 1946",
+      "Sardar Patel on 22 January 1947"
+    ],
+    "answer": 1,
+    "explanation": "Nehru moved the Objectives Resolution on 13 December 1946. Ambedkar's 4 November 1948 speech introduced the final draft of the Constitution — a different event altogether. 11 December 1946 is Rajendra Prasad's election as President, and 22 January 1947 is the date the Objectives Resolution was adopted, not moved.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q025",
+    "topic": "POL-02",
+    "stem": "The Objectives Resolution was unanimously adopted by the Constituent Assembly on",
+    "options": [
+      "13 December 1946",
+      "25 January 1947",
+      "22 January 1947",
+      "26 November 1949"
+    ],
+    "answer": 2,
+    "explanation": "It was adopted on 22 January 1947, about six weeks after Nehru moved it on 13 December 1946 — the moved/adopted date pair is the standard trap. 25 January 1947 is the election of H.C. Mukherjee as Vice-President, and 26 November 1949 is the adoption of the Constitution itself.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q026",
+    "topic": "POL-02",
+    "stem": "Assertion (A): The Preamble of the Constitution is regarded as a statement of the Constituent Assembly's intent.\nReason (R): The Preamble is a modified version of the Objectives Resolution moved by Nehru and adopted by the Assembly.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. The Objectives Resolution laid down the fundamentals and philosophy on which the Constitution was to be built, and its modified version was adopted as the Preamble — which is precisely why the Preamble is read as the Assembly's declaration of intent rather than as ordinary operative text. Since the derivation is the reason for the status, R is the correct explanation.",
+    "tier": 3,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q027",
+    "topic": "POL-02",
+    "stem": "Which of the following was NOT declared or guaranteed by the Objectives Resolution?",
+    "options": [
+      "India shall be an Independent Sovereign Republic",
+      "Justice, equality and liberty for all people of India",
+      "Adequate safeguards for minorities, backward and tribal areas",
+      "A federation with a two-tier judiciary and a fixed presidential term"
+    ],
+    "answer": 3,
+    "explanation": "The Objectives Resolution was a statement of philosophy, not of institutional detail — it declared India an Independent Sovereign Republic, promised justice, equality and liberty, and guaranteed safeguards for minorities and backward and tribal areas. It laid down no machinery such as judicial tiers or presidential terms; those were settled later, committee by committee.",
+    "tier": 4,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q028",
+    "topic": "POL-02",
+    "stem": "Representatives of which six princely states had joined the Constituent Assembly by 28 April 1947?",
+    "options": [
+      "Baroda, Bikaner, Jaipur, Patiala, Rewa and Udaipur",
+      "Hyderabad, Mysore, Travancore, Kashmir, Bhopal and Junagadh",
+      "Gwalior, Indore, Kolhapur, Cochin, Jodhpur and Kutch",
+      "Baroda, Hyderabad, Jaipur, Mysore, Rewa and Travancore"
+    ],
+    "answer": 0,
+    "explanation": "Baroda, Bikaner, Jaipur, Patiala, Rewa and Udaipur were the first six states to take their seats, by 28 April 1947. Most of the remaining states came in only after the Mountbatten Plan of 3 June 1947 settled Partition. The other lists mix in states such as Hyderabad and Junagadh, whose accession was contested and late, which is what makes them attractive wrong answers.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q029",
+    "topic": "POL-02",
+    "stem": "Consider the following statements about the changes made by the Indian Independence Act, 1947 in the Constituent Assembly:\n1. The Assembly was made a fully sovereign body which could frame any constitution it pleased.\n2. The Assembly was also made a legislative body for the new dominion.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and they are two of the three changes the Act made — the third being the withdrawal of the Muslim League members from the Pakistan areas. Sovereignty meant the Assembly could now alter or abrogate any law made by the British Parliament for India, and the legislative role meant it doubled as the Dominion Legislature until 26 November 1949.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q030",
+    "topic": "POL-02",
+    "stem": "After the Indian Independence Act, 1947, the Constituent Assembly performed a dual role. When it sat as a legislative body, it was chaired by",
+    "options": [
+      "Dr. Rajendra Prasad",
+      "G.V. Mavalankar",
+      "Dr. B.R. Ambedkar",
+      "H.C. Mukherjee"
+    ],
+    "answer": 1,
+    "explanation": "The two functions were kept in separate sittings: as a constituent body the Assembly was chaired by Dr. Rajendra Prasad, and as the Dominion Legislature it was chaired by G.V. Mavalankar, elected Speaker on 17 November 1947. Ambedkar chaired the Drafting Committee, not the House, and Mukherjee was a Vice-President of the Assembly.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q031",
+    "topic": "POL-02",
+    "stem": "G.V. Mavalankar was elected Speaker of the Constituent Assembly (Legislative) on",
+    "options": [
+      "16 July 1947",
+      "29 August 1947",
+      "17 November 1947",
+      "4 November 1948"
+    ],
+    "answer": 2,
+    "explanation": "Mavalankar was elected Speaker on 17 November 1947. 16 July 1947 is the election of V.T. Krishnamachari as the second Vice-President, 29 August 1947 the day the Drafting Committee was set up, and 4 November 1948 the introduction of the final draft — all clustered dates from the same period, which is why they are grouped as distractors.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q032",
+    "topic": "POL-02",
+    "stem": "As a consequence of Partition and the withdrawal of the Muslim League members from the Pakistan areas, the strength of the Constituent Assembly was reduced from 389 to",
+    "options": [
+      "229",
+      "296",
+      "284",
+      "299"
+    ],
+    "answer": 3,
+    "explanation": "The strength fell from 389 to 299. Within that total, the provincial share fell from 296 to 229 and the princely-state share from 93 to 70 — which is why 296 and 229 are placed as distractors. 284 is the number of members who actually signed the Constitution on 26 November 1949.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q033",
+    "topic": "POL-02",
+    "stem": "After Partition, the representation of the provinces and of the princely states in the Constituent Assembly stood respectively at",
+    "options": [
+      "229 and 70",
+      "292 and 93",
+      "296 and 93",
+      "208 and 91"
+    ],
+    "answer": 0,
+    "explanation": "The provinces fell from 296 to 229 and the princely states from 93 to 70, giving the post-Partition total of 299. 292 and 296 are the pre-Partition provincial figures (Governors' Provinces alone, and with the Chief Commissioners' Provinces added), and 93 the pre-Partition state allocation — the whole question is whether the before and after columns are kept apart.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q034",
+    "topic": "POL-02",
+    "stem": "The national flag of India was adopted by the Constituent Assembly on",
+    "options": [
+      "15 August 1947",
+      "22 July 1947",
+      "26 November 1949",
+      "24 January 1950"
+    ],
+    "answer": 1,
+    "explanation": "The flag was adopted on 22 July 1947, weeks before independence. 24 January 1950 is the date the national anthem and national song were adopted and Rajendra Prasad was elected the first President — a triple date that is routinely swapped with the flag date. 15 August 1947 and 26 November 1949 belong to independence and to the adoption of the Constitution respectively.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q035",
+    "topic": "POL-02",
+    "stem": "Consider the following statements about 24 January 1950:\n1. The Constituent Assembly adopted the national anthem and the national song on this date.\n2. Dr. Rajendra Prasad was elected the first President of India on this date.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. On its final sitting of 24 January 1950 the Assembly adopted the national anthem and the national song and elected Dr. Rajendra Prasad as the first President of India — and the members also signed the Constitution that day. The national flag, by contrast, had been adopted much earlier, on 22 July 1947.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q036",
+    "topic": "POL-02",
+    "stem": "India's membership of the Commonwealth was ratified by the Constituent Assembly in",
+    "options": [
+      "November 1949",
+      "July 1947",
+      "May 1949",
+      "January 1950"
+    ],
+    "answer": 2,
+    "explanation": "The Assembly ratified India's Commonwealth membership in May 1949, during the eighth session. November 1949 is when the Constitution was passed, and January 1950 covers the anthem, the song and the election of the first President. July 1947 belongs to the adoption of the national flag.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q037",
+    "topic": "POL-02",
+    "stem": "The Constituent Assembly took how long to complete its work, and in how many sessions?",
+    "options": [
+      "4 years, 1 month and 11 days in 14 sessions",
+      "3 years, 6 months and 14 days in 12 sessions",
+      "2 years, 6 months and 18 days in 9 sessions",
+      "2 years, 11 months and 18 days in 11 sessions"
+    ],
+    "answer": 3,
+    "explanation": "The Assembly took 2 years, 11 months and 18 days and held 11 sessions between December 1946 and November 1949. This figure is the basis of the 'time-consuming' criticism, which compares it with the American convention's four months — a comparison that ignores that India produced 395 Articles against America's 7.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q038",
+    "topic": "POL-02",
+    "stem": "Consider the following statements about the working of the Constituent Assembly:\n1. Its members studied the constitutions of about 60 countries.\n2. The draft Constitution was considered for 114 days and the total expenditure incurred was about ₹64 lakh.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. Roughly 60 countries' constitutions were examined, the draft was under consideration for 114 days, and the total expenditure came to about ₹64 lakh. Note the distinct number nearby: the Drafting Committee itself sat for 141 days — 114 and 141 are deliberately confusable and are frequently swapped in options.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q039",
+    "topic": "POL-02",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Committee of the Constituent Assembly)\nA. Union Powers Committee\nB. Provincial Constitution Committee\nC. Drafting Committee\nList II (Chairman)\n1. Sardar Vallabhbhai Patel\n2. Jawaharlal Nehru\n3. Dr. B.R. Ambedkar",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-2, C-3",
+      "A-2, B-3, C-1",
+      "A-3, B-1, C-2"
+    ],
+    "answer": 0,
+    "explanation": "Nehru chaired the Union Powers Committee, Patel the Provincial Constitution Committee and Ambedkar the Drafting Committee. The pattern worth memorising is that Nehru chaired three major committees (Union Powers, Union Constitution and States), Patel two (Provincial Constitution and the Advisory Committee), Rajendra Prasad two (Rules of Procedure and Steering) and Ambedkar exactly one.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q040",
+    "topic": "POL-02",
+    "stem": "The Advisory Committee on Fundamental Rights, Minorities and Tribal and Excluded Areas was chaired by Sardar Patel. Its Fundamental Rights Sub-Committee was chaired by",
+    "options": [
+      "H.C. Mukherjee",
+      "J.B. Kripalani",
+      "K.M. Munshi",
+      "Alladi Krishnaswamy Ayyar"
+    ],
+    "answer": 1,
+    "explanation": "J.B. Kripalani chaired the Fundamental Rights Sub-Committee, while H.C. Mukherjee chaired the Minorities Sub-Committee — these are the two of Patel's five sub-committees that are actually asked about, and they are routinely interchanged. Munshi and Alladi Krishnaswamy Ayyar were members of the Drafting Committee, a different body altogether.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q041",
+    "topic": "POL-02",
+    "stem": "The Drafting Committee of the Constituent Assembly was set up on 29 August 1947 and consisted of",
+    "options": [
+      "Five members",
+      "Nine members",
+      "Seven members",
+      "Eleven members"
+    ],
+    "answer": 2,
+    "explanation": "It had seven members under Ambedkar's chairmanship. The Assembly worked through 8 major and 13 minor committees, and the temptation is to attach one of those counts to the Drafting Committee's membership; the correct figure is 7, of whom two joined as replacements for B.L. Mitter and D.P. Khaitan.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q042",
+    "topic": "POL-02",
+    "stem": "Which one of the following was NOT a member of the Drafting Committee of the Constitution?",
+    "options": [
+      "Alladi Krishnaswamy Ayyar",
+      "N. Gopalaswamy Ayyangar",
+      "Syed Mohammad Saadullah",
+      "K.T. Shah"
+    ],
+    "answer": 3,
+    "explanation": "K.T. Shah was a member of the Congress's Experts Committee of July 1946, not of the Drafting Committee. The seven who were on it are Ambedkar (chairman), N. Gopalaswamy Ayyangar, Alladi Krishnaswamy Ayyar, K.M. Munshi, Syed Mohammad Saadullah, N. Madhava Rau and T.T. Krishnamachari.",
+    "tier": 4,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q043",
+    "topic": "POL-02",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Member of the Drafting Committee)\nA. T.T. Krishnamachari\nB. N. Madhava Rau\nC. Dr. B.R. Ambedkar\nList II (Basis of membership)\n1. Replaced B.L. Mitter, who resigned\n2. Replaced D.P. Khaitan, who died in 1948\n3. Chairman of the Committee",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-2, C-3",
+      "A-3, B-2, C-1",
+      "A-2, B-3, C-1"
+    ],
+    "answer": 0,
+    "explanation": "T.T. Krishnamachari came in on the death of D.P. Khaitan in 1948, and N. Madhava Rau replaced B.L. Mitter, who resigned; Ambedkar chaired the committee throughout. The two replacements are constantly interchanged, so anchor one of them — Khaitan died, and it was T.T. Krishnamachari who took his place.",
+    "tier": 5,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q044",
+    "topic": "POL-02",
+    "stem": "The first draft of the Constitution prepared by the Drafting Committee was published in",
+    "options": [
+      "October 1948",
+      "February 1948",
+      "August 1947",
+      "November 1948"
+    ],
+    "answer": 1,
+    "explanation": "The first draft was published in February 1948, and the public was given eight months to discuss it and propose amendments; the second draft followed in October 1948. August 1947 is when the committee was constituted, and November 1948 is when Ambedkar introduced the final draft for the first reading.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q045",
+    "topic": "POL-02",
+    "stem": "The Drafting Committee, despite its central role in framing the Constitution, sat for a total of only",
+    "options": [
+      "114 days",
+      "165 days",
+      "141 days",
+      "180 days"
+    ],
+    "answer": 2,
+    "explanation": "The Drafting Committee sat for 141 days. The neighbouring figure of 114 days is the period for which the draft Constitution was under the Assembly's consideration — the two numbers use the same digits and are the intended confusion in almost every version of this question.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q046",
+    "topic": "POL-02",
+    "stem": "Arrange the following events in correct chronological order:\n1. Introduction of the final draft of the Constitution by Dr. Ambedkar (first reading)\n2. Publication of the second draft of the Constitution\n3. Setting up of the Drafting Committee\n4. Passing of the Constitution by the Constituent Assembly",
+    "options": [
+      "3 – 2 – 4 – 1",
+      "3 – 1 – 2 – 4",
+      "2 – 3 – 1 – 4",
+      "3 – 2 – 1 – 4"
+    ],
+    "answer": 3,
+    "explanation": "The order is: Drafting Committee set up on 29 August 1947, second draft published in October 1948, final draft introduced on 4 November 1948 for the first reading, and the Constitution passed on 26 November 1949. The trap is placing the first reading before the second draft — the second draft came first, by about a month.",
+    "tier": 4,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q047",
+    "topic": "POL-02",
+    "stem": "During the second reading of the draft Constitution, the number of amendments moved and the number actually discussed were respectively",
+    "options": [
+      "7,653 and 2,473",
+      "2,473 and 7,653",
+      "7,635 and 2,437",
+      "5,463 and 1,983"
+    ],
+    "answer": 0,
+    "explanation": "A total of 7,653 amendments were proposed and 2,473 of them were discussed in the House between 15 November 1948 and 17 October 1949. The second option simply reverses the pair — the number discussed must be smaller than the number moved — and the third scrambles the digits of both figures.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q048",
+    "topic": "POL-02",
+    "stem": "The Constitution was passed by the Constituent Assembly on 26 November 1949 and was signed by",
+    "options": [
+      "All 299 members of the Assembly",
+      "284 members present in the Assembly",
+      "207 members present in the Assembly",
+      "296 members present in the Assembly"
+    ],
+    "answer": 1,
+    "explanation": "284 of the members present signed the Constitution, out of a post-Partition strength of 299 — so not every member signed, which rules out the first option. 207 is the attendance at the very first meeting of 9 December 1946, and 296 is the British India seat allocation; both are pulled in from other stages of the Assembly's life.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q049",
+    "topic": "POL-02",
+    "stem": "The Constitution of India as adopted on 26 November 1949 contained",
+    "options": [
+      "A Preamble, 395 Articles and 8 Schedules",
+      "A Preamble, 448 Articles and 12 Schedules",
+      "A Preamble, 395 Articles and 12 Schedules",
+      "A Preamble, 470 Articles and 8 Schedules"
+    ],
+    "answer": 0,
+    "explanation": "As adopted, it had a Preamble, 395 Articles and 8 Schedules. The figures of 12 Schedules and roughly 448 Articles describe the Constitution as it stands today after decades of amendment — the question turns entirely on 'as adopted' versus 'at present'.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q050",
+    "topic": "POL-02",
+    "stem": "Consider the following statements about the enactment of the Constitution:\n1. The Preamble was enacted after the rest of the Constitution had been enacted.\n2. 26 November is celebrated as Constitution Day, a practice begun in 2015.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. The Preamble was deliberately enacted last, so that it would state exactly what the settled document did, and 26 November — the date of adoption — has been observed as Constitution Day (Samvidhan Divas) since 2015. Note that Constitution Day marks adoption, not commencement, which is 26 January.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q051",
+    "topic": "POL-02",
+    "stem": "Which of the following provisions of the Constitution came into force on 26 November 1949 itself?",
+    "options": [
+      "Fundamental Rights and Directive Principles",
+      "Provisions relating to citizenship, elections and the provisional Parliament",
+      "Provisions relating to the President and the Council of Ministers",
+      "The entire Constitution except the Preamble"
+    ],
+    "answer": 1,
+    "explanation": "Fifteen Articles — those on citizenship, elections, the provisional Parliament and the temporary and transitional provisions (Articles 5–9, 60, 324, 366, 367, 379, 380, 388, 391, 392 and 393) — came into force immediately on 26 November 1949, because the machinery to create the Republic had to exist before the Republic itself. Everything else, including the Fundamental Rights and the provisions on the President, waited for 26 January 1950.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q052",
+    "topic": "POL-02",
+    "stem": "26 January was chosen as the date of commencement of the Constitution because",
+    "options": [
+      "The Constituent Assembly completed its work on that date",
+      "The Indian Independence Act, 1947 required commencement on that date",
+      "The first general elections were scheduled for that date",
+      "The Congress had observed 26 January 1930 as Purna Swaraj Day, pursuant to its Lahore session resolution of December 1929"
+    ],
+    "answer": 3,
+    "explanation": "The date was chosen for its symbolism: at its Lahore session of December 1929 the Congress resolved that 26 January 1930 be observed as Purna Swaraj Day, and the framers wanted the Republic to begin on that anniversary. The Assembly completed its work on 26 November 1949, the Independence Act specified no such date, and the first general elections were held only in 1951–52.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q053",
+    "topic": "POL-02",
+    "stem": "With the commencement of the Constitution, which one of the following was NOT repealed?",
+    "options": [
+      "The Abolition of Privy Council Jurisdiction Act, 1949",
+      "The Government of India Act, 1935",
+      "The Indian Independence Act, 1947",
+      "Amendments and supplementary legislation to the Government of India Act, 1935"
+    ],
+    "answer": 0,
+    "explanation": "The Abolition of Privy Council Jurisdiction Act, 1949 was expressly allowed to continue. The Indian Independence Act, 1947 and the Government of India Act, 1935, together with all their amendments and supplementary legislation, stood repealed on 26 January 1950 — the single surviving statute is what this question is built on.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q054",
+    "topic": "POL-02",
+    "stem": "After the commencement of the Constitution, the Constituent Assembly continued as the provisional Parliament of India until",
+    "options": [
+      "26 November 1949",
+      "The formation of the new Parliament after the first general elections of 1951–52",
+      "24 January 1950",
+      "The adoption of the first constitutional amendment"
+    ],
+    "answer": 1,
+    "explanation": "The same body carried on as the provisional Parliament from 26 January 1950 until a new Parliament was constituted after the first general elections of 1951–52. 26 November 1949 is the date the Assembly's constitution-making and Dominion legislative roles ended, and 24 January 1950 was its last sitting as a Constituent Assembly — neither ends the provisional Parliament.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q055",
+    "topic": "POL-02",
+    "stem": "Who described the Drafting Committee of the Constituent Assembly as a 'Drifting Committee'?",
+    "options": [
+      "Winston Churchill",
+      "Granville Austin",
+      "Lord Viscount Simon",
+      "Naziruddin Ahmed"
+    ],
+    "answer": 3,
+    "explanation": "Naziruddin Ahmed, a member of the Assembly, coined the jibe 'Drifting Committee' as part of the criticism that the Assembly was time-consuming. Granville Austin wrote that the Assembly was the Congress and the Congress was India; Simon called it 'a body of Hindus' and Churchill said it represented 'only one major community' — those two belong to the domination-by-Hindus criticism.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q056",
+    "topic": "POL-02",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Person)\nA. Granville Austin\nB. Winston Churchill\nC. Naziruddin Ahmed\nList II (Criticism of the Constituent Assembly)\n1. It represented 'only one major community in India'\n2. 'The Assembly was the Congress and the Congress was India'\n3. The Drafting Committee was a 'Drifting Committee'",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-2, C-3",
+      "A-3, B-1, C-2",
+      "A-2, B-3, C-1"
+    ],
+    "answer": 0,
+    "explanation": "Austin made the Congress-domination remark, Churchill the one-community remark, and Naziruddin Ahmed the 'Drifting Committee' jibe about delay. Each quotation attaches to a different head of criticism — domination by the Congress, domination by Hindus, and time consumed — so matching the speaker also fixes the criticism.",
+    "tier": 4,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q057",
+    "topic": "POL-02",
+    "stem": "Assertion (A): The criticism that the Constituent Assembly was not a sovereign body ceased to be valid after 1947.\nReason (R): The Indian Independence Act, 1947 empowered the Assembly to frame any constitution it pleased and to alter or abrogate any law made by the British Parliament for India.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. The original charge rested on the Assembly having been created by British proposals and having met with British permission; the Independence Act removed exactly that limitation by making it fully sovereign. Note that the Act did nothing about the separate criticism that the Assembly was not directly elected — sovereignty was cured, representativeness was not.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q058",
+    "topic": "POL-02",
+    "stem": "The symbol or seal of the Constituent Assembly of India was",
+    "options": [
+      "The lion capital",
+      "The elephant",
+      "The charkha",
+      "The lotus"
+    ],
+    "answer": 1,
+    "explanation": "The elephant was adopted as the symbol or seal of the Constituent Assembly. The lion capital of Ashoka became the State Emblem of India, the charkha was the Congress symbol on the pre-independence flag, and the lotus has no connection with the Assembly — each distractor borrows a symbol from a neighbouring context.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q059",
+    "topic": "POL-02",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Person)\nA. Sir B.N. Rau\nB. H.V.R. Iyengar\nC. S.N. Mukherjee\nList II (Role in the Constituent Assembly)\n1. Secretary to the Assembly\n2. Chief Draftsman\n3. Constitutional adviser",
+    "options": [
+      "A-2, B-1, C-3",
+      "A-1, B-3, C-2",
+      "A-3, B-2, C-1",
+      "A-3, B-1, C-2"
+    ],
+    "answer": 3,
+    "explanation": "B.N. Rau was the constitutional (legal) adviser, H.V.R. Iyengar the Secretary and S.N. Mukherjee the Chief Draftsman. All three were officials rather than members, which is why they are grouped together — and why they are so easily interchanged with the calligrapher, Prem Behari Narain Raizada.",
+    "tier": 4,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q060",
+    "topic": "POL-02",
+    "stem": "The original Constitution of India was handwritten in a flowing italic style by",
+    "options": [
+      "Nandalal Bose",
+      "Prem Behari Narain Raizada",
+      "Beohar Rammanohar Sinha",
+      "Vasant Krishan Vaidya"
+    ],
+    "answer": 1,
+    "explanation": "Prem Behari Narain Raizada calligraphed the English original by hand — it was neither printed nor typed. Vasant Krishan Vaidya did the same for the Hindi version. Nandalal Bose led the Shantiniketan artists who decorated the document, and Beohar Rammanohar Sinha illuminated the Preamble page specifically.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q061",
+    "topic": "POL-02",
+    "stem": "The authoritative Hindi text of the Constitution was provided for by inserting Article 394-A through the",
+    "options": [
+      "42nd Amendment Act, 1976",
+      "44th Amendment Act, 1978",
+      "61st Amendment Act, 1989",
+      "58th Amendment Act, 1987"
+    ],
+    "answer": 3,
+    "explanation": "The 58th Amendment Act of 1987 inserted Article 394-A in Part XXII, since the Constitution as originally enacted made no provision for an authoritative Hindi text. The 42nd and 44th Amendments concern the Preamble, Fundamental Rights and emergency provisions, and the 61st reduced the voting age to 18 — none touches the Hindi text.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q062",
+    "topic": "POL-02",
+    "stem": "Under Article 394-A, the Hindi translation of the Constitution published by the President",
+    "options": [
+      "Is only an explanatory aid with no legal status",
+      "Shall be deemed to be the authoritative text in Hindi and to have the same meaning as the English original",
+      "Prevails over the English text in case of a conflict",
+      "Must be approved by both Houses of Parliament before publication"
+    ],
+    "answer": 1,
+    "explanation": "Article 394-A deems the published translation to be the authoritative text in Hindi and to carry the same meaning as the English original; where a difficulty of construction arises, the President causes the translation to be revised. It therefore has full legal status, but it does not override the English text, and no parliamentary approval of the publication is required.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q063",
+    "topic": "POL-02",
+    "stem": "Which Article of the Constitution deals with its commencement?",
+    "options": [
+      "Article 393",
+      "Article 395",
+      "Article 394-A",
+      "Article 394"
+    ],
+    "answer": 3,
+    "explanation": "Article 394 deals with commencement. The four closing Articles run in a block and are best learnt together: 393 gives the short title, 394 the commencement, 394-A the authoritative Hindi text and 395 the repeals of the Independence Act, 1947 and the Government of India Act, 1935.",
+    "tier": 3,
+    "format": "fill-appropriate",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q064",
+    "topic": "POL-02",
+    "stem": "The Experts Committee appointed by the Congress on 8 July 1946 to prepare material for the Constituent Assembly was chaired by",
+    "options": [
+      "Sardar Vallabhbhai Patel",
+      "Jawaharlal Nehru",
+      "Dr. Rajendra Prasad",
+      "K.M. Munshi"
+    ],
+    "answer": 1,
+    "explanation": "Nehru chaired the Experts Committee, whose members included M. Asaf Ali, K.M. Munshi, N. Gopalaswami Ayyangar, K.T. Shah, D.R. Gadgil, Humayun Kabir and K. Santhanam. Granville Austin credited it with having 'set India on the road to her present Constitution', because the resolution it drafted closely resembled the Objectives Resolution Nehru moved five months later.",
+    "tier": 5,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q065",
+    "topic": "POL-02",
+    "stem": "Arrange the following in correct chronological order:\n1. First meeting of the Constituent Assembly\n2. Adoption of the Objectives Resolution\n3. Adoption of the national flag\n4. Enactment of the Indian Independence Act",
+    "options": [
+      "1 – 4 – 2 – 3",
+      "1 – 2 – 3 – 4",
+      "2 – 1 – 4 – 3",
+      "1 – 2 – 4 – 3"
+    ],
+    "answer": 3,
+    "explanation": "The order is the first meeting on 9 December 1946, the Objectives Resolution adopted on 22 January 1947, the Indian Independence Act in July 1947, and the national flag adopted on 22 July 1947 — the flag came after the Act, not before it. Mixing up the July 1947 events is the whole difficulty of this question.",
+    "tier": 4,
+    "format": "chronology",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q066",
+    "topic": "POL-02",
+    "stem": "Consider the following statements about the criticism of the Constituent Assembly:\n1. It was criticised as not being a representative body because its members were not directly elected on universal adult franchise.\n2. It was criticised as being dominated by lawyers and politicians, which is blamed for the bulk and complex language of the Constitution.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are standard heads of criticism. The representation charge rests on the indirect election of members by provincial legislators, and the lawyer-politician charge is the usual explanation offered for the Constitution's length and technical drafting. The other heads are that the Assembly was not sovereign, was time-consuming, and was dominated by the Congress and by Hindus.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q067",
+    "topic": "POL-02",
+    "stem": "The framers of which of the following constitutions took the longest time to complete their work?",
+    "options": [
+      "U.S.A.",
+      "Canada",
+      "South Africa",
+      "Australia"
+    ],
+    "answer": 3,
+    "explanation": "Australia's framers worked from March 1891 to July 1900 — about nine years, the longest of the four. The American convention finished in under four months in 1787, South Africa took about a year in 1908–09 and Canada roughly two years and six months. India's 2 years 11 months and 18 days sits between Canada and Australia, while producing 395 Articles against Australia's 128.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q068",
+    "topic": "POL-02",
+    "stem": "Consider the following statements:\n1. Dr. B.R. Ambedkar introduced the final draft of the Constitution in the Assembly on 4 November 1948.\n2. The third reading of the draft began on 14 November 1949.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. The first reading opened on 4 November 1948 with Ambedkar introducing the final draft, general discussion ran to 9 November 1948, the clause-by-clause second reading occupied 15 November 1948 to 17 October 1949, and the third reading began on 14 November 1949 and ended with the Constitution being passed on 26 November 1949.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q069",
+    "topic": "POL-02",
+    "stem": "Dr. B.R. Ambedkar is described as the 'Father of the Constitution' chiefly because he",
+    "options": [
+      "Presided over the Constituent Assembly",
+      "Moved the Objectives Resolution in the Assembly",
+      "Was the constitutional adviser to the Assembly",
+      "Was Chairman of the Drafting Committee and, as Law Minister, piloted the draft through the Assembly"
+    ],
+    "answer": 3,
+    "explanation": "Ambedkar chaired the Drafting Committee and, as Law Minister, piloted the draft through the House — hence 'Father of the Constitution' and 'Chief Architect of the Constitution'. Dr. Rajendra Prasad presided over the Assembly, Nehru moved the Objectives Resolution, and Sir B.N. Rau was the constitutional adviser.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-02-Q070",
+    "topic": "POL-02",
+    "stem": "The Constituent Assembly worked through how many major and minor committees respectively?",
+    "options": [
+      "8 major and 13 minor",
+      "13 major and 8 minor",
+      "7 major and 15 minor",
+      "5 major and 22 minor"
+    ],
+    "answer": 0,
+    "explanation": "There were 8 major committees and 13 minor ones. The reversal in the second option is the intended trap; the count of 7 belongs to the membership of the Drafting Committee, not to the number of committees, and the remaining option corresponds to nothing in the record.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  }
+]

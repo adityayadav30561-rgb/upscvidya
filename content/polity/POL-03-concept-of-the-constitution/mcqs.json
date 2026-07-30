@@ -1,0 +1,1217 @@
+[
+  {
+    "id": "POL-03-Q001",
+    "topic": "POL-03",
+    "stem": "The term 'constitution' is derived from the Latin word 'constituere', which means",
+    "options": [
+      "To establish or to set up",
+      "To rule or to command",
+      "To write down or to record",
+      "To limit or to restrain"
+    ],
+    "answer": 0,
+    "explanation": "'Constituere' means 'to establish' or 'to set up' — the constitution is what establishes the political order. 'To limit or to restrain' describes constitutionalism rather than the etymology of the word itself, which is precisely the confusion this question tests. Neither 'to rule' nor 'to write down' has any connection with the Latin root.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q002",
+    "topic": "POL-03",
+    "stem": "A constitution is described by all of the following expressions EXCEPT",
+    "options": [
+      "The fundamental law of the land",
+      "The convention of the political community",
+      "The instrument of the government",
+      "The grundnorm of the country"
+    ],
+    "answer": 1,
+    "explanation": "'Convention of the political community' is not one of the standard descriptions. The recognised labels are the fundamental law of the land, the supreme law of the state, the basic law of the country, the instrument of the government, the rules of the state, the basic structure of the polity and the grundnorm of the country. Conventions are a source of an unwritten constitution, not a name for a constitution.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q003",
+    "topic": "POL-03",
+    "stem": "Which scholar defined a constitution as 'a document having a special legal sanctity which sets out the framework and the principal functions of the organs of the Government of a State'?",
+    "options": [
+      "Gilchrist",
+      "Gettell",
+      "Wade and Phillips",
+      "Wheare"
+    ],
+    "answer": 2,
+    "explanation": "This is Wade and Phillips — the only one of the four standard definitions that insists the constitution be a document with special legal sanctity, which is why it fits a country like India but sits awkwardly with the United Kingdom. Wheare spoke of the whole system of government, Gilchrist of the body of rules distributing powers, and Gettell of the fundamental principles determining the form of a state.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q004",
+    "topic": "POL-03",
+    "stem": "The definition 'The Constitution describes the whole system of government of a country, the collection of rules which establish and regulate or govern the government' was given by",
+    "options": [
+      "Bryce",
+      "Gilchrist",
+      "Friedrich",
+      "Wheare"
+    ],
+    "answer": 3,
+    "explanation": "This is Wheare's definition of a constitution. Friedrich defined constitutionalism, not the constitution, as a system of effective restraints on governmental action, and Bryce is associated with the rigid–flexible classification rather than with any definition. Gilchrist's definition turns on the distribution of powers among the organs of government.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q005",
+    "topic": "POL-03",
+    "stem": "According to Gettell, the fundamental principles that determine the form of a state include all of the following EXCEPT",
+    "options": [
+      "The procedure for amending the constitution",
+      "The distribution of sovereign powers among the organs of government",
+      "The method by which the state is organised",
+      "The relation of the government to the people over whom its authority is exercised"
+    ],
+    "answer": 0,
+    "explanation": "Gettell's definition covers the organisation of the state, the distribution of sovereign powers, the scope and manner of exercise of governmental functions, and the government–people relation. The amendment procedure is not part of his definition — it is the basis of Bryce's rigid–flexible classification, which is a different idea entirely.",
+    "tier": 4,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q006",
+    "topic": "POL-03",
+    "stem": "The functions or purposes of a constitution, listed as eight in number, were identified by",
+    "options": [
+      "Louis Henkin",
+      "Elliot Bulmer",
+      "K.C. Wheare",
+      "Lord James Bryce"
+    ],
+    "answer": 1,
+    "explanation": "Elliot Bulmer identified the eight functions of a constitution, and also gave the procedural–prescriptive pair of archetypes. Louis Henkin's list of eight is of the elements of constitutionalism — the two lists of eight are the most-swapped pair in this chapter. Wheare is remembered for calling India quasi-federal and Bryce for the rigid–flexible classification.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q007",
+    "topic": "POL-03",
+    "stem": "Which of the following is NOT among the functions of a constitution identified by Elliot Bulmer?",
+    "options": [
+      "It can declare and define the boundaries of the political community",
+      "It can express the identity and values of a national community",
+      "It can guarantee that the constitution will never be amended",
+      "It can commit states to particular social, economic or developmental goals"
+    ],
+    "answer": 2,
+    "explanation": "No constitution promises never to be amended, and Bulmer's list contains no such function. His eight cover boundaries, the nature and authority of the political community, identity and values, citizens' rights and duties, political institutions, the division of power between layers of government, religious identity, and social or developmental goals. Permanence is the opposite of adaptability, itself a listed quality of a good constitution.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q008",
+    "topic": "POL-03",
+    "stem": "Consider the following statements about the qualities of a good constitution:\n1. Brevity is desirable because a lengthy constitution with too many details creates confusion in the interpretation of its clauses.\n2. Definiteness is desirable because ambiguous provisions increase the discretion of judges in interpretation.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and both rest on the same worry — that unclear text transfers power from the framers to the interpreters. Brevity guards against confusion produced by excessive detail, and definiteness guards against ambiguity enlarging judicial discretion. Note that India's Constitution deliberately trades away brevity for comprehensiveness.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q009",
+    "topic": "POL-03",
+    "stem": "The quality of a constitution which requires it to be dynamic rather than static, so that it can adjust to changing situations and remain a 'living document', is called",
+    "options": [
+      "Stability",
+      "Suitability",
+      "Comprehensiveness",
+      "Adaptability"
+    ],
+    "answer": 3,
+    "explanation": "Adaptability is the requirement that a constitution be dynamic and able to adapt — the living-document idea. Stability is its counterweight, requiring that the document not be easy to tamper with, and the two must be balanced against each other. Suitability concerns fitting the nation's historical and socio-cultural conditions, while comprehensiveness concerns the range of matters covered.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q010",
+    "topic": "POL-03",
+    "stem": "The quality of comprehensiveness in a constitution is valued chiefly because it",
+    "options": [
+      "Reduces the scope for controversies and litigation",
+      "Keeps the document short and easy to read",
+      "Makes amendment easier",
+      "Guarantees a federal division of powers"
+    ],
+    "answer": 0,
+    "explanation": "Comprehensiveness means laying down both the powers of government and the rights and duties of citizens, which narrows the room for controversies and litigation. It works against brevity rather than for it, has no bearing on the amendment procedure, and says nothing about federalism — a comprehensive constitution may equally be unitary.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q011",
+    "topic": "POL-03",
+    "stem": "The classification of constitutions into evolved and enacted is based on",
+    "options": [
+      "The method of amendment",
+      "The process of evolution",
+      "The incorporation of provisions in a document",
+      "The relationship between national and regional governments"
+    ],
+    "answer": 1,
+    "explanation": "Evolved versus enacted turns on how the constitution came into being — gradual evolution against deliberate making. The incorporation of provisions in a document is the basis of the written–unwritten split, the method of amendment is the basis of Bryce's rigid–flexible split, and national–regional relations produce the federal–unitary split. Each classification has its own test, and the test is what is usually asked.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q012",
+    "topic": "POL-03",
+    "stem": "An evolved constitution is also known as a",
+    "options": [
+      "Conventional constitution",
+      "Codified constitution",
+      "Cumulative constitution",
+      "Prescriptive constitution"
+    ],
+    "answer": 2,
+    "explanation": "An evolved constitution is a cumulative constitution — it accumulates through conventions, practices and judicial decisions, the British Constitution being the standard example. The vocabulary is deliberately counter-intuitive: the *conventional* constitution is the enacted, written one, even though it is the cumulative one that is full of conventions. Codified is a synonym for written, and prescriptive belongs to Bulmer's archetypes.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q013",
+    "topic": "POL-03",
+    "stem": "An enacted constitution is also known as a conventional constitution. Which of the following pairs of constitutions are its standard examples?",
+    "options": [
+      "The British and New Zealand Constitutions",
+      "The New Zealand and Israeli Constitutions",
+      "The British and Israeli Constitutions",
+      "The American and Indian Constitutions"
+    ],
+    "answer": 3,
+    "explanation": "The American and Indian Constitutions are the standard examples of enacted or conventional constitutions, each deliberately made by a constituent body and set down in a document. Britain, New Zealand and Israel are the recurring examples on the other side of the line — evolved, unwritten and, in the case of Britain and New Zealand, flexible as well.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q014",
+    "topic": "POL-03",
+    "stem": "The classification of constitutions into written and unwritten is based on",
+    "options": [
+      "Whether the provisions are incorporated in a document or a series of documents",
+      "Whether the constitution was framed by a constituent assembly",
+      "Whether the constitution can be amended by ordinary law-making",
+      "Whether the constitution is procedural or prescriptive"
+    ],
+    "answer": 0,
+    "explanation": "The test is the incorporation of provisions in a book, document or series of documents. Framing by a constituent assembly is a feature that usually accompanies a written constitution but is not itself the basis of the classification, amendment by ordinary law is the flexible–rigid test, and the procedural–prescriptive pair is a separate archetype from Bulmer.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q015",
+    "topic": "POL-03",
+    "stem": "An unwritten constitution is also described as",
+    "options": [
+      "A documentary or codified constitution",
+      "A non-documentary or uncodified constitution",
+      "An inelastic constitution",
+      "A cumulative and rigid constitution"
+    ],
+    "answer": 1,
+    "explanation": "An unwritten constitution is non-documentary or uncodified — its provisions live in conventions, practices, charters, statutes and judicial decisions. Documentary and codified describe the written constitution, and inelastic describes a rigid one. Although unwritten constitutions are indeed cumulative, they are typically flexible rather than rigid, which makes the last option wrong on its second word.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q016",
+    "topic": "POL-03",
+    "stem": "Which of the following countries is usually cited as having an unwritten constitution?",
+    "options": [
+      "Canada",
+      "Israel",
+      "Japan",
+      "France"
+    ],
+    "answer": 1,
+    "explanation": "Israel is cited along with the UK and New Zealand as having an unwritten or uncodified constitution. Canada, Japan and France appear on the written side of the list together with the USA and India, so the question is simply whether the two lists are held apart.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q017",
+    "topic": "POL-03",
+    "stem": "The classification of constitutions into rigid and flexible was given by",
+    "options": [
+      "Elliot Bulmer",
+      "K.C. Wheare",
+      "Lord James Bryce",
+      "Louis Henkin"
+    ],
+    "answer": 2,
+    "explanation": "Lord James Bryce gave the rigid–flexible classification, whose basis is the method of amendment. Wheare supplied the quasi-federal description of India, Bulmer the eight functions and the procedural–prescriptive archetypes, and Henkin the eight elements of constitutionalism. Attaching each idea to its owner is most of the work in this chapter.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q018",
+    "topic": "POL-03",
+    "stem": "A rigid constitution is one which",
+    "options": [
+      "Can be amended in the same manner as ordinary laws",
+      "Cannot be amended at all once adopted",
+      "Can be amended only by a constituent assembly specially convened for the purpose",
+      "Requires a special procedure for amendment, distinct from ordinary law-making"
+    ],
+    "answer": 3,
+    "explanation": "Rigidity means a special amendment procedure, distinguishing constitutional law from ordinary law — not unamendability, and not necessarily a fresh constituent assembly. Amendment by the ordinary law-making process describes a flexible constitution. The essence of the distinction is whether the constitution and ordinary statutes are made by the same procedure.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q019",
+    "topic": "POL-03",
+    "stem": "Consider the following statements:\n1. A rigid constitution makes a distinction between constitutional law and ordinary law.\n2. A flexible constitution is also known as an elastic constitution.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. Because a rigid constitution requires a special amendment procedure, it necessarily separates constitutional law from ordinary law, while a flexible constitution, amendable like any statute, draws no such line. Flexible is synonymous with elastic and rigid with inelastic — a pairing that is frequently reversed in options.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q020",
+    "topic": "POL-03",
+    "stem": "Which of the following sets consists only of countries with rigid constitutions?",
+    "options": [
+      "USA, Australia and Switzerland",
+      "UK, New Zealand and Israel",
+      "UK, France and Japan",
+      "USA, UK and New Zealand"
+    ],
+    "answer": 0,
+    "explanation": "The USA, Australia and Switzerland are the standard examples of rigid or inelastic constitutions. The UK and New Zealand are the standard flexible examples, so any set containing them fails. Note that the UK, France and Japan form the unitary list rather than a rigidity list — different classifications reuse the same countries, which is what makes these sets confusable.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q021",
+    "topic": "POL-03",
+    "stem": "With reference to the rigid–flexible classification, the Constitution of India is",
+    "options": [
+      "Wholly rigid",
+      "Neither rigid nor flexible, but a synthesis of both",
+      "Wholly flexible",
+      "Flexible in form but rigid in practice"
+    ],
+    "answer": 1,
+    "explanation": "The settled description is that the Indian Constitution is neither rigid nor flexible but a synthesis of the two — some provisions are amendable by a simple majority, others require a special majority, and a few additionally require ratification by the states. Calling it wholly rigid or wholly flexible misses the graded amendment scheme, and the form-versus-practice framing is not the recognised formulation.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q022",
+    "topic": "POL-03",
+    "stem": "The classification of constitutions into federal and unitary is based on",
+    "options": [
+      "The method of amendment",
+      "Whether the constitution is written or unwritten",
+      "The nature of the relationship between the national and the regional governments",
+      "Whether the constitution was evolved or enacted"
+    ],
+    "answer": 2,
+    "explanation": "The federal–unitary classification rests on how power stands as between the national and regional governments — divided in a federal constitution, concentrated in a unitary one. The method of amendment gives rigid and flexible, incorporation in a document gives written and unwritten, and the process of coming into being gives evolved and enacted.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q023",
+    "topic": "POL-03",
+    "stem": "Under a unitary constitution, the regional governments",
+    "options": [
+      "Operate independently within their own jurisdictions",
+      "Derive their powers directly from the constitution and cannot be overridden",
+      "Share sovereign power equally with the national government",
+      "Operate as subordinate agencies of the national government and exercise only delegated powers"
+    ],
+    "answer": 3,
+    "explanation": "In a unitary system power is concentrated in the national government and the regional governments act as its subordinate agencies, exercising only such powers as are delegated to them. Independent operation within one's own jurisdiction, and powers drawn directly from the constitution, describe a federal system instead — which is the whole point of the distinction.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q024",
+    "topic": "POL-03",
+    "stem": "Which one of the following countries has a unitary constitution?",
+    "options": [
+      "Norway",
+      "Brazil",
+      "Switzerland",
+      "Canada"
+    ],
+    "answer": 0,
+    "explanation": "Norway appears in the unitary list along with the UK, France, Japan, China and Italy. Brazil, Switzerland and Canada are all in the federal list together with the USA, Australia and Russia. Because the same countries recur across several classifications in this chapter, the safe approach is to memorise each list as a set.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q025",
+    "topic": "POL-03",
+    "stem": "The Constitution of India has been described as 'quasi-federal' by",
+    "options": [
+      "Lord James Bryce",
+      "K.C. Wheare",
+      "Elliot Bulmer",
+      "Louis Henkin"
+    ],
+    "answer": 1,
+    "explanation": "K.C. Wheare called the Indian Constitution quasi-federal because it contains federal and unitary provisions together. Bryce is the author of the rigid–flexible classification, Bulmer of the eight functions and the procedural–prescriptive archetypes, and Henkin of the eight elements of constitutionalism. Note that Wheare also supplied a general definition of a constitution, so his name appears twice in this chapter for different reasons.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q026",
+    "topic": "POL-03",
+    "stem": "The distinction between procedural and prescriptive constitutions relates to",
+    "options": [
+      "Whether the constitution is federal or unitary",
+      "The number of amendments the constitution has undergone",
+      "The nature and purposes of the constitutional document itself",
+      "Whether the constitution was framed before or after independence"
+    ],
+    "answer": 2,
+    "explanation": "Bulmer's two archetypes are distinguished by what the document is for. A procedural constitution defines institutions and the legal limits of power to protect democratic processes and fundamental rights; a prescriptive constitution goes further and assumes or imposes a consensus on common societal goals. Amendment counts, the federal question and the date of framing have no bearing on the archetype.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q027",
+    "topic": "POL-03",
+    "stem": "A constitution which, in addition to describing how the government functions, assumes or attempts to impose a broad consensus on common societal goals that public authorities must strive to achieve is called",
+    "options": [
+      "A procedural constitution",
+      "An elastic constitution",
+      "A cumulative constitution",
+      "A prescriptive constitution"
+    ],
+    "answer": 3,
+    "explanation": "That is the prescriptive archetype — a rulebook plus a destination. The procedural archetype stops at defining structures and the legal limits of government power to protect democratic processes and rights. Cumulative describes an evolved constitution and elastic a flexible one, neither of which concerns the purposes of the document.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q028",
+    "topic": "POL-03",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Basis of classification)\nA. Method of amendment\nB. Incorporation of provisions\nC. Relationship between national and regional governments\nList II (Resulting types)\n1. Written and unwritten\n2. Federal and unitary\n3. Rigid and flexible",
+    "options": [
+      "A-3, B-1, C-2",
+      "A-1, B-3, C-2",
+      "A-3, B-2, C-1",
+      "A-2, B-1, C-3"
+    ],
+    "answer": 0,
+    "explanation": "The method of amendment yields rigid and flexible, the incorporation of provisions in a document yields written and unwritten, and the national–regional relationship yields federal and unitary. The remaining two bases in the chapter are the process of evolution, which yields evolved and enacted, and the purpose of the document, which yields procedural and prescriptive.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q029",
+    "topic": "POL-03",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Scholar)\nA. Lord James Bryce\nB. K.C. Wheare\nC. Louis Henkin\nList II (Contribution)\n1. Described the Indian Constitution as quasi-federal\n2. Identified eight elements of constitutionalism\n3. Classified constitutions into rigid and flexible",
+    "options": [
+      "A-1, B-3, C-2",
+      "A-3, B-1, C-2",
+      "A-2, B-1, C-3",
+      "A-3, B-2, C-1"
+    ],
+    "answer": 1,
+    "explanation": "Bryce gave the rigid–flexible classification, Wheare called India quasi-federal, and Henkin listed the eight elements of constitutionalism. The fourth name in the chapter, Elliot Bulmer, owns both the eight functions of a constitution and the procedural–prescriptive archetypes — and Bulmer's eight are the ones most often mistaken for Henkin's.",
+    "tier": 3,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q030",
+    "topic": "POL-03",
+    "stem": "Which of the following statements best expresses the relationship between a constitution and constitutionalism?",
+    "options": [
+      "Every country that has a constitution necessarily has constitutionalism",
+      "Constitutionalism is possible only where the constitution is written",
+      "Constitutionalism precedes and creates the constitution in every case",
+      "A country may have a constitution but not constitutionalism, as in the case of a dictatorship"
+    ],
+    "answer": 3,
+    "explanation": "A dictatorship may possess a constitution while lacking constitutionalism altogether, which is why a constitution must be permeated with constitutionalism rather than merely coexist with it. Constitutionalism does not depend on the constitution being written — the UK is the standing counter-example — and it is a quality of how power is limited, not a precondition that creates the document.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q031",
+    "topic": "POL-03",
+    "stem": "Constitutionalism connotes, in essence,",
+    "options": [
+      "Limited government and the antithesis of arbitrary power",
+      "Government strictly according to the written text of a constitution",
+      "The supremacy of the legislature over the other organs",
+      "The concentration of authority in a single accountable office"
+    ],
+    "answer": 0,
+    "explanation": "Constitutionalism means limited government and is the antithesis of arbitrary power. Government merely according to the terms of a constitution is not enough — Wheare's definition makes exactly that point, since a document can itself confer arbitrary power. Legislative supremacy and concentrated authority run against the requirement that power be decentralised and restrained.",
+    "tier": 2,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q032",
+    "topic": "POL-03",
+    "stem": "Assertion (A): Arbitrary power in the hands of an individual or an institution negates constitutionalism even when it is conferred by a constitutional document.\nReason (R): Constitutionalism requires the limitation of governmental power, not merely its legal authorisation.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. Because constitutionalism is defined by limitation rather than by legality, a power that is perfectly lawful under the document can still be a negation of constitutionalism. This is the trap most often set on this chapter: the test is whether power is restrained, not whether it was validly conferred.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q033",
+    "topic": "POL-03",
+    "stem": "A country is said to have not merely a constitution but constitutionalism when its constitution",
+    "options": [
+      "Is longer and more detailed than that of other countries",
+      "Seeks to decentralise power instead of concentrating it at one point, and imposes further restraints on it",
+      "Has been adopted by a directly elected constituent assembly",
+      "Cannot be amended by the ordinary legislature"
+    ],
+    "answer": 1,
+    "explanation": "The stated test is decentralisation of power together with additional restraints upon it. Length, the manner of adoption and rigidity of amendment are all beside the point — a rigid constitution adopted by a directly elected assembly can still concentrate power, and would then lack constitutionalism.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q034",
+    "topic": "POL-03",
+    "stem": "Who defined constitutionalism as providing 'a system of effective restraints upon governmental action... a body of rules ensuring fairplay, thus rendering the government responsible'?",
+    "options": [
+      "Roucek",
+      "Wheare",
+      "Ybema",
+      "Friedrich"
+    ],
+    "answer": 3,
+    "explanation": "This is Friedrich, whose emphasis falls on effective restraints and fair play making government responsible. Roucek stressed that constitutionalism is essentially limited government, Ybema that rulers must be subject to rules and principles limiting their power, and Wheare that constitutional government means more than government according to the terms of a constitution.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q035",
+    "topic": "POL-03",
+    "stem": "Which scholar held that 'constitutional government means something more than a government according to the terms of a constitution'?",
+    "options": [
+      "Wheare",
+      "Friedrich",
+      "Gilchrist",
+      "Gettell"
+    ],
+    "answer": 0,
+    "explanation": "Wheare made this point — government by rule as opposed to arbitrary government, limited by the terms of the constitution rather than by the desires and capacities of those who exercise power. Friedrich's formulation is about effective restraints and fair play. Gilchrist and Gettell defined the constitution itself and said nothing about constitutional government.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q036",
+    "topic": "POL-03",
+    "stem": "Match List I with List II and select the correct answer:\nList I (Scholar)\nA. Roucek\nB. Ybema\nC. Friedrich\nList II (View on constitutionalism)\n1. A government is constitutional only when the rulers are subject to a body of rules and principles limiting the exercise of their power\n2. Constitutionalism means essentially limited government, the antithesis of government by the unrestrained will of rulers\n3. Constitutionalism provides a system of effective restraints upon governmental action, rendering the government responsible",
+    "options": [
+      "A-1, B-2, C-3",
+      "A-2, B-1, C-3",
+      "A-3, B-1, C-2",
+      "A-2, B-3, C-1"
+    ],
+    "answer": 1,
+    "explanation": "Roucek gives the 'essentially limited government' formulation, Ybema the requirement that rulers be subject to limiting rules and principles, and Friedrich the language of effective restraints and responsible government. All four definitions in this group say the same thing in different words, so the marks come entirely from attaching the wording to the right name.",
+    "tier": 5,
+    "format": "match-pairs",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q037",
+    "topic": "POL-03",
+    "stem": "The eight elements of constitutionalism — popular sovereignty, rule of law, democratic government and others — were identified by",
+    "options": [
+      "Elliot Bulmer",
+      "K.C. Wheare",
+      "Carl Friedrich",
+      "Louis Henkin"
+    ],
+    "answer": 3,
+    "explanation": "Louis Henkin identified the eight elements of constitutionalism. Elliot Bulmer's list of eight is of the functions of a constitution — the two are the most confusable pair in the chapter, so anchor them by subject: Bulmer describes what the document does, Henkin what a state must have. Friedrich and Wheare supplied definitions, not lists.",
+    "tier": 3,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q038",
+    "topic": "POL-03",
+    "stem": "Which of the following is NOT one of the elements of constitutionalism identified by Louis Henkin?",
+    "options": [
+      "A written and codified constitution",
+      "An independent judiciary",
+      "Civilian control of the military",
+      "Police governed by law and judicial control"
+    ],
+    "answer": 0,
+    "explanation": "Henkin's list does not require the constitution to be written — the United Kingdom is uncodified yet is the classic home of constitutionalism. His eight are popular sovereignty, rule of law, democratic government, separation of powers, an independent judiciary, civilian control of the military, police governed by law and subject to judicial control, and respect for individual rights.",
+    "tier": 4,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q039",
+    "topic": "POL-03",
+    "stem": "Consider the following statements about the elements of constitutionalism identified by Louis Henkin:\n1. They include civilian control of the military.\n2. They include the separation of powers with checks and balances.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are among Henkin's eight. Civilian control of the military and police governed by law together subordinate the institutions that hold actual force, while the separation of powers with checks and balances divides authority so that no organ can act unchecked. The remaining elements are popular sovereignty, rule of law, democratic government, an independent judiciary and respect for individual rights.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q040",
+    "topic": "POL-03",
+    "stem": "Consider the following statements:\n1. The Constitution of India contains both federal and unitary provisions.\n2. The classification of constitutions into federal and unitary rests on the concentration or division of power between the national and regional governments.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct, and the first follows from the second. Because the Indian Constitution divides power between the Union and the states while also allowing power to be concentrated at the Centre in specified situations, it carries both sets of provisions — which is exactly why K.C. Wheare described it as quasi-federal rather than federal.",
+    "tier": 3,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q041",
+    "topic": "POL-03",
+    "stem": "Assertion (A): The distinction between a written and an unwritten constitution is more or less the same as that between an enacted and an evolved constitution.\nReason (R): A constitution that is deliberately made by a constituent body is normally set down in a document, while one that grows historically is normally found in conventions and judicial decisions.\nSelect the correct answer:",
+    "options": [
+      "Both A and R are true, and R is the correct explanation of A",
+      "Both A and R are true, but R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is false but R is true"
+    ],
+    "answer": 0,
+    "explanation": "Both are true and R explains A. The two classifications use different tests — deliberate making against gradual growth, and incorporation in a document against its absence — but the tests track each other so closely that the same countries appear on the same sides. That is why Britain is simultaneously the standard evolved and the standard unwritten example, and India the standard enacted and written one.",
+    "tier": 4,
+    "format": "assertion-reason",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q042",
+    "topic": "POL-03",
+    "stem": "Which of the following pairs is correctly matched?",
+    "options": [
+      "Flexible constitution — inelastic constitution",
+      "Rigid constitution — inelastic constitution",
+      "Evolved constitution — conventional constitution",
+      "Written constitution — non-documentary constitution"
+    ],
+    "answer": 1,
+    "explanation": "Rigid and inelastic are the same thing, as are flexible and elastic. The other three pairs are each reversed: a flexible constitution is elastic, a written constitution is documentary, and an evolved constitution is cumulative — 'conventional' belongs, counter-intuitively, to the enacted constitution.",
+    "tier": 4,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q043",
+    "topic": "POL-03",
+    "stem": "Which of the following is NOT listed among the qualities of a good constitution?",
+    "options": [
+      "Brevity",
+      "Comprehensiveness",
+      "Suitability",
+      "Rigidity"
+    ],
+    "answer": 3,
+    "explanation": "Rigidity is a basis of classification, not a quality. The seven qualities are brevity, clarity, definiteness, comprehensiveness, suitability, stability and adaptability. The nearest listed quality to rigidity is stability, which asks only that the constitution not be open to easy tampering — a far weaker requirement than a special amendment procedure.",
+    "tier": 3,
+    "format": "odd-one-out",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q044",
+    "topic": "POL-03",
+    "stem": "A constitution defines the organisation and working of the government and, in addition, specifies",
+    "options": [
+      "The qualifications of civil servants in each department",
+      "The economic policy to be followed by every future government",
+      "The list of political parties permitted to contest elections",
+      "The relationship between the government and the people in terms of their rights and duties"
+    ],
+    "answer": 3,
+    "explanation": "The two limbs of every standard definition are the organisation and working of government and the government–people relationship expressed as rights and duties. Fixing economic policy for all time, licensing parties or laying down departmental service qualifications are matters of ordinary law and administration, not of the constitutional definition.",
+    "tier": 1,
+    "format": "single-factual",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  },
+  {
+    "id": "POL-03-Q045",
+    "topic": "POL-03",
+    "stem": "Consider the following statements:\n1. Elliot Bulmer identified the functions of a constitution as well as the procedural and prescriptive archetypes.\n2. Louis Henkin identified the elements of constitutionalism.\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "answer": 2,
+    "explanation": "Both are correct. Bulmer owns two separate contributions in this chapter — the eight functions of a constitution and the procedural–prescriptive pair of archetypes — while Henkin owns the eight elements of constitutionalism. Since both men are associated with a list of eight, the safest anchor is the subject matter rather than the number.",
+    "tier": 4,
+    "format": "statement-based",
+    "exams": [
+      "capf",
+      "cse"
+    ],
+    "source": {
+      "type": "ai",
+      "model": "claude-opus-5",
+      "validated_by": null,
+      "validated_on": null
+    },
+    "status": "draft",
+    "added": "2026-07-30"
+  }
+]
