@@ -92,7 +92,16 @@
 		try {
 			await loginWithGoogle();
 			goto(auth.isOnboarded ? '/' : '/onboarding', { replaceState: true });
-		} catch {
+		} catch (err) {
+			// Keep the original exception: a bare `catch {}` here hid the real
+			// cause (PB's code-exchange failure) behind the generic copy below.
+			const e = err as { status?: number; message?: string; response?: unknown };
+			console.error('[oauth] google sign-in failed', {
+				status: e?.status,
+				message: e?.message,
+				response: e?.response,
+				raw: err
+			});
 			fail('Google sign-in failed or was cancelled.');
 		} finally {
 			busy = false;

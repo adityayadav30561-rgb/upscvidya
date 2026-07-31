@@ -28,6 +28,18 @@
   the repo's declared status, and never touches a retired PYQ with no repo
   counterpart (that one may have been retired deliberately).
 
+- **Sync imports; `pnpm promote` publishes. They are deliberately separate.**
+  Sync lands topics and questions as `draft`, and every client read filters
+  `status = "live"`, so synced content is invisible until promoted. That gap was
+  the review gate all along, but it had no command — promoting meant a manual
+  superuser PATCH per record, which does not survive a 103-chapter campaign.
+  `scripts/content/promote.js` is that command, and it stays a *separate* step
+  rather than a `--publish` flag on sync: CI can then auto-sync on every push to
+  `main` while publishing stays a human act. Promotion is forward-only —
+  `retired` is never resurrected (sync retires repo deletions; a blanket promote
+  would undelete them) and CA-sourced questions are skipped because they belong
+  to the admin validation queue.
+
 - **Chapter notes carry retrieval prompts by rule, not by taste:** 1 `:::predict`
   after the intro, 1 `:::cloze` per ~300 words, 1 `:::recall` before the quiz
   CTA. The predict block asks something the intro has *not* answered yet — a
@@ -240,8 +252,21 @@
 - Consent screen: **External**, default non-sensitive scopes (`email`,
   `profile`, `openid`) ⇒ **no Google verification review**. "Testing" mode caps
   at 100 users; publishing to Production needs a privacy-policy URL.
-- Copy the redirect URL **from the PB admin panel** — it is version-specific,
-  never guess it.
+- ⚠️ **Do NOT copy the redirect URL from the PB admin panel.** The panel derives
+  what it displays from PB's own `meta.appURL`, but the SDK sends
+  `pb.buildURL('/api/oauth2-redirect')` — built from **`PUBLIC_PB_URL`**. With
+  `appURL=http://localhost:8090` and `PUBLIC_PB_URL=http://127.0.0.1:8090` those
+  differ, and Google compares redirect URIs as exact strings ⇒
+  `redirect_uri_mismatch`. Register the `PUBLIC_PB_URL` form. Don't "fix" it by
+  moving `PUBLIC_PB_URL` to `localhost`: on Windows that can resolve to `::1`
+  while PB binds `127.0.0.1` only.
+- **PB masks the stored client secret in every API response**, so a misconfigured
+  provider looks identical to an empty one. Diagnose OAuth from **PB's logs**
+  (`/api/logs`), where the real cause appears — e.g. `oauth2: "invalid_client"`
+  when the ID and secret come from two different OAuth clients.
+- PB's auto-generated `*_updated_users.js` migrations record only
+  `oauth2.enabled`; credentials are excluded. Check each one before staging
+  anyway — a migration carrying a `clientSecret` must never be committed.
 
 ## Workflow
 

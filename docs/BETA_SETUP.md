@@ -13,8 +13,8 @@ that; 3, 4, 6, 8 can land after the first install works.
 
 | # | Step | State |
 |---|---|---|
-| 1 | Google login (Cloud Console + PB `users` OAuth2) | ⬅️ **in progress** — blocked on user |
-| 2 | PocketHost deploy (backend) | ⬜ *critical path* |
+| 1 | Google login (Cloud Console + PB `users` OAuth2) | ✅ **done (local)** — redo on PocketHost in step 2 |
+| 2 | PocketHost deploy (backend) | ⬅️ **next** — *critical path* |
 | 2b | **Cloudflare Pages deploy (frontend) + HTTPS origin** | ⬜ *critical path* |
 | 3 | API keys — AI ✅ (5 providers) · PostHog · OneSignal | 🟡 AI done |
 | 4 | Notifications verified | ⬜ |
@@ -112,6 +112,24 @@ Verify afterwards in PB Admin → `users`: the new row has the Google email, and
 
 ### Gotchas
 
+- **The redirect URI is built from `PUBLIC_PB_URL`, not from PB's Application
+  URL.** The SDK sends `pb.buildURL('/api/oauth2-redirect')`, so with
+  `PUBLIC_PB_URL=http://127.0.0.1:8090` the value Google must have registered is
+  `http://127.0.0.1:8090/api/oauth2-redirect`. The PB admin panel *displays* a
+  redirect URL derived from its own `meta.appURL` (`http://localhost:8090/...`) —
+  register that one and you get `redirect_uri_mismatch`, because Google compares
+  the strings exactly and `localhost` ≠ `127.0.0.1`. Register the `127.0.0.1`
+  form. Don't "fix" it by switching `PUBLIC_PB_URL` to `localhost`: on Windows
+  that can resolve to `::1` while PB binds `127.0.0.1` only.
+- **`invalid_client` after the consent screen** means the ID and secret in PB
+  belong to different OAuth clients (or the secret was rotated). Symptom: PB logs
+  `Failed to fetch OAuth2 token` / `oauth2: "invalid_client"`, status 400 on
+  `/api/collections/users/auth-with-oauth2`. The admin API masks the stored
+  secret, so it always *looks* empty — check PB's logs, not the config screen.
+  Fix by pasting a matched ID+secret pair from one client's screen.
+- **A Google login for an email that already has an account links to it** rather
+  than creating a duplicate (PB adds a `_externalAuths` row). Existing XP, rank
+  and streak survive — this is the wanted behaviour, not a bug.
 - `authWithOAuth2` opens a **popup**. Browsers only allow it because it starts
   from a real click — keep the call inside the click handler (it is).
 - Adding PocketHost later means **appending** a second origin + redirect URI to
@@ -121,22 +139,80 @@ Verify afterwards in PB Admin → `users`: the new row has the Google email, and
 
 ---
 
-## Step 2 — PocketHost deploy (not started)
+## Step 2 — PocketHost deploy (next)
 
-Outline, for when step 1 is green:
+Step 1 is green locally, so this is next. **Local PB version is `0.39.7`** — the
+hosted instance must match, or hooks written against this API surface break.
+
+### 2.1 Create the instance
 
 1. Sign up at <https://pockethost.io>, create an instance → gives
    `https://<name>.pockethost.io` with TLS.
-2. Upload `pb/pb_migrations/` and `pb/pb_hooks/` (hooks include `lib/`).
-   Confirm the PB version matches what the hooks expect.
-3. Create the superuser; re-do the step-1b Google config on the hosted instance
-   (PB config lives in the database, so it does **not** travel with the code).
-4. Add `https://<name>.pockethost.io`'s redirect URI + the Cloudflare Pages
-   origin to the Google OAuth client.
-5. `PB_URL_PROD=https://<name>.pockethost.io` in `.env`, then
-   `pnpm validate && pnpm sync -- --env prod`.
-6. Point the deployed frontend at it via `PUBLIC_PB_URL`.
-7. Lock CORS to the Pages origin.
+2. In the instance settings, **pin the PocketBase version to 0.39.7**. Do not
+   leave it on "latest" — an upgrade under our feet changes the JSVM surface the
+   hooks rely on.
+3. Open the hosted admin UI and **create the superuser**.
+
+### 2.2 Upload the server code
+
+Upload over PocketHost's FTP:
+
+- `pb/pb_migrations/` → the instance's `pb_migrations/`
+- `pb/pb_hooks/` → the instance's `pb_hooks/` — **including `lib/`**
+  (`xp.js`, `entitle.js`, `notify.js`). Hooks `require` these at call time; miss
+  the folder and quiz/SR/XP/pay all throw at runtime, not at boot.
+
+Then **restart the instance**. PB only loads migrations and hooks on boot.
+
+Verify: `https://<name>.pockethost.io/api/health` returns 200, and the admin UI
+lists all collections (`topics`, `questions`, `topics_public`, `quiz_sessions`,
+`workout_logs`, …). If collections are missing, the migrations did not run —
+check the upload path and restart again.
+
+### 2.3 Redo the Google config (it does not travel with the code)
+
+PB config lives in its own database, so the hosted instance starts with OAuth2
+off. Repeat step 1b there, then **append** to the *same* Google OAuth client
+(never replace — local must keep working):
+
+- Authorized redirect URI: `https://<name>.pockethost.io/api/oauth2-redirect`
+
+Re-read the Step 1 gotchas first: the redirect URI comes from `PUBLIC_PB_URL`,
+and an ID/secret pair from two different clients gives `invalid_client`.
+
+### 2.4 Server-only environment
+
+Set on the instance (never in the client bundle): one AI key for `/api/ca/compose`
+(`OPENROUTER_API_KEY` or `GROQ_API_KEY`), and `ONESIGNAL_APP_ID` /
+`ONESIGNAL_REST_KEY` if push is wanted. **Razorpay stays unset all beta.**
+
+### 2.5 Push the content
+
+```bash
+# .env
+PB_URL_PROD=https://<name>.pockethost.io
+
+pnpm validate
+pnpm sync -- --env prod            # lands everything as draft
+pnpm promote -- --env prod --all --dry-run
+pnpm promote -- --env prod --all   # draft → live; users can now see it
+```
+
+Sync publishes nothing on its own. Expect ~8 topics and ~416 questions.
+Verify: `https://<name>.pockethost.io/api/collections/topics_public/records`
+returns 8 rows with non-zero `live_questions`.
+
+### 2.6 Wire CI
+
+GitHub → Settings → Secrets → Actions: `PB_URL` = the PocketHost URL,
+`PB_ADMIN_EMAIL`, `PB_ADMIN_PASSWORD`. `content-sync.yml` then syncs on every
+push touching `content/**`. It has been failing until now because no prod
+existed. Promote stays manual — that is the review gate.
+
+### 2.7 Deferred to step 2b
+
+`PUBLIC_PB_URL` on Cloudflare Pages and the CORS lockdown both need the Pages
+origin, which does not exist yet.
 
 ---
 

@@ -106,6 +106,7 @@
 | One-off PYQ status repair | `scripts/content/repair-pyq-status.js` (`pnpm repair:pyq`) |
 | MCQ ingestion (OCR + AI) | `scripts/ingest/ingest.js`, `parse.js`, `ai.js` |
 | AI failover chain (OpenRouter → Gemini → Mistral → OpenCode → Groq; `AI_PROVIDER` pins one) | `scripts/ingest/ai.js`, `infra/jobs/ca-pipeline/index.js`, `pb/pb_hooks/ca_extra.pb.js` |
+| Cloudflare Pages SPA fallback (deep links) | `static/_redirects` |
 | VPS infra | `infra/setup.sh`, `Caddyfile`, `infra/backup/`, `infra/jobs/ca-pipeline/` |
 | Server ops + **Oracle account posture** (read before provisioning) | `infra/SERVER.md` |
 | What beta/launch cost (₹0 / domain only) | `docs/BETA_SETUP.md` → "What this costs" |
