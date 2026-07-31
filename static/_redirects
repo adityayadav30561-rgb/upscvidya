@@ -1,0 +1,7 @@
+# Cloudflare Pages SPA fallback.
+# adapter-static emits index.html as the fallback, but Pages only serves it for
+# unmatched routes if this rule exists — without it every deep link (/map,
+# /topic/POL-06, /quiz/POL-06, a shared /r/CODE link, an installed PWA cold-start
+# on a saved route) returns 404. Static assets and the prerendered /pyq/*.html
+# pages match first, so this only catches client-routed paths.
+/*  /index.html  200
