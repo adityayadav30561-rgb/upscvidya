@@ -157,6 +157,18 @@ Pre-flight (local, already verified): `pocketbase.exe --version` → 0.39.7 ·
 
 ### 2.1 Oracle tenancy
 
+⛔ **Needs a card.** Signup requires payment verification — Oracle rejects
+virtual, prepaid and single-use cards; a normal Visa/Mastercard **debit** card
+that does not require a PIN is accepted. The charge is a reversible hold, and
+Always Free resources stay free whether or not you upgrade. Everything in step 2
+is parked until a card is available; steps 7 and 9 are static frontend work that
+can proceed meanwhile.
+
+⚠️ Signup also starts a **30-day trial with ~$300 of credits** — not the same
+thing as Always Free. Those credits silently pay for paid-tier shapes during the
+trial, and the bill starts when it converts. Provision correctly with the first
+instance: `infra/SERVER.md` → "Oracle account posture".
+
 1. <https://signup.oraclecloud.com> → sign up. **Home region: pick an Indian one**
    (Mumbai / Hyderabad) — it cannot be changed later.
 2. **Upgrade to Pay As You Go** (Billing → Upgrade). Mandatory, not optional:

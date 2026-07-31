@@ -18,6 +18,19 @@ An OCI budget **only sends alerts**. It does not block provisioning and does not
 stop charges. There is no hard spending limit on OCI. Set one anyway (₹100,
 alert at 1% of forecast) — but treat it as a smoke alarm, never as a guarantee.
 
+### ⚠️ The 30-day trial credits are the real trap
+
+Signup starts a **30-day free trial with ~$300 of promo credits**, which is a
+*different* thing from Always Free. During the trial those credits happily pay
+for paid-tier shapes, so a wrong choice looks free and behaves free. When the
+trial ends and the tenancy converts to PAYG, anything outside the Always Free
+allowances **starts billing** — the credits were the only thing covering it.
+
+So provision correctly with the *first* instance, not "clean it up later". Signup
+also requires a real card: **no virtual, prepaid or single-use cards**; a normal
+Visa/Mastercard debit card that does not require a PIN is accepted. The
+verification charge is a temporary hold and reverses.
+
 ### Stay-free checklist (apply at every create-resource step)
 
 - Only pick shapes the console tags **"Always Free eligible"**.

@@ -35,20 +35,33 @@ step order: **[BETA_SETUP.md](BETA_SETUP.md)** — critical path 1 → 2 → 2b 
 
 ## In progress
 
-Nothing half-done in code. Step 2 is blocked only on the Oracle signup.
+Nothing half-done in code.
+
+## ⛔ Blocker
+
+**Step 2 needs a card.** Oracle signup requires payment verification — no
+virtual, prepaid or single-use cards; a normal no-PIN Visa/Mastercard debit card
+works. The charge is a reversible hold, and Always Free stays free. **No card
+available right now**, so the whole backend chain (2 → 2b → login → sync →
+promote) is parked until one is.
 
 ## Next
 
-1. **Step 2 — Oracle VPS**, runbook in BETA_SETUP §2.1–2.9: Oracle signup
-   (Indian home region) + **PAYG upgrade** → `VM.Standard.A1.Flex` Ubuntu 24.04 →
-   **VCN ingress 80/443** → DuckDNS `upscvidya` → `git clone` on the box →
-   `sudo DOMAIN=upscvidya.duckdns.org API_HOST=upscvidya.duckdns.org
+1. **When a card exists — Step 2, Oracle VPS**, runbook in BETA_SETUP §2.1–2.9:
+   signup (Indian home region) + **PAYG upgrade** → `VM.Standard.A1.Flex`
+   Ubuntu 24.04 → **VCN ingress 80/443** → DuckDNS `upscvidya` → `git clone` on
+   the box → `sudo DOMAIN=upscvidya.duckdns.org API_HOST=upscvidya.duckdns.org
    ADMIN_SSH_KEY="…" bash infra/setup.sh` → superuser → Google OAuth (append the
    redirect URI) → `PB_URL_PROD` in `.env` → `pnpm sync -- --env prod` →
-   `pnpm promote -- --env prod --all` → CI secrets.
-2. **Step 2b** — Cloudflare Pages; every `PUBLIC_*` var must exist or the build fails.
-3. **Steps 5 / 7 / 9** — beta-free system, privacy + terms, install guide.
-4. Only then **POL-07 (Citizenship, `mcq_floor` 30)**.
+   `pnpm promote -- --env prod --all` → CI secrets. Then **2b** (Cloudflare
+   Pages; every `PUBLIC_*` var must exist or the build fails) and **step 5**
+   (beta-free system).
+2. **Workable while the card is blocked** — both are pure static frontend, no
+   backend needed: **step 7** (privacy policy + terms pages, which also unblock
+   publishing the Google consent screen to Production) and **step 9** (the
+   Android + iOS install guide). Doing these now means step 2 is the only thing
+   left when a card appears.
+3. Only then **POL-07 (Citizenship, `mcq_floor` 30)**.
 
 ## Active files
 
