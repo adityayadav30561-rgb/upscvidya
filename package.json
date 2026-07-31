@@ -16,6 +16,7 @@
 		"format": "prettier --write .",
 		"validate": "node scripts/content/validate.js",
 		"sync": "node --env-file-if-exists=.env scripts/content/sync.js",
+		"promote": "node --env-file-if-exists=.env scripts/content/promote.js",
 		"repair:pyq": "node --env-file-if-exists=.env scripts/content/repair-pyq-status.js",
 		"ingest": "node scripts/ingest/ingest.js",
 		"pyq:snapshot": "node scripts/content/pyq-snapshot.js"

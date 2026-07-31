@@ -469,7 +469,9 @@ pnpm test                # vitest unit run
 pnpm test:watch          # vitest watch
 
 pnpm validate            # validate content/ against schema (exit non-zero on error)
-pnpm sync -- --env dev   # upsert content → PocketBase (idempotent; retires, never deletes)
+pnpm sync -- --env dev   # upsert content → PocketBase (idempotent; retires, never deletes) — lands as draft
+pnpm promote -- --env prod --topic POL-06   # draft → live (topic + its questions). --all, --dry-run, --include-ca
+
 pnpm ingest -- --topic POL-08 --source "external:<name>" --file input.txt
 pnpm pyq:snapshot        # regenerate src/lib/pyq-snapshot.json
 pnpm repair:pyq -- --env prod [--apply]   # one-off: un-retire PYQs killed by the old sync bug (dry run by default)
@@ -526,7 +528,7 @@ repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.
 - **Typed PB access only** via the `pb` singleton in [src/lib/pb.ts](src/lib/pb.ts) — it maps collection names to hand-written types in `src/lib/types.ts`. Update `types.ts` whenever the schema changes.
 - **Components** are added to `src/lib/components/`, exported through `index.ts`, given a vitest, and shown in `/dev/kitchen-sink` in every state. Match the mockups; don't restyle.
 - **Design fidelity:** `docs/design` owns layout/copy/IA; the **Field Dossier** handoff (§4.1) owns colour, material and type. Compose from `dossier.css` utilities + `tokens.css` variables — no ad-hoc hex or one-off gradients.
-- **Content edits** go through `content/` → `pnpm validate` → `pnpm sync`, never by editing PB directly (except transient dev data).
+- **Content edits** go through `content/` → `pnpm validate` → `pnpm sync` → `pnpm promote`, never by editing PB directly (except transient dev data). Sync lands everything as `draft` (invisible); **promote is what publishes it**. Forgetting promote is the single most likely reason "I synced a chapter and users can't see it".
 - **Commits:** one per build prompt, Conventional-Commits style matching git history. Only commit/push when the user asks.
 - **Offline:** notes are cache-for-offline; everything write-based (quizzes, reviews, submits) is online-only with a clean offline error state.
 

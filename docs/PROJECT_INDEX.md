@@ -102,6 +102,7 @@
 | Authored chapters | `POL-01` (50 MCQs), `POL-02` (70), `POL-03` (45), `POL-04` (70), `POL-05` (50), `POL-06` (100), `POL-10` (13), `POL-19` (14) |
 | Chapter authoring rule (Opus 5, not the AI chain) | `DECISIONS.md` → "Who authors chapters" |
 | Validate / sync / snapshot | `scripts/content/validate.js`, `sync.js`, `pyq-snapshot.js` |
+| Promote draft → live (`pnpm promote`) | `scripts/content/promote.js` |
 | One-off PYQ status repair | `scripts/content/repair-pyq-status.js` (`pnpm repair:pyq`) |
 | MCQ ingestion (OCR + AI) | `scripts/ingest/ingest.js`, `parse.js`, `ai.js` |
 | AI failover chain (OpenRouter → Gemini → Mistral → OpenCode → Groq; `AI_PROVIDER` pins one) | `scripts/ingest/ai.js`, `infra/jobs/ca-pipeline/index.js`, `pb/pb_hooks/ca_extra.pb.js` |

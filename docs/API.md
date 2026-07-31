@@ -144,7 +144,8 @@ after submit / past the timer).
 ## 7. Content pipeline (CLI + job — not HTTP)
 
 - `pnpm validate` — validate `content/` against the schema.
-- `pnpm sync -- --env dev` — upsert `content/` → PocketBase (idempotent; retires, never deletes).
+- `pnpm sync -- --env dev` — upsert `content/` → PocketBase (idempotent; retires, never deletes). Everything lands as `draft`.
+- `pnpm promote -- --env prod {--topic POL-06[,POL-10] | --all} [--dry-run] [--include-ca]` — flip synced content `draft → live`, i.e. make it visible to users. Sync alone publishes nothing; this is the review gate. Promotes the topic **and** its questions together. Forward only: `retired` is never resurrected, and CA-sourced questions are skipped (they belong to the admin queue) unless `--include-ca`. Idempotent — a second run reports "already live" and writes nothing. Warns if a topic would go live with a 0-question pool.
 - `pnpm ingest -- --topic POL-08 --source "external:<name>" --file input.txt` — MCQ ingestion CLI (Groq).
 - `pnpm pyq:snapshot` — regenerate `src/lib/pyq-snapshot.json` for the prerendered PYQ landings.
 - `pnpm repair:pyq -- --env prod [--apply]` — one-off repair for the old sync unit-filter bug that retired every `source_type="pyq"` question. Dry run unless `--apply`. Only un-retires PYQ questions that still exist in `content/pyq/`, restoring the status the repo declares; a PYQ retired in PB with no repo counterpart is reported and left alone. Sync never downgrades status, so this damage cannot self-heal.
