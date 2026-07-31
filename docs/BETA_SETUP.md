@@ -1,8 +1,10 @@
 # Beta Setup — running checklist
 
 > Everything between "the app is built" and "a stranger can use it".
-> Tick items as they land. Beta hosting = **PocketHost** (free, hosted, runs
-> without your machine); Oracle Always Free VPS is the launch destination.
+> Tick items as they land. Beta hosting = **Oracle Always Free VPS** (the launch
+> box, stood up early) + a free **DuckDNS** hostname; frontend on Cloudflare
+> Pages. PocketHost was the original beta host and **dropped its free tier on
+> 2026-07-31** — see `DECISIONS.md` → Distribution & hosting.
 > Distribution = **URL + install guide** (PWA). APK (TWA, self-hosted download,
 > not Play Store) comes later.
 
@@ -13,8 +15,8 @@ that; 3, 4, 6, 8 can land after the first install works.
 
 | # | Step | State |
 |---|---|---|
-| 1 | Google login (Cloud Console + PB `users` OAuth2) | ✅ **done (local)** — redo on PocketHost in step 2 |
-| 2 | PocketHost deploy (backend) | ⬅️ **next** — *critical path* |
+| 1 | Google login (Cloud Console + PB `users` OAuth2) | ✅ **done (local)** — redo on the VPS in step 2 |
+| 2 | Oracle VPS deploy (backend) + DuckDNS host | ⬅️ **next** — *critical path* |
 | 2b | **Cloudflare Pages deploy (frontend) + HTTPS origin** | ⬜ *critical path* |
 | 3 | API keys — AI ✅ (5 providers) · PostHog · OneSignal | 🟡 AI done |
 | 4 | Notifications verified | ⬜ |
@@ -32,9 +34,9 @@ that; 3, 4, 6, 8 can land after the first install works.
 
 | Thing | Beta plan | Cost |
 |---|---|---|
-| Backend + DB | PocketHost free instance (`*.pockethost.io`, TLS) | ₹0 |
+| Backend + DB | Oracle Always Free VPS (PAYG tenancy), Caddy TLS | ₹0 |
 | Frontend | Cloudflare Pages (`*.pages.dev`, TLS) | ₹0 |
-| Domain | none — free subdomains from both hosts | ₹0 |
+| Domain | none — free DuckDNS name + free `*.pages.dev` | ₹0 |
 | AI (CA pipeline, `pnpm ingest`) | 5 free tiers in a failover chain | ₹0 |
 | PostHog / OneSignal | free tiers; unset ⇒ no-op anyway | ₹0 |
 | Payments | Razorpay keys **unset** all beta; paywall → beta banner | ₹0 |
@@ -132,65 +134,139 @@ Verify afterwards in PB Admin → `users`: the new row has the Google email, and
   and streak survive — this is the wanted behaviour, not a bug.
 - `authWithOAuth2` opens a **popup**. Browsers only allow it because it starts
   from a real click — keep the call inside the click handler (it is).
-- Adding PocketHost later means **appending** a second origin + redirect URI to
-  the *same* OAuth client. Nothing gets replaced, so nothing breaks locally.
+- Adding the hosted backend later means **appending** a second origin + redirect
+  URI to the *same* OAuth client. Nothing gets replaced, so nothing breaks
+  locally. Same again when the DuckDNS name is swapped for a real domain.
 - Google accounts skip password signup, so they arrive with no `displayName`
   conventions from the email path — check onboarding handles that.
 
 ---
 
-## Step 2 — PocketHost deploy (next)
+## Step 2 — Oracle VPS deploy (next)
 
-Step 1 is green locally, so this is next. **Local PB version is `0.39.7`** — the
-hosted instance must match, or hooks written against this API surface break.
+Step 1 is green locally, so this is next. Everything here is already scripted:
+`infra/setup.sh` installs Caddy, PocketBase, systemd, ufw, the nightly backup
+cron and Node, and **copies `pb/pb_migrations` + `pb/pb_hooks` out of the repo
+checkout** — so there is no file upload step, just a `git clone` on the box.
 
-### 2.1 Create the instance
+**PocketBase is pinned to v0.39.7** in the script. The hooks are written against
+that JSVM surface; do not float it.
 
-1. Sign up at <https://pockethost.io>, create an instance → gives
-   `https://<name>.pockethost.io` with TLS.
-2. In the instance settings, **pin the PocketBase version to 0.39.7**. Do not
-   leave it on "latest" — an upgrade under our feet changes the JSVM surface the
-   hooks rely on.
-3. Open the hosted admin UI and **create the superuser**.
+Pre-flight (local, already verified): `pocketbase.exe --version` → 0.39.7 ·
+`pnpm validate` → 8 topics, 2 PYQ papers, 416 questions.
 
-### 2.2 Upload the server code
+### 2.1 Oracle tenancy
 
-Upload over PocketHost's FTP:
+1. <https://signup.oraclecloud.com> → sign up. **Home region: pick an Indian one**
+   (Mumbai / Hyderabad) — it cannot be changed later.
+2. **Upgrade to Pay As You Go** (Billing → Upgrade). Mandatory, not optional:
+   an Always-Free-*tier* account has its idle instance reclaimed after ~7 days
+   of low CPU and constantly fails ARM provisioning here. Card gets a ~₹100
+   refundable hold. **Always Free resources stay free on a PAYG tenancy.**
+3. Billing → **Budgets** → ₹100, alert at 1% of forecast. It is a smoke alarm,
+   **not a spending cap** — OCI has no hard cap. Read
+   `infra/SERVER.md` → "Oracle account posture" before creating anything.
 
-- `pb/pb_migrations/` → the instance's `pb_migrations/`
-- `pb/pb_hooks/` → the instance's `pb_hooks/` — **including `lib/`**
-  (`xp.js`, `entitle.js`, `notify.js`). Hooks `require` these at call time; miss
-  the folder and quiz/SR/XP/pay all throw at runtime, not at boot.
+### 2.2 The instance
 
-Then **restart the instance**. PB only loads migrations and hooks on boot.
+Compute → Instances → **Create instance**:
 
-Verify: `https://<name>.pockethost.io/api/health` returns 200, and the admin UI
-lists all collections (`topics`, `questions`, `topics_public`, `quiz_sessions`,
-`workout_logs`, …). If collections are missing, the migrations did not run —
-check the upload path and restart again.
+| Field | Value |
+|---|---|
+| Image | **Canonical Ubuntu 24.04** |
+| Shape | `VM.Standard.A1.Flex` — **Always Free eligible**, 2 OCPU / 12 GB |
+| SSH | paste your **public** key (`ssh-ed25519 …`) |
+| Networking | assign a **public IPv4** |
 
-### 2.3 Redo the Google config (it does not travel with the code)
+Note the public IP. If you hit *"Out of host capacity"* (common for ARM in
+Indian regions even on PAYG), fall back to `VM.Standard.E2.1.Micro` (AMD, 1 GB,
+also Always Free — plenty for PocketBase) and pass `ARCH=amd64` in 2.4.
 
-PB config lives in its own database, so the hosted instance starts with OAuth2
-off. Repeat step 1b there, then **append** to the *same* Google OAuth client
-(never replace — local must keep working):
+Then **VCN → Security List → add ingress 80/tcp and 443/tcp from 0.0.0.0/0**.
+ufw alone is not enough on Oracle; the VCN filters first. 22 is already open.
 
-- Authorized redirect URI: `https://<name>.pockethost.io/api/oauth2-redirect`
+### 2.3 DuckDNS hostname
 
-Re-read the Step 1 gotchas first: the redirect URI comes from `PUBLIC_PB_URL`,
-and an ID/secret pair from two different clients gives `invalid_client`.
+Caddy needs a name — Let's Encrypt will not issue a certificate for a bare IP,
+and without TLS there is no service worker, no *Add to Home Screen* and no
+Google OAuth.
 
-### 2.4 Server-only environment
+1. <https://duckdns.org> → sign in with GitHub/Google → create subdomain
+   `upscvidya` → set **current ip** = the VPS public IP → update.
+2. Verify from your machine: `nslookup upscvidya.duckdns.org` → the VPS IP.
 
-Set on the instance (never in the client bundle): one AI key for `/api/ca/compose`
-(`OPENROUTER_API_KEY` or `GROQ_API_KEY`), and `ONESIGNAL_APP_ID` /
-`ONESIGNAL_REST_KEY` if push is wanted. **Razorpay stays unset all beta.**
+A DuckDNS name has no room for an `api.` prefix, so `setup.sh` is run with
+`API_HOST` overriding its default of `api.$DOMAIN`.
 
-### 2.5 Push the content
+### 2.4 Bootstrap the box
 
 ```bash
-# .env
-PB_URL_PROD=https://<name>.pockethost.io
+ssh -i <your-private-key> ubuntu@<VPS-IP>
+
+sudo apt-get update && sudo apt-get install -y git
+git clone https://github.com/<you>/upscvidya.git
+cd upscvidya
+
+sudo DOMAIN=upscvidya.duckdns.org \
+     API_HOST=upscvidya.duckdns.org \
+     ADMIN_SSH_KEY="ssh-ed25519 AAAA... you@machine" \
+     bash infra/setup.sh
+# add ARCH=amd64 if you fell back to the E2.1.Micro shape
+```
+
+Idempotent — safe to re-run. Verify:
+
+```bash
+systemctl status pocketbase caddy      # both active
+curl -s https://upscvidya.duckdns.org/api/health   # 200
+```
+
+A TLS failure here is almost always DNS not yet pointing at the box, or 80/443
+still closed in the VCN security list (Let's Encrypt does an HTTP-01 challenge
+on port 80).
+
+Then open `https://upscvidya.duckdns.org/_/` → **create the superuser** and
+confirm the collection list: `users topics questions attempts topic_progress
+sr_cards tests test_attempts ca_items battalions leaderboard_entries pet_logs
+payments referral_credits` + `topics_public`, `topics_teaser`, `quiz_sessions`,
+`badges`, `xp_events`, `sources`, `jobs_log`, `workout_logs`. Missing collections
+⇒ the migrations did not copy; check `/opt/pocketbase/pb_migrations` and
+`sudo systemctl restart pocketbase`.
+
+⚠️ Confirm `/opt/pocketbase/pb_hooks/lib/` holds `xp.js`, `entitle.js`,
+`notify.js`. Hooks `require` them **at call time**, so a missing `lib/` boots
+clean and then throws on the first quiz/XP/pay request.
+
+### 2.5 Google config (it does not travel with the code)
+
+PB config lives in PB's own database, so the new box starts with OAuth2 off.
+
+1. Google Cloud Console → **Credentials** → the existing OAuth client →
+   **Authorized redirect URIs → + ADD** →
+   `https://upscvidya.duckdns.org/api/oauth2-redirect`. **Append**, never
+   replace — deleting the `127.0.0.1` entry breaks local login.
+2. `https://upscvidya.duckdns.org/_/` → `users` → ⚙ Options → OAuth2 → enable →
+   **+ Google** → paste ID and secret **copied in one sitting from the same
+   client's page**.
+
+Re-read the Step 1 gotchas: a mismatched ID/secret pair gives `invalid_client`,
+and PB masks the stored secret so the config screen looks identical either way —
+diagnose from `/api/logs`.
+
+### 2.6 Server-only environment
+
+`sudo systemctl edit pocketbase` (or the unit's `Environment=` lines): one AI key
+for `/api/ca/compose` (`OPENROUTER_API_KEY` or `GROQ_API_KEY`), plus
+`ONESIGNAL_APP_ID` / `ONESIGNAL_REST_KEY` if push is wanted. Restart after.
+**Razorpay stays unset all beta.** Never in the client bundle.
+
+### 2.7 Push the content
+
+```bash
+# .env (local, gitignored)
+PB_URL_PROD=https://upscvidya.duckdns.org
+PB_ADMIN_EMAIL=<superuser>
+PB_ADMIN_PASSWORD=<superuser password>
 
 pnpm validate
 pnpm sync -- --env prod            # lands everything as draft
@@ -198,21 +274,24 @@ pnpm promote -- --env prod --all --dry-run
 pnpm promote -- --env prod --all   # draft → live; users can now see it
 ```
 
-Sync publishes nothing on its own. Expect ~8 topics and ~416 questions.
-Verify: `https://<name>.pockethost.io/api/collections/topics_public/records`
+Sync publishes nothing on its own. Expect **8 topics / 416 questions**
+(POL-01 50, 02 70, 03 45, 04 70, 05 50, 06 100, 10 10, 19 10; CAPF-2023 5,
+CAPF-2024 6). Verify:
+`https://upscvidya.duckdns.org/api/collections/topics_public/records`
 returns 8 rows with non-zero `live_questions`.
 
-### 2.6 Wire CI
+### 2.8 Wire CI
 
-GitHub → Settings → Secrets → Actions: `PB_URL` = the PocketHost URL,
+GitHub → Settings → Secrets → Actions: `PB_URL` = `https://upscvidya.duckdns.org`,
 `PB_ADMIN_EMAIL`, `PB_ADMIN_PASSWORD`. `content-sync.yml` then syncs on every
 push touching `content/**`. It has been failing until now because no prod
 existed. Promote stays manual — that is the review gate.
 
-### 2.7 Deferred to step 2b
+### 2.9 Deferred to step 2b
 
 `PUBLIC_PB_URL` on Cloudflare Pages and the CORS lockdown both need the Pages
-origin, which does not exist yet.
+origin, which does not exist yet. R2 backup keys (`/etc/rclone-r2.conf`) and the
+admin-UI IP allowlist in the Caddyfile are Prompt 17 hardening.
 
 ---
 
@@ -229,7 +308,7 @@ maskable icon), so this is deploy config, not app code.
 2. Build settings: build command `pnpm build`, output directory `build`.
 3. **Environment variables** — every `PUBLIC_*` the code imports from
    `$env/static/public` must exist or the build fails, empty is fine:
-   `PUBLIC_PB_URL=https://<name>.pockethost.io`, `PUBLIC_DEV_BYPASS_AUTH=false`,
+   `PUBLIC_PB_URL=https://upscvidya.duckdns.org`, `PUBLIC_DEV_BYPASS_AUTH=false`,
    `PUBLIC_POSTHOG_KEY`, `PUBLIC_POSTHOG_HOST`, `PUBLIC_ONESIGNAL_APP_ID`.
    No server secrets here — this bundle is public.
 4. Deploy → `https://<project>.pages.dev`. No domain, ₹0.
@@ -245,7 +324,7 @@ maskable icon), so this is deploy config, not app code.
   `clients.claim()`, so a reload picks up a deploy — but an already-open tab
   keeps the old JS silently. Worth a toast before handing the link out.
 - **`pnpm build` has never run against a real `PUBLIC_PB_URL`.** Run it locally
-  with the PocketHost URL set before trusting the Pages build.
+  with the DuckDNS API URL set before trusting the Pages build.
 
 ---
 

@@ -194,15 +194,29 @@
 - **iOS is the onboarding risk:** install is Safari-only via Share → Add to Home
   Screen, with no prompt, and web push only works once installed. The install
   guide must cover it with screenshots.
-- **Hosting, two phases:**
-  - **Beta → PocketHost** (hosted PocketBase, free, `*.pockethost.io` with TLS)
-    + **Cloudflare Pages** (`*.pages.dev`) for the static app. **No domain, ₹0.**
-    Runs without the dev machine on — that was the deciding factor.
-  - **Launch → Oracle Always Free ARM VPS** (already scripted in `infra/`) +
-    a purchased domain: apex → Pages, `api.` → the VPS, Caddy takes the cert.
-    The Oracle tenancy is **upgraded to Pay As You Go** — see below.
-  - Migration between them = copy `pb_data/` + swap `PUBLIC_PB_URL` + append the
-    new redirect URI to the *same* Google OAuth client.
+- **Hosting — one phase, not two (revised 2026-07-31).** The original plan put
+  beta on **PocketHost** (then a free hosted PocketBase) and moved to Oracle at
+  launch. **PocketHost removed its free tier** — it is now $9.99/mo · $59.99/yr ·
+  $149.99 lifetime *per slot*, and an instance refuses to boot un-upgraded. That
+  removed the only reason to have an intermediate host, so beta and launch now
+  share one backend:
+  - **Backend → Oracle Always Free VPS from day one**, built by `infra/setup.sh`
+    (Caddy + systemd + nightly backup, all already written). The tenancy is
+    **Pay As You Go**; the resources stay Always Free — see below.
+  - **Frontend → Cloudflare Pages** (`*.pages.dev`), unchanged.
+  - **Hostname → a free DuckDNS subdomain for beta**, swapped for a purchased
+    domain at launch. Caddy needs *a* name because Let's Encrypt will not issue
+    for a bare IP; which name is irrelevant to it. Beta therefore still costs
+    **₹0**, and the domain stays the only launch spend.
+  - Migrating beta → launch is now a **rename, not a move**: point the new
+    `api.` A record at the same VPS, re-run `setup.sh` with the new `DOMAIN`,
+    swap `PUBLIC_PB_URL`, append the redirect URI to the *same* Google OAuth
+    client. `pb_data/` never leaves the box.
+- **`setup.sh` gained three optional overrides** for exactly this: `API_HOST`
+  (a DuckDNS name has no room for an `api.` prefix), `ARCH` (`amd64` for the
+  always-free AMD micro when ARM capacity is unavailable in Indian regions), and
+  a **`PB_VERSION` pinned to v0.39.7** instead of resolving "latest" — the hooks
+  are written against that JSVM surface and an unattended bump would break them.
 - **PocketBase is the backend AND the database** (one Go binary + SQLite on
   disk). That is why persistent disk is non-negotiable, and why free tiers
   without it (Render free, Vercel, Railway) are disqualified — not a preference.
@@ -234,8 +248,8 @@
   The checklist (Always-Free-eligible shapes only, 4 OCPU / 24 GB ARM total,
   200 GB block storage total, what never to provision) lives in
   `infra/SERVER.md` → "Oracle account posture". Follow it and the bill is ₹0.
-- **Cost picture:** beta = **₹0 total** (PocketHost + Cloudflare Pages + free
-  subdomains + free-tier AI/PostHog/OneSignal + Razorpay off). Launch = the
+- **Cost picture:** beta = **₹0 total** (Oracle Always Free + Cloudflare Pages +
+  a free DuckDNS name + free-tier AI/PostHog/OneSignal + Razorpay off). Launch = the
   **domain only**, ~₹700–1,500/yr, plus per-transaction Razorpay fees once
   payments are switched on (~2% + GST, out of revenue). If Oracle ever becomes
   unworkable, the fallback is a ₹300–500/mo small VPS — `infra/setup.sh` is

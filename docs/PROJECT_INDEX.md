@@ -99,7 +99,7 @@
 | Thing | Path |
 |---|---|
 | Source content (synced to PB) | `content/polity/`, `content/pyq/` |
-| Authored chapters | `POL-01` (50 MCQs), `POL-02` (70), `POL-03` (45), `POL-04` (70), `POL-05` (50), `POL-06` (100), `POL-10` (13), `POL-19` (14) |
+| Authored chapters | `POL-01` (50 MCQs), `POL-02` (70), `POL-03` (45), `POL-04` (70), `POL-05` (50), `POL-06` (100), `POL-10` (10), `POL-19` (10) |
 | Chapter authoring rule (Opus 5, not the AI chain) | `DECISIONS.md` → "Who authors chapters" |
 | Validate / sync / snapshot | `scripts/content/validate.js`, `sync.js`, `pyq-snapshot.js` |
 | Promote draft → live (`pnpm promote`) | `scripts/content/promote.js` |

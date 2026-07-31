@@ -10,7 +10,11 @@
 #   DOMAIN          apex domain (API served at api.$DOMAIN)
 #   ADMIN_SSH_KEY   public key installed for the appadmin user
 # Optional env:
-#   PB_VERSION      PocketBase version tag (default: latest ARM64 release)
+#   PB_VERSION      PocketBase version tag (default: v0.39.7 — the version the
+#                   pb_hooks are written against; do NOT float to latest)
+#   API_HOST        full hostname for the API (default: api.$DOMAIN). Set this
+#                   when the host has no sub-subdomain, e.g. a DuckDNS name.
+#   ARCH            linux release arch: arm64 (default) | amd64 (Oracle AMD micro)
 #   ADMIN_UI_IP     IP allowed to reach /_/ admin UI (default: open; set later)
 # =============================================================================
 set -euo pipefail
@@ -19,11 +23,11 @@ set -euo pipefail
 : "${DOMAIN:?set DOMAIN=yourdomain.com}"
 : "${ADMIN_SSH_KEY:?set ADMIN_SSH_KEY='ssh-ed25519 ...'}"
 
-API_HOST="api.${DOMAIN}"
+API_HOST="${API_HOST:-api.${DOMAIN}}"
 PB_DIR=/opt/pocketbase
 BACKUP_DIR=/opt/backups
 JOBS_DIR=/opt/jobs
-ARCH=arm64
+ARCH="${ARCH:-arm64}"
 
 log() { echo -e "\n=== $* ==="; }
 
@@ -90,10 +94,10 @@ fi
 install -d -o pocketbase -g pocketbase "$PB_DIR" "$PB_DIR/pb_data" "$PB_DIR/pb_migrations" "$PB_DIR/pb_hooks"
 
 if [[ ! -x $PB_DIR/pocketbase ]]; then
-  if [[ -z "${PB_VERSION:-}" ]]; then
-    PB_VERSION=$(curl -fsSL https://api.github.com/repos/pocketbase/pocketbase/releases/latest | jq -r .tag_name)
-  fi
-  V=${PB_VERSION#v}
+  # pinned: the pb_hooks are written against this JSVM surface. Floating to
+  # "latest" can change it under our feet — bump deliberately, never by default.
+  V=${PB_VERSION:-v0.39.7}
+  V=${V#v}
   curl -fsSL -o /tmp/pb.zip \
     "https://github.com/pocketbase/pocketbase/releases/download/v${V}/pocketbase_${V}_linux_${ARCH}.zip"
   apt-get install -y -qq unzip
