@@ -3,6 +3,15 @@
 > Session memory. Rewrite this at the end of every session. Keep <500 words.
 > Read this FIRST on a new session (see CLAUDE.md §0). Don't scan the repo.
 
+## ⚠️ Handover — read if this repo is new on this machine
+
+The folder was handed over from another system. `.env`, `pb/pocketbase[.exe]` and
+`pb/pb_data/` are **untracked**, so nothing runs until they exist. Do
+**[DEV_SETUP.md](DEV_SETUP.md)** first (copy `.env` out of band, download PB
+**v0.39.7**, boot to apply migrations, `pnpm sync` + `pnpm promote -- --env dev
+--all`, re-enter the Google OAuth pair). Nothing is deployed, so a handover
+breaks no live system.
+
 ## Current goal
 
 **Make the app installable on a phone.** Content authoring stays **paused** until
@@ -65,6 +74,7 @@ promote) is parked until one is.
 
 ## Active files
 
+- `docs/DEV_SETUP.md` (new — machine bring-up / handover)
 - `docs/BETA_SETUP.md` (§2 = the Oracle runbook)
 - `infra/setup.sh`, `infra/Caddyfile`, `infra/SERVER.md`
 
@@ -78,7 +88,8 @@ promote) is parked until one is.
 - Put a server secret in a `PUBLIC_*` var, or commit a PB auto-migration
   containing OAuth credentials (check every `*_updated_users.js` before staging).
 - Display `mcq_floor` as a question count — use `live_questions`.
-- Commit `.env` — 5 live API keys.
+- Commit `.env` — 5 live API keys. Move it between machines out of band.
+- Assume `pb_data/` came with the clone. It never does; rebuild per DEV_SETUP.
 - Scan the repo (use PROJECT_INDEX.md).
 
 ## Notes / gotchas

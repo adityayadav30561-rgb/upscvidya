@@ -18,6 +18,10 @@ On a fresh session, read only these, in order, then summarise and **wait**:
 3. [DECISIONS.md](DECISIONS.md) — locked architecture decisions (mandatory read).
 4. This file (§2 build status, §3 golden rules).
 
+**On a new machine** (the repo was just cloned or handed over), do
+[docs/DEV_SETUP.md](docs/DEV_SETUP.md) first — `.env`, the pinned PocketBase
+binary and `pb_data/` are all untracked, so the repo does not run out of the box.
+
 Then inspect **only** the files named in CURRENT_STATE.md. Do **not** run
 repo-wide `Glob`/`Grep`/`Explore` unless the task needs a file the index
 doesn't list — then read that one file, don't sweep.
@@ -70,7 +74,14 @@ architecture (see the territory map, Prompt 05).
 
 ## 2. Build status — WHERE WE ARE
 
-**Prompts 00-A through 16 are DONE. Git clean. Next up: Prompt 17 (deploy + QA).**
+**Prompts 00-A through 16 are DONE. Git clean.**
+
+⚠️ **The build-book sequence is deliberately paused.** Prompt 17 is *not* the
+current task. The live goal is **making the app installable on a phone** —
+hosting, HTTPS, install guide — tracked in
+[docs/BETA_SETUP.md](docs/BETA_SETUP.md) and
+[docs/CURRENT_STATE.md](docs/CURRENT_STATE.md), which is the authority on what to
+do next. Prompt 17 and content authoring both resume after that.
 
 | Prompt | Scope | State | Key commit |
 |--------|-------|-------|-----------|
@@ -91,7 +102,7 @@ architecture (see the territory map, Prompt 05).
 | 14 | Payments (Razorpay), paywall, entitlements, referrals | ✅ | e75d0ed |
 | 15 | Push (OneSignal) + analytics (PostHog) | ✅ | 406108d |
 | 16 | Fitness tracker "Drill Ground" (pivot from PET) | ✅ | f753bc6 |
-| **17** | **Deployment, hardening, QA sweep** | ⬅️ **NEXT** | — |
+| **17** | **Deployment, hardening, QA sweep** | ⏸ **paused** (beta install first) | — |
 | 18 | Beta cohort + launch instrumentation | ⬜ | — |
 
 Extra design screens not yet built (see screen-map): **21 Community / Mess Hall**
@@ -343,6 +354,8 @@ upscvidya/
 │  ├─ polity-mvp-master.md        ← content model + MCQ provenance schema
 │  ├─ screen-map.md               ← 22 screens → prompts (design wins)
 │  ├─ API.md                      ← every endpoint + collection + cron (keep current)
+│  ├─ DEV_SETUP.md                ← new machine / handover: .env, PB binary, pb_data
+│  ├─ BETA_SETUP.md               ← the current goal: hosting → installable PWA
 │  └─ design/                     ← Fable 5 handoff: 22 screen mockups (layout/copy/IA)
 ├─ Army game app redesign directions/  ← Fable handoff: FIELD DOSSIER visual system (§4.1)
 ├─ ENTITLEMENTS.md  POSTHOG.md    ← free/premium matrix · analytics dashboards
@@ -477,8 +490,10 @@ pnpm pyq:snapshot        # regenerate src/lib/pyq-snapshot.json
 pnpm repair:pyq -- --env prod [--apply]   # one-off: un-retire PYQs killed by the old sync bug (dry run by default)
 ```
 
-**Local PocketBase (Windows dev):** run `pb/pocketbase.exe serve` from `pb/`
-(hooks in `pb_hooks/`, data in `pb_data/`). Admin UI at `http://127.0.0.1:8090/_/`.
+**Local PocketBase:** run `pb/pocketbase serve` (`pocketbase.exe` on Windows)
+from `pb/` — hooks in `pb_hooks/`, data in `pb_data/`. Admin UI at
+`http://127.0.0.1:8090/_/`. The binary and `pb_data/` are **untracked**: on a
+fresh machine, download **v0.39.7** and follow [docs/DEV_SETUP.md](docs/DEV_SETUP.md).
 
 **Preview/verify UI changes:** drive a real browser via the **Chrome DevTools
 MCP** server (`mcp__chrome-devtools__*`, declared in [.mcp.json](.mcp.json)) —
@@ -515,7 +530,9 @@ sizes the window, not the viewport — use `emulate` for true mobile metrics.
 All server-only secrets live on the VPS / CI, never in the public client bundle
 (only `PUBLIC_*` vars reach the browser). **Note:** any `PUBLIC_*` var the code
 imports from `$env/static/public` must be present in `.env` (empty is fine) or
-the build fails.
+the build fails. `.env` is **gitignored and never travels with the repo** —
+moving to a new machine means copying it across out of band
+([docs/DEV_SETUP.md](docs/DEV_SETUP.md) §2).
 
 CI: GitHub Action runs `validate`, then `sync` to prod on push to `main` using
 repo secrets `PB_ADMIN_EMAIL` / `PB_ADMIN_PASSWORD` / `PB_URL`.

@@ -9,6 +9,7 @@
 |---|---|
 | Session recovery + lifecycle | `CLAUDE.md` §0 |
 | Session memory (what's next) | `docs/CURRENT_STATE.md` |
+| **New machine / handover setup** (untracked `.env`, PB binary, `pb_data/`) | `docs/DEV_SETUP.md` |
 | Build plan (18 prompts) | `docs/claude-code-build-book.md` |
 | Content model + MCQ schema | `docs/polity-mvp-master.md` |
 | topic.md authoring template (fixed shape) | `docs/CONTENT_AUTHORING.md` |
