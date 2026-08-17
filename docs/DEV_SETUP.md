@@ -45,14 +45,30 @@ your superuser and the Google OAuth config come with it. Three conditions:
 
 ```powershell
 # Windows, PocketBase stopped:
-$src="c:\path\to\upscvidya"; $stage="$env:TEMP\upscvidya-handover"
+$src="c:\path\to\upscvidya"; $stage="$env:TEMP\upscvidya-handover"; $zip="C:\Users\<you>\upscvidya-handover.zip"
 robocopy $src $stage /E /XD node_modules .svelte-kit build test-results playwright-report /NFL /NDL /NJH /NJS
-Compress-Archive -Path "$stage\*" -DestinationPath "$env:USERPROFILE\Desktop\upscvidya-handover.zip" -Force
+tar.exe -a -c -f $zip -C $stage .
 Remove-Item $stage -Recurse -Force
 ```
 
 `robocopy` exits 1–7 on success; that is not an error. `.git` is included, so
 history and the remote come along.
+
+⚠️ **Do not use `Compress-Archive` here** — both of its Windows PowerShell 5.1
+behaviours break this bundle, and neither reports an error:
+
+- it **silently skips items with the hidden attribute**, so `.git` never makes it
+  in (measured: 331 entries instead of 1571), and
+- it writes entry names with **backslash** separators, which extract on macOS or
+  Linux as single files literally named `pb\pb_data\data.db`.
+
+`.NET`'s `ZipFile::CreateFromDirectory` fixes the first but not the second on
+.NET Framework. `tar.exe` (bsdtar, shipped with Windows 10+) gets both right.
+Verify before handing the zip over — the file count must match the staged count,
+and `.git/HEAD`, `.env` and `pb/pb_data/data.db` must all be inside.
+
+Also **do not write the zip to a OneDrive-synced folder** (Desktop and Documents
+usually are). That uploads every secret below to the cloud.
 
 > ⚠️ **That zip is a secrets bundle.** It contains `.env` (5 live AI keys, the PB
 > admin password) and `pb_data/`, which stores **PocketBase's Google OAuth client
