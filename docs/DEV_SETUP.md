@@ -20,12 +20,49 @@ untracked, and the repo is inert without them:
 Everything else — migrations, hooks, `pb/seed/`, content, `.mcp.json`, CI
 workflow — is tracked and arrives with the clone.
 
-**If you are copying the folder directly** (USB, zip, sync) rather than cloning:
-`.env` comes along, which saves §2 — but `pb_data/` and the binary come too, and
-on a different OS the binary will not run. Delete `pb/pocketbase.exe` and
-re-download for the new platform. `pb_data/` is portable across platforms (plain
-SQLite), so a direct copy also carries your dev content and OAuth config, and
-you can skip §4–§6 entirely. Confirm with `pb/pocketbase --version` → 0.39.7.
+The table above is the **clone** case. A zipped folder carries the untracked
+files too — see below.
+
+### Two routes in
+
+**Route A — clone from GitHub.** Everything tracked arrives; §2–§6 rebuild the
+rest by hand.
+
+**Route B — a zip of the working folder.** `.env` *and* `pb_data/` travel, so
+§2 and §4–§6 all collapse to "unzip, `pnpm install`, run". Your dev content,
+your superuser and the Google OAuth config come with it. Three conditions:
+
+1. **Stop PocketBase before zipping.** SQLite runs in WAL mode, so a copy taken
+   mid-write can arrive inconsistent — and `pb_data/` is the one thing in the
+   bundle that cannot be regenerated.
+2. **Exclude `node_modules/`** (and `.svelte-kit`, `build`, `test-results`,
+   `playwright-report`). It is ~200 MB of the ~259 MB total and holds
+   platform-compiled binaries; `pnpm install` rebuilds it correctly. Excluding
+   them gives a ~59 MB zip.
+3. **On a different OS, the binary is wrong.** Delete `pb/pocketbase.exe` and
+   re-download for the new platform (§3). `pb_data/` itself is portable — it is
+   plain SQLite. Confirm with `pb/pocketbase --version` → 0.39.7.
+
+```powershell
+# Windows, PocketBase stopped:
+$src="c:\path\to\upscvidya"; $stage="$env:TEMP\upscvidya-handover"
+robocopy $src $stage /E /XD node_modules .svelte-kit build test-results playwright-report /NFL /NDL /NJH /NJS
+Compress-Archive -Path "$stage\*" -DestinationPath "$env:USERPROFILE\Desktop\upscvidya-handover.zip" -Force
+Remove-Item $stage -Recurse -Force
+```
+
+`robocopy` exits 1–7 on success; that is not an error. `.git` is included, so
+history and the remote come along.
+
+> ⚠️ **That zip is a secrets bundle.** It contains `.env` (5 live AI keys, the PB
+> admin password) and `pb_data/`, which stores **PocketBase's Google OAuth client
+> secret**. Move it over USB, an encrypted drive or a direct transfer — never
+> email, a public share link, or a chat upload — and delete both copies once the
+> new machine is running. If it does leak: rotate the five AI keys and reset the
+> Google OAuth client secret in Cloud Console.
+
+After a Route B unzip, the whole of §2 and §4–§6 is already done. Skip to
+`pnpm install`, then §7 to verify.
 
 ## 1. Toolchain
 

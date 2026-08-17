@@ -6,11 +6,11 @@
 ## ⚠️ Handover — read if this repo is new on this machine
 
 The folder was handed over from another system. `.env`, `pb/pocketbase[.exe]` and
-`pb/pb_data/` are **untracked**, so nothing runs until they exist. Do
-**[DEV_SETUP.md](DEV_SETUP.md)** first (copy `.env` out of band, download PB
-**v0.39.7**, boot to apply migrations, `pnpm sync` + `pnpm promote -- --env dev
---all`, re-enter the Google OAuth pair). Nothing is deployed, so a handover
-breaks no live system.
+`pb/pb_data/` are **untracked**, so a *clone* does not run until they exist. Do
+**[DEV_SETUP.md](DEV_SETUP.md)** first — it has two routes: a GitHub clone
+(rebuild `.env` and `pb_data` by hand) or an unzipped folder copy (both travel;
+just `pnpm install` and re-download the PB binary if the OS changed). Nothing is
+deployed, so a handover breaks no live system.
 
 ## Current goal
 
